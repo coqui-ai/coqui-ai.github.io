@@ -72,6 +72,7 @@ exports.sourceNodes = async (
             const pages = AbstractSdk.paginate(cursor);
 
             for await (const page of pages) {
+              reporter.info(`Retrieved asset page with "${page.length}" items.`);
               assets = [...assets, ...page];
             }
 
