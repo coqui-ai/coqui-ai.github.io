@@ -69,7 +69,7 @@ module.exports = {
       resolve: 'gatsby-source-abstract',
       options: {
         apiToken: process.env.ABSTRACT_TOKEN,
-        projectId: '27ff5784-e1c4-4f8c-a914-c03c380c8ea9',
+        projectId: '8ce79271-45a0-4ac9-9502-6e5fc22f9800',
         branch: 'master',
         sha: 'latest'
       }
