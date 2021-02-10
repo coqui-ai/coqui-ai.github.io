@@ -177,9 +177,9 @@ const MobileNav: React.FC = () => {
         padding: ${p => p.theme.space.lg} ${p => p.theme.space.xxl};
       `}
     >
-      <StyledMobileNavLink to="/content">Content</StyledMobileNavLink>
-      <StyledMobileNavLink to="/design">Design</StyledMobileNavLink>
-      <StyledMobileNavLink to="/components">Components</StyledMobileNavLink>
+      <StyledMobileNavLink to="https://github.com/coqui-ai">GitHub</StyledMobileNavLink>
+      <StyledMobileNavLink to="https://twitter.com/coqui_ai">Twitter</StyledMobileNavLink>
+      <StyledMobileNavLink to="https://www.facebook.com/coquiai">Facebook</StyledMobileNavLink>
       {/* <StyledMobileNavLink to="/patterns">Patterns</StyledMobileNavLink> */}
     </div>
   );
@@ -200,13 +200,13 @@ const DesktopNav: React.FC = () => (
     `}
   >
     <StyledDesktopNavItem>
-      <StyledDesktopNavLink to="/content">Content</StyledDesktopNavLink>
+      <StyledDesktopNavLink to="https://github.com/coqui-ai">GitHub</StyledDesktopNavLink>
     </StyledDesktopNavItem>
     <StyledDesktopNavItem>
-      <StyledDesktopNavLink to="/design">Design</StyledDesktopNavLink>
+      <StyledDesktopNavLink to="https://twitter.com/coqui_ai">Twitter</StyledDesktopNavLink>
     </StyledDesktopNavItem>
     <StyledDesktopNavItem>
-      <StyledDesktopNavLink to="/components">Components</StyledDesktopNavLink>
+      <StyledDesktopNavLink to="https://www.facebook.com/coquiai">Facebook</StyledDesktopNavLink>
     </StyledDesktopNavItem>
     {/* <StyledDesktopNavItem>
       <StyledDesktopNavLink to="/patterns">Patterns</StyledDesktopNavLink>
