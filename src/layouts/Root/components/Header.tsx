@@ -6,17 +6,15 @@
  */
 
 import React, { useState, HTMLAttributes, useRef, useEffect } from 'react';
+import Img from 'gatsby-image';
 import styled, { css, DefaultTheme } from 'styled-components';
-import { Link } from 'gatsby';
-import { getColor, mediaQuery, PALETTE } from '@zendeskgarden/react-theming';
+import { Link, useStaticQuery, graphql } from 'gatsby';
+import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { IconButton } from '@zendeskgarden/react-buttons';
 import { ReactComponent as SearchStroke } from '@zendeskgarden/svg-icons/src/16/search-stroke.svg';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
-import { ReactComponent as GardenIcon } from '@zendeskgarden/svg-icons/src/26/garden.svg';
-import { ReactComponent as GardenWordmark } from '@zendeskgarden/svg-icons/src/26/wordmark-garden.svg';
 import MaxWidthLayout from 'layouts/MaxWidth';
-import { SearchInput } from './SearchInput';
 import { StyledNavigationLink } from './StyledNavigationLink';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
@@ -56,69 +54,56 @@ const StyledHeader = styled.header.attrs({ role: 'banner' })`
   }
 `;
 
-const Logo: React.FC = () => (
-  <div
-    css={css`
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      ${p => mediaQuery('down', 'sm', p.theme)} {
-        flex-grow: 1;
-      }
-    `}
-  >
-    <Link aria-label="Zendesk Garden" to="/">
-      <div
-        css={`
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        `}
-      >
-        <GardenIcon
-          css={css`
-            width: ${p => p.theme.iconSizes.lg};
-            height: ${p => p.theme.iconSizes.lg};
-            color: ${PALETTE.green[400]};
-          `}
-        />
-        <GardenWordmark
-          css={css`
-            margin-left: ${p => p.theme.space.xs};
-            height: ${p => p.theme.iconSizes.lg};
-            color: ${PALETTE.kale[700]};
-
-            ${p => mediaQuery('down', 'sm', p.theme)} {
-              display: none;
+const Logo: React.FC = () => {
+  const logoWordmarkImage = useStaticQuery(
+    graphql`
+      query {
+        file(relativePath: { eq: "images/general/logo-wordmark.png" }) {
+          childImageSharp {
+            fixed(height: 26) {
+              ...GatsbyImageSharpFixed_noBase64
             }
-          `}
-        />
-      </div>
-    </Link>
-  </div>
-);
+          }
+        }
+      }
+    `
+  );
 
-const MobileSearch = React.forwardRef<HTMLInputElement, HTMLAttributes<HTMLDivElement>>(
-  (props, ref) => (
+  return (
     <div
       css={css`
         display: flex;
-        flex-grow: 1;
         align-items: center;
         justify-content: center;
-        padding: ${p => p.theme.space.xxs};
 
-        ${p => mediaQuery('up', 'md', p.theme)} {
-          display: none;
+        ${p => mediaQuery('down', 'sm', p.theme)} {
+          flex-grow: 1;
         }
       `}
-      {...props}
     >
-      <SearchInput id="algolia-docsearch-mobile" placeholder="Search…" ref={ref} />
+      <Link aria-label="Coqui" to="/">
+        <div
+          css={`
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          `}
+        >
+          <Img
+            fixed={logoWordmarkImage.file.childImageSharp.fixed}
+            alt=""
+            css={css`
+              ${p => mediaQuery('down', 'xs', p.theme)} {
+                height: ${p => p.theme.iconSizes.lg}px;
+              }
+            `}
+            imgStyle={{ maxWidth: '100%', maxHeight: '100%' }}
+          />
+        </div>
+      </Link>
     </div>
-  )
-);
+  );
+};
 
 const MobileNavButton: React.FC<
   {
@@ -177,10 +162,11 @@ const MobileNav: React.FC = () => {
         padding: ${p => p.theme.space.lg} ${p => p.theme.space.xxl};
       `}
     >
-      <StyledMobileNavLink to="https://github.com/coqui-ai">GitHub</StyledMobileNavLink>
-      <StyledMobileNavLink to="https://twitter.com/coqui_ai">Twitter</StyledMobileNavLink>
-      <StyledMobileNavLink to="https://www.facebook.com/coquiai">Facebook</StyledMobileNavLink>
-      {/* <StyledMobileNavLink to="/patterns">Patterns</StyledMobileNavLink> */}
+      <StyledMobileNavLink to="/about">About</StyledMobileNavLink>
+      <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
+      <StyledMobileNavLink to="/code">Code</StyledMobileNavLink>
+      <StyledMobileNavLink to="/models">Models</StyledMobileNavLink>
+      <StyledMobileNavLink to="/data">Data</StyledMobileNavLink>
     </div>
   );
 };
@@ -200,19 +186,19 @@ const DesktopNav: React.FC = () => (
     `}
   >
     <StyledDesktopNavItem>
-      <StyledDesktopNavLink to="https://github.com/coqui-ai">GitHub</StyledDesktopNavLink>
+      <StyledDesktopNavLink to="/about">About</StyledDesktopNavLink>
     </StyledDesktopNavItem>
     <StyledDesktopNavItem>
-      <StyledDesktopNavLink to="https://twitter.com/coqui_ai">Twitter</StyledDesktopNavLink>
+      <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
     </StyledDesktopNavItem>
     <StyledDesktopNavItem>
-      <StyledDesktopNavLink to="https://www.facebook.com/coquiai">Facebook</StyledDesktopNavLink>
+      <StyledDesktopNavLink to="/code">Code</StyledDesktopNavLink>
     </StyledDesktopNavItem>
-    {/* <StyledDesktopNavItem>
-      <StyledDesktopNavLink to="/patterns">Patterns</StyledDesktopNavLink>
-    </StyledDesktopNavItem> */}
     <StyledDesktopNavItem>
-      <SearchInput id="algolia-docsearch" placeholder="Search…" />
+      <StyledDesktopNavLink to="/models">Models</StyledDesktopNavLink>
+    </StyledDesktopNavItem>
+    <StyledDesktopNavItem>
+      <StyledDesktopNavLink to="/data">Data</StyledDesktopNavLink>
     </StyledDesktopNavItem>
   </nav>
 );
@@ -251,7 +237,6 @@ const Header: React.FC = () => {
             }}
           />
           {!isSearchVisible && <Logo />}
-          {isSearchVisible && <MobileSearch ref={inputRef} />}
           <MobileNavButton
             icon={<OverflowVerticalStroke />}
             label="Global navigation"

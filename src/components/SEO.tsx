@@ -68,7 +68,7 @@ const SEO: React.FC<{
         },
         {
           property: 'og:image:alt',
-          content: 'Zendesk Garden'
+          content: 'Coqui'
         },
         {
           property: 'og:image:width',

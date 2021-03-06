@@ -6,18 +6,14 @@
  */
 
 import React from 'react';
-import { Search } from './components/Search';
+import { Newsletter } from './components/Newsletter';
 import { Foundation } from './components/Foundation';
-// import { Patterns } from './components/Patterns';
-import { News } from './components/News';
 
 const HomeLayout: React.FC = () => {
   return (
     <>
-      <Search />
+      <Newsletter />
       <Foundation />
-      {/* <Patterns /> */}
-      <News />
     </>
   );
 };

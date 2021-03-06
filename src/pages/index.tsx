@@ -32,18 +32,6 @@ export const SidebarPageFragment = graphql`
       excerpt
       body
       tableOfContents(maxDepth: 3)
-      package: reactPackage {
-        version
-        name
-        description
-        packageName
-      }
-      components: reactComponents {
-        name
-        description
-        extends
-        props
-      }
     }
   }
 `;

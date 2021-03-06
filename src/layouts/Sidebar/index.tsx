@@ -15,12 +15,6 @@ import MaxWidthLayout from 'layouts/MaxWidth';
 import { MobileSidebar } from './components/MobileSidebar';
 import { DesktopSidebar } from './components/DesktopSidebar';
 
-export interface ISidebarSection {
-  title: string;
-  id?: string;
-  items?: ISidebarSection[];
-}
-
 const StyledMobileNavButton = styled.button`
   display: none;
   position: fixed;
@@ -49,7 +43,7 @@ const StyledMobileNavButton = styled.button`
   }
 `;
 
-export const SidebarLayout: React.FC<{ sidebar: ISidebarSection[] }> = ({ children, sidebar }) => {
+export const SidebarLayout: React.FC = ({ children }) => {
   const [isMobileSidebarExpanded, setIsMobileSidebarExpanded] = useState(false);
 
   return (
@@ -66,7 +60,7 @@ export const SidebarLayout: React.FC<{ sidebar: ISidebarSection[] }> = ({ childr
             min-height: calc(100vh - 204px);
           `}
         >
-          <DesktopSidebar sidebar={sidebar} />
+          <DesktopSidebar />
           <div
             css={css`
               flex-grow: 1;
@@ -91,7 +85,7 @@ export const SidebarLayout: React.FC<{ sidebar: ISidebarSection[] }> = ({ childr
               {children}
             </div>
           </div>
-          {isMobileSidebarExpanded && <MobileSidebar sidebar={sidebar} />}
+          {isMobileSidebarExpanded && <MobileSidebar />}
           <StyledMobileNavButton
             onClick={() => setIsMobileSidebarExpanded(!isMobileSidebarExpanded)}
           >

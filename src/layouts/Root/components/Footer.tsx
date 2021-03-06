@@ -9,7 +9,10 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { math } from 'polished';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
-import { ReactComponent as GardenIcon } from '@zendeskgarden/svg-icons/src/26/garden.svg';
+import { ReactComponent as GitHubIcon } from '@zendeskgarden/svg-icons/src/12/github-fill.svg';
+import { ReactComponent as TwitterIcon } from '@zendeskgarden/svg-icons/src/12/twitter-fill.svg';
+import { ReactComponent as FacebookIcon } from '@zendeskgarden/svg-icons/src/12/facebook-fill.svg';
+import { ReactComponent as LinkedInIcon } from '@zendeskgarden/svg-icons/src/12/linkedin-fill.svg';
 import { Link } from './StyledNavigationLink';
 import MaxWidthLayout from 'layouts/MaxWidth';
 
@@ -46,9 +49,78 @@ const Footer: React.FC = () => (
           }
         `}
       >
-        <StyledFooterItem to="https://design.zendesk.com">Blog</StyledFooterItem>
-        <StyledFooterItem to="https://www.github.com/zendeskgarden">GitHub</StyledFooterItem>
-        <StyledFooterItem to="/components/versions">Versions</StyledFooterItem>
+        <Link aria-label="Coqui" to="https://github.com/coqui-ai">
+          <div
+            css={`
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            `}
+          >
+            <GitHubIcon
+              css={css`
+                margin-right: ${p => p.theme.space.lg};
+                width: ${p => p.theme.iconSizes.lg};
+                height: ${p => p.theme.iconSizes.lg};
+                color: ${p => p.theme.palette.white};
+              `}
+            />
+          </div>
+        </Link>
+        <Link aria-label="Coqui" to="https://twitter.com/coqui_ai">
+          <div
+            css={`
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            `}
+          >
+            <TwitterIcon
+              css={css`
+                margin-right: ${p => p.theme.space.lg};
+                width: ${p => p.theme.iconSizes.lg};
+                height: ${p => p.theme.iconSizes.lg};
+                color: ${p => p.theme.palette.white};
+              `}
+            />
+          </div>
+        </Link>
+        <Link aria-label="Coqui" to="https://www.facebook.com/coquiai">
+          <div
+            css={`
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            `}
+          >
+            <FacebookIcon
+              css={css`
+                margin-right: ${p => p.theme.space.lg};
+                width: ${p => p.theme.iconSizes.lg};
+                height: ${p => p.theme.iconSizes.lg};
+                color: ${p => p.theme.palette.white};
+              `}
+            />
+          </div>
+        </Link>
+        <Link aria-label="Coqui" to="https://www.linkedin.com/company/coqui-gmbh">
+          <div
+            css={`
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            `}
+          >
+            <LinkedInIcon
+              css={css`
+                margin-right: ${p => p.theme.space.lg};
+                width: ${p => p.theme.iconSizes.lg};
+                height: ${p => p.theme.iconSizes.lg};
+                color: ${p => p.theme.palette.white};
+              `}
+            />
+          </div>
+        </Link>
       </div>
       <div
         css={css`
@@ -68,6 +140,8 @@ const Footer: React.FC = () => (
         <div
           css={css`
             display: flex;
+            flex-basis: ${p => math(`${p.theme.iconSizes.md} + ${p.theme.space.md}`)};
+            flex-grow: 1;
             align-items: center;
 
             ${p => mediaQuery('down', 'sm', p.theme)} {
@@ -75,22 +149,7 @@ const Footer: React.FC = () => (
             }
           `}
         >
-          <GardenIcon
-            css={css`
-              width: ${p => p.theme.iconSizes.lg};
-              height: ${p => p.theme.iconSizes.lg};
-              color: ${p => getColor('green', 400, p.theme)};
-            `}
-          />
-        </div>
-        <div
-          css={css`
-            flex-basis: ${p => math(`${p.theme.iconSizes.md} + ${p.theme.space.md}`)};
-            flex-grow: 1;
-            padding: 0 ${p => p.theme.space.sm};
-          `}
-        >
-          Garden is the design system by Zendesk.
+          <StyledFooterItem to="/imprint">Imprint</StyledFooterItem>
         </div>
         <div
           css={css`
@@ -101,7 +160,7 @@ const Footer: React.FC = () => (
             }
           `}
         >
-          © Zendesk {new Date().getFullYear()}
+          © Coqui {new Date().getFullYear()}
         </div>
       </div>
     </MaxWidthLayout>

@@ -30,15 +30,14 @@ const FoundationLink: React.FC<{
     `}
   >
     <Img
-      fluid={image.childFile.childImageSharp.fluid}
+      fluid={image.childImageSharp.fluid}
       alt=""
       imgStyle={{
         width: 350,
         minWidth: '100%',
         height: 266,
         minHeight: '100%',
-        maxHeight: '100%',
-        zIndex: -1
+        maxHeight: '100%'
       }}
     />
     <div
@@ -79,33 +78,27 @@ const FoundationLink: React.FC<{
 );
 
 export const Foundation: React.FC = () => {
-  const { contentImage, componentsImage, designImage } = useStaticQuery(
+  const data = useStaticQuery(
     graphql`
       query {
-        contentImage: abstractAsset(layerName: { eq: "home-pillars-content" }) {
-          childFile {
-            childImageSharp {
-              fluid(maxWidth: 350, traceSVG: { background: "#F6F4F4", color: "#228F67" }) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
+        contentImage: file(relativePath: { eq: "images/home/home-pillars-content.png" }) {
+          childImageSharp {
+            fluid(maxWidth: 350, traceSVG: { background: "#F6F4F4", color: "#228F67" }) {
+              ...GatsbyImageSharpFluid_noBase64
             }
           }
         }
-        designImage: abstractAsset(layerName: { eq: "home-pillars-design" }) {
-          childFile {
-            childImageSharp {
-              fluid(maxWidth: 350, traceSVG: { background: "#EDE0CF", color: "#00363D" }) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
+        componentsImage: file(relativePath: { eq: "images/home/home-pillars-design.png" }) {
+          childImageSharp {
+            fluid(maxWidth: 350, traceSVG: { background: "#EDE0CF", color: "#00363D" }) {
+              ...GatsbyImageSharpFluid_noBase64
             }
           }
         }
-        componentsImage: abstractAsset(layerName: { eq: "home-pillars-components" }) {
-          childFile {
-            childImageSharp {
-              fluid(maxWidth: 350, traceSVG: { background: "#F6F4F4", color: "#00363D" }) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
+        designImage: file(relativePath: { eq: "images/home/home-pillars-components.png" }) {
+          childImageSharp {
+            fluid(maxWidth: 350, traceSVG: { background: "#F6F4F4", color: "#00363D" }) {
+              ...GatsbyImageSharpFluid_noBase64
             }
           }
         }
@@ -131,8 +124,8 @@ export const Foundation: React.FC = () => {
           >
             <SectionCallout
               section="Foundation"
-              header="The foundations for making products with Garden"
-              description="This site is an evolving library of shared knowledge that intentionally blurs the line between design, content strategy, and engineering to reinforce a cohesive user experience throughout Zendesk’s product suite."
+              header="Foundations for freeing speech"
+              description="Coqui provides the code, models, and data required to free speech technology."
               css={css`
                 max-width: 380px;
 
@@ -153,10 +146,10 @@ export const Foundation: React.FC = () => {
                 `}
               >
                 <FoundationLink
-                  group="Content"
-                  title="The principles of language for writing products"
-                  url="/content"
-                  image={contentImage}
+                  group="Code"
+                  title="STT + TTS code to build upon"
+                  url="/code"
+                  image={data.contentImage}
                 />
               </Col>
               <Col
@@ -168,10 +161,10 @@ export const Foundation: React.FC = () => {
                 `}
               >
                 <FoundationLink
-                  group="Design"
-                  title="Foundations for creating purposeful UI"
-                  url="/design"
-                  image={designImage}
+                  group="Models"
+                  title="STT + TTS models to integrate"
+                  url="/models"
+                  image={data.componentsImage}
                 />
               </Col>
               <Col
@@ -183,10 +176,10 @@ export const Foundation: React.FC = () => {
                 `}
               >
                 <FoundationLink
-                  group="Components"
-                  title="Development instructions for building effective user interfaces"
-                  url="/components"
-                  image={componentsImage}
+                  group="Data"
+                  title="STT + TTS data with which to train"
+                  url="/data"
+                  image={data.designImage}
                 />
               </Col>
             </Row>

@@ -12,13 +12,13 @@ import { CodeExample } from './components/CodeExample';
 import { StyledCodeBlock as CodeBlock } from './components/CodeBlock';
 import { ColorPalette } from './components/ColorPalette';
 import { Component } from './components/Component';
-import { Configuration } from './components/Configuration';
 import { ObjectBlock } from './components/ObjectBlock';
 import { PropSheet } from './components/PropSheet';
 import { Usage, Use, Misuse } from './components/Usage';
 import { BestPractice, Do, Dont, Caution } from './components/BestPractice';
 import { COMPONENTS, Markdown } from './components/Markdown';
 import { OverviewLinks } from './components/OverviewLinks';
+import { Link } from 'gatsby';
 
 /**
  * The CodeBlock component provides it's own `<pre>` tag.
@@ -35,7 +35,6 @@ export const MarkdownProvider: React.FC = ({ children }) => (
       CodeExample,
       ColorPalette,
       Component,
-      Configuration,
       ObjectBlock,
       PropSheet,
       Usage,
@@ -47,6 +46,7 @@ export const MarkdownProvider: React.FC = ({ children }) => (
       BestPractice,
       Markdown,
       OverviewLinks,
+      Link,
       /**
        * Markdown elements
        */

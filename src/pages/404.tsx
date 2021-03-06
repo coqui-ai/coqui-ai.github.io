@@ -18,15 +18,13 @@ import { XL, LG } from '@zendeskgarden/react-typography';
 import { StyledH1 } from 'components/MarkdownProvider/components/Typography';
 
 const NotFoundPage: React.FC = () => {
-  const { notFoundImage } = useStaticQuery(
+  const notFoundImage = useStaticQuery(
     graphql`
       query {
-        notFoundImage: abstractAsset(layerName: { eq: "general-error-404" }) {
-          childFile {
-            childImageSharp {
-              fixed(width: 270, height: 270) {
-                ...GatsbyImageSharpFixed_noBase64
-              }
+        file(relativePath: { eq: "images/general/general-error-404.png" }) {
+          childImageSharp {
+            fixed(width: 350, height: 350) {
+              ...GatsbyImageSharpFixed_noBase64
             }
           }
         }
@@ -41,7 +39,7 @@ const NotFoundPage: React.FC = () => {
         <Grid
           css={css`
             margin-top: 180px;
-            margin-bottom: 368px;
+            margin-bottom: 288px;
 
             ${p => mediaQuery('down', 'xs', p.theme)} {
               margin-top: 60px;
@@ -52,7 +50,7 @@ const NotFoundPage: React.FC = () => {
           <Row justifyContent="center">
             <Col sm="auto">
               <Img
-                fixed={notFoundImage.childFile.childImageSharp.fixed}
+                fixed={notFoundImage.file.childImageSharp.fixed}
                 alt=""
                 css={css`
                   ${p => mediaQuery('down', 'xs', p.theme)} {
@@ -99,7 +97,7 @@ const NotFoundPage: React.FC = () => {
                     }
                   `}
                 >
-                  Nothing to see here
+                  Move along
                 </StyledH1>
                 <XL
                   css={css`
@@ -111,8 +109,7 @@ const NotFoundPage: React.FC = () => {
                     }
                   `}
                 >
-                  You won’t find anything growing on this page. Head back to the homepage to see
-                  more of Garden.
+                  This is no place for a frog. Head back to the homepage for more Coqui.
                 </XL>
               </div>
             </Col>

@@ -14,9 +14,9 @@ envalid.cleanEnv(process.env, { ABSTRACT_TOKEN: envalid.str() });
 
 module.exports = {
   siteMetadata: {
-    title: 'Zendesk Garden',
-    siteUrl: 'https://garden.zendesk.com',
-    description: `Garden is the design system by Zendesk. It’s where we grow the components, standards, and tools that product designers use every day.`
+    title: 'Coqui',
+    siteUrl: 'https://coqui.ai',
+    description: `Coqui, Freeing Speech.`
   },
   plugins: [
     {
@@ -29,30 +29,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `content`,
-        path: path.join(__dirname, 'src/pages/content')
-      }
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `design`,
-        path: path.join(__dirname, 'src/pages/design')
-      }
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `components`,
-        path: path.join(__dirname, 'src/pages/components')
-      }
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `react-components`,
-        path: path.join(__dirname, 'react-components/packages'),
-        ignore: ['**/*.!(ts|tsx)']
+        name: `blog`,
+        path: path.join(__dirname, 'src/pages/blog')
       }
     },
     {
@@ -63,17 +41,13 @@ module.exports = {
         ignore: ['**/*.!(svg)']
       }
     },
-    'gatsby-source-news',
-    'gatsby-source-react-packages',
     {
-      resolve: 'gatsby-source-abstract',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        apiToken: process.env.ABSTRACT_TOKEN,
-        projectId: '8ce79271-45a0-4ac9-9502-6e5fc22f9800',
-        branch: 'master',
-        sha: 'latest'
+        path: path.join(__dirname, './src/data/')
       }
     },
+    'gatsby-source-news',
     `gatsby-transformer-sharp`,
     `gatsby-transformer-yaml`,
     `gatsby-transformer-garden-svg`,
@@ -97,9 +71,7 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         defaultLayouts: {
-          content: require.resolve('./src/templates/ContentTemplate.tsx'),
-          design: require.resolve('./src/templates/DesignTemplate.tsx'),
-          components: require.resolve('./src/templates/ComponentTemplate.tsx')
+          blog: require.resolve('./src/templates/BlogTemplate.tsx')
         },
         gatsbyRemarkPlugins: [
           require.resolve('./plugins/gatsby-remark-abstract-assets'),
@@ -112,6 +84,7 @@ module.exports = {
               disableBgImageOnAlpha: true
             }
           },
+          `gatsby-remark-static-images`,
           {
             resolve: 'gatsby-remark-autolink-headers',
             options: {
