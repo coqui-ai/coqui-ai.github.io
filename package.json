@@ -5,6 +5,7 @@
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
+    "deploy": "gatsby build --prefix-paths && master -d public",
     "format": "prettier-package-json --write && yarn format:all --write",
     "format:all": "prettier --loglevel warn '**/*.{js,jsx,ts,tsx,json,md,mdx,yml}' '!.github/ISSUE_TEMPLATE.md'",
     "lint": "yarn lint:js && yarn lint:css && yarn lint:md",
@@ -99,6 +100,7 @@
     "gatsby-source-filesystem": "2.6.1",
     "gatsby-transformer-sharp": "2.7.0",
     "gatsby-transformer-yaml": "2.6.0",
+    "gh-pages": "^3.1.0",
     "husky": "4.3.0",
     "js-yaml": "3.14.0",
     "lint-staged": "10.5.2",
