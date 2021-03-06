@@ -5,7 +5,7 @@
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
-    "deploy": "gatsby build --prefix-paths && master -d public",
+    "deploy": "gatsby build && gh-pages -d public -b master",
     "format": "prettier-package-json --write && yarn format:all --write",
     "format:all": "prettier --loglevel warn '**/*.{js,jsx,ts,tsx,json,md,mdx,yml}' '!.github/ISSUE_TEMPLATE.md'",
     "lint": "yarn lint:js && yarn lint:css && yarn lint:md",
