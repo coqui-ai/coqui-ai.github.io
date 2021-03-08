@@ -13,7 +13,7 @@ import { getLineHeight, mediaQuery } from '@zendeskgarden/react-theming';
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 import { LG } from '@zendeskgarden/react-typography';
 import MaxWidthLayout from 'layouts/MaxWidth';
-import { NewsletterInput } from './NewsletterInput';
+import { NewsletterForm } from './NewsletterForm';
 
 const headerStyling = (p: ThemeProps<DefaultTheme>) => {
   const fontSize = `${p.theme.space.base * 12}px`;
@@ -108,14 +108,14 @@ export const Newsletter: React.FC = () => {
                 </LG>
                 <div
                   css={css`
-                    width: 340px;
+                    width: 330px;
 
                     ${p => mediaQuery('down', 'xs', p.theme)} {
                       width: 100%;
                     }
                   `}
                 >
-                  <NewsletterInput id="algolia-docsearch-home" />
+                  <NewsletterForm url="https://coqui.us1.list-manage.com/subscribe/post?u=6faea2f1f19c814566173ffb0&amp;id=f9b303df7f" />
                 </div>
               </div>
             </Col>
