@@ -37,17 +37,17 @@
   Cache-Control: public, max-age=31536000, immutable
 /component---src-pages-blog-data-installation-mdx-6884cd9aafefc41ae9a7.js
   Cache-Control: public, max-age=31536000, immutable
-/component---src-pages-blog-stt-a-journey-to-10-word-error-rate-mdx-74f1925771ccdc83d256.js
-  Cache-Control: public, max-age=31536000, immutable
 /component---src-pages-blog-stt-deepspeech-0-6-speech-to-text-engine-mdx-9c192209eb61d25c9eb4.js
   Cache-Control: public, max-age=31536000, immutable
-/component---src-pages-blog-stt-speech-recognition-deepspeech-mdx-00f39691990daf3cc3bd.js
+/component---src-pages-blog-stt-a-journey-to-10-word-error-rate-mdx-74f1925771ccdc83d256.js
   Cache-Control: public, max-age=31536000, immutable
 /component---src-pages-blog-tts-gradual-training-with-tacotron-for-faster-convergence-mdx-e13137c7c290fa872338.js
   Cache-Control: public, max-age=31536000, immutable
+/component---src-pages-blog-tts-two-methods-for-better-attention-in-tacotron-mdx-ac89fa83d33702d65d93.js
+  Cache-Control: public, max-age=31536000, immutable
 /component---src-pages-blog-tts-solving-attention-problems-of-tts-models-with-double-decoder-consistency-mdx-dcc67d328714568b5cc3.js
   Cache-Control: public, max-age=31536000, immutable
-/component---src-pages-blog-tts-two-methods-for-better-attention-in-tacotron-mdx-ac89fa83d33702d65d93.js
+/component---src-pages-blog-stt-speech-recognition-deepspeech-mdx-00f39691990daf3cc3bd.js
   Cache-Control: public, max-age=31536000, immutable
 /webpack-runtime-68a452511336be0486f0.js
   Cache-Control: public, max-age=31536000, immutable
@@ -178,18 +178,6 @@
   Link: </component---src-pages-blog-data-installation-mdx-6884cd9aafefc41ae9a7.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/blog/data/installation/page-data.json>; rel=preload; as=fetch; crossorigin
-/blog/stt/a-journey-to-10-word-error-rate
-  Link: </webpack-runtime-68a452511336be0486f0.js>; rel=preload; as=script
-  Link: </framework-073c72e9d2e4c2490fcd.js>; rel=preload; as=script
-  Link: </app-c064445f0562e6457d55.js>; rel=preload; as=script
-  Link: </styles-e9d24b1846c7d6eb9685.js>; rel=preload; as=script
-  Link: </commons-6ffc679073e6f46f350b.js>; rel=preload; as=script
-  Link: </3d6e48c09adf7c1d339d7ccc2406a07a807d27d6-ca5fae4edb79cd5c016d.js>; rel=preload; as=script
-  Link: </04927844d1061a6cd5355b2bdd1940ba2c7a9962-9b67218a975661dd6592.js>; rel=preload; as=script
-  Link: </22bd232aecce037cb560de5fe8bf3a7297eb8668-f9d1b95d455a93be1aa7.js>; rel=preload; as=script
-  Link: </component---src-pages-blog-stt-a-journey-to-10-word-error-rate-mdx-74f1925771ccdc83d256.js>; rel=preload; as=script
-  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
-  Link: </page-data/blog/stt/a-journey-to-10-word-error-rate/page-data.json>; rel=preload; as=fetch; crossorigin
 /blog/stt/deepspeech-0-6-speech-to-text-engine
   Link: </webpack-runtime-68a452511336be0486f0.js>; rel=preload; as=script
   Link: </framework-073c72e9d2e4c2490fcd.js>; rel=preload; as=script
@@ -202,7 +190,7 @@
   Link: </component---src-pages-blog-stt-deepspeech-0-6-speech-to-text-engine-mdx-9c192209eb61d25c9eb4.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/blog/stt/deepspeech-0-6-speech-to-text-engine/page-data.json>; rel=preload; as=fetch; crossorigin
-/blog/stt/speech-recognition-deepspeech
+/blog/stt/a-journey-to-10-word-error-rate
   Link: </webpack-runtime-68a452511336be0486f0.js>; rel=preload; as=script
   Link: </framework-073c72e9d2e4c2490fcd.js>; rel=preload; as=script
   Link: </app-c064445f0562e6457d55.js>; rel=preload; as=script
@@ -211,9 +199,9 @@
   Link: </3d6e48c09adf7c1d339d7ccc2406a07a807d27d6-ca5fae4edb79cd5c016d.js>; rel=preload; as=script
   Link: </04927844d1061a6cd5355b2bdd1940ba2c7a9962-9b67218a975661dd6592.js>; rel=preload; as=script
   Link: </22bd232aecce037cb560de5fe8bf3a7297eb8668-f9d1b95d455a93be1aa7.js>; rel=preload; as=script
-  Link: </component---src-pages-blog-stt-speech-recognition-deepspeech-mdx-00f39691990daf3cc3bd.js>; rel=preload; as=script
+  Link: </component---src-pages-blog-stt-a-journey-to-10-word-error-rate-mdx-74f1925771ccdc83d256.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
-  Link: </page-data/blog/stt/speech-recognition-deepspeech/page-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/blog/stt/a-journey-to-10-word-error-rate/page-data.json>; rel=preload; as=fetch; crossorigin
 /blog/tts/gradual-training-with-tacotron-for-faster-convergence
   Link: </webpack-runtime-68a452511336be0486f0.js>; rel=preload; as=script
   Link: </framework-073c72e9d2e4c2490fcd.js>; rel=preload; as=script
@@ -226,18 +214,6 @@
   Link: </component---src-pages-blog-tts-gradual-training-with-tacotron-for-faster-convergence-mdx-e13137c7c290fa872338.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/blog/tts/gradual-training-with-tacotron-for-faster-convergence/page-data.json>; rel=preload; as=fetch; crossorigin
-/blog/tts/solving-attention-problems-of-tts-models-with-double-decoder-consistency
-  Link: </webpack-runtime-68a452511336be0486f0.js>; rel=preload; as=script
-  Link: </framework-073c72e9d2e4c2490fcd.js>; rel=preload; as=script
-  Link: </app-c064445f0562e6457d55.js>; rel=preload; as=script
-  Link: </styles-e9d24b1846c7d6eb9685.js>; rel=preload; as=script
-  Link: </commons-6ffc679073e6f46f350b.js>; rel=preload; as=script
-  Link: </3d6e48c09adf7c1d339d7ccc2406a07a807d27d6-ca5fae4edb79cd5c016d.js>; rel=preload; as=script
-  Link: </04927844d1061a6cd5355b2bdd1940ba2c7a9962-9b67218a975661dd6592.js>; rel=preload; as=script
-  Link: </22bd232aecce037cb560de5fe8bf3a7297eb8668-f9d1b95d455a93be1aa7.js>; rel=preload; as=script
-  Link: </component---src-pages-blog-tts-solving-attention-problems-of-tts-models-with-double-decoder-consistency-mdx-dcc67d328714568b5cc3.js>; rel=preload; as=script
-  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
-  Link: </page-data/blog/tts/solving-attention-problems-of-tts-models-with-double-decoder-consistency/page-data.json>; rel=preload; as=fetch; crossorigin
 /blog/tts/two-methods-for-better-attention-in-tacotron
   Link: </webpack-runtime-68a452511336be0486f0.js>; rel=preload; as=script
   Link: </framework-073c72e9d2e4c2490fcd.js>; rel=preload; as=script
@@ -250,3 +226,27 @@
   Link: </component---src-pages-blog-tts-two-methods-for-better-attention-in-tacotron-mdx-ac89fa83d33702d65d93.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/blog/tts/two-methods-for-better-attention-in-tacotron/page-data.json>; rel=preload; as=fetch; crossorigin
+/blog/tts/solving-attention-problems-of-tts-models-with-double-decoder-consistency
+  Link: </webpack-runtime-68a452511336be0486f0.js>; rel=preload; as=script
+  Link: </framework-073c72e9d2e4c2490fcd.js>; rel=preload; as=script
+  Link: </app-c064445f0562e6457d55.js>; rel=preload; as=script
+  Link: </styles-e9d24b1846c7d6eb9685.js>; rel=preload; as=script
+  Link: </commons-6ffc679073e6f46f350b.js>; rel=preload; as=script
+  Link: </3d6e48c09adf7c1d339d7ccc2406a07a807d27d6-ca5fae4edb79cd5c016d.js>; rel=preload; as=script
+  Link: </04927844d1061a6cd5355b2bdd1940ba2c7a9962-9b67218a975661dd6592.js>; rel=preload; as=script
+  Link: </22bd232aecce037cb560de5fe8bf3a7297eb8668-f9d1b95d455a93be1aa7.js>; rel=preload; as=script
+  Link: </component---src-pages-blog-tts-solving-attention-problems-of-tts-models-with-double-decoder-consistency-mdx-dcc67d328714568b5cc3.js>; rel=preload; as=script
+  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/blog/tts/solving-attention-problems-of-tts-models-with-double-decoder-consistency/page-data.json>; rel=preload; as=fetch; crossorigin
+/blog/stt/speech-recognition-deepspeech
+  Link: </webpack-runtime-68a452511336be0486f0.js>; rel=preload; as=script
+  Link: </framework-073c72e9d2e4c2490fcd.js>; rel=preload; as=script
+  Link: </app-c064445f0562e6457d55.js>; rel=preload; as=script
+  Link: </styles-e9d24b1846c7d6eb9685.js>; rel=preload; as=script
+  Link: </commons-6ffc679073e6f46f350b.js>; rel=preload; as=script
+  Link: </3d6e48c09adf7c1d339d7ccc2406a07a807d27d6-ca5fae4edb79cd5c016d.js>; rel=preload; as=script
+  Link: </04927844d1061a6cd5355b2bdd1940ba2c7a9962-9b67218a975661dd6592.js>; rel=preload; as=script
+  Link: </22bd232aecce037cb560de5fe8bf3a7297eb8668-f9d1b95d455a93be1aa7.js>; rel=preload; as=script
+  Link: </component---src-pages-blog-stt-speech-recognition-deepspeech-mdx-00f39691990daf3cc3bd.js>; rel=preload; as=script
+  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/blog/stt/speech-recognition-deepspeech/page-data.json>; rel=preload; as=fetch; crossorigin
