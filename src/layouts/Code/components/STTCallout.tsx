@@ -15,7 +15,7 @@ export const StyledSTTHeader = styled.div`
   line-height: ${p => p.theme.lineHeights.sm};
   letter-spacing: 0.5px;
   color: ${p => getColor('neutralHue', 600, p.theme)};
-  font-size: ${p => p.theme.fontSizes.xs};
+  font-size: ${p => p.theme.fontSizes.xxl};
   font-weight: ${p => p.theme.fontWeights.semibold};
 `;
 

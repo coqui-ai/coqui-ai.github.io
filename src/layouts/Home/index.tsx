@@ -7,15 +7,9 @@
 
 import React from 'react';
 import { Newsletter } from './components/Newsletter';
-import { Foundation } from './components/Foundation';
 
 const HomeLayout: React.FC = () => {
-  return (
-    <>
-      <Newsletter />
-      <Foundation />
-    </>
-  );
+  return <Newsletter />;
 };
 
 export default HomeLayout;

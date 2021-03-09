@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import { Grid } from 'mauerwerk';
 import { BlogLink } from './BlogLink';
@@ -33,17 +34,19 @@ const MauerwerkLink: React.FC<{
         height: 100%;
       `}
     >
-      <Img
-        fluid={image.node.fluid}
-        alt=""
-        imgStyle={{
-          width: 350,
-          minWidth: '100%',
-          height: 266,
-          minHeight: '100%',
-          maxHeight: '100%'
-        }}
-      />
+      <Link to={url}>
+        <Img
+          fluid={image.node.fluid}
+          alt=""
+          imgStyle={{
+            width: 350,
+            minWidth: '100%',
+            height: 266,
+            minHeight: '100%',
+            maxHeight: '100%'
+          }}
+        />
+      </Link>
       <div
         css={css`
           display: flex;

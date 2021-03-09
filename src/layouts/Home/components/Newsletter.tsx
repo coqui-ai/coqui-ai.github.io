@@ -103,8 +103,12 @@ export const Newsletter: React.FC = () => {
                     max-width: 600px;
                   `}
                 >
-                  Coqui, a startup and the new steward of Mozilla&apos;s DeepSpeech and TTS. Sign up
-                  with your email address to receive the Coqui newsletter.
+                  Coqui, a startup providing speech tech for everyone{' '}
+                  <span role="img" aria-label="frog">
+                    🐸
+                  </span>{' '}
+                  <br />
+                  Sign up with your email address to receive the Coqui newsletter.
                 </LG>
                 <div
                   css={css`
