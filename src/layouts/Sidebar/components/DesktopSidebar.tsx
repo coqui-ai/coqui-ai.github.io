@@ -22,7 +22,7 @@ export const DesktopSidebar: React.FC = () => {
           padding: ${p => p.theme.space.lg} ${p => p.theme.space.md};
         }
 
-        ${p => mediaQuery('down', 'md', p.theme)} {
+        ${p => mediaQuery('down', 'lg', p.theme)} {
           display: none;
         }
       `}
@@ -37,7 +37,7 @@ export const DesktopSidebar: React.FC = () => {
           z-index: -1;
           background-color: ${p => p.theme.palette.white};
 
-          ${p => mediaQuery('down', 'md', p.theme)} {
+          ${p => mediaQuery('down', 'lg', p.theme)} {
             display: none;
           }
         `}
