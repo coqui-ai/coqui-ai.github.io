@@ -103,7 +103,7 @@ const Footer: React.FC = () => (
             />
           </div>
         </Link>
-        <Link aria-label="Coqui" to="https://www.linkedin.com/company/coqui-gmbh">
+        <Link aria-label="Coqui" to="https://www.linkedin.com/company/coqui-ai">
           <div
             css={`
               display: flex;
