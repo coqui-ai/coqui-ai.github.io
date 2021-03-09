@@ -42,16 +42,19 @@ export const NewsletterMediaInput = ({
           ref={inputElement}
           wrapperProps={{ style: { overflow: 'visible' } }}
         />
+        <MediaInput type="submit" value="Subscribe" />
         {status === 'sending' && <Message validation="success">Sending...</Message>}
         {status === 'error' && (
           <Message validation="error">
-            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message) }} />
-          </Message> // eslint-disable-line react/no-danger, @typescript-eslint/naming-convention
+            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message) }} />{' '}
+            {/* eslint-disable-line react/no-danger, @typescript-eslint/naming-convention */}
+          </Message>
         )}
         {status === 'success' && (
           <Message validation="success">
-            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message) }} />
-          </Message> // eslint-disable-line react/no-danger, @typescript-eslint/naming-convention
+            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(message) }} />{' '}
+            {/* eslint-disable-line react/no-danger, @typescript-eslint/naming-convention */}
+          </Message>
         )}
       </form>
     </div>
