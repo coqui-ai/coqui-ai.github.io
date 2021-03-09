@@ -27,7 +27,7 @@ export const Vision: React.FC = () => {
           >
             <VisionCallout
               section="Vision"
-              paragraph1="Coqui is an open-source company dedicated to bringing the latest speech technology into reality. Our projects include deep learning based STT and TTS engines, an alingner, a job scheduler and much more."
+              paragraph1="Coqui is an open-source company dedicated to bringing the latest speech technology into reality. Our projects include deep learning based STT and TTS engines, an aligner, a job scheduler and much more."
               paragraph2="Not only are we dedicated to bringing the latest speech technology into reality, but also to serving as the hub where researchers, developers, and practitioners congregate."
               css={css`
                 max-width: 800px;
