@@ -1,0 +1,34 @@
+{
+  "extends": [
+    "@zendeskgarden",
+    "./notice.js",
+    "@zendeskgarden/eslint-config/plugins/react",
+    "prettier",
+    "prettier/react"
+  ],
+  "rules": {
+    "sort-imports": "off",
+    "react/display-name": "off",
+    "react/no-array-index-key": "off",
+    "react/destructuring-assignment": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["@zendeskgarden/eslint-config/plugins/typescript", "prettier/@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "react/prop-types": "off"
+      }
+    },
+    {
+      "files": ["src/examples/**"],
+      "rules": {
+        "no-alert": "off",
+        "jsx-a11y/img-redundant-alt": "off"
+      }
+    }
+  ]
+}
