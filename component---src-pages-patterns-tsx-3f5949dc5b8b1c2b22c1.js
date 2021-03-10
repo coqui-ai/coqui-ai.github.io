@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[22],{wOd5:function(e,t,a){"use strict";a.r(t);var n=a("q1tI"),l=a.n(n),r=a("Wbzz"),c=a("1Yd/"),o=a("O9mE"),u=a("pkOM");t.default=function(){return l.a.createElement(o.a,null,l.a.createElement(c.a,{title:"Patterns"}),l.a.createElement(u.a,null,l.a.createElement("h1",null,"Patterns"),l.a.createElement("p",null,"Todo"),l.a.createElement(r.a,{to:"/"},"Go back to the homepage")))}}}]);
+//# sourceMappingURL=component---src-pages-patterns-tsx-3f5949dc5b8b1c2b22c1.js.map
