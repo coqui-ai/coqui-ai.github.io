@@ -9,6 +9,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { math } from 'polished';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
+import { ReactComponent as ElementIcon } from '../../../data/images/general/element-logo.svg';
 import { ReactComponent as GitHubIcon } from '@zendeskgarden/svg-icons/src/12/github-fill.svg';
 import { ReactComponent as TwitterIcon } from '@zendeskgarden/svg-icons/src/12/twitter-fill.svg';
 import { ReactComponent as FacebookIcon } from '@zendeskgarden/svg-icons/src/12/facebook-fill.svg';
@@ -112,6 +113,24 @@ const Footer: React.FC = () => (
             `}
           >
             <LinkedInIcon
+              css={css`
+                margin-right: ${p => p.theme.space.lg};
+                width: ${p => p.theme.iconSizes.lg};
+                height: ${p => p.theme.iconSizes.lg};
+                color: ${p => p.theme.palette.white};
+              `}
+            />
+          </div>
+        </Link>
+        <Link aria-label="Coqui" to="https://matrix.to/#/#coqui:matrix.org">
+          <div
+            css={`
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            `}
+          >
+            <ElementIcon
               css={css`
                 margin-right: ${p => p.theme.space.lg};
                 width: ${p => p.theme.iconSizes.lg};
