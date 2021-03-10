@@ -1,7 +1,7 @@
 {
   "extends": [
     "@zendeskgarden",
-    "@zendeskgarden/eslint-config/plugins/notice",
+    "./notice.js",
     "@zendeskgarden/eslint-config/plugins/react",
     "prettier",
     "prettier/react"
