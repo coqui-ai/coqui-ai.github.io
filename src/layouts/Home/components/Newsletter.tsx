@@ -12,7 +12,7 @@ import { css, ThemeProps, DefaultTheme } from 'styled-components';
 import { getLineHeight, mediaQuery } from '@zendeskgarden/react-theming';
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 import { LG } from '@zendeskgarden/react-typography';
-import MaxWidthLayout from 'layouts/MaxWidth';
+import FullBleedLayout from 'layouts/FullBleed';
 import { NewsletterForm } from './NewsletterForm';
 
 const headerStyling = (p: ThemeProps<DefaultTheme>) => {
@@ -49,30 +49,25 @@ export const Newsletter: React.FC = () => {
   return (
     <div
       css={css`
-        margin-bottom: ${p => p.theme.space.base * 20}px;
         background-color: ${p => p.theme.palette.oatMilk};
       `}
     >
-      <MaxWidthLayout>
-        <Grid gutters="lg">
+      <FullBleedLayout>
+        <Grid gutters={false}>
           <Row alignItems="center">
             <Col
               md={6}
               order={1}
               orderMd={0}
               css={css`
-                ${p => mediaQuery('down', 'md', p.theme)} {
-                  padding: 0 ${p => p.theme.space.lg};
-                }
+                padding: 0;
               `}
             >
               <Img
                 fluid={bannerImage.file.childImageSharp.fluid}
                 alt=""
                 css={css`
-                  margin-top: ${p => p.theme.space.xxl};
-                  margin-right: auto;
-                  margin-left: auto;
+                  margin: ${p => p.theme.space.base * 40}px auto ${p => p.theme.space.base * 30}px 0;
                   width: 100%;
                   max-width: 540px;
                 `}
@@ -82,6 +77,9 @@ export const Newsletter: React.FC = () => {
             <Col
               md={6}
               css={css`
+                margin-top: ${p => p.theme.space.base * 35}px;
+                margin-bottom: ${p => p.theme.space.base * 35}px;
+
                 ${p => mediaQuery('down', 'md', p.theme)} {
                   padding-top: ${p => p.theme.space.lg};
                   padding-bottom: 0;
@@ -125,7 +123,7 @@ export const Newsletter: React.FC = () => {
             </Col>
           </Row>
         </Grid>
-      </MaxWidthLayout>
+      </FullBleedLayout>
     </div>
   );
 };
