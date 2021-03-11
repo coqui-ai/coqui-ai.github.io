@@ -10,6 +10,7 @@ import styled from 'styled-components';
 const FullBleedLayout = styled.div`
   margin-right: auto;
   margin-left: auto;
+  max-width: 2880px;
 `;
 
 export default FullBleedLayout;
