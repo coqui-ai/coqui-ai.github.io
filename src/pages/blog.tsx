@@ -5,7 +5,8 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import ReactGA from 'react-ga';
 import navs from '../nav/blog';
 import SEO from 'components/SEO';
 import RootLayout from 'layouts/Root';
@@ -29,6 +30,11 @@ const IndexPage: React.FC = () => {
       }
     `
   );
+
+  useEffect(() => {
+    ReactGA.initialize('UA-191579390-2');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  });
 
   return (
     <RootLayout hasSkipNav={false}>

@@ -120,6 +120,7 @@
     "react-dom": "16.14.0",
     "react-dropzone": "11.2.4",
     "react-fade-in": "^2.0.1",
+    "react-ga": "^3.3.0",
     "react-helmet": "6.1.0",
     "react-mailchimp-subscribe": "^2.1.1",
     "react-window": "1.8.6",
