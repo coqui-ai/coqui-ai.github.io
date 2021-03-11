@@ -24,7 +24,7 @@ const headerStyling = (p: ThemeProps<DefaultTheme>) => {
     font-size: ${fontSize};
     font-weight: ${p.theme.fontWeights.bold};
 
-    ${mediaQuery('down', 'md', p.theme)} {
+    ${mediaQuery('down', 'sm', p.theme)} {
       line-height: ${p.theme.lineHeights.xxxl};
       font-size: ${p.theme.fontSizes.xxxl};
     }
@@ -50,6 +50,10 @@ export const Newsletter: React.FC = () => {
     <div
       css={css`
         background-color: ${p => p.theme.palette.oatMilk};
+
+        ${p => mediaQuery('up', 'md', p.theme)} {
+          height: 85vh;
+        }
       `}
     >
       <FullBleedLayout>
@@ -60,14 +64,23 @@ export const Newsletter: React.FC = () => {
               order={1}
               orderMd={0}
               css={css`
-                padding: 0;
+                padding-right: ${p => p.theme.space.xxl};
+                padding-left: 0;
               `}
             >
               <Img
                 fluid={bannerImage.file.childImageSharp.fluid}
                 alt=""
                 css={css`
-                  margin: ${p => p.theme.space.base * 40}px auto ${p => p.theme.space.base * 30}px 0;
+                  ${p => mediaQuery('up', 'md', p.theme)} {
+                    margin: ${p => p.theme.space.base * 40}px auto ${p => p.theme.space.base * 30}px
+                      0;
+                  }
+
+                  ${p => mediaQuery('down', 'sm', p.theme)} {
+                    margin: ${p => p.theme.space.base * 10}px auto ${p => p.theme.space.base * 10}px
+                      0;
+                  }
                   width: 100%;
                   max-width: 540px;
                 `}
@@ -80,7 +93,7 @@ export const Newsletter: React.FC = () => {
                 margin-top: ${p => p.theme.space.base * 35}px;
                 margin-bottom: ${p => p.theme.space.base * 35}px;
 
-                ${p => mediaQuery('down', 'md', p.theme)} {
+                ${p => mediaQuery('down', 'sm', p.theme)} {
                   padding-top: ${p => p.theme.space.lg};
                   padding-bottom: 0;
                 }
