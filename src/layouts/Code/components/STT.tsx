@@ -61,7 +61,7 @@ export const STT: React.FC = () => {
                 <STTCallout
                   section="STT"
                   paragraph1="Coqui STT is an open source embedded (offline, on-device) speech-to-text engine which can run in real time on devices ranging from a Raspberry Pi 4 to high power GPU servers."
-                  paragraph2="Coqui STT has APIs for numerous languages (Python, C/C++, Java, JavaScript, .NET...), is supported on many platforms (Linux, macos, Windows, ARM...), and is available on GitHub."
+                  paragraph2="Coqui STT has APIs for numerous languages (Python, C/C++, Java, JavaScript, .NET...), is supported on many platforms (Linux, macOS, Windows, ARM...), and is available on GitHub."
                   css={css`
                     max-width: 700px;
 

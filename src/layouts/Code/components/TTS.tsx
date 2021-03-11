@@ -47,7 +47,7 @@ export const TTS: React.FC = () => {
                 <TTSCallout
                   section="TTS"
                   paragraph1="Coqui TTS is an open source embedded (offline, on-device) text-to-speech engine. It can run in real time on anything from a Raspberry Pi 4 to a high-end GPU server."
-                  paragraph2="Coqui TTS currently has an API for Python and is supported on many platforms (Linux, macos, Windows...), and it is available on GitHub."
+                  paragraph2="Coqui TTS currently has an API for Python and is supported on many platforms (Linux, macOS, Windows...), and it is available on GitHub."
                   css={css`
                     max-width: 700px;
 
