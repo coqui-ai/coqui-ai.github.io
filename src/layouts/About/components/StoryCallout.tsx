@@ -35,16 +35,36 @@ export const StoryCallout: React.FC<
     >
       {section}
     </StyledStoryHeader>
-    <XXL
-      tag="p"
-      css={css`
-        color: ${p => getColor('grey', 700, p.theme)};
-      `}
-    >
-      <Paragraph>{paragraph1}</Paragraph>
-      <Paragraph>{paragraph2}</Paragraph>
-      <Paragraph>{paragraph3}</Paragraph>
-    </XXL>
+    <Paragraph>
+      <XXL
+        tag="span"
+        css={css`
+          color: ${p => getColor('grey', 700, p.theme)};
+        `}
+      >
+        {paragraph1}
+      </XXL>
+    </Paragraph>
+    <Paragraph>
+      <XXL
+        tag="span"
+        css={css`
+          color: ${p => getColor('grey', 700, p.theme)};
+        `}
+      >
+        {paragraph2}
+      </XXL>
+    </Paragraph>
+    <Paragraph>
+      <XXL
+        tag="span"
+        css={css`
+          color: ${p => getColor('grey', 700, p.theme)};
+        `}
+      >
+        {paragraph3}
+      </XXL>
+    </Paragraph>
     {children}
   </div>
 );

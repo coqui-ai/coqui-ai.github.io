@@ -34,15 +34,26 @@ export const TTSCallout: React.FC<
     >
       {section}
     </StyledTTSHeader>
-    <XXL
-      tag="p"
-      css={css`
-        color: ${p => getColor('grey', 700, p.theme)};
-      `}
-    >
-      <Paragraph>{paragraph1}</Paragraph>
-      <Paragraph>{paragraph2}</Paragraph>
-    </XXL>
+    <Paragraph>
+      <XXL
+        tag="span"
+        css={css`
+          color: ${p => getColor('grey', 700, p.theme)};
+        `}
+      >
+        {paragraph1}
+      </XXL>
+    </Paragraph>
+    <Paragraph>
+      <XXL
+        tag="span"
+        css={css`
+          color: ${p => getColor('grey', 700, p.theme)};
+        `}
+      >
+        {paragraph2}
+      </XXL>
+    </Paragraph>
     {children}
   </div>
 );
