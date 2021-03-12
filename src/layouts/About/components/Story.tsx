@@ -38,7 +38,15 @@ export const Story: React.FC = () => {
                 `}
               />
             </Row>
-            <Row justifyContent="center">
+            <Row
+              justifyContent="center"
+              css={css`
+                ${p => mediaQuery('down', 'sm', p.theme)} {
+                  padding-right: ${p => p.theme.space.lg};
+                  padding-left: ${p => p.theme.space.lg};
+                }
+              `}
+            >
               <StoryCallout
                 section="Our Story"
                 paragraph1="In 2016 while at Mozilla the members of Coqui noticed that speech technology was siloed in large corporations, leaving the open source world out in the cold. To remedy the situation we decided to do something about it!"

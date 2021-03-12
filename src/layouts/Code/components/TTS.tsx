@@ -66,8 +66,15 @@ export const TTS: React.FC = () => {
             sm={12}
             lg={6}
             css={css`
-              margin-top: ${p => p.theme.space.base * 20}px;
               margin-bottom: ${p => p.theme.space.base * 20}px;
+
+              ${p => mediaQuery('up', 'md', p.theme)} {
+                margin-top: ${p => p.theme.space.base * 20}px;
+              }
+
+              ${p => mediaQuery('down', 'md', p.theme)} {
+                margin-top: 0;
+              }
             `}
           >
             <Img

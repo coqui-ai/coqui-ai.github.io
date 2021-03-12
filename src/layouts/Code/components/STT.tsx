@@ -39,7 +39,14 @@ export const STT: React.FC = () => {
             lg={4}
             css={css`
               margin-top: ${p => p.theme.space.base * 20}px;
-              margin-bottom: ${p => p.theme.space.base * 20}px;
+
+              ${p => mediaQuery('up', 'md', p.theme)} {
+                margin-bottom: ${p => p.theme.space.base * 20}px;
+              }
+
+              ${p => mediaQuery('down', 'md', p.theme)} {
+                margin-bottom: 0;
+              }
             `}
           >
             <Img

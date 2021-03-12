@@ -11,6 +11,7 @@ import Img from 'gatsby-image';
 import { css } from 'styled-components';
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 import FullBleedLayout from 'layouts/FullBleed';
+import { mediaQuery } from '@zendeskgarden/react-theming';
 
 export const FullBleedImage: React.FC = () => {
   const fullBleedImage = useStaticQuery(
@@ -34,8 +35,15 @@ export const FullBleedImage: React.FC = () => {
           <Row>
             <Col
               css={css`
-                margin-top: ${p => p.theme.space.base * 40}px;
-                margin-bottom: ${p => p.theme.space.base * 40}px;
+                ${p => mediaQuery('up', 'md', p.theme)} {
+                  margin-top: ${p => p.theme.space.base * 40}px;
+                  margin-bottom: ${p => p.theme.space.base * 40}px;
+                }
+
+                ${p => mediaQuery('down', 'md', p.theme)} {
+                  margin-top: 0;
+                  margin-bottom: 0;
+                }
               `}
             >
               <Img

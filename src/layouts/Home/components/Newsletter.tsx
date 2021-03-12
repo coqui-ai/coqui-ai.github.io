@@ -72,7 +72,7 @@ export const Newsletter: React.FC = () => {
                 fluid={bannerImage.file.childImageSharp.fluid}
                 alt=""
                 css={css`
-                  ${p => mediaQuery('up', 'md', p.theme)} {
+                  ${p => mediaQuery('up', 'sm', p.theme)} {
                     margin: ${p => p.theme.space.base * 40}px auto ${p => p.theme.space.base * 30}px
                       0;
                   }
@@ -91,11 +91,14 @@ export const Newsletter: React.FC = () => {
               md={6}
               css={css`
                 margin-top: ${p => p.theme.space.base * 35}px;
-                margin-bottom: ${p => p.theme.space.base * 35}px;
+
+                ${p => mediaQuery('up', 'sm', p.theme)} {
+                  margin-bottom: ${p => p.theme.space.base * 35}px;
+                }
 
                 ${p => mediaQuery('down', 'sm', p.theme)} {
-                  padding-top: ${p => p.theme.space.lg};
-                  padding-bottom: 0;
+                  padding: ${p => p.theme.space.lg} ${p => p.theme.space.lg} 0
+                    ${p => p.theme.space.lg};
                 }
               `}
             >

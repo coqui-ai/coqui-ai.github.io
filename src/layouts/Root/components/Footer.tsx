@@ -18,7 +18,9 @@ import { Link } from './StyledNavigationLink';
 import MaxWidthLayout from 'layouts/MaxWidth';
 
 const StyledFooterItem = styled(Link)`
-  margin-right: ${p => p.theme.space.lg};
+  ${p => mediaQuery('up', 'sm', p.theme)} {
+    margin-right: ${p => p.theme.space.lg};
+  }
   color: ${p => p.theme.palette.white};
 
   &:hover,
@@ -56,6 +58,10 @@ const Footer: React.FC = () => (
               display: flex;
               justify-content: center;
               align-items: center;
+
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                padding-bottom: ${p => p.theme.space.sm};
+              }
             `}
           >
             <GitHubIcon
@@ -74,6 +80,10 @@ const Footer: React.FC = () => (
               display: flex;
               justify-content: center;
               align-items: center;
+
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                padding-bottom: ${p => p.theme.space.sm};
+              }
             `}
           >
             <TwitterIcon
@@ -92,6 +102,10 @@ const Footer: React.FC = () => (
               display: flex;
               justify-content: center;
               align-items: center;
+
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                padding-bottom: ${p => p.theme.space.sm};
+              }
             `}
           >
             <FacebookIcon
@@ -110,6 +124,10 @@ const Footer: React.FC = () => (
               display: flex;
               justify-content: center;
               align-items: center;
+
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                padding-bottom: ${p => p.theme.space.sm};
+              }
             `}
           >
             <LinkedInIcon
