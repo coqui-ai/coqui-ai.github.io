@@ -92,11 +92,11 @@ export const Newsletter: React.FC = () => {
               css={css`
                 margin-top: ${p => p.theme.space.base * 35}px;
 
-                ${p => mediaQuery('up', 'sm', p.theme)} {
+                ${p => mediaQuery('up', 'md', p.theme)} {
                   margin-bottom: ${p => p.theme.space.base * 35}px;
                 }
 
-                ${p => mediaQuery('down', 'sm', p.theme)} {
+                ${p => mediaQuery('down', 'md', p.theme)} {
                   padding: ${p => p.theme.space.lg} ${p => p.theme.space.lg} 0
                     ${p => p.theme.space.lg};
                 }

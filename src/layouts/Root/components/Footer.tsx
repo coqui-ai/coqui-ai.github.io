@@ -18,7 +18,7 @@ import { Link } from './StyledNavigationLink';
 import MaxWidthLayout from 'layouts/MaxWidth';
 
 const StyledFooterItem = styled(Link)`
-  ${p => mediaQuery('up', 'sm', p.theme)} {
+  ${p => mediaQuery('up', 'md', p.theme)} {
     margin-right: ${p => p.theme.space.lg};
   }
   color: ${p => p.theme.palette.white};
@@ -46,7 +46,10 @@ const Footer: React.FC = () => (
           padding-bottom: ${p => p.theme.space.md};
 
           ${p => mediaQuery('down', 'sm', p.theme)} {
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding-right: ${p => math(`${p.theme.iconSizes.md} + ${p.theme.space.md}`)};
             padding-left: ${p => math(`${p.theme.iconSizes.md} + ${p.theme.space.md}`)};
             text-align: center;
           }
@@ -58,10 +61,6 @@ const Footer: React.FC = () => (
               display: flex;
               justify-content: center;
               align-items: center;
-
-              ${p => mediaQuery('down', 'sm', p.theme)} {
-                padding-bottom: ${p => p.theme.space.sm};
-              }
             `}
           >
             <GitHubIcon
@@ -80,10 +79,6 @@ const Footer: React.FC = () => (
               display: flex;
               justify-content: center;
               align-items: center;
-
-              ${p => mediaQuery('down', 'sm', p.theme)} {
-                padding-bottom: ${p => p.theme.space.sm};
-              }
             `}
           >
             <TwitterIcon
@@ -102,10 +97,6 @@ const Footer: React.FC = () => (
               display: flex;
               justify-content: center;
               align-items: center;
-
-              ${p => mediaQuery('down', 'sm', p.theme)} {
-                padding-bottom: ${p => p.theme.space.sm};
-              }
             `}
           >
             <FacebookIcon
@@ -124,10 +115,6 @@ const Footer: React.FC = () => (
               display: flex;
               justify-content: center;
               align-items: center;
-
-              ${p => mediaQuery('down', 'sm', p.theme)} {
-                padding-bottom: ${p => p.theme.space.sm};
-              }
             `}
           >
             <LinkedInIcon
@@ -190,7 +177,7 @@ const Footer: React.FC = () => (
         </div>
         <div
           css={css`
-            ${p => mediaQuery('down', 'md', p.theme)} {
+            ${p => mediaQuery('down', 'sm', p.theme)} {
               margin-top: ${p => p.theme.space.md};
               width: 100%;
               text-align: center;

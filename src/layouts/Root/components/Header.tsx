@@ -5,13 +5,12 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useState, HTMLAttributes, useRef, useEffect } from 'react';
+import React, { useState, HTMLAttributes, useEffect } from 'react';
 import Img from 'gatsby-image';
 import styled, { css, DefaultTheme } from 'styled-components';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { IconButton } from '@zendeskgarden/react-buttons';
-import { ReactComponent as SearchStroke } from '@zendeskgarden/svg-icons/src/16/search-stroke.svg';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
 import MaxWidthLayout from 'layouts/MaxWidth';
@@ -74,10 +73,11 @@ const Logo: React.FC = () => {
       css={css`
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: left;
 
         ${p => mediaQuery('down', 'sm', p.theme)} {
           flex-grow: 1;
+          padding-left: ${p => p.theme.space.md};
         }
       `}
     >
@@ -197,14 +197,6 @@ const DesktopNav: React.FC = () => (
 
 const Header: React.FC = () => {
   const [isNavigationVisible, setIsNavigationVisible] = useState(false);
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (isSearchVisible) {
-      inputRef.current && inputRef.current.focus();
-    }
-  }, [isSearchVisible]);
 
   return (
     <>
@@ -216,29 +208,13 @@ const Header: React.FC = () => {
             min-height: 100%;
           `}
         >
-          <MobileNavButton
-            icon={<SearchStroke />}
-            label="Search"
-            isExpanded={isSearchVisible}
-            onClick={() => {
-              setIsSearchVisible(!isSearchVisible);
-
-              if (!isSearchVisible) {
-                setIsNavigationVisible(false);
-              }
-            }}
-          />
-          {!isSearchVisible && <Logo />}
+          <Logo />
           <MobileNavButton
             icon={<OverflowVerticalStroke />}
             label="Global navigation"
             isExpanded={isNavigationVisible}
             onClick={() => {
               setIsNavigationVisible(!isNavigationVisible);
-
-              if (!isNavigationVisible) {
-                setIsSearchVisible(false);
-              }
             }}
           />
           <DesktopNav />
