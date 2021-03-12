@@ -9,7 +9,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { math } from 'polished';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
-import { ReactComponent as ElementIcon } from '../../../data/images/general/element-logo.svg';
+import { ReactComponent as MatrixIcon } from '../../../data/images/general/matrix-logo.svg';
 import { ReactComponent as GitHubIcon } from '@zendeskgarden/svg-icons/src/12/github-fill.svg';
 import { ReactComponent as TwitterIcon } from '@zendeskgarden/svg-icons/src/12/twitter-fill.svg';
 import { ReactComponent as FacebookIcon } from '@zendeskgarden/svg-icons/src/12/facebook-fill.svg';
@@ -135,7 +135,7 @@ const Footer: React.FC = () => (
               align-items: center;
             `}
           >
-            <ElementIcon
+            <MatrixIcon
               css={css`
                 margin-right: ${p => p.theme.space.lg};
                 width: ${p => p.theme.iconSizes.lg};
