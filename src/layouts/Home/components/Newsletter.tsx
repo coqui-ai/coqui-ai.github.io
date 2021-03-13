@@ -117,7 +117,7 @@ export const Newsletter: React.FC = () => {
                     max-width: 600px;
                   `}
                 >
-                  Coqui, a startup providing speech tech for everyone{' '}
+                  Coqui, a startup providing open speech tech for everyone{' '}
                   <span role="img" aria-label="frog">
                     🐸
                   </span>{' '}
