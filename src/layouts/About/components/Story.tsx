@@ -51,7 +51,7 @@ export const Story: React.FC = () => {
                 section="Our Story"
                 paragraph1="In 2016 while at Mozilla the members of Coqui noticed that speech technology was siloed in large corporations, leaving the open source world out in the cold. To remedy the situation we decided to do something about it!"
                 paragraph2="Over the intervening years we built open sourced STT and TTS engines among other things. Also we kicked off projects open sourcing thousands of hours of training data. This work also gathered around it a vital, knowledgeable, and supportive community which accelerated its growth."
-                paragraph3="However, in late 2020 Mozilla decided to no longer support this effort. As a response we created Coqui, an organisation dedicated to continued support of these open source efforts and the community gathered around them."
+                paragraph3="However, in late 2020 Mozilla decided to no longer focus on this effort. As a response we created Coqui, an organisation dedicated to continued support of these open source efforts and the community gathered around them."
                 css={css`
                   max-width: 900px;
 
