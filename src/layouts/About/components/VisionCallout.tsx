@@ -7,6 +7,7 @@
 
 import React, { HTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
+import { Anchor } from '@zendeskgarden/react-buttons';
 import { getColor } from '@zendeskgarden/react-theming';
 import { Paragraph, XXL } from '@zendeskgarden/react-typography';
 
@@ -19,20 +20,14 @@ export const StyledVisionHeader = styled.div`
   font-weight: ${p => p.theme.fontWeights.semibold};
 `;
 
-export const VisionCallout: React.FC<
-  {
-    section: string;
-    paragraph1: string;
-    paragraph2: string;
-  } & HTMLAttributes<HTMLDivElement>
-> = ({ section, paragraph1, paragraph2, children, ...props }) => (
+export const VisionCallout: React.FC<HTMLAttributes<HTMLDivElement>> = ({ children, ...props }) => (
   <div {...props}>
     <StyledVisionHeader
       css={css`
         margin-bottom: ${p => p.theme.space.xs};
       `}
     >
-      {section}
+      Vision
     </StyledVisionHeader>
     <Paragraph>
       <XXL
@@ -41,7 +36,8 @@ export const VisionCallout: React.FC<
           color: ${p => getColor('grey', 700, p.theme)};
         `}
       >
-        {paragraph1}
+        Coqui is dedicated to open speech technology and to serving as the hub where speech
+        researchers, developers, and practitioners congregate.
       </XXL>
     </Paragraph>
     <Paragraph>
@@ -51,7 +47,11 @@ export const VisionCallout: React.FC<
           color: ${p => getColor('grey', 700, p.theme)};
         `}
       >
-        {paragraph2}
+        Our projects include deep learning based{' '}
+        <Anchor href="https://github.com/coqui-ai/STT">STT</Anchor> and{' '}
+        <Anchor href="https://github.com/coqui-ai/TTS">TTS</Anchor> engines, a{' '}
+        <Anchor href="https://github.com/coqui-ai/snakepit">job scheduler</Anchor> and there is more
+        to come.
       </XXL>
     </Paragraph>
     {children}
