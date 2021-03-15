@@ -9,7 +9,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { math } from 'polished';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
-import { ReactComponent as MatrixIcon } from '../../../data/images/general/matrix-logo.svg';
+import { ReactComponent as GitterIcon } from '../../../data/images/general/gitter-logo.svg';
 import { ReactComponent as GitHubIcon } from '@zendeskgarden/svg-icons/src/12/github-fill.svg';
 import { ReactComponent as TwitterIcon } from '@zendeskgarden/svg-icons/src/12/twitter-fill.svg';
 import { ReactComponent as FacebookIcon } from '@zendeskgarden/svg-icons/src/12/facebook-fill.svg';
@@ -127,7 +127,7 @@ const Footer: React.FC = () => (
             />
           </div>
         </Link>
-        <Link aria-label="Coqui" to="https://matrix.to/#/#coqui:matrix.org">
+        <Link aria-label="Coqui" to="https://gitter.im/coqui-ai/community">
           <div
             css={`
               display: flex;
@@ -135,7 +135,7 @@ const Footer: React.FC = () => (
               align-items: center;
             `}
           >
-            <MatrixIcon
+            <GitterIcon
               css={css`
                 margin-right: ${p => p.theme.space.lg};
                 width: ${p => p.theme.iconSizes.lg};
