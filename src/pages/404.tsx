@@ -6,7 +6,6 @@
  */
 
 import React, { useEffect } from 'react';
-import ReactGA from 'react-ga';
 import { css } from 'styled-components';
 import SEO from 'components/SEO';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -17,6 +16,8 @@ import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 import { XL, LG } from '@zendeskgarden/react-typography';
 import { StyledH1 } from 'components/MarkdownProvider/components/Typography';
+import GogleAnalyticsCookieConsent from 'components/Cookies';
+import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 
 const NotFoundPage: React.FC = () => {
   const notFoundImage = useStaticQuery(
@@ -34,8 +35,7 @@ const NotFoundPage: React.FC = () => {
   );
 
   useEffect(() => {
-    ReactGA.initialize('UA-191579390-2');
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    consentedToGoogleAnalytics();
   });
 
   return (
@@ -122,6 +122,7 @@ const NotFoundPage: React.FC = () => {
           </Row>
         </Grid>
       </MaxWidthLayout>
+      <GogleAnalyticsCookieConsent />
     </RootLayout>
   );
 };

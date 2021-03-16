@@ -6,21 +6,22 @@
  */
 
 import React, { useEffect } from 'react';
-import ReactGA from 'react-ga';
 import SEO from 'components/SEO';
 import RootLayout from 'layouts/Root';
 import AboutLayout from 'layouts/About';
+import GogleAnalyticsCookieConsent from 'components/Cookies';
+import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 
 const AboutPage: React.FC = () => {
   useEffect(() => {
-    ReactGA.initialize('UA-191579390-2');
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    consentedToGoogleAnalytics();
   });
 
   return (
     <RootLayout>
       <SEO title="About " />
       <AboutLayout />
+      <GogleAnalyticsCookieConsent />
     </RootLayout>
   );
 };

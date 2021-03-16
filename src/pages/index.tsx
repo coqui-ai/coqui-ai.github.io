@@ -6,22 +6,23 @@
  */
 
 import React, { useEffect } from 'react';
-import ReactGA from 'react-ga';
 import { graphql } from 'gatsby';
 import SEO from 'components/SEO';
 import RootLayout from 'layouts/Root';
 import HomeLayout from 'layouts/Home';
+import GogleAnalyticsCookieConsent from 'components/Cookies';
+import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 
 const IndexPage: React.FC = () => {
   useEffect(() => {
-    ReactGA.initialize('UA-191579390-2');
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    consentedToGoogleAnalytics();
   });
 
   return (
     <RootLayout hasSkipNav={false}>
       <SEO />
       <HomeLayout />
+      <GogleAnalyticsCookieConsent />
     </RootLayout>
   );
 };

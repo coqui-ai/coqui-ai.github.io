@@ -6,21 +6,22 @@
  */
 
 import React, { useEffect } from 'react';
-import ReactGA from 'react-ga';
 import SEO from 'components/SEO';
 import RootLayout from 'layouts/Root';
 import CodeLayout from 'layouts/Code';
+import GogleAnalyticsCookieConsent from 'components/Cookies';
+import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 
 const CodePage: React.FC = () => {
   useEffect(() => {
-    ReactGA.initialize('UA-191579390-2');
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    consentedToGoogleAnalytics();
   });
 
   return (
     <RootLayout>
       <SEO title="Code " />
       <CodeLayout />
+      <GogleAnalyticsCookieConsent />
     </RootLayout>
   );
 };

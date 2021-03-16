@@ -6,7 +6,6 @@
  */
 
 import React, { useEffect } from 'react';
-import ReactGA from 'react-ga';
 import styled, { css } from 'styled-components';
 import SEO from 'components/SEO';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -18,6 +17,8 @@ import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 import { MD, LG } from '@zendeskgarden/react-typography';
 import { StyledH3 } from 'components/MarkdownProvider/components/Typography';
 import { Link } from '../layouts/Root/components/StyledNavigationLink';
+import GogleAnalyticsCookieConsent from 'components/Cookies';
+import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 
 const StyledLink = styled(Link)`
   margin-right: ${p => p.theme.space.lg};
@@ -45,8 +46,7 @@ const ImprintPage: React.FC = () => {
   );
 
   useEffect(() => {
-    ReactGA.initialize('UA-191579390-2');
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    consentedToGoogleAnalytics();
   });
 
   return (
@@ -292,6 +292,7 @@ const ImprintPage: React.FC = () => {
           </Row>
         </Grid>
       </MaxWidthLayout>
+      <GogleAnalyticsCookieConsent />
     </RootLayout>
   );
 };

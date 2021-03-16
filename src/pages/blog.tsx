@@ -6,12 +6,13 @@
  */
 
 import React, { useEffect } from 'react';
-import ReactGA from 'react-ga';
 import navs from '../nav/blog';
 import SEO from 'components/SEO';
 import RootLayout from 'layouts/Root';
 import BlogLayout from 'layouts/Blog';
 import { graphql, useStaticQuery } from 'gatsby';
+import GogleAnalyticsCookieConsent from 'components/Cookies';
+import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 
 const IndexPage: React.FC = () => {
   const data = useStaticQuery(
@@ -32,14 +33,14 @@ const IndexPage: React.FC = () => {
   );
 
   useEffect(() => {
-    ReactGA.initialize('UA-191579390-2');
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    consentedToGoogleAnalytics();
   });
 
   return (
     <RootLayout hasSkipNav={false}>
       <SEO />
       <BlogLayout navs={navs} images={data.allImageSharp.edges} />
+      <GogleAnalyticsCookieConsent />
     </RootLayout>
   );
 };
