@@ -8,7 +8,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link as GatsbyLink } from 'gatsby';
-import { OutboundLink } from 'gatsby-plugin-google-gtag';
+import { Anchor } from '@zendeskgarden/react-buttons';
 import { getColor } from '@zendeskgarden/react-theming';
 
 interface ILink {
@@ -29,9 +29,9 @@ export const Link = ({ children, to, activeClassName, ...props }: ILink) => {
   }
 
   return (
-    <OutboundLink href={to} {...props}>
+    <Anchor href={to} {...props}>
       {children}
-    </OutboundLink>
+    </Anchor>
   );
 };
 

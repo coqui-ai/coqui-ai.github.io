@@ -54,12 +54,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-algolia-docsearch`,
     {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        trackingIds: ['UA-970836-25']
-      }
-    },
-    {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaultQuality: 90
