@@ -11,6 +11,7 @@ import SEO from 'components/SEO';
 import RootLayout from 'layouts/Root';
 import HomeLayout from 'layouts/Home';
 import queryString from 'query-string';
+import { useLocation } from '@reach/router';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 
@@ -19,6 +20,7 @@ const IndexPage: React.FC = () => {
     consentedToGoogleAnalytics();
   });
 
+  const location = useLocation();
   const parsedParameters = queryString.parse(location.search);
   const isSubscribing = parsedParameters.subscription === 'true';
 
