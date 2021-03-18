@@ -27,9 +27,10 @@ const GlobalStyling = createGlobalStyle`
 
 interface IRootLayoutProps {
   hasSkipNav?: boolean;
+  isSubscribing: boolean;
 }
 
-const RootLayout: React.FC<IRootLayoutProps> = ({ children, hasSkipNav }) => {
+const RootLayout: React.FC<IRootLayoutProps> = ({ children, hasSkipNav, isSubscribing }) => {
   return (
     <div
       css={`
@@ -51,7 +52,7 @@ const RootLayout: React.FC<IRootLayoutProps> = ({ children, hasSkipNav }) => {
           Skip to main content
         </SkipNav>
       )}
-      <Header />
+      <Header isSubscribing={isSubscribing} />
       <main
         css={`
           flex-grow: 1;
@@ -60,7 +61,7 @@ const RootLayout: React.FC<IRootLayoutProps> = ({ children, hasSkipNav }) => {
       >
         {children}
       </main>
-      <Footer />
+      <Footer isSubscribing={isSubscribing} />
     </div>
   );
 };

@@ -10,6 +10,7 @@ import { graphql } from 'gatsby';
 import SEO from 'components/SEO';
 import RootLayout from 'layouts/Root';
 import HomeLayout from 'layouts/Home';
+import queryString from 'query-string';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 
@@ -18,8 +19,11 @@ const IndexPage: React.FC = () => {
     consentedToGoogleAnalytics();
   });
 
+  const parsedParameters = queryString.parse(location.search);
+  const isSubscribing = parsedParameters.subscription === 'true';
+
   return (
-    <RootLayout hasSkipNav={false}>
+    <RootLayout hasSkipNav={false} isSubscribing={isSubscribing}>
       <SEO />
       <HomeLayout />
       <GogleAnalyticsCookieConsent />

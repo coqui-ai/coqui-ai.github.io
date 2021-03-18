@@ -29,7 +29,11 @@ const StyledFooterItem = styled(Link)`
   }
 `;
 
-const Footer: React.FC = () => (
+interface IFooterLayoutProps {
+  isSubscribing: boolean;
+}
+
+const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
   <footer
     css={css`
       background-color: ${p => getColor('kale', 700, p.theme)};
@@ -55,96 +59,100 @@ const Footer: React.FC = () => (
           }
         `}
       >
-        <Link aria-label="Coqui" to="https://github.com/coqui-ai">
-          <div
-            css={`
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            `}
-          >
-            <GitHubIcon
-              css={css`
-                margin-right: ${p => p.theme.space.lg};
-                width: ${p => p.theme.iconSizes.lg};
-                height: ${p => p.theme.iconSizes.lg};
-                color: ${p => p.theme.palette.white};
-              `}
-            />
-          </div>
-        </Link>
-        <Link aria-label="Coqui" to="https://twitter.com/coqui_ai">
-          <div
-            css={`
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            `}
-          >
-            <TwitterIcon
-              css={css`
-                margin-right: ${p => p.theme.space.lg};
-                width: ${p => p.theme.iconSizes.lg};
-                height: ${p => p.theme.iconSizes.lg};
-                color: ${p => p.theme.palette.white};
-              `}
-            />
-          </div>
-        </Link>
-        <Link aria-label="Coqui" to="https://www.facebook.com/coquiai">
-          <div
-            css={`
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            `}
-          >
-            <FacebookIcon
-              css={css`
-                margin-right: ${p => p.theme.space.lg};
-                width: ${p => p.theme.iconSizes.lg};
-                height: ${p => p.theme.iconSizes.lg};
-                color: ${p => p.theme.palette.white};
-              `}
-            />
-          </div>
-        </Link>
-        <Link aria-label="Coqui" to="https://www.linkedin.com/company/coqui-ai">
-          <div
-            css={`
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            `}
-          >
-            <LinkedInIcon
-              css={css`
-                margin-right: ${p => p.theme.space.lg};
-                width: ${p => p.theme.iconSizes.lg};
-                height: ${p => p.theme.iconSizes.lg};
-                color: ${p => p.theme.palette.white};
-              `}
-            />
-          </div>
-        </Link>
-        <Link aria-label="Coqui" to="https://gitter.im/coqui-ai/community">
-          <div
-            css={`
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            `}
-          >
-            <GitterIcon
-              css={css`
-                margin-right: ${p => p.theme.space.lg};
-                width: ${p => p.theme.iconSizes.lg};
-                height: ${p => p.theme.iconSizes.lg};
-                color: ${p => p.theme.palette.white};
-              `}
-            />
-          </div>
-        </Link>
+        {!isSubscribing && (
+          <>
+            <Link aria-label="Coqui" to="https://github.com/coqui-ai">
+              <div
+                css={`
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                `}
+              >
+                <GitHubIcon
+                  css={css`
+                    margin-right: ${p => p.theme.space.lg};
+                    width: ${p => p.theme.iconSizes.lg};
+                    height: ${p => p.theme.iconSizes.lg};
+                    color: ${p => p.theme.palette.white};
+                  `}
+                />
+              </div>
+            </Link>
+            <Link aria-label="Coqui" to="https://twitter.com/coqui_ai">
+              <div
+                css={`
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                `}
+              >
+                <TwitterIcon
+                  css={css`
+                    margin-right: ${p => p.theme.space.lg};
+                    width: ${p => p.theme.iconSizes.lg};
+                    height: ${p => p.theme.iconSizes.lg};
+                    color: ${p => p.theme.palette.white};
+                  `}
+                />
+              </div>
+            </Link>
+            <Link aria-label="Coqui" to="https://www.facebook.com/coquiai">
+              <div
+                css={`
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                `}
+              >
+                <FacebookIcon
+                  css={css`
+                    margin-right: ${p => p.theme.space.lg};
+                    width: ${p => p.theme.iconSizes.lg};
+                    height: ${p => p.theme.iconSizes.lg};
+                    color: ${p => p.theme.palette.white};
+                  `}
+                />
+              </div>
+            </Link>
+            <Link aria-label="Coqui" to="https://www.linkedin.com/company/coqui-ai">
+              <div
+                css={`
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                `}
+              >
+                <LinkedInIcon
+                  css={css`
+                    margin-right: ${p => p.theme.space.lg};
+                    width: ${p => p.theme.iconSizes.lg};
+                    height: ${p => p.theme.iconSizes.lg};
+                    color: ${p => p.theme.palette.white};
+                  `}
+                />
+              </div>
+            </Link>
+            <Link aria-label="Coqui" to="https://gitter.im/coqui-ai/community">
+              <div
+                css={`
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                `}
+              >
+                <GitterIcon
+                  css={css`
+                    margin-right: ${p => p.theme.space.lg};
+                    width: ${p => p.theme.iconSizes.lg};
+                    height: ${p => p.theme.iconSizes.lg};
+                    color: ${p => p.theme.palette.white};
+                  `}
+                />
+              </div>
+            </Link>
+          </>
+        )}
       </div>
       <div
         css={css`

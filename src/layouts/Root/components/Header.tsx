@@ -140,7 +140,11 @@ const StyledMobileNavLink = styled(StyledNavigationLink).attrs({ partiallyActive
   margin-top: ${p => p.theme.space.base * 2}px;
 `;
 
-const MobileNav: React.FC = () => {
+interface IMobileNavLayoutProps {
+  isSubscribing: boolean;
+}
+
+const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -162,14 +166,22 @@ const MobileNav: React.FC = () => {
         padding: ${p => p.theme.space.lg} ${p => p.theme.space.xxl};
       `}
     >
-      <StyledMobileNavLink to="/about">About</StyledMobileNavLink>
-      <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
-      <StyledMobileNavLink to="/code">Code</StyledMobileNavLink>
+      {!isSubscribing && (
+        <>
+          <StyledMobileNavLink to="/about">About</StyledMobileNavLink>
+          <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
+          <StyledMobileNavLink to="/code">Code</StyledMobileNavLink>
+        </>
+      )}
     </div>
   );
 };
 
-const DesktopNav: React.FC = () => (
+interface IDesktopNavLayoutProps {
+  isSubscribing: boolean;
+}
+
+const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => (
   <nav
     role="navigation"
     aria-label="Global"
@@ -183,19 +195,27 @@ const DesktopNav: React.FC = () => (
       }
     `}
   >
-    <StyledDesktopNavItem>
-      <StyledDesktopNavLink to="/about">About</StyledDesktopNavLink>
-    </StyledDesktopNavItem>
-    <StyledDesktopNavItem>
-      <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
-    </StyledDesktopNavItem>
-    <StyledDesktopNavItem>
-      <StyledDesktopNavLink to="/code">Code</StyledDesktopNavLink>
-    </StyledDesktopNavItem>
+    {!isSubscribing && (
+      <>
+        <StyledDesktopNavItem>
+          <StyledDesktopNavLink to="/about">About</StyledDesktopNavLink>
+        </StyledDesktopNavItem>
+        <StyledDesktopNavItem>
+          <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
+        </StyledDesktopNavItem>
+        <StyledDesktopNavItem>
+          <StyledDesktopNavLink to="/code">Code</StyledDesktopNavLink>
+        </StyledDesktopNavItem>
+      </>
+    )}
   </nav>
 );
 
-const Header: React.FC = () => {
+interface IHeaderLayoutProps {
+  isSubscribing: boolean;
+}
+
+const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing }) => {
   const [isNavigationVisible, setIsNavigationVisible] = useState(false);
 
   return (
@@ -209,19 +229,21 @@ const Header: React.FC = () => {
           `}
         >
           <Logo />
-          <MobileNavButton
-            icon={<OverflowVerticalStroke />}
-            label="Global navigation"
-            isExpanded={isNavigationVisible}
-            onClick={() => {
-              setIsNavigationVisible(!isNavigationVisible);
-            }}
-          />
-          <DesktopNav />
+          {!isSubscribing && (
+            <MobileNavButton
+              icon={<OverflowVerticalStroke />}
+              label="Global navigation"
+              isExpanded={isNavigationVisible}
+              onClick={() => {
+                setIsNavigationVisible(!isNavigationVisible);
+              }}
+            />
+          )}
+          <DesktopNav isSubscribing={isSubscribing} />
         </MaxWidthLayout>
       </StyledHeader>
 
-      {isNavigationVisible && <MobileNav />}
+      {isNavigationVisible && <MobileNav isSubscribing={isSubscribing} />}
     </>
   );
 };
