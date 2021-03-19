@@ -6,18 +6,22 @@
  */
 
 import React from 'react';
+import { Name } from './components/Name';
 import { Motto } from './components/Motto';
 import { Story } from './components/Story';
 import { Vision } from './components/Vision';
-import { FullBleedImage } from './components/FullBleedImage';
+import { FullBleedImage1 } from './components/FullBleedImage1';
+import { FullBleedImage2 } from './components/FullBleedImage2';
 
 const AboutLayout: React.FC = () => {
   return (
     <>
       <Motto />
       <Vision />
-      <FullBleedImage />
+      <FullBleedImage1 />
       <Story />
+      <FullBleedImage2 />
+      <Name />
     </>
   );
 };

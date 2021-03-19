@@ -13,11 +13,11 @@ import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 import FullBleedLayout from 'layouts/FullBleed';
 import { mediaQuery } from '@zendeskgarden/react-theming';
 
-export const FullBleedImage: React.FC = () => {
-  const fullBleedImage = useStaticQuery(
+export const FullBleedImage2: React.FC = () => {
+  const fullBleedImage2 = useStaticQuery(
     graphql`
       query {
-        file(relativePath: { eq: "images/about/about-full-bleed.png" }) {
+        file(relativePath: { eq: "images/about/about-full-bleed-2.png" }) {
           childImageSharp {
             fluid(maxWidth: 2880) {
               ...GatsbyImageSharpFluid_noBase64
@@ -47,7 +47,7 @@ export const FullBleedImage: React.FC = () => {
               `}
             >
               <Img
-                fluid={fullBleedImage.file.childImageSharp.fluid}
+                fluid={fullBleedImage2.file.childImageSharp.fluid}
                 fadeIn
                 durationFadeIn={800}
                 imgStyle={{ width: '100%' }}
