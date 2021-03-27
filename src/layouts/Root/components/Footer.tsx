@@ -18,9 +18,8 @@ import { Link } from './StyledNavigationLink';
 import MaxWidthLayout from 'layouts/MaxWidth';
 
 const StyledFooterItem = styled(Link)`
-  ${p => mediaQuery('up', 'md', p.theme)} {
-    margin-right: ${p => p.theme.space.lg};
-  }
+  margin-right: ${p => p.theme.space.md};
+  margin-left: ${p => p.theme.space.md};
   color: ${p => p.theme.palette.white};
 
   &:hover,
