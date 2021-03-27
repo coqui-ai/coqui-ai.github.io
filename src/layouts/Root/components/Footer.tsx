@@ -182,6 +182,7 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
           `}
         >
           <StyledFooterItem to="/imprint">Imprint</StyledFooterItem>
+          <StyledFooterItem to="/privacy">Privacy Policy</StyledFooterItem>
         </div>
         <div
           css={css`
