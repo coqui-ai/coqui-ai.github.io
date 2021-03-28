@@ -19,7 +19,10 @@ import MaxWidthLayout from 'layouts/MaxWidth';
 
 const StyledFooterItem = styled(Link)`
   margin-right: ${p => p.theme.space.md};
-  margin-left: ${p => p.theme.space.md};
+
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    margin-left: ${p => p.theme.space.md};
+  }
   color: ${p => p.theme.palette.white};
 
   &:hover,
