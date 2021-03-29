@@ -183,6 +183,22 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
         </div>
         <div
           css={css`
+            display: flex;
+            flex-basis: ${p => math(`${p.theme.iconSizes.md} + ${p.theme.space.md}`)};
+            flex-grow: 1;
+            align-items: center;
+          `}
+        >
+          <StyledFooterItem to="https://berlinlovesyou.com/">
+            Made with{' '}
+            <span role="img" aria-label="heart">
+              ❤️
+            </span>{' '}
+            in Berlin!
+          </StyledFooterItem>
+        </div>
+        <div
+          css={css`
             ${p => mediaQuery('down', 'sm', p.theme)} {
               margin-top: ${p => p.theme.space.sm};
               width: 100%;
