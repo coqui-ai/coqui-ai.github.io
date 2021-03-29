@@ -145,7 +145,6 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
               >
                 <GitterIcon
                   css={css`
-                    margin-right: ${p => p.theme.space.lg};
                     width: ${p => p.theme.iconSizes.lg};
                     height: ${p => p.theme.iconSizes.lg};
                     color: ${p => p.theme.palette.white};
