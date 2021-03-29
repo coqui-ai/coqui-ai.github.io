@@ -161,7 +161,7 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
           flex-wrap: wrap;
           align-items: center;
           border-top: ${p => p.theme.borders.sm} ${p => getColor('kale', 500, p.theme)};
-          padding-top: ${p => p.theme.space.md};
+          padding-top: ${p => p.theme.space.sm};
 
           ${p => mediaQuery('down', 'sm', p.theme)} {
             flex-direction: column;
@@ -176,10 +176,6 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
             flex-basis: ${p => math(`${p.theme.iconSizes.md} + ${p.theme.space.md}`)};
             flex-grow: 1;
             align-items: center;
-
-            ${p => mediaQuery('down', 'sm', p.theme)} {
-              margin-bottom: ${p => p.theme.space.md};
-            }
           `}
         >
           <StyledFooterItem to="/imprint">Imprint</StyledFooterItem>
@@ -188,7 +184,7 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
         <div
           css={css`
             ${p => mediaQuery('down', 'sm', p.theme)} {
-              margin-top: ${p => p.theme.space.md};
+              margin-top: ${p => p.theme.space.sm};
               width: 100%;
               text-align: center;
             }
