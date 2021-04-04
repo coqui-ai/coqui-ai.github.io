@@ -6,10 +6,16 @@
  */
 
 import React from 'react';
+import { News } from './components/News';
 import { Newsletter } from './components/Newsletter';
 
 const HomeLayout: React.FC = () => {
-  return <Newsletter />;
+  return (
+    <>
+      <Newsletter />
+      <News />
+    </>
+  );
 };
 
 export default HomeLayout;

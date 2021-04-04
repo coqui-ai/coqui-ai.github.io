@@ -11,8 +11,8 @@ import styled, { css } from 'styled-components';
 import { getColor } from '@zendeskgarden/react-theming';
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 import { XXL } from '@zendeskgarden/react-typography';
-import { Anchor } from '@zendeskgarden/react-buttons';
-import MaxWidthLayout from 'layouts/MaxWidth';
+import { Link } from 'layouts/Root/components/StyledNavigationLink';
+import FullBleedLayout from 'layouts/FullBleed';
 
 const StyledSectionHeader = styled(XXL).attrs({ tag: 'h2', isBold: true })`
   margin-bottom: ${p => p.theme.space.md};
@@ -40,10 +40,10 @@ export const News: React.FC = () => {
     <div
       css={css`
         position: relative;
-        background-color: ${p => getColor('grey', 200, p.theme)};
+        background-color: 'white';
       `}
     >
-      <MaxWidthLayout>
+      <FullBleedLayout>
         <Grid gutters="lg">
           <Row>
             <Col
@@ -63,21 +63,21 @@ export const News: React.FC = () => {
                         margin-bottom: ${p => p.theme.space.lg};
                       `}
                     >
-                      <Anchor
-                        href={edge.node.url}
+                      <Link
+                        to={edge.node.url}
                         css={css`
                           color: ${p => p.theme.colors.foreground};
                           font-weight: ${p => p.theme.fontWeights.semibold};
                         `}
                       >
                         {edge.node.title}
-                      </Anchor>
+                      </Link>
                       <p
                         css={css`
                           color: ${p => getColor('grey', 700, p.theme)};
                         `}
                       >
-                        Article by <Anchor href={edge.node.author_url}>{edge.node.author}</Anchor>
+                        By <Link to={edge.node.author_url}>{edge.node.author}</Link>
                       </p>
                     </Col>
                   );
@@ -86,7 +86,7 @@ export const News: React.FC = () => {
             </Col>
           </Row>
         </Grid>
-      </MaxWidthLayout>
+      </FullBleedLayout>
     </div>
   );
 };

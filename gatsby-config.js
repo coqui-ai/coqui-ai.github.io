@@ -36,6 +36,13 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `newsletter`,
+        path: path.join(__dirname, 'src/pages/newsletter')
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `svg-icons`,
         path: path.join(__dirname, 'node_modules/@zendeskgarden/svg-icons/src'),
         ignore: ['**/*.!(svg)']
@@ -65,7 +72,8 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         defaultLayouts: {
-          blog: require.resolve('./src/templates/BlogTemplate.tsx')
+          blog: require.resolve('./src/templates/BlogTemplate.tsx'),
+          newsletter: require.resolve('./src/templates/NewsletterTemplate.tsx')
         },
         gatsbyRemarkPlugins: [
           require.resolve('./plugins/gatsby-remark-abstract-assets'),

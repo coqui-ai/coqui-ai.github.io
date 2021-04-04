@@ -25,12 +25,14 @@ const TitledLayout: React.FC<{
       <Col lg={12} xl={9}>
         {title && <StyledH2>{title}</StyledH2>}
         {subtitle && <Subtitle>{subtitle}</Subtitle>}
-        {name && picture && date && (
+        {date && (
           <div>
-            <Avatar>
-              <img alt="avatar" src={picture} />
-            </Avatar>
-            <LG>{name}</LG>
+            {picture && (
+              <Avatar>
+                <img alt="avatar" src={picture} />
+              </Avatar>
+            )}
+            {name && <LG>{name}</LG>}
             <MD>{date}</MD>
           </div>
         )}

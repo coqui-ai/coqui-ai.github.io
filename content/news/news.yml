@@ -1,24 +1,24 @@
-- title: Design System Resources
-  author: Vedran Arnautovic
-  author_url: https://medium.com/@vedranio
-  url: https://medium.com/zendesk-creative-blog/design-system-resources-b9119ddf9790
+- title: Welcome!
+  author: Kelly Davis
+  author_url: https://github.com/kdavis-coqui
+  url: /newsletter/05-04-2021/#welcome-to-coqui
 
-- title: React containers, some assembly required
-  author: Ryan Seddon
-  author_url: https://medium.com/@ryanseddon
-  url: https://medium.com/zendesk-engineering/react-containers-some-assembly-required-43dd54d879a8
+- title: SC-GlowTTS An Efficient Zero-Shot Multi-Speaker TTS Model
+  author: Eren Gölge
+  author_url: https://github.com/erogol
+  url: /newsletter/05-04-2021/#sc-glowtts-an-efficient-zero-shot-multi-speaker-tts-model
 
-- title: There's a new shape in town
-  author: Ginny Wood
-  author_url: https://medium.com/@ginny_wood
-  url: https://medium.com/zendesk-creative-blog/theres-a-new-shape-in-town-f45a3a5906ae
+- title: New Coqui TTS Release v0.0.11
+  author: Eren Gölge
+  author_url: https://github.com/erogol
+  url: /newsletter/05-04-2021/#new-release-v0011
 
-- title: 6 tips for writing effective design system documentation
-  author: Ross Moody
-  author_url: https://medium.com/@moodyrooster
-  url: https://medium.com/zendesk-creative-blog/6-tips-for-writing-effective-design-system-documentation-11c35b44169
+- title: Few-Shot Keyword Spotting in Any Language
+  author: Josh Meyer
+  author_url: https://github.com/JRMeyer
+  url: /newsletter/05-04-2021/#few-shot-keyword-spotting-in-any-language
 
-- title: Designing for inclusivity
-  author: Allison Shaw
-  author_url: https://www.invisionapp.com/inside-design/author/allison-shaw/
-  url: https://www.invisionapp.com/inside-design/designing-for-inclusivity/
+- title: Coqui STT Playbook
+  author: Reuben Morais
+  author_url: https://github.com/reuben
+  url: /newsletter/05-04-2021/#coqui-stt-playbook
