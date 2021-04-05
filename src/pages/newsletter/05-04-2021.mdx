@@ -60,6 +60,32 @@ working together with our brilliant community to bring speech research into real
 Don't forget to check out the updated [STT playbook](https://stt.readthedocs.io/en/latest/playbook/README.html)
 and [join our growing speech community](https://gitter.im/coqui-ai).
 
+### SC-GlowTTS: An Efficient Zero-Shot Multi-Speaker TTS Model
+
+![IMAGE](../../data/images/newsletter/posts/sc-glowtts.png)
+
+At Coqui, we're motivated to provide speech technology for all languages and people. One of the problems we've
+encountered along way is data-hungry machine learning models. For some languages the data simply isn't there!
+Finding enough data is hard, and even if it's available, training machine learning models is difficult too.
+
+To solve a part of this problem for text-to-speech tasks, we investigated different [zero-shot learning](https://en.wikipedia.org/wiki/Zero-shot_learning)
+approaches using state-of-the-art text-to-speech models. (Zero-shot learning techniquies can greatly reduce
+data requirements for some algorithms.) This investigation bore fruit! We came up with a new algorithm we
+christened "SC-GlowTTS", a catchy name I know. SC-GlowTTS can generalize to novel speakers after training
+with only 11 speakers for the target language. This means we need less data!
+
+Soon after this newsletter finds its way into your hands, we'll release SC-GlowTTS's code, models, and an
+associated article. Please stay tuned! But, if you can't wait, check out the SC-GlowTTS
+[project page](https://edresson.github.io/SC-GlowTTS/).
+
+This is a work of all the Coqui 🐸 TTS community but special thanks to the main author
+[Edresson Casanova](https://github.com/Edresson) who organized and did the brunt of the work and
+[Nicolas Michael Müller](https://github.com/mueller91) for training the most expansive open
+source speaker encoder, which we used in this work.
+
+It is great to see how an open community of great developers and researchers can innovate without borders.
+We hope this is just a start for us and our great community to pave the way for open source TTS.
+
 ### Few-Shot Keyword Spotting in Any Language
 
 ![IMAGE](../../data/images/newsletter/posts/few-shot-keyword-spotting-in-any-language.png)
@@ -100,33 +126,7 @@ models in two contexts: keyword spotting and keyword search. Across 440 keywords
 we achieve an average streaming keyword spotting accuracy of 85.2% with a false acceptance rate of
 1.2%, and observe promising initial results on keyword search.
 
-### SC-GlowTTS: An Efficient Zero-Shot Multi-Speaker TTS Model
-
-![IMAGE](../../data/images/newsletter/posts/sc-glowtts.png)
-
-At Coqui, we're motivated to provide speech technology for all languages and people. One of the problems we've
-encountered along way is data-hungry machine learning models. For some languages the data simply isn't there!
-Finding enough data is hard, and even if it's available, training machine learning models is difficult too.
-
-To solve a part of this problem for text-to-speech tasks, we investigated different [zero-shot learning](https://en.wikipedia.org/wiki/Zero-shot_learning)
-approaches using state-of-the-art text-to-speech models. (Zero-shot learning techniquies can greatly reduce
-data requirements for some algorithms.) This investigation bore fruit! We came up with a new algorithm we
-christened "SC-GlowTTS", a catchy name I know. SC-GlowTTS can generalize to novel speakers after training
-with only 11 speakers for the target language. This means we need less data!
-
-Soon after this newsletter finds its way into your hands, we'll release SC-GlowTTS's code, models, and an
-associated article. Please stay tuned! But, if you can't wait, check out the SC-GlowTTS
-[project page](https://edresson.github.io/SC-GlowTTS/).
-
-This is a work of all the Coqui 🐸 TTS community but special thanks to the main author
-[Edresson Casanova](https://github.com/Edresson) who organized and did the brunt of the work and
-[Nicolas Michael Müller](https://github.com/mueller91) for training the most expansive open
-source speaker encoder, which we used in this work.
-
-It is great to see how an open community of great developers and researchers can innovate without borders.
-We hope this is just a start for us and our great community to pave the way for open source TTS.
-
-### New Release v0.0.11
+### New Release: 🐸 TTS v0.0.11
 
 Oh, one more thing!
 
