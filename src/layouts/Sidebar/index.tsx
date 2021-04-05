@@ -9,12 +9,11 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { rgba } from 'polished';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
-import { ReactComponent as OverflowStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
-import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
 import MaxWidthLayout from 'layouts/MaxWidth';
 import { MobileSidebar } from './components/MobileSidebar';
 import { DesktopSidebar } from './components/DesktopSidebar';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const StyledMobileNavButton = styled.button`
   display: none;
   position: fixed;
@@ -44,6 +43,7 @@ const StyledMobileNavButton = styled.button`
 `;
 
 export const SidebarLayout: React.FC = ({ children }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isMobileSidebarExpanded, setIsMobileSidebarExpanded] = useState(false);
 
   return (
@@ -86,11 +86,6 @@ export const SidebarLayout: React.FC = ({ children }) => {
             </div>
           </div>
           {isMobileSidebarExpanded && <MobileSidebar />}
-          <StyledMobileNavButton
-            onClick={() => setIsMobileSidebarExpanded(!isMobileSidebarExpanded)}
-          >
-            {isMobileSidebarExpanded ? <CloseStroke /> : <OverflowStroke />}
-          </StyledMobileNavButton>
         </div>
       </MaxWidthLayout>
     </div>
