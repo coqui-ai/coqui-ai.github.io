@@ -20,6 +20,38 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-source-github-api`,
+      options: {
+        token: process.env.REACT_APP_GITHUB_KEY,
+        graphQLQuery: `
+          query {
+             repository(owner: "coqui-ai", name: "STT-models") {
+                 releases(first: 35) {
+                     nodes {
+                         description
+                         name
+                         publishedAt
+                         shortDescriptionHTML
+                         tagName
+                         url
+                         releaseAssets(first: 15) {
+                             nodes {
+                                 contentType
+                                 downloadCount
+                                 downloadUrl
+                                 name
+                                 size
+                                 url
+                             }
+                         }
+                     }
+                 }
+             }
+          }
+          `
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `news`,
@@ -54,6 +86,7 @@ module.exports = {
         path: path.join(__dirname, './src/data/')
       }
     },
+    'gatsby-transformer-remark',
     'gatsby-source-news',
     `gatsby-transformer-sharp`,
     `gatsby-transformer-yaml`,

@@ -6,20 +6,10 @@
  */
 
 import React from 'react';
-import { STT } from './components/STT';
-import { TTS } from './components/TTS';
-import { Motto } from './components/Motto';
-import { FullBleedImage } from './components/FullBleedImage';
+import { Models } from './components/Models';
 
 const ModelsLayout: React.FC = () => {
-  return (
-    <>
-      <Motto />
-      <STT />
-      <FullBleedImage />
-      <TTS />
-    </>
-  );
+  return <Models />;
 };
 
 export default ModelsLayout;
