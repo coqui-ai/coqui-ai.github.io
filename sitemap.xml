@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://coqui.ai/ukrainian/robinhad/v0.4</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/welsh/techiaith/v21.03</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/catalan/ccoreilly/v0.14.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/german/AASHISHAG/v0.9.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/kinyarwanda/digital-umuganda/v0.0.1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/spanish/jaco-assistant/v0.0.1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/french/commonvoice-fr/v0.6</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/french/jaco-assistant/v0.0.1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/german/jaco-assistant/v0.0.1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/italian/jaco-assistant/v0.0.1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/polish/jaco-assistant/v0.0.1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/komi/itml/v0.0.1</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/chuvash/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/basque/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/luganda/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/breton/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/dhivehi/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/greek/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/estonian/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/finnish/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/frisian/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/georgian/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/hakha-chin/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/hungarian/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/indonesian/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/irish/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/kyrgyz/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/latvian/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/lithuanian/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/maltese/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/mongolian/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/odia/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/portuguese/itml/v0.1.0</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/about</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -7,13 +40,12 @@
 <url> <loc>https://coqui.ai/data</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/imprint</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/models</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://coqui.ai/patterns</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/privacy</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://coqui.ai/blog/stt/deepspeech-0-6-speech-to-text-engine</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/newsletter/05-04-2021</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://coqui.ai/blog/tts/gradual-training-with-tacotron-for-faster-convergence</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/stt/a-journey-to-10-word-error-rate</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/stt/speech-recognition-deepspeech</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://coqui.ai/blog/tts/solving-attention-problems-of-tts-models-with-double-decoder-consistency</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/blog/stt/deepspeech-0-6-speech-to-text-engine</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/blog/tts/gradual-training-with-tacotron-for-faster-convergence</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/two-methods-for-better-attention-in-tacotron</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/blog/tts/solving-attention-problems-of-tts-models-with-double-decoder-consistency</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
