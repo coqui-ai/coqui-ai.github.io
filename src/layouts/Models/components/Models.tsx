@@ -35,10 +35,52 @@ interface IRow {
   tagName: tagName;
 }
 
+const tagNameMap = {
+  'ukrainian/robinhad/v0.4': ['Yurii Paniv', 'https://github.com/robinhad/'],
+  'welsh/techiaith/v21.03': ['Dewi Bryn Jones', 'https://github.com/dewibrynjones/'],
+  'catalan/ccoreilly/v0.14.0': ["Ciaran O'Reilly", 'https://github.com/ccoreilly'],
+  'german/AASHISHAG/v0.9.0': ['Aashish Agarwal', 'https://github.com/AASHISHAG'],
+  'kinyarwanda/digital-umuganda/v0.0.1': ['Digital Umuganda', 'https://digitalumuganda.com/'],
+  'spanish/jaco-assistant/v0.0.1': ['Jaco-Assistant', 'https://gitlab.com/Jaco-Assistant'],
+  'french/commonvoice-fr/v0.6': [
+    'commonvoice-fr',
+    'https://github.com/common-voice/commonvoice-fr'
+  ],
+  'french/jaco-assistant/v0.0.1': ['Jaco-Assistant', 'https://gitlab.com/Jaco-Assistant'],
+  'german/jaco-assistant/v0.0.1': ['Jaco-Assistant', 'https://gitlab.com/Jaco-Assistant'],
+  'italian/jaco-assistant/v0.0.1': ['Jaco-Assistant', 'https://gitlab.com/Jaco-Assistant'],
+  'polish/jaco-assistant/v0.0.1': ['Jaco-Assistant', 'https://gitlab.com/Jaco-Assistant'],
+  'komi/itml/v0.0.1': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'chuvash/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'basque/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'luganda/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'breton/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'dhivehi/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'greek/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'estonian/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'finnish/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'frisian/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'georgian/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'hakha-chin/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'hungarian/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'indonesian/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'irish/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'kyrgyz/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'latvian/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'lithuanian/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'maltese/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'mongolian/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'odia/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'portuguese/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/']
+};
+
 const createRow = (row: IRow, index: number) => (
   <Row key={index}>
     <Cell>{row.name}</Cell>
     <Cell>{row.language}</Cell>
+    <Cell>
+      <Anchor href={tagNameMap[row.tagName][1]}>{tagNameMap[row.tagName][0]}</Anchor>
+    </Cell>
     <Cell>
       <Anchor href="https://github.com/coqui-ai/STT/releases/tag/v0.9.3">{row.sttVersion}</Anchor>
     </Cell>
@@ -108,6 +150,7 @@ export const Models: React.FC = () => {
                 <HeaderRow>
                   <HeaderCell width="20%">Full Name</HeaderCell>
                   <HeaderCell>Language</HeaderCell>
+                  <HeaderCell>Creator</HeaderCell>
                   <HeaderCell>STT Engine</HeaderCell>
                   <HeaderCell>Model Version</HeaderCell>
                   <HeaderCell>Model Card</HeaderCell>
