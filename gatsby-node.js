@@ -45,3 +45,54 @@ exports.onCreatePage = ({ page, actions }) => {
     });
   }
 };
+
+exports.createPages = async ({ actions, graphql, reporter }) => {
+  const { createPage } = actions;
+
+  const modelCardTemplate = require.resolve(`./src/templates/ModelCardTemplate.tsx`);
+
+  const result = await graphql(`
+    {
+      allGithubData(limit: 100) {
+        nodes {
+          data {
+            repository {
+              releases {
+                nodes {
+                  description
+                  name
+                  tagName
+                  releaseAssets {
+                    nodes {
+                      contentType
+                      downloadUrl
+                      name
+                      size
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`);
+
+    return;
+  }
+
+  result.data.allGithubData.nodes[0].data.repository.releases.nodes.forEach(release => {
+    createPage({
+      path: release.tagName,
+      component: modelCardTemplate,
+      context: {
+        ...release,
+        slug: release.tagName
+      }
+    });
+  });
+};

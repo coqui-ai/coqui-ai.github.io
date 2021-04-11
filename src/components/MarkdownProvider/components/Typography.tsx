@@ -5,6 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+import React from 'react';
 import styled, { css, ThemeProps, DefaultTheme } from 'styled-components';
 import { getColor, getLineHeight } from '@zendeskgarden/react-theming';
 import {
@@ -15,7 +16,9 @@ import {
   MD,
   Blockquote,
   Span,
-  Paragraph
+  Paragraph,
+  Code,
+  CodeBlock
 } from '@zendeskgarden/react-typography';
 import { StyledAnchor } from './Anchor';
 
@@ -82,3 +85,64 @@ export const StyledStrong = styled(Span).attrs({ tag: 'strong', isBold: true })`
 export const StyledEmphasis = styled(Span).attrs({ tag: 'em' })`
   font-style: italic;
 `;
+
+export const StyledInlineCode = styled(Code).attrs({ tag: 'code' })`
+  ${headerStyles}
+`;
+
+export const StyledCode = styled(CodeBlock).attrs({ tag: 'code' })`
+  ${headerStyles}
+`;
+
+export const ModelCardHr = styled.hr`
+  margin: ${p => p.theme.space.sm} 0;
+  border-top: ${p => p.theme.borders.sm} ${p => getColor('grey', 200, p.theme)};
+`;
+
+const flatten = (text, child) => {
+  return typeof child === 'string'
+    ? text + child
+    : React.Children.toArray(child.props.children).reduce(flatten, text);
+};
+
+export const ModelCardHeading: React.FC = ({ children, ...props }) => {
+  const childrenArray = React.Children.toArray(children);
+  const text = childrenArray.reduce(flatten, '');
+  const slug = text.toLowerCase().replace(/\W/gu, '-');
+
+  return (
+    <>
+      {props.level === 1 && (
+        <StyledH1 id={slug} {...props}>
+          {children}
+        </StyledH1>
+      )}
+      {props.level === 2 && (
+        <StyledH2 id={slug} {...props}>
+          {children}
+        </StyledH2>
+      )}
+      {props.level === 3 && (
+        <StyledH3 id={slug} {...props}>
+          {children}
+        </StyledH3>
+      )}
+      {props.level === 4 && (
+        <StyledH4 id={slug} {...props}>
+          {children}
+        </StyledH4>
+      )}
+      {props.level === 5 && (
+        <StyledH5 id={slug} {...props}>
+          {children}
+        </StyledH5>
+      )}
+      {props.level === 6 && (
+        <StyledH6 id={slug} {...props}>
+          {children}
+        </StyledH6>
+      )}
+      {props.level < 4 && <ModelCardHr />}
+    </>
+  );
+};

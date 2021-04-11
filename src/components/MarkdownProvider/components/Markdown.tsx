@@ -23,7 +23,10 @@ import {
   StyledHr,
   StyledParagraph,
   StyledStrong,
-  StyledEmphasis
+  StyledEmphasis,
+  StyledInlineCode,
+  StyledCode,
+  ModelCardHeading
 } from './Typography';
 
 export const COMPONENTS = {
@@ -48,6 +51,26 @@ export const COMPONENTS = {
   tr: TR,
   td: TD,
   th: TH
+};
+
+export const MODEL_CARD_COMPONENTS = {
+  paragraph: StyledParagraph,
+  emphasis: StyledEmphasis,
+  strong: StyledStrong,
+  thematicBreak: StyledHr,
+  blockquote: StyledBlockquote,
+  link: Anchor,
+  linkReference: Anchor,
+  table: Table,
+  tableHead: THead,
+  tableBody: TBody,
+  tableRow: TR,
+  tableCell: TD,
+  list: UL,
+  listItem: LI,
+  heading: ModelCardHeading,
+  inlineCode: StyledInlineCode,
+  code: StyledCode
 };
 
 const PROCESSOR = remark().use(remark2react, { remarkReactComponents: COMPONENTS });
