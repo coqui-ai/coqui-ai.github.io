@@ -26,7 +26,7 @@ module.exports = {
         graphQLQuery: `
           query {
              repository(owner: "coqui-ai", name: "STT-models") {
-                 releases(first: 35) {
+                 releases(first: 100) {
                      nodes {
                          description
                          name

@@ -71,7 +71,12 @@ const tagNameMap = {
   'maltese/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
   'mongolian/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
   'odia/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
-  'portuguese/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/']
+  'portuguese/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'slovenian/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'sakha/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'romanian/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'czech/comodoro/v0.1.0': ['Vojtěch Drábek', 'https://github.com/comodoro'],
+  'english/coqui/v0.9.3': ['Coqui', 'https://coqui.ai/']
 };
 
 const createRow = (row: IRow, index: number) => (
