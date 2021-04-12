@@ -171,6 +171,7 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
           <StyledMobileNavLink to="/about">About</StyledMobileNavLink>
           <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
           <StyledMobileNavLink to="/code">Code</StyledMobileNavLink>
+          <StyledMobileNavLink to="/models">Models</StyledMobileNavLink>
         </>
       )}
     </div>
@@ -205,6 +206,9 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => (
         </StyledDesktopNavItem>
         <StyledDesktopNavItem>
           <StyledDesktopNavLink to="/code">Code</StyledDesktopNavLink>
+        </StyledDesktopNavItem>
+        <StyledDesktopNavItem>
+          <StyledDesktopNavLink to="/models">Models</StyledDesktopNavLink>
         </StyledDesktopNavItem>
       </>
     )}
