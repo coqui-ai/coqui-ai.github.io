@@ -81,7 +81,9 @@ const tagNameMap = {
 
 const createRow = (row: IRow, index: number) => (
   <Row key={index}>
-    <Cell>{row.name}</Cell>
+    <Cell>
+      <Link to={`../${row.tagName}`}>{row.name}</Link>
+    </Cell>
     <Cell>{row.language}</Cell>
     <Cell>
       <Anchor href={tagNameMap[row.tagName][1]}>{tagNameMap[row.tagName][0]}</Anchor>
@@ -90,9 +92,6 @@ const createRow = (row: IRow, index: number) => (
       <Anchor href="https://github.com/coqui-ai/STT/releases/tag/v0.9.3">{row.sttVersion}</Anchor>
     </Cell>
     <Cell>{row.modelVersion}</Cell>
-    <Cell>
-      <Link to={`../${row.tagName}`}>{row.language} card</Link>
-    </Cell>
   </Row>
 );
 
@@ -153,12 +152,11 @@ export const Models: React.FC = () => {
             <StyledTable isReadOnly>
               <Head>
                 <HeaderRow>
-                  <HeaderCell width="20%">Full Name</HeaderCell>
+                  <HeaderCell width="20%">Model Card</HeaderCell>
                   <HeaderCell>Language</HeaderCell>
                   <HeaderCell>Creator</HeaderCell>
                   <HeaderCell>STT Engine</HeaderCell>
                   <HeaderCell>Model Version</HeaderCell>
-                  <HeaderCell>Model Card</HeaderCell>
                 </HeaderRow>
               </Head>
               <Body>
