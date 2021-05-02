@@ -17,6 +17,10 @@
     "start": "gatsby develop --open",
     "test": "prettier-package-json --list-different && yarn format:all --check && yarn lint && yarn tsc"
   },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "md5": "^2.3.0"
+  },
   "devDependencies": {
     "@mdx-js/mdx": "1.6.21",
     "@mdx-js/react": "1.6.21",
