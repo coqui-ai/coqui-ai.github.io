@@ -10,6 +10,7 @@ import React, { useState } from 'react';
 import ModelAssets from './ModelAssets';
 import { Row, Col } from '@zendeskgarden/react-grid';
 import { Button } from '@zendeskgarden/react-buttons';
+import { MD, Span } from '@zendeskgarden/react-typography';
 import { StyledH2, ModelCardHr } from 'components/MarkdownProvider/components/Typography';
 
 const ModelDownload: React.FC<Record<string, unknown>> = ({ data }) => {
@@ -40,6 +41,15 @@ const ModelDownload: React.FC<Record<string, unknown>> = ({ data }) => {
               onRegisteration={onRegisteration}
               onNoRegisteration={onNoRegisteration}
             />
+          )}
+        </Col>
+      </Row>
+      <Row>
+        <Col textAlign="center">
+          {!emailRegistered && (
+            <MD tag="span">
+              <Span isBold>Why an email?</Span> To keep you posted on model and language updates!
+            </MD>
           )}
         </Col>
       </Row>
