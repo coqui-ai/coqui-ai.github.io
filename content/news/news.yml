@@ -1,24 +1,24 @@
 - title: Welcome!
   author: Kelly Davis
   author_url: https://github.com/kdavis-coqui
-  url: /newsletter/05-04-2021/#welcome-to-coqui
+  url: /newsletter/03-05-2021#welcome
 
-- title: SC-GlowTTS An Efficient Zero-Shot Multi-Speaker TTS Model
+- title: TTS v0.0.13 is out
   author: Eren Gölge
   author_url: https://github.com/erogol
-  url: /newsletter/05-04-2021/#sc-glowtts-an-efficient-zero-shot-multi-speaker-tts-model
+  url: /newsletter/03-05-2021#-tts-v0013-is-out
 
-- title: New Coqui TTS Release v0.0.11
-  author: Eren Gölge
-  author_url: https://github.com/erogol
-  url: /newsletter/05-04-2021/#new-release--tts-v0011
-
-- title: Few-Shot Keyword Spotting in Any Language
+- title: Model Zoo
   author: Josh Meyer
   author_url: https://github.com/JRMeyer
-  url: /newsletter/05-04-2021/#few-shot-keyword-spotting-in-any-language
+  url: /newsletter/03-05-2021#model-zoo
 
-- title: Coqui STT Playbook
+- title: STT Model Sprint
+  author: Josh Meyer
+  author_url: https://github.com/JRMeyer
+  url: /newsletter/03-05-2021#stt-model-sprint
+
+- title: New STT Packages
   author: Reuben Morais
   author_url: https://github.com/reuben
-  url: /newsletter/05-04-2021/#coqui-stt-playbook
+  url: /newsletter/03-05-2021#new-stt-packages
