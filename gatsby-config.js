@@ -12,6 +12,14 @@ const path = require('path');
 require('dotenv').config();
 envalid.cleanEnv(process.env, { ABSTRACT_TOKEN: envalid.str() });
 
+const capitalize = s => {
+  if (typeof s !== 'string') {
+    return '';
+  }
+
+  return s.charAt(0).toUpperCase() + s.slice(1);
+};
+
 module.exports = {
   siteMetadata: {
     title: 'Coqui',
@@ -49,6 +57,42 @@ module.exports = {
              }
           }
           `
+      }
+    },
+    {
+      resolve: `gatsby-plugin-local-search`,
+      options: {
+        name: 'sTTModels',
+        engine: 'flexsearch',
+        query: `
+          {
+            allGithubData {
+              nodes {
+                data {
+                  repository {
+                    releases {
+                      nodes {
+                        name
+                        tagName
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `,
+        ref: 'tagName',
+        index: ['name', 'language', 'sttVersion', 'modelVersion', 'tagName'],
+        store: ['name', 'language', 'sttVersion', 'modelVersion', 'tagName'],
+        normalizer: ({ data }) =>
+          data.allGithubData.nodes[0].data.repository.releases.nodes.map(node => ({
+            name: node.name,
+            language: capitalize(node.tagName.split('/')[0]),
+            sttVersion: 'Coqui STT v0.9.3',
+            modelVersion: node.tagName.split('/')[2],
+            tagName: node.tagName
+          }))
       }
     },
     {

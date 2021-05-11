@@ -7,12 +7,16 @@
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import queryString from 'query-string';
 import { tagNameMap } from './TagNameMap';
+import SearchForm from './SearchForm';
+import { useLocation } from '@reach/router';
 import MinWidthLayout from 'layouts/MinWidth';
 import { Anchor } from '@zendeskgarden/react-buttons';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import { Pagination } from '@zendeskgarden/react-pagination';
 import { Tabs, TabList, Tab, TabPanel } from '@zendeskgarden/react-tabs';
+import { Row as GridRow, Col as GridCol } from '@zendeskgarden/react-grid';
 import {
   Body,
   Cell,
@@ -24,19 +28,12 @@ import {
   Table
 } from '@zendeskgarden/react-tables';
 import { ReactComponent as DownloadIcon } from '@zendeskgarden/svg-icons/src/16/download-stroke.svg';
+import { useFlexSearch } from 'react-use-flexsearch';
 
 const StyledTable = styled(Table)`
   margin-bottom: ${p => p.theme.space.md};
   min-width: 500px;
 `;
-
-const capitalize = s => {
-  if (typeof s !== 'string') {
-    return '';
-  }
-
-  return s.charAt(0).toUpperCase() + s.slice(1);
-};
 
 type Direction = 'asc' | 'desc' | undefined;
 
@@ -128,37 +125,30 @@ export const Models: React.FC = () => {
   const [sttEngineSort, setSTTEngineSort] = useState<Direction>();
   const [modelVersionSort, setModelVersionSort] = useState<Direction>();
 
+  const location = useLocation();
+  const parsedParameters = queryString.parse(location.search);
+  const [searchQuery, setSearchQuery] = useState(parsedParameters.s || '');
+
   const rawRowData = useStaticQuery(
     graphql`
       query MyQuery {
-        allGithubData {
-          nodes {
-            data {
-              repository {
-                releases {
-                  nodes {
-                    name
-                    tagName
-                  }
-                }
-              }
-            }
-          }
+        localSearchSTtModels {
+          index
+          store
         }
       }
     `
   );
 
-  const rowData: IRow[] = rawRowData.allGithubData.nodes[0].data.repository.releases.nodes.map(
-    row => ({
-      name: `${row.name}`,
-      language: `${capitalize(row.tagName.split('/')[0])}`,
-      sttVersion: 'Coqui STT v0.9.3',
-      modelVersion: `${row.tagName.split('/')[2]}`,
-      tagName: `${row.tagName}`
-    })
+  const searchRowData: IRow[] = useFlexSearch(
+    searchQuery,
+    rawRowData.localSearchSTtModels.index,
+    rawRowData.localSearchSTtModels.store
   );
 
+  const rowData: IRow[] = Object.keys(rawRowData.localSearchSTtModels.store).map(
+    key => rawRowData.localSearchSTtModels.store[key]
+  );
   const [data, setData] = useState(rowData);
 
   return (
@@ -179,6 +169,18 @@ export const Models: React.FC = () => {
         </TabList>
         <TabPanel item="stt">
           <div style={{ overflowX: 'auto' }}>
+            <GridRow
+              justifyContent="left"
+              css={css`
+                margin-right: ${p => p.theme.space.xs};
+                margin-left: ${p => p.theme.space.xs};
+              `}
+            >
+              <GridCol sm={4}>
+                <SearchForm searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+              </GridCol>
+              <GridCol sm={4} />
+            </GridRow>
             <StyledTable isReadOnly>
               <Head>
                 <HeaderRow>
@@ -284,7 +286,7 @@ export const Models: React.FC = () => {
               <Body>
                 {currentPage === 1
                   ? sortData(
-                      data.slice(),
+                      (searchQuery ? searchRowData : data).slice(),
                       modelCardSort,
                       languageSort,
                       creatorSort,
@@ -294,7 +296,7 @@ export const Models: React.FC = () => {
                       .slice(currentPage - 1, pageSize)
                       .map(createRow)
                   : sortData(
-                      data.slice(),
+                      (searchQuery ? searchRowData : data).slice(),
                       modelCardSort,
                       languageSort,
                       creatorSort,
@@ -306,7 +308,7 @@ export const Models: React.FC = () => {
               </Body>
             </StyledTable>
             <Pagination
-              totalPages={Math.ceil(data.length / pageSize)}
+              totalPages={Math.ceil((searchQuery ? searchRowData : data).length / pageSize)}
               currentPage={currentPage}
               onChange={setCurrentPage}
             />

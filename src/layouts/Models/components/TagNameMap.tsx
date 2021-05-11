@@ -81,5 +81,6 @@ export const tagNameMap = {
   'amharic/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
   'romansh-sursilvan/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
   'wolof/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
-  'yoruba/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/']
+  'yoruba/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
+  'dutch/acabunoc/v0.0.1': ['Abigail Cabunoc Mayes', 'https://github.com/acabunoc']
 };
