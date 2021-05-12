@@ -8,6 +8,7 @@
 const envalid = require('envalid');
 const fs = require('fs');
 const path = require('path');
+const { tagNameMap } = require('./src/layouts/Models/components/TagNameMap');
 
 require('dotenv').config();
 envalid.cleanEnv(process.env, { ABSTRACT_TOKEN: envalid.str() });
@@ -83,12 +84,22 @@ module.exports = {
           }
         `,
         ref: 'tagName',
-        index: ['name', 'language', 'sttVersion', 'modelVersion', 'tagName'],
-        store: ['name', 'language', 'sttVersion', 'modelVersion', 'tagName'],
+        index: ['name', 'language', 'creator', 'sttVersion', 'modelVersion'],
+        store: [
+          'name',
+          'language',
+          'creator',
+          'creatorURL',
+          'sttVersion',
+          'modelVersion',
+          'tagName'
+        ],
         normalizer: ({ data }) =>
           data.allGithubData.nodes[0].data.repository.releases.nodes.map(node => ({
             name: node.name,
             language: capitalize(node.tagName.split('/')[0]),
+            creator: tagNameMap[node.tagName][0],
+            creatorURL: tagNameMap[node.tagName][1],
             sttVersion: 'Coqui STT v0.9.3',
             modelVersion: node.tagName.split('/')[2],
             tagName: node.tagName

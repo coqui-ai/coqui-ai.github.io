@@ -8,7 +8,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import queryString from 'query-string';
-import { tagNameMap } from './TagNameMap';
 import SearchForm from './SearchForm';
 import { useLocation } from '@reach/router';
 import MinWidthLayout from 'layouts/MinWidth';
@@ -40,6 +39,8 @@ type Direction = 'asc' | 'desc' | undefined;
 interface IRow {
   name: string;
   language: string;
+  creator: string;
+  creatorURL: string;
   sttVersion: string;
   modelVersion: string;
   tagName: tagName;
@@ -52,7 +53,7 @@ const createRow = (row: IRow, index: number) => (
     </Cell>
     <Cell>{row.language}</Cell>
     <Cell>
-      <Anchor href={tagNameMap[row.tagName][1]}>{tagNameMap[row.tagName][0]}</Anchor>
+      <Anchor href={row.creatorURL}>{row.creator}</Anchor>
     </Cell>
     <Cell>
       <Anchor href="https://github.com/coqui-ai/STT/releases/tag/v0.9.3">{row.sttVersion}</Anchor>
@@ -83,7 +84,7 @@ const sortData = (
     return tableData;
   }
 
-  let field: 'name' | 'language' | 'sttVersion' | 'modelVersion' | 'tagName';
+  let field: 'name' | 'language' | 'sttVersion' | 'modelVersion' | 'creator';
   let sortValue: Direction;
 
   if (modelCardSort) {
@@ -93,7 +94,7 @@ const sortData = (
     field = 'language';
     sortValue = languageSort;
   } else if (creatorSort) {
-    field = 'tagName';
+    field = 'creator';
     sortValue = creatorSort;
   } else {
     field = 'modelVersion';
@@ -101,8 +102,8 @@ const sortData = (
   }
 
   return tableData.sort((a, b) => {
-    const aValue = creatorSort ? tagNameMap[a[field]][0] : a[field];
-    const bValue = creatorSort ? tagNameMap[b[field]][0] : b[field];
+    const aValue = a[field];
+    const bValue = b[field];
 
     if (aValue > bValue) {
       return sortValue === 'asc' ? 1 : -1;
