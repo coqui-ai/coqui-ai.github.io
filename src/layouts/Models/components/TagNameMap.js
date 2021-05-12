@@ -5,7 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-export const tagNameMap = {
+const tagNameMap = {
   'ukrainian/robinhad/v0.4': ['Yurii Paniv', 'https://github.com/robinhad/'],
   'welsh/techiaith/v21.03': ['Dewi Bryn Jones', 'https://github.com/dewibrynjones/'],
   'catalan/ccoreilly/v0.14.0': ["Ciaran O'Reilly", 'https://github.com/ccoreilly'],
@@ -84,3 +84,5 @@ export const tagNameMap = {
   'yoruba/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
   'dutch/acabunoc/v0.0.1': ['Abigail Cabunoc Mayes', 'https://github.com/acabunoc']
 };
+
+exports.tagNameMap = tagNameMap;
