@@ -285,7 +285,7 @@ const ImprintPage: React.FC = () => {
                     }
                   `}
                 >
-                  in incorporation/in Gründung
+                  30/253/51465
                 </MD>
               </div>
             </Col>
