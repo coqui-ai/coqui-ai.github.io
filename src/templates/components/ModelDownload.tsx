@@ -6,8 +6,10 @@
  */
 
 import ModelModal from './ModelModal';
+import queryString from 'query-string';
 import React, { useState } from 'react';
 import ModelAssets from './ModelAssets';
+import { useLocation } from '@reach/router';
 import { Row, Col } from '@zendeskgarden/react-grid';
 import { Button } from '@zendeskgarden/react-buttons';
 import { MD, Span } from '@zendeskgarden/react-typography';
@@ -16,6 +18,11 @@ import { StyledH2, ModelCardHr } from 'components/MarkdownProvider/components/Ty
 const ModelDownload: React.FC<Record<string, unknown>> = ({ data }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [emailRegistered, setEmailRegistered] = useState(false);
+
+  const location = useLocation();
+  const parsedParameters = queryString.parse(location.search);
+  const isDownloading = parsedParameters.callback_url === undefined;
+  const mode = isDownloading ? 'Download' : 'Install';
 
   const onRegisteration = () => {
     setModalVisible(false);
@@ -28,12 +35,12 @@ const ModelDownload: React.FC<Record<string, unknown>> = ({ data }) => {
 
   return (
     <>
-      <StyledH2 id="download">Download</StyledH2>
+      <StyledH2 id="download">{mode}</StyledH2>
       <ModelCardHr />
       <Row>
         <Col textAlign="center">
           {!emailRegistered && (
-            <Button onClick={() => setModalVisible(true)}>Enter Email to Download</Button>
+            <Button onClick={() => setModalVisible(true)}>Enter Email to {mode}</Button>
           )}
           {modalVisible && (
             <ModelModal

@@ -5,6 +5,8 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+import queryString from 'query-string';
+import { useLocation } from '@reach/router';
 import React, { useRef, useState } from 'react';
 import { Button } from '@zendeskgarden/react-buttons';
 import { putEmailOnList, postTagToEmailOnList } from './utils';
@@ -24,6 +26,11 @@ const ModelModal: React.FC<string, OnRegisteration, OnNoRegisteration> = ({
   const inputElement = useRef();
   const [status, setStatus] = useState(null);
 
+  const location = useLocation();
+  const parsedParameters = queryString.parse(location.search);
+  const isDownloading = parsedParameters.callback_url === undefined;
+  const mode = isDownloading ? 'download' : 'install';
+
   const onSubmit = () => {
     if (inputElement.current && inputElement.current.value.indexOf('@') === -1) {
       setStatus('emailFormatError');
@@ -31,23 +38,19 @@ const ModelModal: React.FC<string, OnRegisteration, OnNoRegisteration> = ({
       return;
     }
     setStatus('sending');
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     putEmailOnList(inputElement.current.value, '0216b6525c').then(
-      putValue => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      () => {
         postTagToEmailOnList(tagName, inputElement.current.value, '0216b6525c').then(
-          postValue => {
+          () => {
             setStatus('success');
             onRegisteration();
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
           },
-          postReason => {
+          () => {
             setStatus('tagAdditionError');
           }
         );
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       },
-      putReason => {
+      () => {
         setStatus('emailAdditionError');
       }
     );
@@ -55,7 +58,7 @@ const ModelModal: React.FC<string, OnRegisteration, OnNoRegisteration> = ({
 
   return (
     <Modal onClose={onNoRegisteration}>
-      <Header>Please enter your email for model download</Header>
+      <Header>Please enter your email for model {mode}</Header>
       <Body>
         <MediaInput
           start={<MailIcon />}
@@ -72,7 +75,7 @@ const ModelModal: React.FC<string, OnRegisteration, OnNoRegisteration> = ({
           <Message validation="error">Unable to save email to regsitration list</Message>
         )}
         {status === 'tagAdditionError' && (
-          <Message validation="error">Unable to register email as downloading model</Message>
+          <Message validation="error">Unable to register email as {mode}ing model</Message>
         )}
         {status === 'success' && <Message validation="success">Registered successfully</Message>}
       </Body>

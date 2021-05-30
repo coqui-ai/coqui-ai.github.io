@@ -43,29 +43,8 @@ interface IRow {
   creatorURL: string;
   sttVersion: string;
   modelVersion: string;
-  tagName: tagName;
+  tagName: string;
 }
-
-const createRow = (row: IRow, index: number) => (
-  <Row key={index} isStriped={index % 2 === 0}>
-    <Cell>
-      <Link to={`../${row.tagName}`}>{row.name}</Link>
-    </Cell>
-    <Cell>{row.language}</Cell>
-    <Cell>
-      <Anchor href={row.creatorURL}>{row.creator}</Anchor>
-    </Cell>
-    <Cell>
-      <Anchor href="https://github.com/coqui-ai/STT/releases/tag/v0.9.3">{row.sttVersion}</Anchor>
-    </Cell>
-    <Cell>{row.modelVersion}</Cell>
-    <Cell>
-      <Link to={`../${row.tagName}#download`}>
-        <DownloadIcon />
-      </Link>
-    </Cell>
-  </Row>
-);
 
 const sortData = (
   tableData: IRow[],
@@ -130,6 +109,9 @@ export const Models: React.FC = () => {
   const parsedParameters = queryString.parse(location.search);
   const [searchQuery, setSearchQuery] = useState(parsedParameters.s || '');
 
+  const isDownloading = parsedParameters.callback_url === undefined;
+  const mode = isDownloading ? 'Download' : 'Install';
+
   const rawRowData = useStaticQuery(
     graphql`
       query MyQuery {
@@ -152,6 +134,36 @@ export const Models: React.FC = () => {
   );
   const [data, setData] = useState(rowData);
 
+  const createRow = (row: IRow, index: number) => {
+    const encodedName = encodeURIComponent(row.name);
+    const modelPageLink = parsedParameters.callback_url
+      ? `../${row.tagName}?callback_url=${parsedParameters.callback_url}&name=${encodedName}`
+      : `../${row.tagName}`;
+
+    return (
+      <Row key={index} isStriped={index % 2 === 0}>
+        <Cell>
+          <Link to={modelPageLink}>{row.name}</Link>
+        </Cell>
+        <Cell>{row.language}</Cell>
+        <Cell>
+          <Anchor href={row.creatorURL}>{row.creator}</Anchor>
+        </Cell>
+        <Cell>
+          <Anchor href="https://github.com/coqui-ai/STT/releases/tag/v0.9.3">
+            {row.sttVersion}
+          </Anchor>
+        </Cell>
+        <Cell>{row.modelVersion}</Cell>
+        <Cell>
+          <Link to={`${modelPageLink}#download`}>
+            <DownloadIcon />
+          </Link>
+        </Cell>
+      </Row>
+    );
+  };
+
   return (
     <MinWidthLayout>
       <Tabs
@@ -171,7 +183,7 @@ export const Models: React.FC = () => {
         <TabPanel item="stt">
           <div style={{ overflowX: 'auto' }}>
             <GridRow
-              justifyContent="left"
+              justifyContent="start"
               css={css`
                 margin-right: ${p => p.theme.space.xs};
                 margin-left: ${p => p.theme.space.xs};
@@ -281,7 +293,7 @@ export const Models: React.FC = () => {
                   >
                     Model Version
                   </SortableCell>
-                  <HeaderCell width="10%">Download</HeaderCell>
+                  <HeaderCell width="10%">{mode}</HeaderCell>
                 </HeaderRow>
               </Head>
               <Body>
