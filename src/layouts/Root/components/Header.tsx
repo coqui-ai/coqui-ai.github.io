@@ -7,6 +7,8 @@
 
 import React, { useState, HTMLAttributes, useEffect } from 'react';
 import Img from 'gatsby-image';
+import queryString from 'query-string';
+import { useLocation } from '@reach/router';
 import styled, { css, DefaultTheme } from 'styled-components';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
@@ -145,6 +147,12 @@ interface IMobileNavLayoutProps {
 }
 
 const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
+  const location = useLocation();
+  const parsedParameters = queryString.parse(location.search);
+  const modelPageLink = parsedParameters.callback_url
+    ? `/models?callback_url=${parsedParameters.callback_url}`
+    : `/models`;
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -171,7 +179,7 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
           <StyledMobileNavLink to="/about">About</StyledMobileNavLink>
           <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
           <StyledMobileNavLink to="/code">Code</StyledMobileNavLink>
-          <StyledMobileNavLink to="/models">Models</StyledMobileNavLink>
+          <StyledMobileNavLink to={modelPageLink}>Models</StyledMobileNavLink>
         </>
       )}
     </div>
@@ -182,38 +190,46 @@ interface IDesktopNavLayoutProps {
   isSubscribing: boolean;
 }
 
-const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => (
-  <nav
-    role="navigation"
-    aria-label="Global"
-    css={css`
-      display: flex;
-      flex-grow: 1;
-      justify-content: flex-end;
+const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
+  const location = useLocation();
+  const parsedParameters = queryString.parse(location.search);
+  const modelPageLink = parsedParameters.callback_url
+    ? `/models?callback_url=${parsedParameters.callback_url}`
+    : `/models`;
 
-      ${p => mediaQuery('down', 'sm', p.theme)} {
-        display: none;
-      }
-    `}
-  >
-    {!isSubscribing && (
-      <>
-        <StyledDesktopNavItem>
-          <StyledDesktopNavLink to="/about">About</StyledDesktopNavLink>
-        </StyledDesktopNavItem>
-        <StyledDesktopNavItem>
-          <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
-        </StyledDesktopNavItem>
-        <StyledDesktopNavItem>
-          <StyledDesktopNavLink to="/code">Code</StyledDesktopNavLink>
-        </StyledDesktopNavItem>
-        <StyledDesktopNavItem>
-          <StyledDesktopNavLink to="/models">Models</StyledDesktopNavLink>
-        </StyledDesktopNavItem>
-      </>
-    )}
-  </nav>
-);
+  return (
+    <nav
+      role="navigation"
+      aria-label="Global"
+      css={css`
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-end;
+
+        ${p => mediaQuery('down', 'sm', p.theme)} {
+          display: none;
+        }
+      `}
+    >
+      {!isSubscribing && (
+        <>
+          <StyledDesktopNavItem>
+            <StyledDesktopNavLink to="/about">About</StyledDesktopNavLink>
+          </StyledDesktopNavItem>
+          <StyledDesktopNavItem>
+            <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
+          </StyledDesktopNavItem>
+          <StyledDesktopNavItem>
+            <StyledDesktopNavLink to="/code">Code</StyledDesktopNavLink>
+          </StyledDesktopNavItem>
+          <StyledDesktopNavItem>
+            <StyledDesktopNavLink to={modelPageLink}>Models</StyledDesktopNavLink>
+          </StyledDesktopNavItem>
+        </>
+      )}
+    </nav>
+  );
+};
 
 interface IHeaderLayoutProps {
   isSubscribing: boolean;

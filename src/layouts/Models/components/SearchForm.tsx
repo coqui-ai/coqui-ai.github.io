@@ -20,8 +20,8 @@ const SearchForm: React.FC = ({ searchQuery, setSearchQuery }) => {
         name="s"
         isCompact
         type="text"
-        value={searchQuery}
         start={<SearchIcon />}
+        defaultValue={searchQuery}
         placeholder="Search Models"
         onInput={e => setSearchQuery(e.target.value)}
       />

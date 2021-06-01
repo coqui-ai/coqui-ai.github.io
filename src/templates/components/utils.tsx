@@ -41,3 +41,26 @@ export const postTagToEmailOnList = (tagName: string, email: string, list: strin
     }
   });
 };
+
+export const postModelMetaDataToServer = (
+  name: string,
+  language: string,
+  callbackURL: string,
+  modelCreator: string,
+  modelVersion: string,
+  acousticModelURL: string,
+  scorerURL: string
+) => {
+  return axios({
+    method: 'post',
+    url: `${callbackURL}`,
+    data: {
+      name: `${name}`,
+      language: `${language}`,
+      scorer: `${scorerURL}`,
+      version: `${modelVersion}`,
+      creator: `${modelCreator}`,
+      acoustic: `${acousticModelURL}`
+    }
+  });
+};
