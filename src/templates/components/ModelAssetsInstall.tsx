@@ -81,9 +81,12 @@ const ModelAssetsInstall: React.FC<Record<string, unknown>> = ({ data }) => {
     setStep(1);
     setStatus('installing');
     postModelMetaDataToServer(...modelMetaData).then(
-      () => {
+      response => {
         setStep(2);
         setStatus('installed');
+        setTimeout(() => {
+          window.location = response.request.responseURL;
+        }, 500);
       },
       () => {
         setStatus('installError');
