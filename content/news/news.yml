@@ -1,24 +1,19 @@
 - title: Welcome!
   author: Kelly Davis
   author_url: https://github.com/kdavis-coqui
-  url: /newsletter/03-05-2021#welcome
+  url: /newsletter/06-06-2021#welcome
 
-- title: TTS v0.0.13 is out
-  author: Eren Gölge
-  author_url: https://github.com/erogol
-  url: /newsletter/03-05-2021#-tts-v0013-is-out
-
-- title: Model Zoo
-  author: Josh Meyer
-  author_url: https://github.com/JRMeyer
-  url: /newsletter/03-05-2021#model-zoo
-
-- title: STT Model Sprint
-  author: Josh Meyer
-  author_url: https://github.com/JRMeyer
-  url: /newsletter/03-05-2021#stt-model-sprint
-
-- title: New STT Packages
+- title: Coqui STT Model Manager
   author: Reuben Morais
   author_url: https://github.com/reuben
-  url: /newsletter/03-05-2021#new-stt-packages
+  url: /newsletter/06-06-2021#coqui-stt-model-manager
+
+- title: Super-Tiny Models
+  author: Josh Meyer
+  author_url: https://github.com/JRMeyer
+  url: /newsletter/06-06-2021#super-tiny-models
+
+- title: 🐸💬 TTS v0.0.15 is out
+  author: Eren Gölge
+  author_url: https://github.com/erogol
+  url: /newsletter/06-06-2021#-tts-v0015-is-out
