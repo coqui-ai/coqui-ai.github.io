@@ -51,13 +51,13 @@
   Cache-Control: public, max-age=31536000, immutable
 /component---src-pages-blog-stt-a-journey-to-10-word-error-rate-mdx-5a3edaf15dba219bfdec.js
   Cache-Control: public, max-age=31536000, immutable
-/component---src-pages-blog-stt-speech-recognition-deepspeech-mdx-23ff694c999834f998c7.js
-  Cache-Control: public, max-age=31536000, immutable
 /component---src-pages-blog-stt-deepspeech-0-6-speech-to-text-engine-mdx-0718e7e6cdc961233c2f.js
   Cache-Control: public, max-age=31536000, immutable
-/component---src-pages-blog-tts-gradual-training-with-tacotron-for-faster-convergence-mdx-6205f79ebc74b2782096.js
+/component---src-pages-blog-stt-speech-recognition-deepspeech-mdx-23ff694c999834f998c7.js
   Cache-Control: public, max-age=31536000, immutable
 /component---src-pages-blog-tts-two-methods-for-better-attention-in-tacotron-mdx-e4cfb17adb8e4a869479.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-pages-blog-tts-gradual-training-with-tacotron-for-faster-convergence-mdx-6205f79ebc74b2782096.js
   Cache-Control: public, max-age=31536000, immutable
 /component---src-pages-blog-tts-solving-attention-problems-of-tts-models-with-double-decoder-consistency-mdx-589c130c7800f483143b.js
   Cache-Control: public, max-age=31536000, immutable
@@ -1288,20 +1288,6 @@
   Link: </component---src-pages-blog-stt-a-journey-to-10-word-error-rate-mdx-5a3edaf15dba219bfdec.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/blog/stt/a-journey-to-10-word-error-rate/page-data.json>; rel=preload; as=fetch; crossorigin
-/blog/stt/speech-recognition-deepspeech
-  Link: </webpack-runtime-edcd4a57502e90499227.js>; rel=preload; as=script
-  Link: </framework-1c74db88e007ac9f9664.js>; rel=preload; as=script
-  Link: </app-4f0ba7879b06c2bb6119.js>; rel=preload; as=script
-  Link: </styles-e9d24b1846c7d6eb9685.js>; rel=preload; as=script
-  Link: </commons-bba31756c6fcb7269917.js>; rel=preload; as=script
-  Link: </8366cb5d6b8d6bd4a4e74cd23aeec8b718dac122-4d06a6002dd8c86609bc.js>; rel=preload; as=script
-  Link: </3ebcc9e72051e4fa42083df54c0c23631a9221ee-7371829ce647bee71163.js>; rel=preload; as=script
-  Link: </75b45133258826015d50ab6566e2d2db6f49a368-93b47f283fdb325cd158.js>; rel=preload; as=script
-  Link: </0b6c1ee84cccc42d016665e43c3df3dd605f03cf-b12debeb494dc41a2dda.js>; rel=preload; as=script
-  Link: </c85ebb40b90c22ef5afa727073c362f19eeaeb93-54f374974951db144fc7.js>; rel=preload; as=script
-  Link: </component---src-pages-blog-stt-speech-recognition-deepspeech-mdx-23ff694c999834f998c7.js>; rel=preload; as=script
-  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
-  Link: </page-data/blog/stt/speech-recognition-deepspeech/page-data.json>; rel=preload; as=fetch; crossorigin
 /blog/stt/deepspeech-0-6-speech-to-text-engine
   Link: </webpack-runtime-edcd4a57502e90499227.js>; rel=preload; as=script
   Link: </framework-1c74db88e007ac9f9664.js>; rel=preload; as=script
@@ -1316,7 +1302,7 @@
   Link: </component---src-pages-blog-stt-deepspeech-0-6-speech-to-text-engine-mdx-0718e7e6cdc961233c2f.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/blog/stt/deepspeech-0-6-speech-to-text-engine/page-data.json>; rel=preload; as=fetch; crossorigin
-/blog/tts/gradual-training-with-tacotron-for-faster-convergence
+/blog/stt/speech-recognition-deepspeech
   Link: </webpack-runtime-edcd4a57502e90499227.js>; rel=preload; as=script
   Link: </framework-1c74db88e007ac9f9664.js>; rel=preload; as=script
   Link: </app-4f0ba7879b06c2bb6119.js>; rel=preload; as=script
@@ -1327,9 +1313,9 @@
   Link: </75b45133258826015d50ab6566e2d2db6f49a368-93b47f283fdb325cd158.js>; rel=preload; as=script
   Link: </0b6c1ee84cccc42d016665e43c3df3dd605f03cf-b12debeb494dc41a2dda.js>; rel=preload; as=script
   Link: </c85ebb40b90c22ef5afa727073c362f19eeaeb93-54f374974951db144fc7.js>; rel=preload; as=script
-  Link: </component---src-pages-blog-tts-gradual-training-with-tacotron-for-faster-convergence-mdx-6205f79ebc74b2782096.js>; rel=preload; as=script
+  Link: </component---src-pages-blog-stt-speech-recognition-deepspeech-mdx-23ff694c999834f998c7.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
-  Link: </page-data/blog/tts/gradual-training-with-tacotron-for-faster-convergence/page-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/blog/stt/speech-recognition-deepspeech/page-data.json>; rel=preload; as=fetch; crossorigin
 /blog/tts/two-methods-for-better-attention-in-tacotron
   Link: </webpack-runtime-edcd4a57502e90499227.js>; rel=preload; as=script
   Link: </framework-1c74db88e007ac9f9664.js>; rel=preload; as=script
@@ -1344,6 +1330,20 @@
   Link: </component---src-pages-blog-tts-two-methods-for-better-attention-in-tacotron-mdx-e4cfb17adb8e4a869479.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/blog/tts/two-methods-for-better-attention-in-tacotron/page-data.json>; rel=preload; as=fetch; crossorigin
+/blog/tts/gradual-training-with-tacotron-for-faster-convergence
+  Link: </webpack-runtime-edcd4a57502e90499227.js>; rel=preload; as=script
+  Link: </framework-1c74db88e007ac9f9664.js>; rel=preload; as=script
+  Link: </app-4f0ba7879b06c2bb6119.js>; rel=preload; as=script
+  Link: </styles-e9d24b1846c7d6eb9685.js>; rel=preload; as=script
+  Link: </commons-bba31756c6fcb7269917.js>; rel=preload; as=script
+  Link: </8366cb5d6b8d6bd4a4e74cd23aeec8b718dac122-4d06a6002dd8c86609bc.js>; rel=preload; as=script
+  Link: </3ebcc9e72051e4fa42083df54c0c23631a9221ee-7371829ce647bee71163.js>; rel=preload; as=script
+  Link: </75b45133258826015d50ab6566e2d2db6f49a368-93b47f283fdb325cd158.js>; rel=preload; as=script
+  Link: </0b6c1ee84cccc42d016665e43c3df3dd605f03cf-b12debeb494dc41a2dda.js>; rel=preload; as=script
+  Link: </c85ebb40b90c22ef5afa727073c362f19eeaeb93-54f374974951db144fc7.js>; rel=preload; as=script
+  Link: </component---src-pages-blog-tts-gradual-training-with-tacotron-for-faster-convergence-mdx-6205f79ebc74b2782096.js>; rel=preload; as=script
+  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/blog/tts/gradual-training-with-tacotron-for-faster-convergence/page-data.json>; rel=preload; as=fetch; crossorigin
 /blog/tts/solving-attention-problems-of-tts-models-with-double-decoder-consistency
   Link: </webpack-runtime-edcd4a57502e90499227.js>; rel=preload; as=script
   Link: </framework-1c74db88e007ac9f9664.js>; rel=preload; as=script
