@@ -83,7 +83,8 @@ const tagNameMap = {
   'wolof/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
   'yoruba/itml/v0.1.0': ['ITML', 'https://itml.cl.indiana.edu/'],
   'dutch/acabunoc/v0.0.1': ['Abigail Cabunoc Mayes', 'https://github.com/acabunoc'],
-  'russian/jemeyer/v0.1.0': ['Joe Meyer', 'https://www.linkedin.com/in/joe-meyer-25753951/']
+  'russian/jemeyer/v0.1.0': ['Joe Meyer', 'https://www.linkedin.com/in/joe-meyer-25753951/'],
+  'bengali/twb/v0.1.0': ['Alp Öktem', 'https://alpoktem.github.io/']
 };
 
 exports.tagNameMap = tagNameMap;
