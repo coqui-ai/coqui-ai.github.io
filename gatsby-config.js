@@ -116,6 +116,13 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `job`,
+        path: path.join(__dirname, 'src/pages/job')
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `blog`,
         path: path.join(__dirname, 'src/pages/blog')
       }
@@ -160,6 +167,7 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         defaultLayouts: {
+          job: require.resolve('./src/templates/JobTemplate.tsx'),
           blog: require.resolve('./src/templates/BlogTemplate.tsx'),
           newsletter: require.resolve('./src/templates/NewsletterTemplate.tsx')
         },
