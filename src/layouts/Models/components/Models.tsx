@@ -136,9 +136,18 @@ export const Models: React.FC = () => {
 
   const createRow = (row: IRow, index: number) => {
     const encodedName = encodeURIComponent(row.name);
-    const modelPageLink = parsedParameters.callback_url
-      ? `../${row.tagName}?callback_url=${parsedParameters.callback_url}&name=${encodedName}`
-      : `../${row.tagName}`;
+    const modelPageLink = (() => {
+      let url = `../${row.tagName}`;
+
+      if (parsedParameters.callback_url) {
+        url = `${url}?callback_url=${parsedParameters.callback_url}&name=${encodedName}`;
+        if (parsedParameters.prefer_tflite) {
+          url = `${url}&prefer_tflite=${parsedParameters.prefer_tflite}`;
+        }
+      }
+
+      return url;
+    })();
 
     return (
       <Row key={index} isStriped={index % 2 === 0}>
