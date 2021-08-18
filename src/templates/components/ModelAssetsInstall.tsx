@@ -57,12 +57,14 @@ const getModelMetaData = (
 
   const tagName = location.pathname.substring(1);
 
+  const desiredModelExtension = parsedParameters.prefer_tflite === '1' ? '.tflite' : '.pbmm';
+
   dataArray.push(parsedParameters.name);
   dataArray.push(capitalize(tagName.split('/')[0]));
   dataArray.push(parsedParameters.callback_url);
   dataArray.push(tagNameMap[tagName][0]);
   dataArray.push(tagName.split('/')[2]);
-  dataArray.push(getModelURL('.pbmm', data.pathContext.releaseAssets.nodes));
+  dataArray.push(getModelURL(desiredModelExtension, data.pathContext.releaseAssets.nodes));
   dataArray.push(getModelURL('.scorer', data.pathContext.releaseAssets.nodes));
 
   return dataArray;
