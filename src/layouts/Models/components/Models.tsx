@@ -58,7 +58,7 @@ const sortData = (
     return tableData;
   }
 
-  // Currently all engines are pinned to the same value "Coqui STT v0.9.3"
+  // Currently all engines are pinned to the same value "Coqui STT v1.0.0"
   if (sttEngineSort) {
     return tableData;
   }
@@ -159,7 +159,7 @@ export const Models: React.FC = () => {
           <Anchor href={row.creatorURL}>{row.creator}</Anchor>
         </Cell>
         <Cell>
-          <Anchor href="https://github.com/coqui-ai/STT/releases/tag/v0.9.3">
+          <Anchor href="https://github.com/coqui-ai/STT/releases/tag/v1.0.0">
             {row.sttVersion}
           </Anchor>
         </Cell>
