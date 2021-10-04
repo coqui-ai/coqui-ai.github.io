@@ -87,7 +87,11 @@ const tagNameMap = {
   'bengali/twb/v0.1.0': ['Alp Öktem', 'https://alpoktem.github.io/'],
   'czech/comodoro/v0.2.0': ['Vojtěch Drábek', 'https://github.com/comodoro'],
   'english/coqui/yesno-v0.0.1': ['Coqui', 'https://coqui.ai/'],
-  'swahili-congo/twb/v0.3.0': ['Alp Öktem', 'https://alpoktem.github.io/']
+  'swahili-congo/twb/v0.3.0': ['Alp Öktem', 'https://alpoktem.github.io/'],
+  'english/coqui/v1.0.0-digits': ['Coqui', 'https://coqui.ai/'],
+  'english/coqui/v1.0.0-large-vocab': ['Coqui', 'https://coqui.ai/'],
+  'english/coqui/v1.0.0-yesno': ['Coqui', 'https://coqui.ai/'],
+  'english/coqui/v1.0.0-huge-vocab': ['Coqui', 'https://coqui.ai/']
 };
 
 exports.tagNameMap = tagNameMap;
