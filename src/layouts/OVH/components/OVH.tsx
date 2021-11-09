@@ -122,13 +122,8 @@ const rawRowData = [
   { index: 81, language: 'Slovenian', task: 'Large Vocabulary', competitionID: '189' }
 ];
 
-const sortData = (
-  tableData: IRow[],
-  languageSort: Direction,
-  taskSort: Direction,
-  competitionIDSort: Direction
-) => {
-  if (!languageSort && !taskSort && !competitionIDSort) {
+const sortData = (tableData: IRow[], languageSort: Direction, taskSort: Direction) => {
+  if (!languageSort && !taskSort) {
     return tableData;
   }
 
@@ -138,12 +133,9 @@ const sortData = (
   if (languageSort) {
     field = 'language';
     sortValue = languageSort;
-  } else if (taskSort) {
+  } else {
     field = 'task';
     sortValue = taskSort;
-  } else {
-    field = 'competitionID';
-    sortValue = competitionIDSort;
   }
 
   return tableData.sort((a, b) => {
@@ -168,7 +160,6 @@ export const OVH: React.FC = () => {
 
   const [languageSort, setLanguageSort] = useState<Direction>();
   const [taskSort, setTaskSort] = useState<Direction>();
-  const [competitionIDSort, setCompetitionIDSort] = useState<Direction>();
 
   const location = useLocation();
   const parsedParameters = queryString.parse(location.search);
@@ -326,7 +317,6 @@ export const OVH: React.FC = () => {
                         setLanguageSort('asc');
                       }
                       setTaskSort(undefined);
-                      setCompetitionIDSort(undefined);
                       setData(data);
                     }}
                     sort={languageSort}
@@ -343,49 +333,21 @@ export const OVH: React.FC = () => {
                         setTaskSort('asc');
                       }
                       setLanguageSort(undefined);
-                      setCompetitionIDSort(undefined);
                       setData(data);
                     }}
                     sort={taskSort}
                   >
                     Task
                   </SortableCell>
-                  <SortableCell
-                    onClick={() => {
-                      if (competitionIDSort === 'asc') {
-                        setCompetitionIDSort('desc');
-                      } else if (competitionIDSort === 'desc') {
-                        setCompetitionIDSort(undefined);
-                      } else {
-                        setCompetitionIDSort('asc');
-                      }
-                      setLanguageSort(undefined);
-                      setTaskSort(undefined);
-                      setData(data);
-                    }}
-                    sort={competitionIDSort}
-                    width="40%"
-                  >
-                    Competition Home Page
-                  </SortableCell>
+                  <Cell width="40%">Competition Home Page</Cell>
                 </HeaderRow>
               </Head>
               <Body>
                 {currentPage === 1
-                  ? sortData(
-                      (searchQuery ? searchRowData : data).slice(),
-                      languageSort,
-                      taskSort,
-                      competitionIDSort
-                    )
+                  ? sortData((searchQuery ? searchRowData : data).slice(), languageSort, taskSort)
                       .slice(currentPage - 1, pageSize)
                       .map(createRow)
-                  : sortData(
-                      (searchQuery ? searchRowData : data).slice(),
-                      languageSort,
-                      taskSort,
-                      competitionIDSort
-                    )
+                  : sortData((searchQuery ? searchRowData : data).slice(), languageSort, taskSort)
                       .slice(currentPage * pageSize - pageSize, currentPage * pageSize)
                       .map(createRow)}
               </Body>
