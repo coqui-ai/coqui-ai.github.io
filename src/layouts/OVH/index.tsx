@@ -7,15 +7,15 @@
 
 import React from 'react';
 import { OVH } from './components/OVH';
-import { News } from './components/News';
+import { FullBleedImage } from './components/FullBleedImage';
 
-const HomeLayout: React.FC = () => {
+const OVHLayout: React.FC = () => {
   return (
     <>
-      <OVH />
-      <News />
+      <FullBleedImage />
+      <OVH />;
     </>
   );
 };
 
-export default HomeLayout;
+export default OVHLayout;
