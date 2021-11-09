@@ -15,7 +15,7 @@ import { Anchor } from '@zendeskgarden/react-buttons';
 import { Pagination } from '@zendeskgarden/react-pagination';
 import { Tabs, TabList, Tab, TabPanel } from '@zendeskgarden/react-tabs';
 import { Row as GridRow, Col as GridCol } from '@zendeskgarden/react-grid';
-import { UnorderedList, Paragraph, LG } from '@zendeskgarden/react-typography';
+import { UnorderedList, Paragraph, MD } from '@zendeskgarden/react-typography';
 import { Body, Cell, Head, SortableCell, HeaderRow, Row, Table } from '@zendeskgarden/react-tables';
 
 const StyledTable = styled(Table)`
@@ -207,36 +207,36 @@ export const OVH: React.FC = () => {
         <TabPanel item="description">
           <StyledDescriptionHeader
             css={css`
-              margin-bottom: ${p => p.theme.space.sm};
+              margin-bottom: ${p => p.theme.space.xs};
             `}
           >
             Description
           </StyledDescriptionHeader>
-          <Paragraph size="medium">
-            <LG tag="span">
+          <Paragraph size="small">
+            <MD tag="span">
               The majority of the world speaks “minority” languages, and most of these “minority”
               languages don&apos;t have any speech technology. The Long Tail Language Competition
               aims to change this, allowing you to train models for this long tail.
-            </LG>
+            </MD>
           </Paragraph>
-          <Paragraph size="medium">
-            <LG tag="span">
+          <Paragraph size="small">
+            <MD tag="span">
               OVH is generously providing compute resources to The Long Tail Language Competition,
               giving you free GPU time to train a speech recognition model for one (or more) of
               these long tail languages, while Coqui is providing code and data for you to train up
               such a model.
-            </LG>
+            </MD>
           </Paragraph>
           <StyledDescriptionHeader
             css={css`
               margin-top: ${p => p.theme.space.lg};
-              margin-bottom: ${p => p.theme.space.sm};
+              margin-bottom: ${p => p.theme.space.xs};
             `}
           >
             Registering for GPU Time
           </StyledDescriptionHeader>
-          <Paragraph size="medium">
-            <LG tag="span">
+          <Paragraph size="small">
+            <MD tag="span">
               To obtain OVH&apos;s generously donated free GPU time for the competition, you should
               navigate to OVH&apos;s{' '}
               <Anchor href="https://discord.com/invite/3kWCWfT6EB" target="_blank">
@@ -244,49 +244,49 @@ export const OVH: React.FC = () => {
               </Anchor>
               , fill in the required info, and join the “coqui-ai-stt-challenge“ channel to obtain
               all the details.
-            </LG>
+            </MD>
           </Paragraph>
           <StyledDescriptionHeader
             css={css`
               margin-top: ${p => p.theme.space.lg};
-              margin-bottom: ${p => p.theme.space.sm};
+              margin-bottom: ${p => p.theme.space.xs};
             `}
           >
             Entering a Competition
           </StyledDescriptionHeader>
-          <Paragraph size="medium">
-            <LG tag="span">
+          <Paragraph size="small">
+            <MD tag="span">
               To enter a competition, navigate to the “Competitions“ tab on this page, search for
               the competition that interests you, then navigate to the competition&apos;s home page
               and register there.
-            </LG>
+            </MD>
           </Paragraph>
-          <Paragraph size="medium">
-            <LG tag="span">
+          <Paragraph size="small">
+            <MD tag="span">
               The details of judging and how one competes in the competition are described on the
               competition&apos;s home page.
-            </LG>
+            </MD>
           </Paragraph>
           <StyledDescriptionHeader
             css={css`
               margin-top: ${p => p.theme.space.lg};
-              margin-bottom: ${p => p.theme.space.sm};
+              margin-bottom: ${p => p.theme.space.xs};
             `}
           >
             Timeline
           </StyledDescriptionHeader>
           <UnorderedList>
             <UnorderedList.Item>
-              <LG tag="span" isBold>
+              <MD tag="span" isBold>
                 Start
-              </LG>
-              <LG tag="span"> - November 10th, 2021 9:00 CET</LG>
+              </MD>
+              <MD tag="span"> - November 10th, 2021 9:00 CET</MD>
             </UnorderedList.Item>
             <UnorderedList.Item>
-              <LG tag="span" isBold>
+              <MD tag="span" isBold>
                 Stop
-              </LG>
-              <LG tag="span"> - November 17th, 2021 9:00 CET</LG>
+              </MD>
+              <MD tag="span"> - November 17th, 2021 9:00 CET</MD>
             </UnorderedList.Item>
           </UnorderedList>
         </TabPanel>
