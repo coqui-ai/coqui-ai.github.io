@@ -22,7 +22,7 @@ const SearchForm: React.FC = ({ searchQuery, setSearchQuery }) => {
         type="text"
         start={<SearchIcon />}
         defaultValue={searchQuery}
-        placeholder="Search Competition"
+        placeholder="Search Competitions"
         onInput={e => setSearchQuery(e.target.value)}
       />
     </form>
