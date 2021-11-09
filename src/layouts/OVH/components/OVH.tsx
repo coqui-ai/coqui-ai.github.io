@@ -38,89 +38,89 @@ interface IRow {
   competitionID: string;
 }
 
-const rawRowData = {
-  1: { index: 1, language: 'Urdu', task: 'Large Vocabulary', competitionID: '187' },
-  2: { index: 2, language: 'Serbian', task: 'Large Vocabulary', competitionID: '186' },
-  3: { index: 3, language: 'Romanian', task: 'Large Vocabulary', competitionID: '185' },
-  4: { index: 4, language: 'Sakha', task: 'Large Vocabulary', competitionID: '184' },
-  5: { index: 5, language: 'Swedish', task: 'Large Vocabulary', competitionID: '183' },
-  6: { index: 6, language: 'Romontsch', task: 'Large Vocabulary', competitionID: '182' },
-  7: { index: 7, language: 'Rumantsch', task: 'Large Vocabulary', competitionID: '181' },
-  8: { index: 8, language: 'Luganda', task: 'Large Vocabulary', competitionID: '180' },
-  9: { index: 9, language: 'Lithuanian', task: 'Large Vocabulary', competitionID: '179' },
-  10: { index: 10, language: 'Mongolian', task: 'Large Vocabulary', competitionID: '178' },
-  11: { index: 11, language: 'Maltese', task: 'Large Vocabulary', competitionID: '177' },
-  12: { index: 12, language: 'Punjabi', task: 'Large Vocabulary', competitionID: '176' },
-  13: { index: 13, language: 'Latvian', task: 'Large Vocabulary', competitionID: '175' },
-  14: { index: 14, language: 'Kurmanji-Kurdish', task: 'Large Vocabulary', competitionID: '174' },
-  15: { index: 15, language: 'Odia', task: 'Large Vocabulary', competitionID: '173' },
-  16: { index: 16, language: 'Hungarian', task: 'Large Vocabulary', competitionID: '172' },
-  17: { index: 17, language: 'Kyrgyz', task: 'Large Vocabulary', competitionID: '171' },
-  18: { index: 18, language: 'Indonesian', task: 'Large Vocabulary', competitionID: '170' },
-  19: { index: 19, language: 'Belarussian', task: 'Large Vocabulary', competitionID: '169' },
-  20: { index: 20, language: 'Catalan', task: 'Large Vocabulary', competitionID: '168' },
-  21: { index: 21, language: 'Georgian', task: 'Large Vocabulary', competitionID: '167' },
-  22: { index: 22, language: 'Kazakh', task: 'Large Vocabulary', competitionID: '166' },
-  23: { index: 23, language: 'Interlingua', task: 'Large Vocabulary', competitionID: '165' },
-  24: { index: 24, language: 'Hindi', task: 'Large Vocabulary', competitionID: '164' },
-  25: { index: 25, language: 'English', task: 'Large Vocabulary', competitionID: '163' },
-  26: { index: 26, language: 'Galician', task: 'Large Vocabulary', competitionID: '162' },
-  27: { index: 27, language: 'Upper', task: 'Large Vocabulary', competitionID: '161' },
-  28: { index: 28, language: 'Armenian', task: 'Large Vocabulary', competitionID: '160' },
-  29: { index: 29, language: 'Basque', task: 'Large Vocabulary', competitionID: '159' },
-  30: { index: 30, language: 'Frisian', task: 'Large Vocabulary', competitionID: '158' },
-  31: { index: 31, language: 'Guarani', task: 'Large Vocabulary', competitionID: '157' },
-  32: { index: 32, language: 'Irish', task: 'Large Vocabulary', competitionID: '156' },
-  33: { index: 33, language: 'Finnish', task: 'Large Vocabulary', competitionID: '155' },
-  34: { index: 34, language: 'Bashkort', task: 'Large Vocabulary', competitionID: '154' },
-  35: { index: 35, language: 'Estonian', task: 'Large Vocabulary', competitionID: '153' },
-  36: { index: 36, language: 'Dhivehi', task: 'Large Vocabulary', competitionID: '152' },
-  37: { index: 37, language: 'Greek', task: 'Large Vocabulary', competitionID: '151' },
-  38: { index: 38, language: 'Arabic', task: 'Large Vocabulary', competitionID: '150' },
-  39: { index: 39, language: 'Czech', task: 'Large Vocabulary', competitionID: '149' },
-  40: { index: 40, language: 'Welsh', task: 'Large Vocabulary', competitionID: '148' },
-  41: { index: 41, language: 'Chuvash', task: 'Large Vocabulary', competitionID: '147' },
-  42: { index: 42, language: 'Breton', task: 'Large Vocabulary', competitionID: '146' },
-  43: { index: 43, language: 'Hakha', task: 'Large Vocabulary', competitionID: '145' },
-  44: { index: 44, language: 'Bulgarian', task: 'Large Vocabulary', competitionID: '144' },
-  45: { index: 45, language: 'Basaa', task: 'Large Vocabulary', competitionID: '143' },
-  46: { index: 46, language: 'Assamese', task: 'Large Vocabulary', competitionID: '142' },
-  47: { index: 47, language: 'Abkhaz', task: 'Large Vocabulary', competitionID: '141' },
-  48: { index: 48, language: 'Abkhaz', task: 'Constrained Vocabulary', competitionID: '117' },
-  49: { index: 49, language: 'Arabic', task: 'Constrained Vocabulary', competitionID: '118' },
-  50: { index: 50, language: 'Welsh', task: 'Constrained Vocabulary', competitionID: '121' },
-  51: { index: 51, language: 'English', task: 'Constrained Vocabulary', competitionID: '137' },
-  52: { index: 52, language: 'Portuguese', task: 'Constrained Vocabulary', competitionID: '133' },
-  53: { index: 53, language: 'Swedish', task: 'Constrained Vocabulary', competitionID: '136' },
-  54: { index: 54, language: 'Tatar', task: 'Constrained Vocabulary', competitionID: '140' },
-  55: { index: 55, language: 'Turkish', task: 'Constrained Vocabulary', competitionID: '139' },
-  56: { index: 56, language: 'Tamil', task: 'Constrained Vocabulary', competitionID: '138' },
-  57: { index: 57, language: 'Russian', task: 'Constrained Vocabulary', competitionID: '135' },
-  58: { index: 58, language: 'Polish', task: 'Constrained Vocabulary', competitionID: '132' },
-  59: { index: 59, language: 'Odia', task: 'Constrained Vocabulary', competitionID: '131' },
-  60: { index: 60, language: 'Dutch', task: 'Constrained Vocabulary', competitionID: '130' },
-  61: { index: 61, language: 'Luganda', task: 'Constrained Vocabulary', competitionID: '129' },
-  62: { index: 62, language: 'Kyrgyz', task: 'Constrained Vocabulary', competitionID: '128' },
-  63: { index: 63, language: 'Georgian', task: 'Constrained Vocabulary', competitionID: '127' },
-  64: { index: 64, language: 'Indonesian', task: 'Constrained Vocabulary', competitionID: '126' },
-  65: { index: 65, language: 'Frisian', task: 'Constrained Vocabulary', competitionID: '125' },
-  66: { index: 66, language: 'Basque', task: 'Constrained Vocabulary', competitionID: '124' },
-  67: { index: 67, language: 'Catalan', task: 'Constrained Vocabulary', competitionID: '123' },
-  68: { index: 68, language: 'Czech', task: 'Constrained Vocabulary', competitionID: '122' },
-  69: { index: 69, language: 'Chuvash', task: 'Constrained Vocabulary', competitionID: '120' },
-  70: { index: 70, language: 'Ukrainian', task: 'Large Vocabulary', competitionID: '200' },
-  71: { index: 71, language: 'Tamil', task: 'Large Vocabulary', competitionID: '199' },
-  72: { index: 72, language: 'Uyghur', task: 'Large Vocabulary', competitionID: '198' },
-  73: { index: 73, language: 'Thai', task: 'Large Vocabulary', competitionID: '197' },
-  74: { index: 74, language: 'Russian', task: 'Large Vocabulary', competitionID: '196' },
-  75: { index: 75, language: 'Tatar', task: 'Large Vocabulary', competitionID: '195' },
-  76: { index: 76, language: 'Dutch', task: 'Large Vocabulary', competitionID: '194' },
-  77: { index: 77, language: 'Turkish', task: 'Large Vocabulary', competitionID: '193' },
-  78: { index: 78, language: 'Portuguese', task: 'Large Vocabulary', competitionID: '192' },
-  79: { index: 79, language: 'Polish', task: 'Large Vocabulary', competitionID: '191' },
-  80: { index: 80, language: 'Slovak', task: 'Large Vocabulary', competitionID: '190' },
-  81: { index: 81, language: 'Slovenian', task: 'Large Vocabulary', competitionID: '189' }
-};
+const rawRowData = [
+  { index: 1, language: 'Urdu', task: 'Large Vocabulary', competitionID: '187' },
+  { index: 2, language: 'Serbian', task: 'Large Vocabulary', competitionID: '186' },
+  { index: 3, language: 'Romanian', task: 'Large Vocabulary', competitionID: '185' },
+  { index: 4, language: 'Sakha', task: 'Large Vocabulary', competitionID: '184' },
+  { index: 5, language: 'Swedish', task: 'Large Vocabulary', competitionID: '183' },
+  { index: 6, language: 'Romontsch', task: 'Large Vocabulary', competitionID: '182' },
+  { index: 7, language: 'Rumantsch', task: 'Large Vocabulary', competitionID: '181' },
+  { index: 8, language: 'Luganda', task: 'Large Vocabulary', competitionID: '180' },
+  { index: 9, language: 'Lithuanian', task: 'Large Vocabulary', competitionID: '179' },
+  { index: 10, language: 'Mongolian', task: 'Large Vocabulary', competitionID: '178' },
+  { index: 11, language: 'Maltese', task: 'Large Vocabulary', competitionID: '177' },
+  { index: 12, language: 'Punjabi', task: 'Large Vocabulary', competitionID: '176' },
+  { index: 13, language: 'Latvian', task: 'Large Vocabulary', competitionID: '175' },
+  { index: 14, language: 'Kurmanji-Kurdish', task: 'Large Vocabulary', competitionID: '174' },
+  { index: 15, language: 'Odia', task: 'Large Vocabulary', competitionID: '173' },
+  { index: 16, language: 'Hungarian', task: 'Large Vocabulary', competitionID: '172' },
+  { index: 17, language: 'Kyrgyz', task: 'Large Vocabulary', competitionID: '171' },
+  { index: 18, language: 'Indonesian', task: 'Large Vocabulary', competitionID: '170' },
+  { index: 19, language: 'Belarussian', task: 'Large Vocabulary', competitionID: '169' },
+  { index: 20, language: 'Catalan', task: 'Large Vocabulary', competitionID: '168' },
+  { index: 21, language: 'Georgian', task: 'Large Vocabulary', competitionID: '167' },
+  { index: 22, language: 'Kazakh', task: 'Large Vocabulary', competitionID: '166' },
+  { index: 23, language: 'Interlingua', task: 'Large Vocabulary', competitionID: '165' },
+  { index: 24, language: 'Hindi', task: 'Large Vocabulary', competitionID: '164' },
+  { index: 25, language: 'English', task: 'Large Vocabulary', competitionID: '163' },
+  { index: 26, language: 'Galician', task: 'Large Vocabulary', competitionID: '162' },
+  { index: 27, language: 'Upper', task: 'Large Vocabulary', competitionID: '161' },
+  { index: 28, language: 'Armenian', task: 'Large Vocabulary', competitionID: '160' },
+  { index: 29, language: 'Basque', task: 'Large Vocabulary', competitionID: '159' },
+  { index: 30, language: 'Frisian', task: 'Large Vocabulary', competitionID: '158' },
+  { index: 31, language: 'Guarani', task: 'Large Vocabulary', competitionID: '157' },
+  { index: 32, language: 'Irish', task: 'Large Vocabulary', competitionID: '156' },
+  { index: 33, language: 'Finnish', task: 'Large Vocabulary', competitionID: '155' },
+  { index: 34, language: 'Bashkort', task: 'Large Vocabulary', competitionID: '154' },
+  { index: 35, language: 'Estonian', task: 'Large Vocabulary', competitionID: '153' },
+  { index: 36, language: 'Dhivehi', task: 'Large Vocabulary', competitionID: '152' },
+  { index: 37, language: 'Greek', task: 'Large Vocabulary', competitionID: '151' },
+  { index: 38, language: 'Arabic', task: 'Large Vocabulary', competitionID: '150' },
+  { index: 39, language: 'Czech', task: 'Large Vocabulary', competitionID: '149' },
+  { index: 40, language: 'Welsh', task: 'Large Vocabulary', competitionID: '148' },
+  { index: 41, language: 'Chuvash', task: 'Large Vocabulary', competitionID: '147' },
+  { index: 42, language: 'Breton', task: 'Large Vocabulary', competitionID: '146' },
+  { index: 43, language: 'Hakha', task: 'Large Vocabulary', competitionID: '145' },
+  { index: 44, language: 'Bulgarian', task: 'Large Vocabulary', competitionID: '144' },
+  { index: 45, language: 'Basaa', task: 'Large Vocabulary', competitionID: '143' },
+  { index: 46, language: 'Assamese', task: 'Large Vocabulary', competitionID: '142' },
+  { index: 47, language: 'Abkhaz', task: 'Large Vocabulary', competitionID: '141' },
+  { index: 48, language: 'Abkhaz', task: 'Constrained Vocabulary', competitionID: '117' },
+  { index: 49, language: 'Arabic', task: 'Constrained Vocabulary', competitionID: '118' },
+  { index: 50, language: 'Welsh', task: 'Constrained Vocabulary', competitionID: '121' },
+  { index: 51, language: 'English', task: 'Constrained Vocabulary', competitionID: '137' },
+  { index: 52, language: 'Portuguese', task: 'Constrained Vocabulary', competitionID: '133' },
+  { index: 53, language: 'Swedish', task: 'Constrained Vocabulary', competitionID: '136' },
+  { index: 54, language: 'Tatar', task: 'Constrained Vocabulary', competitionID: '140' },
+  { index: 55, language: 'Turkish', task: 'Constrained Vocabulary', competitionID: '139' },
+  { index: 56, language: 'Tamil', task: 'Constrained Vocabulary', competitionID: '138' },
+  { index: 57, language: 'Russian', task: 'Constrained Vocabulary', competitionID: '135' },
+  { index: 58, language: 'Polish', task: 'Constrained Vocabulary', competitionID: '132' },
+  { index: 59, language: 'Odia', task: 'Constrained Vocabulary', competitionID: '131' },
+  { index: 60, language: 'Dutch', task: 'Constrained Vocabulary', competitionID: '130' },
+  { index: 61, language: 'Luganda', task: 'Constrained Vocabulary', competitionID: '129' },
+  { index: 62, language: 'Kyrgyz', task: 'Constrained Vocabulary', competitionID: '128' },
+  { index: 63, language: 'Georgian', task: 'Constrained Vocabulary', competitionID: '127' },
+  { index: 64, language: 'Indonesian', task: 'Constrained Vocabulary', competitionID: '126' },
+  { index: 65, language: 'Frisian', task: 'Constrained Vocabulary', competitionID: '125' },
+  { index: 66, language: 'Basque', task: 'Constrained Vocabulary', competitionID: '124' },
+  { index: 67, language: 'Catalan', task: 'Constrained Vocabulary', competitionID: '123' },
+  { index: 68, language: 'Czech', task: 'Constrained Vocabulary', competitionID: '122' },
+  { index: 69, language: 'Chuvash', task: 'Constrained Vocabulary', competitionID: '120' },
+  { index: 70, language: 'Ukrainian', task: 'Large Vocabulary', competitionID: '200' },
+  { index: 71, language: 'Tamil', task: 'Large Vocabulary', competitionID: '199' },
+  { index: 72, language: 'Uyghur', task: 'Large Vocabulary', competitionID: '198' },
+  { index: 73, language: 'Thai', task: 'Large Vocabulary', competitionID: '197' },
+  { index: 74, language: 'Russian', task: 'Large Vocabulary', competitionID: '196' },
+  { index: 75, language: 'Tatar', task: 'Large Vocabulary', competitionID: '195' },
+  { index: 76, language: 'Dutch', task: 'Large Vocabulary', competitionID: '194' },
+  { index: 77, language: 'Turkish', task: 'Large Vocabulary', competitionID: '193' },
+  { index: 78, language: 'Portuguese', task: 'Large Vocabulary', competitionID: '192' },
+  { index: 79, language: 'Polish', task: 'Large Vocabulary', competitionID: '191' },
+  { index: 80, language: 'Slovak', task: 'Large Vocabulary', competitionID: '190' },
+  { index: 81, language: 'Slovenian', task: 'Large Vocabulary', competitionID: '189' }
+];
 
 const sortData = (
   tableData: IRow[],
@@ -174,13 +174,15 @@ export const OVH: React.FC = () => {
   const parsedParameters = queryString.parse(location.search);
   const [searchQuery, setSearchQuery] = useState(parsedParameters.s || '');
 
-  const searchRowData: IRow[] = Object.keys(rawRowData).map(key => {
-    return rawRowData[key];
+  const searchRowData: IRow[] = rawRowData.filter(competition => {
+    const query = searchQuery.toLowerCase();
+    const task = competition.task.toLowerCase();
+    const language = competition.language.toLowerCase();
+
+    return language.includes(query) || task.includes(query);
   });
 
-  const rowData: IRow[] = Object.keys(rawRowData).map(key => {
-    return rawRowData[key];
-  });
+  const rowData: IRow[] = rawRowData;
 
   const [data, setData] = useState(rowData);
 
@@ -307,7 +309,7 @@ export const OVH: React.FC = () => {
               `}
             >
               <GridCol sm={4}>
-                {false && <SearchForm searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}
+                <SearchForm searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
               </GridCol>
               <GridCol sm={4} />
             </GridRow>
@@ -362,6 +364,7 @@ export const OVH: React.FC = () => {
                       setData(data);
                     }}
                     sort={competitionIDSort}
+                    width="40%"
                   >
                     Competition Home Page
                   </SortableCell>
