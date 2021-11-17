@@ -6,13 +6,13 @@
  */
 
 import React from 'react';
-import { OVH } from './components/OVH';
+import { Newsletter } from './components/Newsletter';
 import { News } from './components/News';
 
 const HomeLayout: React.FC = () => {
   return (
     <>
-      <OVH />
+      <Newsletter />
       <News />
     </>
   );
