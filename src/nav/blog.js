@@ -7,6 +7,15 @@
 
 export default [
   {
+    group: 'TTS',
+    title: 'YourTTS: Zero-Shot Multi-Speaker Text Synthesis and Voice Conversion',
+    url: '/blog/tts/yourtts-zero-shot-text-synthesis-low-resource-languages',
+    splash:
+      'images/blog/splash-screens/blog-splash-screen-yourtts-zero-shot-text-synthesis-low-resource-languages.jpg',
+    description: 'Introduces YourTTS, a novel model for zero-shot multi-speaker text synthesis.',
+    height: 500
+  },
+  {
     group: 'STT',
     title: 'STT: Fast, Lean, and Ubiquitous',
     url: '/blog/stt/deepspeech-0-6-speech-to-text-engine',
