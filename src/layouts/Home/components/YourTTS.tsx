@@ -9,7 +9,7 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { css, ThemeProps, DefaultTheme } from 'styled-components';
-import { getLineHeight, mediaQuery } from '@zendeskgarden/react-theming';
+import { getColor, getLineHeight, mediaQuery } from '@zendeskgarden/react-theming';
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 import { LG } from '@zendeskgarden/react-typography';
 import FullBleedLayout from 'layouts/FullBleed';
@@ -117,16 +117,17 @@ export const YourTTS: React.FC = () => {
                   <span role="img" aria-label="frog">
                     🐸
                   </span>
+                  , Coqui&apos;s new TTS model!
                 </LG>
                 <iframe
                   src="https://demo.coqui.ai/"
-                  height="560"
+                  height="490"
                   width="100%"
                   title="YourTTS Demo"
                   allow="microphone https://demo.coqui.ai"
                   css={css`
                     margin-bottom: ${p => p.theme.space.md};
-                    border: 1px solid;
+                    border: 1px solid ${p => getColor('grey', 400, p.theme)};
                     border-style: solid;
                     border-radius: 5px;
                     max-width: 600px;
