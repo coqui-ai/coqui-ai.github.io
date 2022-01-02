@@ -7,7 +7,7 @@ date: Jan 3, 2022
 
 import { graphql } from 'gatsby';
 
-👉 [Try the YourTTS demo](https://coqui.ai)
+👉 [Try the YourTTS demo](/)
 
 👉 Visit the YourTTS [project page](https://edresson.github.io/YourTTS/)
 
@@ -56,7 +56,7 @@ Conversion for everyone” we introduce a model with the following capabilities:
 
 ### Model Architecture
 
-YourTTS is an extension of our previous work [SC-GlowTTS](https://arxiv.org/pdf/2104.05557.pdf).
+YourTTS is an extension of our previous work [SC-GlowTTS](https://arxiv.org/abs/2104.05557).
 It uses the [VITS](https://arxiv.org/abs/2106.06103) (Variational Inference with
 adversarial learning for end-to-end Text-to-Speech) model as the backbone architecture and
 builds on top of it. We use a larger text encoder than the original model.
@@ -75,7 +75,7 @@ architecture in training (right) and inference (left).
 VITS is a peculiar TTS model as it employs different deep-learning techniques
 together (adversarial learning, normalizing flows, variational auto-encoders,
 transformers) to achieve high-quality natural-sounding output. It is mainly
-built on the [GlowTTS](https://arxiv.org/pdf/2005.11129.pdf) model. The GlowTTS
+built on the [GlowTTS](https://arxiv.org/abs/2005.11129) model. The GlowTTS
 is light, robust to long sentences, converges rapidly, and is backed up by
 theory since it directly maximizes the log-likelihood of speech with the
 alignment. However, its biggest weakness is the lack of naturalness and
@@ -126,7 +126,7 @@ decay of 0.01.
 ### Results
 
 We compute “mean opinion score” (MOS) tests and similarity MOS tests to evaluate the model
-performance. We also use [speaker encoder cosine similarity (SECS)](https://arxiv.org/pdf/2104.05557.pdf) to
+performance. We also use [speaker encoder cosine similarity (SECS)](https://arxiv.org/abs/2104.05557) to
 measure the similarity between the predicted outputs and the actual audio clips
 of a target speaker. We used a 3rd party library for SECS to be compatible with
 the previous work. We avoid details of our experiments for the sake of brevity.
@@ -186,7 +186,7 @@ control over the model.
 
 ### Try out YourTTS
 
-Give YourTTS a try right on your browser using the demo on our [homepage](https://coqui.ai).
+Give YourTTS a try right on your browser using the demo on our [homepage](/).
 
 YourTTS is also available in [🐸TTS](https://github.com/coqui-ai/TTS) with a
 training recipe and a pre-trained model. You can train your own model,
