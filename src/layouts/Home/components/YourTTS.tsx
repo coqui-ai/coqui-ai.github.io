@@ -196,12 +196,16 @@ export const YourTTS: React.FC = () => {
                     max-width: 600px;
                   `}
                 >
-                  Curious as to what you&apos;d sound like speaking a foreign language? <br />
-                  Find out with YourTTS{' '}
+                  Wonder what you sound like speaking a foreign language? <br />
+                  Find out with{' '}
                   <span role="img" aria-label="frog">
                     🐸
                   </span>
-                  , Coqui&apos;s new TTS model!
+                  YourTTS, Coqui&apos;s newest Text-to-Speech model. We respect your privacy, so we
+                  don&apos;t save any of the audio you upload{' '}
+                  <span role="img" aria-label="green heart">
+                    💚
+                  </span>
                 </LG>
                 <iframe
                   src="https://demo.coqui.ai/"
