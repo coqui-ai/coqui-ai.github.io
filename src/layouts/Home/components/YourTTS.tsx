@@ -98,6 +98,17 @@ export const YourTTS: React.FC = () => {
               `}
             >
               <div>
+	      <iframe src="https://ghbtns.com/github-btn.html?user=coqui_ai&repo=TTS&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
+	      <a class="twitter-share-button"
+	      	 href="https://demo.coqui.ai"
+	      	 data-size="large"
+	      	 data-text="I just cloned myself and spoke a foreign language with 🐸 Coqui Text-to-Speech"
+	      	 data-url="https://demo.coqui.ai"
+	      	 data-hashtags="SpeechTech,OpenSource"
+	      	 data-via="coqui_ai"
+	      	 data-related="">
+	      	 Tweet
+	      </a>
                 <h1
                   css={css`
                     ${headerStyling}
