@@ -201,8 +201,9 @@ export const YourTTS: React.FC = () => {
                   <span role="img" aria-label="frog">
                     🐸
                   </span>
-                  YourTTS, Coqui&apos;s newest Text-to-Speech model. We respect your privacy, so we
-                  don&apos;t save any of the audio you upload{' '}
+                  YourTTS, Coqui&apos;s newest Text-to-Speech model.
+                  <br />
+                  We respect your privacy, so we don&apos;t save any audio you upload{' '}
                   <span role="img" aria-label="green heart">
                     💚
                   </span>
