@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { css, ThemeProps, DefaultTheme } from 'styled-components';
 import { getLineHeight, mediaQuery } from '@zendeskgarden/react-theming';
@@ -201,7 +201,10 @@ export const YourTTS: React.FC = () => {
                   <span role="img" aria-label="frog">
                     🐸
                   </span>
-                  YourTTS, Coqui&apos;s newest Text-to-Speech model.
+                  <Link to="/blog/tts/yourtts-zero-shot-text-synthesis-low-resource-languages">
+                    YourTTS
+                  </Link>
+                  , Coqui&apos;s newest Text-to-Speech model.
                   <br />
                   We respect your privacy, so we don&apos;t save any audio you upload{' '}
                   <span role="img" aria-label="green heart">
