@@ -13,6 +13,27 @@ import { getColor, getLineHeight, mediaQuery } from '@zendeskgarden/react-themin
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 import { LG } from '@zendeskgarden/react-typography';
 import FullBleedLayout from 'layouts/FullBleed';
+import GitHubButton from 'react-github-btn';
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  RedditShareButton,
+  RedditIcon,
+  TelegramShareButton,
+  TelegramIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  ViberShareButton,
+  ViberIcon,
+  VKShareButton,
+  VKIcon,
+  WeiboShareButton,
+  WeiboIcon,
+  WhatsappShareButton,
+  WhatsappIcon
+} from 'react-share';
 
 const headerStyling = (p: ThemeProps<DefaultTheme>) => {
   const fontSize = `${p.theme.space.base * 12}px`;
@@ -98,6 +119,69 @@ export const YourTTS: React.FC = () => {
               `}
             >
               <div>
+                <GitHubButton
+                  href="https://github.com/coqui-ai/TTS"
+                  data-size="large"
+                  data-show-count="true"
+                  aria-label="Star coqui-ai/TTS on GitHub"
+                >
+                  Star
+                </GitHubButton>
+                <TwitterShareButton
+                  url="https://coqui.ai"
+                  title="Clone your voice and speak a foreign language with Coqui 🐸💬"
+                  via="coqui_ai"
+                >
+                  <TwitterIcon size={32} round />
+                </TwitterShareButton>
+                <WhatsappShareButton
+                  url="https://coqui.ai"
+                  title="Clone your voice and speak a foreign language with Coqui 🐸💬"
+                >
+                  <WhatsappIcon size={32} round />
+                </WhatsappShareButton>
+                <TelegramShareButton
+                  url="https://coqui.ai"
+                  title="Clone your voice and speak a foreign language with Coqui 🐸💬"
+                >
+                  <TelegramIcon size={32} round />
+                </TelegramShareButton>
+                <RedditShareButton
+                  url="https://coqui.ai"
+                  title="Clone your voice and speak a foreign language with Coqui 🐸💬"
+                >
+                  <RedditIcon size={32} round />
+                </RedditShareButton>
+                <FacebookShareButton
+                  url="https://coqui.ai"
+                  quote="Clone your voice and speak a foreign language with Coqui 🐸💬"
+                >
+                  <FacebookIcon size={32} round />
+                </FacebookShareButton>
+                <LinkedinShareButton
+                  url="https://coqui.ai"
+                  title="Clone your voice and speak a foreign language with Coqui 🐸💬"
+                >
+                  <LinkedinIcon size={32} round />
+                </LinkedinShareButton>
+                <VKShareButton
+                  url="https://coqui.ai"
+                  title="Clone your voice and speak a foreign language with Coqui 🐸💬"
+                >
+                  <VKIcon size={32} round />
+                </VKShareButton>
+                <ViberShareButton
+                  url="https://coqui.ai"
+                  title="Clone your voice and speak a foreign language with Coqui 🐸💬"
+                >
+                  <ViberIcon size={32} round />
+                </ViberShareButton>
+                <WeiboShareButton
+                  url="https://coqui.ai"
+                  title="Clone your voice and speak a foreign language with Coqui 🐸💬"
+                >
+                  <WeiboIcon size={32} round />
+                </WeiboShareButton>
                 <h1
                   css={css`
                     ${headerStyling}
@@ -112,12 +196,17 @@ export const YourTTS: React.FC = () => {
                     max-width: 600px;
                   `}
                 >
-                  Curious as to what you&apos;d sound like speaking a foreign language? <br />
-                  Find out with YourTTS{' '}
+                  Wonder what you sound like speaking a foreign language? <br />
+                  Find out with{' '}
                   <span role="img" aria-label="frog">
                     🐸
                   </span>
-                  , Coqui&apos;s new TTS model!
+                  YourTTS, Coqui&apos;s newest Text-to-Speech model.
+                  <br />
+                  We respect your privacy, so we don&apos;t save any audio you upload{' '}
+                  <span role="img" aria-label="green heart">
+                    💚
+                  </span>
                 </LG>
                 <iframe
                   src="https://demo.coqui.ai/"
