@@ -9,7 +9,7 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { css, ThemeProps, DefaultTheme } from 'styled-components';
-import { getColor, getLineHeight, mediaQuery } from '@zendeskgarden/react-theming';
+import { getLineHeight, mediaQuery } from '@zendeskgarden/react-theming';
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 import { LG } from '@zendeskgarden/react-typography';
 import FullBleedLayout from 'layouts/FullBleed';
@@ -216,7 +216,7 @@ export const YourTTS: React.FC = () => {
                   allow="microphone https://demo.coqui.ai"
                   css={css`
                     margin-bottom: ${p => p.theme.space.md};
-                    border: 1px solid ${p => getColor('grey', 400, p.theme)};
+                    margin-left: -1rem;
                     border-style: solid;
                     border-radius: 5px;
                     max-width: 600px;
