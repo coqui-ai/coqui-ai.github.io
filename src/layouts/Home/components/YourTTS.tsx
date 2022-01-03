@@ -13,6 +13,27 @@ import { getColor, getLineHeight, mediaQuery } from '@zendeskgarden/react-themin
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 import { LG } from '@zendeskgarden/react-typography';
 import FullBleedLayout from 'layouts/FullBleed';
+import GitHubButton from 'react-github-btn'
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  RedditShareButton,
+  RedditIcon,
+  TelegramShareButton,
+  TelegramIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  ViberShareButton,
+  ViberIcon,
+  VKShareButton,
+  VKIcon,
+  WeiboShareButton,
+  WeiboIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+} from "react-share";
 
 const headerStyling = (p: ThemeProps<DefaultTheme>) => {
   const fontSize = `${p.theme.space.base * 12}px`;
@@ -98,17 +119,34 @@ export const YourTTS: React.FC = () => {
               `}
             >
               <div>
-	      <iframe src="https://ghbtns.com/github-btn.html?user=coqui_ai&repo=TTS&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
-	      <a class="twitter-share-button"
-	      	 href="https://demo.coqui.ai"
-	      	 data-size="large"
-	      	 data-text="I just cloned myself and spoke a foreign language with 🐸 Coqui Text-to-Speech"
-	      	 data-url="https://demo.coqui.ai"
-	      	 data-hashtags="SpeechTech,OpenSource"
-	      	 data-via="coqui_ai"
-	      	 data-related="">
-	      	 Tweet
-	      </a>
+	      <GitHubButton href="https://github.com/coqui-ai/TTS" data-size="large" data-show-count="true" aria-label="Star coqui-ai/TTS on GitHub">Star</GitHubButton>
+	      <TwitterShareButton url={https://coqui.ai} title={Clone your voice and speak a foreign language with Coqui 🐸💬} via={coqui_ai}>
+	        <TwitterIcon round size={iconSize} />
+	      </TwitterShareButton>
+	      <WhatsappShareButton url={https://coqui.ai} title={Clone your voice and speak a foreign language with Coqui 🐸💬}>
+	        <WhatsappIcon round size={iconSize} />
+	      </WhatsappShareButton>
+	      <TelegramShareButton url={https://coqui.ai} title={Clone your voice and speak a foreign language with Coqui 🐸💬}>
+	        <TelegramIcon round size={iconSize} />
+	      </TelegramShareButton>
+	      <RedditShareButton url={https://coqui.ai} title={Clone your voice and speak a foreign language with Coqui 🐸💬}>
+	        <RedditIcon round size={iconSize} />
+	      </RedditShareButton>
+	      <FacebookShareButton url={https://coqui.ai} quote={Clone your voice and speak a foreign language with Coqui 🐸💬}>
+	        <FacebookIcon round size={iconSize} />
+	      </FacebookShareButton>
+	      <LinkedinShareButton url={https://coqui.ai} title={Clone your voice and speak a foreign language with Coqui 🐸💬}>
+	        <LinkedinIcon round size={iconSize} />
+	      </LinkedinShareButton>
+	      <VKShareButton url={https://coqui.ai} title={Clone your voice and speak a foreign language with Coqui 🐸💬}>
+	        <VKIcon round size={iconSize} />
+	      </VKShareButton>
+	      <ViberButton url={https://coqui.ai} title={Clone your voice and speak a foreign language with Coqui 🐸💬}>
+	        <ViberIcon round size={iconSize} />
+	      </ViberShareButton>
+	      <WeiboButton url={https://coqui.ai} title={Clone your voice and speak a foreign language with Coqui 🐸💬}>
+	        <WeiboIcon round size={iconSize} />
+	      </WeiboShareButton>
                 <h1
                   css={css`
                     ${headerStyling}
