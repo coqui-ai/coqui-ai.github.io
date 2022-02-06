@@ -62,6 +62,9 @@ Also, MozFest. March 7-10, 2022, save the date! We'll be hosting one roundtable
 and one hackathon. So, if you've been wanting to hear what we're up to or simply
 itching to get your hands dirty with our tech, signup! (Details below the fold!)
 
+One last thing, [spchcat](https://github.com/petewarden/spchcat), `cat` for
+speech on Linux, built with Coqui STT 🐸 inside. Read on to find the deatils.
+
 Enjoy the newsletter! 🐸
 
 ### Zero to (Number) One (On Hacker News)🔥🔥🔥
@@ -228,6 +231,55 @@ metrics. We're driving the point home that even for languages without tons of da
 build great voice-enabled software!
 
 Want to participate? [Register for MozFest](https://www.mozillafestival.org/en/tickets) today!
+
+### One Last Thing, Some Love from Linux
+
+![IMAGE](../../data/images/newsletter/posts/LinuxLove.png)
+
+By [Josh Meyer](https://github.com/JRMeyer)
+
+We are constantly reminded of how lucky we are to have such an active and open community.
+This last month in particular, we saw a new project from one of our community members get
+lots of attention!
+
+[Pete Warden](https://twitter.com/petewarden) (head of the TensorFlow team at Google working
+on small devices) took the Coqui STT toolkit, and wrapped it up in a project to seamlessly
+run on Linux and Raspberry Pi. It's called "spchcat", and it's something like the Unix
+"cat" command but for speech.
+
+As Pete says in his
+[blogpost](https://petewarden.com/2022/01/06/launching-spchcat-an-open-source-speech-recognition-tool-for-linux-and-raspberry-pi/)
+on spchcat:
+
+> I've been following the Coqui.ai team's work since they launched, and was very impressed
+> by the quality of the open source speech models and code they have produced. I didn't
+> have an easy way to run them myself though, especially on live microphone input. With that
+> in mind, I decided my holiday project would be writing a command line tool using Coqui's
+> speech to text library.
+
+Coqui STT has been installable on Linux and Raspberry Pi for a while, and we've had the
+ability to use microphone input from your browser in the
+[stt-model-manager](https://github.com/coqui-ai/stt-model-manager)... so what's new here?
+
+What's new is this: you can now just doble-click on
+[Pete's new installer](https://github.com/petewarden/spchcat/releases/download/v0.0.2-alpha/spchcat_0.0-2_amd64.deb),
+and run `spchcat` from the terminal, and just start talking into your microphone… it's so simple!
+
+Don't believe us? Believe Pete:
+
+<div align="center">
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube.com/embed/Z2m8Xg4Ifnk"
+    frameborder="0"
+    allow="accelerometer;
+        autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</div>
+
+Check it out for yourself today, and get Coqui STT models right at your fingertips on your favorite Linux machines!
 
 <!-- markdownlint-enable line-length -->
 
