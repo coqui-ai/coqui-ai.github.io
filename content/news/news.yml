@@ -1,29 +1,34 @@
 - title: 👩‍💻Work at Coqui!
   author: Kelly Davis
   author_url: https://github.com/kdavis-coqui
-  url: /newsletter/03-01-2022#work-at-coqui
+  url: /newsletter/07-02-2022#work-at-coqui
 
-- title: Welcome! 👋🐸
+- title: Hello! 👋🐸
   author: Kelly Davis
   author_url: https://github.com/kdavis-coqui
-  url: /newsletter/03-01-2022#welcome-
+  url: /newsletter/07-02-2022#hello-
 
-- title: Welcoming Aya AlJa’fari to the Coqui team
-  author: Reuben Morais
-  author_url: https://github.com/reuben
-  url: /newsletter/03-01-2022#welcoming-aya-aljafari-to-the-coqui-team
+- title: Zero to (Number) One (On Hacker News)🔥🔥🔥
+  author: Kelly Davis
+  author_url: https://github.com/kdavis-coqui
+  url: /newsletter/07-02-2022#zero-to-number-one-on-hacker-news
 
-- title: 👉🏽 YourTTS
-  author: Eren Gölge
-  author_url: https://github.com/erogol
-  url: /newsletter/03-01-2022#-yourtts
-
-- title: 🐸💬 TTS v0.5.0
-  author: Eren Gölge
-  author_url: https://github.com/erogol
-  url: /newsletter/03-01-2022#-tts-v050
-
-- title: NeurIPS data set + data panel
+- title: Coqui STT and Common Voice 8.0
   author: Josh Meyer
   author_url: https://github.com/JRMeyer
-  url: /newsletter/03-01-2022#neurips-data-set--data-panel
+  url: /newsletter/07-02-2022#coqui-stt-and-common-voice-80
+
+- title: Coqui now default Speech-to-Text for Leon.ai
+  author: Josh Meyer
+  author_url: https://github.com/JRMeyer
+  url: /newsletter/07-02-2022#coqui-now-default-speech-to-text-for-leonai
+
+- title: 🐸STT v1.2.0
+  author: Reuben Morais
+  author_url: https://github.com/reuben
+  url: /newsletter/07-02-2022#stt-v120
+
+- title: MozFest and the Hackathon
+  author: Josh Meyer
+  author_url: https://github.com/JRMeyer
+  url: /newsletter/07-02-2022#mozfest-and-the-hackathon
