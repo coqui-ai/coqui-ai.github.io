@@ -40,7 +40,6 @@ export const News: React.FC = () => {
     <div
       css={css`
         position: relative;
-        background-color: ${p => p.theme.palette.oatMilk};
       `}
     >
       <FullBleedLayout>
