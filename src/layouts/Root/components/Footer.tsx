@@ -178,7 +178,6 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
             align-items: center;
           `}
         >
-          <StyledFooterItem to="/imprint">Imprint</StyledFooterItem>
           <StyledFooterItem to="/privacy">Privacy Policy</StyledFooterItem>
         </div>
         <div
