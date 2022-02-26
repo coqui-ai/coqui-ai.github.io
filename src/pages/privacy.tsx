@@ -48,31 +48,35 @@ const PrivacyPage: React.FC = () => {
                   margin-bottom: ${p => p.theme.space.lg};
                 `}
               >
-                <LG isBold>Privacy Policy of Coqui GmbH</LG>
+                <LG isBold>Privacy Policy of Coqui</LG>
               </Row>
               <Row>
                 <Paragraph>
+                  <LG>Effective Date: February 26, 2022</LG>
+                </Paragraph>
+                <Paragraph>
                   <LG>
-                    This privacy policy applies to data processing by Coqui GmbH (&quot;Coqui&quot;,
-                    &quot;Controller&quot;, &quot;we&quot; or &quot;us&quot;).
+                    Coqui.ai Corp. (&quot;Coqui,&quot; &quot;Controller,&quot; &quot;we,&quot; or
+                    &quot;us&quot;) respects your privacy and is committed to protecting it through
+                    compliance with this policy. This policy describes the information we may
+                    collect when you use our website, coqui.ai (the &quot;Website&quot;), or our
+                    products or services, or when you provide information to us, and our practices
+                    for handling that information.
                   </LG>
                 </Paragraph>
                 <Paragraph>
                   <LG>
-                    When you visit our website https://coqui.ai/ (&quot;Website&quot;), we collect
-                    and process personal data of you, however, only in compliance with the
-                    applicable data protection regulations. Personal data is any information
-                    relating to an identified or identifiable natural person, e.g. name, address,
-                    and email address. When processing your personal data, we observe the applicable
-                    data protection laws, in particular the European General Data Protection
-                    Regulation (&quot;GDPR&quot;) and the Federal Data Protection Act
-                    (&quot;BDSG&quot;).
+                    This policy does not apply to information collected by any third party,
+                    including through any third-party mobile application or website or any content
+                    (including advertising) that may link to or be accessible from the Website.
                   </LG>
                 </Paragraph>
                 <Paragraph>
                   <LG>
-                    This privacy statement describes which personal data we process, for which
-                    purposes and on which legal basis.
+                    Please read this policy carefully. By accessing or using our Website, products,
+                    or services, or by providing information to us, you agree to this privacy
+                    policy. This policy may change from time to time (see Changes to Our Privacy
+                    Policy, below). Please check this policy periodically for updates.
                   </LG>
                 </Paragraph>
               </Row>
@@ -97,7 +101,7 @@ const PrivacyPage: React.FC = () => {
                 <Paragraph>
                   <LG>
                     <address>
-                      Coqui GmbH <br />
+                      Coqui.ai Corp. <br />
                       Tile-Wardenberg-Straße 6 <br />
                       10555 Berlin <br />
                       Germany <br />
@@ -124,7 +128,7 @@ const PrivacyPage: React.FC = () => {
                 `}
               >
                 <LG isBold>
-                  2. Collection and Processing of Personal Data, Purposes of Processing, relevant
+                  2. Collection and Processing of Personal Data, Purposes of Processing, Relevant
                   Legal Basis and Storage Period
                 </LG>
               </Row>
@@ -134,9 +138,22 @@ const PrivacyPage: React.FC = () => {
                   margin-bottom: ${p => p.theme.space.lg};
                 `}
               >
-                <LG isBold>2.1. Informative Use of our Website</LG>
+                <LG isBold>2.1. Informative use of our Website</LG>
               </Row>
               <Row>
+                <Paragraph>
+                  <LG>
+                    We may collect any personal information that you voluntarily provide to us,
+                    either on our Website or in any other communications with us. Voice or audio
+                    data: For example, if you use the &quot;Speaking in Tongues&quot; demo on our
+                    Website, we will collect your voice or whatever audio you provide into that
+                    function. We will retain that voice or audio only as long as necessary to
+                    satisfy the initial purpose for which you provided that voice or audio. By using
+                    that function, you consent to our collection and use of your voice and other
+                    audio provided for that purpose and to our disclosure of that information to any
+                    service provider we use to fulfill that purpose.
+                  </LG>
+                </Paragraph>
                 <Paragraph>
                   <LG>
                     During the visit on our Website, i.e. if you do not register or otherwise
@@ -232,7 +249,7 @@ const PrivacyPage: React.FC = () => {
                   margin-bottom: ${p => p.theme.space.lg};
                 `}
               >
-                <LG isBold>2.3. Contacting us per email</LG>
+                <LG isBold>2.3. Contacting us by email</LG>
               </Row>
               <Row>
                 <Paragraph>
@@ -352,8 +369,8 @@ const PrivacyPage: React.FC = () => {
                     of the Website (including your IP address) by Google and the processing of this
                     data by Google by downloading and installing the browser plug-in available under
                     the following link:{' '}
-                    <Anchor href="http://tools.google.com/dlpage/gaoptout?hl=de">
-                      http://tools.google.com/dlpage/gaoptout?hl=de
+                    <Anchor href="https://tools.google.com/dlpage/gaoptout?hl=en">
+                      https://tools.google.com/dlpage/gaoptout?hl=en
                     </Anchor>
                     .
                   </LG>
@@ -369,16 +386,16 @@ const PrivacyPage: React.FC = () => {
                     <UnorderedList.Item>
                       <LG>
                         Data protection overview:{' '}
-                        <Anchor href="http://www.google.com/intl/de/analytics/learn/privacy.html">
-                          http://www.google.com/intl/de/analytics/learn/privacy.html
+                        <Anchor href="https://business.safety.google/compliance/">
+                          https://business.safety.google/compliance/
                         </Anchor>
                       </LG>
                     </UnorderedList.Item>
                     <UnorderedList.Item>
                       <LG>
                         Privacy statement:{' '}
-                        <Anchor href="http://www.google.de/intl/de/policies/privacy">
-                          http://www.google.de/intl/de/policies/privacy
+                        <Anchor href="https://policies.google.com/privacy">
+                          https://policies.google.com/privacy
                         </Anchor>
                         .
                       </LG>
@@ -392,16 +409,52 @@ const PrivacyPage: React.FC = () => {
                   margin-bottom: ${p => p.theme.space.lg};
                 `}
               >
-                <LG isBold>3. Storage period</LG>
+                <LG isBold>2.5 Storage period</LG>
               </Row>
               <Row>
                 <Paragraph>
                   <LG>
                     If no other storage periods are specified in the preceding sections, we store
-                    and process your personal data as long this is necessary for the aforementioned
+                    and process your personal data as long as is necessary for the aforementioned
                     purposes. If your data is not needed any longer, we will delete the data except
-                    we are obliged by statutory law (commercial and tax law) to store the data for
-                    time periods determined by the respective statutes.
+                    when we are obliged by applicable law to not to delete the data.
+                  </LG>
+                </Paragraph>
+              </Row>
+              <Row
+                css={css`
+                  margin-top: ${p => p.theme.space.lg};
+                  margin-bottom: ${p => p.theme.space.lg};
+                `}
+              >
+                <LG isBold>3. Third-party privacy policies and other tracking technologies</LG>
+              </Row>
+              <Row>
+                <Paragraph>
+                  <LG>
+                    In visiting or using our Website, or in using our products or services, you may
+                    be asked to provide your information to one of our third-party service
+                    providers, such as, for example, when you sign up to receive our newsletter. Our
+                    Website may link to the websites of other companies or organizations not
+                    affiliated with or controlled by us, and some content or applications on our
+                    Website are served by third-parties. These third parties may use cookies, alone
+                    or in conjunction with web beacons or other tracking technologies, to collect
+                    information about you when you use our Website or when you navigate to their
+                    websites. The information they collect may be associated with your personal
+                    information, or they may collect information, including personal information,
+                    about your online activities over time and across different websites and other
+                    online services. They may use this information to provide you with
+                    interest-based (behavioral) advertising or other targeted content.
+                  </LG>
+                </Paragraph>
+                <Paragraph>
+                  <LG>
+                    We do not control the privacy practices of third parties. For example, we do not
+                    control whether or how third parties may use your information or may use
+                    tracking technologies with respect to your information. If you have any
+                    questions about a third party’s privacy practices or about an advertisement or
+                    other targeted content or how any third party may collect or use your
+                    information, you should contact the responsible third party directly.
                   </LG>
                 </Paragraph>
               </Row>
@@ -414,6 +467,12 @@ const PrivacyPage: React.FC = () => {
                 <LG isBold>4. Recipients or categories of recipients of your personal data</LG>
               </Row>
               <Row>
+                <Paragraph>
+                  <LG>
+                    We may disclose aggregated information about our users, and information that
+                    does not identify any individual, without restriction.
+                  </LG>
+                </Paragraph>
                 <Paragraph>
                   <LG>
                     We sometimes use external service providers to process your data. These service
@@ -465,6 +524,66 @@ const PrivacyPage: React.FC = () => {
                     .
                   </LG>
                 </Paragraph>
+                <Paragraph>
+                  <LG>
+                    In addition, we may disclose the information that we collect or you provide as
+                    described in this privacy policy to any or all of the following:
+                  </LG>
+                </Paragraph>
+                <Paragraph>
+                  <UnorderedList>
+                    <UnorderedList.Item>
+                      <LG>
+                        Our employees, contractors, service providers, software providers,
+                        professional advisers, insurers, agents, and other third parties we use to
+                        support our business.
+                      </LG>
+                    </UnorderedList.Item>
+                    <UnorderedList.Item>
+                      <LG>
+                        Any party to fulfill the purpose for which you provided the information.
+                      </LG>
+                    </UnorderedList.Item>
+                    <UnorderedList.Item>
+                      <LG>
+                        Any party to fulfill any other purpose disclosed by us when you provided the
+                        information.
+                      </LG>
+                    </UnorderedList.Item>
+                    <UnorderedList.Item>
+                      <LG>Any party with your consent.</LG>
+                    </UnorderedList.Item>
+                    <UnorderedList.Item>
+                      <LG>
+                        Any party to comply with or respond to any court order, subpoena, civil
+                        investigative demand, legal process, law, regulation, or any government or
+                        regulatory request.
+                      </LG>
+                    </UnorderedList.Item>
+                    <UnorderedList.Item>
+                      <LG>
+                        Any party to enforce or perform any contracts, agreements, or obligations,
+                        including, for example, for billing and collection purposes.
+                      </LG>
+                    </UnorderedList.Item>
+                    <UnorderedList.Item>
+                      <LG>
+                        A buyer or other successor in the event of a merger, divestiture,
+                        restructuring, reorganization, dissolution, or other sale or transfer of
+                        some or all of our assets, whether as a going concern or as part of
+                        bankruptcy, liquidation, or similar proceeding.
+                      </LG>
+                    </UnorderedList.Item>
+                    <UnorderedList.Item>
+                      <LG>
+                        Any party if we believe disclosure is necessary or appropriate to protect
+                        the rights, property, or safety of the Coqui, our employees, our customers,
+                        or others. This includes, without limitation, exchanging information with
+                        other parties for the purpose of fraud protection and credit risk reduction.
+                      </LG>
+                    </UnorderedList.Item>
+                  </UnorderedList>
+                </Paragraph>
               </Row>
               <Row
                 css={css`
@@ -477,10 +596,20 @@ const PrivacyPage: React.FC = () => {
               <Row>
                 <Paragraph>
                   <LG>
-                    We use appropriate technical and organizational measures to protect stored
-                    personal data against manipulation, partial or complete loss and unauthorized
-                    access by third parties. Our security measures are continuously improved in line
-                    with technological developments.
+                    We have implemented safeguards designed to secure your information, including
+                    personal information, from accidental loss and unauthorized access, use,
+                    alteration, and disclosure.
+                  </LG>
+                </Paragraph>
+                <Paragraph>
+                  <LG>
+                    Unfortunately, no website, software, system, or database is completely secure or
+                    &quot;hacker proof.&quot; Although we try to protect your information, we cannot
+                    guarantee the security of your information. Any transmission of information,
+                    including personal information, is at your own risk. You are also responsible
+                    for taking reasonable steps to protect your information, including personal
+                    information, such as, for example, the password to your email account, against
+                    unauthorized disclosure or misuse.
                   </LG>
                 </Paragraph>
               </Row>
@@ -490,17 +619,105 @@ const PrivacyPage: React.FC = () => {
                   margin-bottom: ${p => p.theme.space.lg};
                 `}
               >
-                <LG isBold>6. Your Rights</LG>
+                <LG isBold>6. Your California Privacy Rights</LG>
               </Row>
               <Row>
                 <Paragraph>
                   <LG>
-                    In relation to the processing of your personal data, you are entitled to the
-                    following rights:
+                    While it is not our practice to disclose your personal information to third
+                    parties for their direct marketing purposes, California Civil Code Section §
+                    1798.83 may permit certain users of our Website who are California residents to
+                    request certain information regarding our disclosures, if any, of personal
+                    information to third parties for their direct marketing purposes. If you are a
+                    California resident with an established business relationship with us and would
+                    like to request information from us about whether we have shared your
+                    information to third parties for their direct marketing purposes during the
+                    preceding calendar year, you may direct the request to us in writing at the
+                    mailing or email address stated below (see Contact Information, below).
                   </LG>
                 </Paragraph>
                 <Paragraph>
-                  <LG isBold>6.1. Right to Information pursuant to Art. 15 GDPR</LG>
+                  <LG>
+                    California law may require us to inform you how we respond to do-not-track (DNT)
+                    signals or other mechanisms that provide consumers the ability to exercise
+                    choice regarding the collection of personally identifiable information about an
+                    individual consumer&apos;s online activities over time and across third-party
+                    websites or online services. Because there is no industry or legal standard for
+                    recognizing or honoring DNT signals or other such mechanisms, we don&apos;t
+                    respond to them at this time.
+                  </LG>
+                </Paragraph>
+              </Row>
+              <Row
+                css={css`
+                  margin-top: ${p => p.theme.space.lg};
+                  margin-bottom: ${p => p.theme.space.lg};
+                `}
+              >
+                <LG isBold>7. Nevada Consumers</LG>
+              </Row>
+              <Row>
+                <Paragraph>
+                  <LG>
+                    Nevada law gives Nevada consumers the right to request that a company that
+                    operates a website for commercial purposes not sell their personal information
+                    for monetary consideration to another party for the other party to license or
+                    sell the information to additional parties. This right may apply even if
+                    personal information is not currently being sold.
+                  </LG>
+                </Paragraph>
+                <Paragraph>
+                  <LG>
+                    We do not sell personal information. However, if you are a Nevada consumer who
+                    wishes to exercise a right to request us not to sell your personal information,
+                    please direct your request to the email address identified above. We reserve the
+                    right to take reasonable measures to verify the authenticity of the request and
+                    the identity of the consumer making the request.
+                  </LG>
+                </Paragraph>
+              </Row>
+              <Row
+                css={css`
+                  margin-top: ${p => p.theme.space.lg};
+                  margin-bottom: ${p => p.theme.space.lg};
+                `}
+              >
+                <LG isBold>8. Reviewing and Requesting Changes to Your Information</LG>
+              </Row>
+              <Row>
+                <Paragraph>
+                  <LG>
+                    If you would like to review and request any changes to your personal information
+                    on file with us, you may direct the request to us in writing at the address or
+                    email address stated above. We may not accommodate such a request if we believe
+                    compliance with the request would violate any law, regulation, contract, or
+                    other legal obligation or cause the information to be incorrect. We reserve the
+                    right to deny, in our sole discretion and for any reason, any request to review,
+                    change, delete, or otherwise access any information in our records. However, if
+                    your information is subject to the European Union’s General Data Protection
+                    Regulation, you may have additional rights, as set forth in the &quot;Your GDPR
+                    Rights&quot; section below.
+                  </LG>
+                </Paragraph>
+              </Row>
+              <Row
+                css={css`
+                  margin-top: ${p => p.theme.space.lg};
+                  margin-bottom: ${p => p.theme.space.lg};
+                `}
+              >
+                <LG isBold>9. Your GDPR Rights</LG>
+              </Row>
+              <Row>
+                <Paragraph>
+                  <LG>
+                    If we are subject to the requirements of the European Union’s General Data
+                    Protection Regulation with respect to your personal data, you are entitled to
+                    the following rights:
+                  </LG>
+                </Paragraph>
+                <Paragraph>
+                  <LG isBold>9.1. Right to Information pursuant to Art. 15 GDPR</LG>
                 </Paragraph>
                 <Paragraph>
                   <LG>
@@ -512,7 +729,7 @@ const PrivacyPage: React.FC = () => {
                   </LG>
                 </Paragraph>
                 <Paragraph>
-                  <LG isBold>6.2. Right to Rectification pursuant to Art. 16 GDPR</LG>
+                  <LG isBold>9.2. Right to Rectification pursuant to Art. 16 GDPR</LG>
                 </Paragraph>
                 <Paragraph>
                   <LG>
@@ -524,7 +741,7 @@ const PrivacyPage: React.FC = () => {
                   </LG>
                 </Paragraph>
                 <Paragraph>
-                  <LG isBold>6.3. Right to Deletion pursuant to Art. 17 GDPR</LG>
+                  <LG isBold>9.3. Right to Deletion pursuant to Art. 17 GDPR</LG>
                 </Paragraph>
                 <Paragraph>
                   <LG>
@@ -574,7 +791,7 @@ const PrivacyPage: React.FC = () => {
                 </Paragraph>
                 <Paragraph>
                   <LG isBold>
-                    6.4. Right to the Restriction of Processing pursuant to Art. 18 GDPR
+                    9.4. Right to the Restriction of Processing pursuant to Art. 18 GDPR
                   </LG>
                 </Paragraph>
                 <Paragraph>
@@ -619,7 +836,7 @@ const PrivacyPage: React.FC = () => {
                   </UnorderedList>
                 </Paragraph>
                 <Paragraph>
-                  <LG isBold>6.5. Right to Data Portability pursuant to Art. 20 GDPR</LG>
+                  <LG isBold>9.5. Right to Data Portability pursuant to Art. 20 GDPR</LG>
                 </Paragraph>
                 <Paragraph>
                   <LG>
@@ -630,7 +847,7 @@ const PrivacyPage: React.FC = () => {
                   </LG>
                 </Paragraph>
                 <Paragraph>
-                  <LG isBold>6.6. Right to Object pursuant to Art. 21 GDPR</LG>
+                  <LG isBold>9.6. Right to Object pursuant to Art. 21 GDPR</LG>
                 </Paragraph>
                 <Paragraph>
                   <LG>
@@ -665,7 +882,7 @@ const PrivacyPage: React.FC = () => {
                   </LG>
                 </Paragraph>
                 <Paragraph>
-                  <LG isBold>6.7. Right of Withdrawal of Consent pursuant to Art. 7 GDPR</LG>
+                  <LG isBold>9.7. Right of Withdrawal of Consent pursuant to Art. 7 GDPR</LG>
                 </Paragraph>
                 <Paragraph>
                   <LG>
@@ -677,7 +894,7 @@ const PrivacyPage: React.FC = () => {
                   </LG>
                 </Paragraph>
                 <Paragraph>
-                  <LG isBold>6.8. Right to file a Complaint with the Supervisory Authority</LG>
+                  <LG isBold>9.8. Right to file a Complaint with the Supervisory Authority</LG>
                 </Paragraph>
                 <Paragraph>
                   <LG>
@@ -715,6 +932,49 @@ const PrivacyPage: React.FC = () => {
                     <Span isBold>Telephone:</Span> +49 (0)30 1388 9-0 <br />
                     <Span isBold>Fax:</Span> +49 (0)30 2155 050 <br />
                     <Span isBold>EMail:</Span> mailbox@datenschutz-berlin.de <br />
+                  </LG>
+                </Paragraph>
+              </Row>
+              <Row
+                css={css`
+                  margin-top: ${p => p.theme.space.lg};
+                  margin-bottom: ${p => p.theme.space.lg};
+                `}
+              >
+                <LG isBold>10. Children Under the Age of 13</LG>
+              </Row>
+              <Row>
+                <Paragraph>
+                  <LG>
+                    Our Website is not intended for children under 13 years of age. No one under age
+                    13 may provide any personal information on our Website. We do not knowingly
+                    collect personal information from children under 13. If you are under 13, do not
+                    use or provide any information on our Website or provide any information about
+                    yourself to us, including without limitation your name, address, telephone
+                    number, or email address. If we learn we have collected or received personal
+                    information from a child under 13 without verification of parental consent, we
+                    will delete that information. If you believe we might have any information from
+                    or about a child under 13, please contact us in writing at the mailing or email
+                    address stated above.
+                  </LG>
+                </Paragraph>
+              </Row>
+              <Row
+                css={css`
+                  margin-top: ${p => p.theme.space.lg};
+                  margin-bottom: ${p => p.theme.space.lg};
+                `}
+              >
+                <LG isBold>11. Changes to Our Privacy Policy</LG>
+              </Row>
+              <Row>
+                <Paragraph>
+                  <LG>
+                    We will post on this page any changes to our privacy policy. The date the
+                    privacy policy was last revised is identified at the top of this page. You are
+                    responsible for visiting this privacy policy to check for any changes. Your
+                    continued use of our Website, products, or services after we make changes to
+                    this policy is deemed to be acceptance of those changes.
                   </LG>
                 </Paragraph>
               </Row>
