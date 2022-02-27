@@ -31,10 +31,14 @@ const formatBytes = (bytes: number) => {
   return `${parseFloat((bytes / k ** i).toFixed(1))} ${sizes[i]}`;
 };
 
+const scarfRedirect = (url: string) => {
+  return url.replace('github.com/coqui-ai/STT-models/releases/download', 'coqui.gateway.scarf.sh');
+};
+
 const createRow = (row: IRow, index: number) => (
   <Row key={index}>
     <Cell>
-      <Anchor href={row.downloadUrl}>{row.name}</Anchor>
+      <Anchor href={scarfRedirect(row.downloadUrl)}>{row.name}</Anchor>
     </Cell>
     <Cell style={{ textAlign: 'right' }}>{formatBytes(row.size)}</Cell>
   </Row>
