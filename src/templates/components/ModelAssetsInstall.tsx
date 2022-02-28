@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import queryString from 'query-string';
 import { useLocation } from '@reach/router';
 import React, { useState, useEffect } from 'react';
-import { postModelMetaDataToServer } from './utils';
+import { postModelMetaDataToServer, scarfRedirect } from './utils';
 import { Message } from '@zendeskgarden/react-forms';
 import { Row, Col } from '@zendeskgarden/react-grid';
 import { Stepper } from '@zendeskgarden/react-accordions';
@@ -41,7 +41,7 @@ const getModelURL = (extension: string, nodes: INode[]) => {
   // "There can be only one!" -The Kurgan
   for (const node of nodes) {
     if (node.name.endsWith(extension)) {
-      return node.downloadUrl;
+      return scarfRedirect(node.downloadUrl);
     }
   }
 

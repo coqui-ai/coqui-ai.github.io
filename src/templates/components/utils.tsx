@@ -64,3 +64,7 @@ export const postModelMetaDataToServer = (
     }
   });
 };
+
+export const scarfRedirect = (url: string) => {
+  return url.replace('github.com/coqui-ai/STT-models/releases/download', 'coqui.gateway.scarf.sh');
+};
