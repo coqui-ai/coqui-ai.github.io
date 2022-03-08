@@ -57,12 +57,6 @@ const rowData: IRow[] = [
     group: 'Deep Learning'
   },
   {
-    title: 'Senior TTS Deep Learning Engineer',
-    url: '../job/senior-tts-deep-learning-engineer',
-    location: 'Berlin, Germany OR Remote',
-    group: 'Deep Learning'
-  },
-  {
     title: 'Senior Full Stack Engineer',
     url: '../job/senior-full-stack-engineer',
     location: 'Berlin, Germany OR Remote',
