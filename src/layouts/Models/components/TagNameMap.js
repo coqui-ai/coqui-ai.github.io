@@ -92,7 +92,11 @@ const tagNameMap = {
   'english/coqui/v1.0.0-large-vocab': ['Coqui', 'https://coqui.ai/'],
   'english/coqui/v1.0.0-yesno': ['Coqui', 'https://coqui.ai/'],
   'english/coqui/v1.0.0-huge-vocab': ['Coqui', 'https://coqui.ai/'],
-  'french/commonvoice-fr/v0.8': ['commonvoice-fr', 'https://github.com/common-voice/commonvoice-fr']
+  'french/commonvoice-fr/v0.8': [
+    'commonvoice-fr',
+    'https://github.com/common-voice/commonvoice-fr'
+  ],
+  'swahili/coqui/v8.0': ['Coqui', 'https://coqui.ai/']
 };
 
 exports.tagNameMap = tagNameMap;
