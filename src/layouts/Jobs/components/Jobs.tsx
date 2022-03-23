@@ -21,6 +21,12 @@ interface IRow {
 
 const rowData: IRow[] = [
   {
+    title: 'Senior UI/UX Engineer',
+    url: '../job/senior-ui+ux-engineer',
+    location: 'Berlin, Germany OR Remote',
+    group: 'Product'
+  },
+  {
     title: 'Senior, Developer Community Manager',
     url: '../job/senior-developer-community-manager',
     location: 'Berlin, Germany OR Remote',
