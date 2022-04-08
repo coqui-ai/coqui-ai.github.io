@@ -27,12 +27,6 @@ const rowData: IRow[] = [
     group: 'Product'
   },
   {
-    title: 'Senior, Developer Community Manager',
-    url: '../job/senior-developer-community-manager',
-    location: 'Berlin, Germany OR Remote',
-    group: 'Community'
-  },
-  {
     title: 'Head of Product',
     url: '../job/head-of-product',
     location: 'Berlin, Germany OR Remote',
