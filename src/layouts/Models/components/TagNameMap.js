@@ -96,7 +96,9 @@ const tagNameMap = {
     'commonvoice-fr',
     'https://github.com/common-voice/commonvoice-fr'
   ],
-  'swahili/coqui/v8.0': ['Coqui', 'https://coqui.ai/']
+  'swahili/coqui/v8.0': ['Coqui', 'https://coqui.ai/'],
+  'totonac/bozden/v1.0.0': ['Bülent Özden', 'https://twitter.com/bulentozden'],
+  'chatino/bozden/v1.0.0': ['Bülent Özden', 'https://twitter.com/bulentozden']
 };
 
 exports.tagNameMap = tagNameMap;
