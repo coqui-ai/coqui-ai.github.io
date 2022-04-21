@@ -98,7 +98,8 @@ const tagNameMap = {
   ],
   'swahili/coqui/v8.0': ['Coqui', 'https://coqui.ai/'],
   'totonac/bozden/v1.0.0': ['Bülent Özden', 'https://twitter.com/bulentozden'],
-  'chatino/bozden/v1.0.0': ['Bülent Özden', 'https://twitter.com/bulentozden']
+  'chatino/bozden/v1.0.0': ['Bülent Özden', 'https://twitter.com/bulentozden'],
+  'mixtec/jemeyer/v1.0.0': ['Joe Meyer', 'https://www.linkedin.com/in/joe-meyer-25753951/']
 };
 
 exports.tagNameMap = tagNameMap;
