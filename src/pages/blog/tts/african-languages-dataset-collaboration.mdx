@@ -1,0 +1,113 @@
+---
+title: 'Data and models for African langauges'
+name: Josh Meyer
+picture: https://avatars.githubusercontent.com/u/8389864?v=4
+date: May 2, 2022
+---
+
+import { graphql } from 'gatsby';
+
+👉 [Try out the new African TTS models!](https://huggingface.co/spaces/coqui/CoquiTTS)
+
+### Introduction
+
+Over the course of several months, researchers from Coqui collaborated with a global team of academics, language
+activists, and technologists in order to create high quality Text-to-Speech for six African languages. This blog post
+covers who this excellent team was, what we did, and how you can use these new voices for yourself. All the synthetic
+voices discussed here are available under a Creative Commons BY-SA 4.0 License -- a free, open, and commercial friendly
+license.
+
+There are literally thousands of languages spoken in Africa, and as such this current work is only the tip of the
+iceberg. Nevertheless, we hope our work inspires others to create new open, synthetic voices for as many of Africa's
+languages as possible. Coqui's TTS can be fine-tuned to any new language, even with tiny amounts of data, regardless
+of the alphabet or grammar or linguistic attributes. The more data the better, as you will see (and hear) here. Data
+is almost always the bottleneck in deep learning, and in this blogpost we'll discuss how we found raw data that wasn't
+ready for TTS, and massaged it into a place where beautiful, high-fidelity synthetic voices could be built. Once the
+data was ready, training the models was a piece of cake.
+
+This project wouldn't have been possible without our collaborators. Specifically, the excellent Masakhane NLP community
+is what brought us all together in the first place. We eagerly look forward to more Coqui + Masakhane collaborations
+in the future! If you want to see the future of natural language technology (especially for African languages),
+[Masakhane](https://www.masakhane.io/) is the place to be.
+
+### Collaborators
+
+Without further ado, here's the team of individuals that brought these voices into reality (in alphabetical order):
+
+- Alp Öktem, Apelete Agbolo, Bernard Opoku, Chris Emezue, Colin Leong, Daniel Whitenack, David Ifeoluwa Adelani,
+  Edresson Casanova, Elizabeth Salesky, Iroro Orife, Jesujoba Alabi, Jonathan Mukiibi, Josh Meyer, Julian Weber, Perez
+  Ogayo, Salomey Osei, Salomon Kabongo, Samuel Olanrewaju, Shamsuddeen Muhammad, Victor Akinode
+
+Featuring activists and technologists from:
+
+- CLEAR Global, Col·lectivaT, Ewegbe Akademi, Masakhane, Niger-Volta LTI, SIL International
+
+Featuring academic researchers from:
+
+- Carnegie Mellon University, Johns Hopkins University, Kwame Nkrumah University of Science and Technology, Leibniz
+  Universität, Makerere University, Saarland University, Technical University of Munich, University of São Paulo
+
+### The Languages
+
+The six new languages added to TTS are:
+
+| Language    | Classification            | African region | Number of Speakers |
+| ----------- | ------------------------- | -------------- | ------------------ | --- |
+| Ewe         | Niger-Congo / Kwa         | West           | 5.5M               |
+| Hausa       | Afro-Asiatic / Chadic     | West           | 77M                |
+| Lingala     | Niger-Congo / Bantu       | Central        | 40M                |     |
+| Akuapem Twi | Niger-Congo / Akan        | West           | 626k               |
+| Asante Twi  | Niger-Congo / Akan        | West           | 3.8M               |
+| Yoruba      | Niger-Congo / Volta-Niger | West           | 46M                |
+
+Both the "Number of Speakers" and "Classification" columns come from Ethnologue. These six languages are all
+[tonal](<https://en.wikipedia.org/wiki/Tone_(linguistics)>), come from two of the largest language families in Africa
+(Niger-Congo and Afro-Asiatic), and are spoken primarily in Central and West Africa. Needless to say, there are a lot
+of people speaking these languages in a huge geographic area. By releasing these models under an open Creative Commons
+license, we hope they will be immediately useful to speakers of these languages.
+
+### The Collaboration Story
+
+As with all machine learning projects, data is the starting point. This entire collaboration spawned from a short URL
+posted into a chatroom: [open.bible](https://open.bible). A researcher from Coqui was hanging out with the folks from
+Masakhane in their slack group when someone posted the link saying something like "looks like some cool data!". In no
+time at all, a lively discussion ensued. The data was absolutely beautiful. All the data was explicitly licensed under
+CC-BY-SA, made of hours and hours of high-quality recordings from professional voice actors. This was without
+exaggeration the highest-quality voice data for speech synthesis Coqui had ever found in the open -- for any language.
+
+There was only one problem -- the original audio files are too long for training TTS models. The audio was saved as
+chapters (from the Bible), which were several minutes long each. It's best to train synthetic voices with audio clips
+under 30 seconds long, so we couldn't use the data out of the box. The intuitively simple task of breaking chapters
+into verses is not so simple in practice, and it requires significant compute power. Nevertheless, over a couple months
+and more than a couple cups of coffee, we aligned the recordings to the verse-level, and then we extracted only the
+best data. The resulting datasets will be released under the same CC-BY-SA 4.0 license, as well as our research paper
+detailing how we made it possible. Both the dataset release and publication of our methods are slated for INTERSPEECH 2022.
+
+### Use the Models
+
+All models discussed here can be used from:
+
+1. Our official [Coqui Huggingface space](https://huggingface.co/spaces/coqui/CoquiTTS)
+2. Your browser with [`tts-server`](https://tts.readthedocs.io/en/latest/inference.html#on-the-demo-server-tts-server)
+3. Your command line with [`tts`](https://tts.readthedocs.io/en/latest/inference.html#on-the-commandline-tts)
+
+### Conclusion
+
+Keep an eye our for our INTERSPEECH paper for all the technical details on how we created the datasets and trained the
+models. Until then, take the models and do something great! We want to thank again all the folks who helped make this
+possible, especially the Masakhane community for bringing us all together. We want to also acknowledge the individuals
+who spent hours and hours narrarating the Bible in these languages for the Open.Bible project, and for releasing the
+recordings under a Creative Commons license in the first place. We also want to thank the team of folks at Biblica for
+taking such care to record, organize, and release the raw data. They did not participate in this research, but it would
+not have been possible without them. On a last, but important note, anyone using these synthetic voices should be using
+them to create more good in the world, and no more harm. Out of respect to the original voice actors and the nature of
+the original recordings, we want the voices to be used to help people, and we're sure they can find great use in places
+like education and accessibility. For example, these voices can easily be used to create audiobooks for people who can't
+see or read well, and make reading more fun for students. If you use these models, let us know what great things you're
+creating in the world!
+
+export const pageQuery = graphql`
+  query($fileAbsolutePath: String) {
+    ...SidebarPageFragment
+  }
+`;
