@@ -8,6 +8,15 @@
 export default [
   {
     group: 'TTS',
+    title: 'Data and models for African langauges',
+    url: '/blog/tts/african-languages-dataset-collaboration',
+    splash:
+      'images/blog/splash-screens/blog-splash-screen-african-languages-dataset-collaboration.png',
+    description: 'Introduces data and TTS models for African langauges',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'YourTTS: Zero-Shot Multi-Speaker Text Synthesis and Voice Conversion',
     url: '/blog/tts/yourtts-zero-shot-text-synthesis-low-resource-languages',
     splash:
