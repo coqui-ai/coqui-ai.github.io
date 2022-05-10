@@ -176,12 +176,11 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
     >
       {!isSubscribing && (
         <>
-          <StyledMobileNavLink to="/about">About</StyledMobileNavLink>
+          <StyledMobileNavLink to="/use-cases">Use Cases</StyledMobileNavLink>
           <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
-          <StyledMobileNavLink to="/code">Code</StyledMobileNavLink>
-          <StyledMobileNavLink to="/demo">Demo</StyledMobileNavLink>
-          <StyledMobileNavLink to="/jobs">Jobs</StyledMobileNavLink>
           <StyledMobileNavLink to={modelPageLink}>Models</StyledMobileNavLink>
+          <StyledMobileNavLink to="/jobs">Jobs</StyledMobileNavLink>
+          <StyledMobileNavLink to="/about">About</StyledMobileNavLink>
         </>
       )}
     </div>
@@ -216,22 +215,19 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
       {!isSubscribing && (
         <>
           <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="/about">About</StyledDesktopNavLink>
+            <StyledDesktopNavLink to="/use-cases">Use Cases</StyledDesktopNavLink>
           </StyledDesktopNavItem>
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
           </StyledDesktopNavItem>
           <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="/code">Code</StyledDesktopNavLink>
-          </StyledDesktopNavItem>
-          <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="/demo">Demo</StyledDesktopNavLink>
+            <StyledDesktopNavLink to={modelPageLink}>Models</StyledDesktopNavLink>
           </StyledDesktopNavItem>
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to="/jobs">Jobs</StyledDesktopNavLink>
           </StyledDesktopNavItem>
           <StyledDesktopNavItem>
-            <StyledDesktopNavLink to={modelPageLink}>Models</StyledDesktopNavLink>
+            <StyledDesktopNavLink to="/about">About</StyledDesktopNavLink>
           </StyledDesktopNavItem>
         </>
       )}
