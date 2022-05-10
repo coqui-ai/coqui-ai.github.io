@@ -13,6 +13,7 @@ import styled, { css, DefaultTheme } from 'styled-components';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { IconButton } from '@zendeskgarden/react-buttons';
+import { Dropdown, Menu, Item, Trigger } from '@zendeskgarden/react-dropdowns';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
 import MaxWidthLayout from 'layouts/MaxWidth';
@@ -137,6 +138,11 @@ const MobileNavButton: React.FC<
   );
 };
 
+const StyledMobileNavItem = styled.div`
+  display: block;
+  margin-top: ${p => p.theme.space.base * 2}px;
+`;
+
 const StyledMobileNavLink = styled(StyledNavigationLink).attrs({ partiallyActive: true })`
   display: block;
   margin-top: ${p => p.theme.space.base * 2}px;
@@ -176,11 +182,35 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
     >
       {!isSubscribing && (
         <>
-          <StyledMobileNavLink to="/use-cases">Use Cases</StyledMobileNavLink>
-          <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
-          <StyledMobileNavLink to={modelPageLink}>Models</StyledMobileNavLink>
-          <StyledMobileNavLink to="/jobs">Jobs</StyledMobileNavLink>
-          <StyledMobileNavLink to="/about">About</StyledMobileNavLink>
+          <Dropdown
+            onSelect={item => {
+              window.location.href = item;
+            }}
+          >
+            <Trigger>
+              <StyledMobileNavItem>
+                <StyledMobileNavLink>Use Cases</StyledMobileNavLink>
+              </StyledMobileNavItem>
+            </Trigger>
+            <Menu hasArrow>
+              <Item value="video-games">Video Games</Item>
+              <Item value="post-production">Post Production</Item>
+              <Item value="dubbing">Dubbing</Item>
+              <Item value="brand-voices">Brand Voices</Item>
+            </Menu>
+          </Dropdown>
+          <StyledMobileNavItem>
+            <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
+          </StyledMobileNavItem>
+          <StyledMobileNavItem>
+            <StyledMobileNavLink to={modelPageLink}>Models</StyledMobileNavLink>
+          </StyledMobileNavItem>
+          <StyledMobileNavItem>
+            <StyledMobileNavLink to="/jobs">Jobs</StyledMobileNavLink>
+          </StyledMobileNavItem>
+          <StyledMobileNavItem>
+            <StyledMobileNavLink to="/about">About</StyledMobileNavLink>
+          </StyledMobileNavItem>
         </>
       )}
     </div>
@@ -214,9 +244,23 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
     >
       {!isSubscribing && (
         <>
-          <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="/use-cases">Use Cases</StyledDesktopNavLink>
-          </StyledDesktopNavItem>
+          <Dropdown
+            onSelect={item => {
+              window.location.href = item;
+            }}
+          >
+            <Trigger>
+              <StyledDesktopNavItem>
+                <StyledDesktopNavLink>Use Cases</StyledDesktopNavLink>
+              </StyledDesktopNavItem>
+            </Trigger>
+            <Menu hasArrow>
+              <Item value="video-games">Video Games</Item>
+              <Item value="post-production">Post Production</Item>
+              <Item value="dubbing">Dubbing</Item>
+              <Item value="brand-voices">Brand Voices</Item>
+            </Menu>
+          </Dropdown>
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
           </StyledDesktopNavItem>
