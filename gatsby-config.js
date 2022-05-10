@@ -29,6 +29,18 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        // token: process.env.REACT_APP_GITHUB_KEY,
+        typeName: `CreatorApplications`,
+        fieldName: `creatorapplications`,
+        url: `${process.env.BACKEND_URL}/app/graphql/`
+        // headers: {
+        //   Authorization: `Bearer your-github-token`,
+        // },
+      }
+    },
+    {
       resolve: `gatsby-source-github-api`,
       options: {
         token: process.env.REACT_APP_GITHUB_KEY,
