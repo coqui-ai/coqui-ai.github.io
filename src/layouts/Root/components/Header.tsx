@@ -108,12 +108,32 @@ const Logo: React.FC = () => {
   );
 };
 
-const SignInHeaderButton: React.FC = () => {
+const AuthDependentHeader: React.FC = () => {
   const user = useAuth();
 
-  if (!user) return <StyledDesktopNavLink to="/auth/signin">Sign In?</StyledDesktopNavLink>;
+  if (!user) {
+    return (
+      <>
+        <StyledDesktopNavItem>
+          <StyledDesktopNavLink to="/auth/signup">Sign Up</StyledDesktopNavLink>
+        </StyledDesktopNavItem>
+        <StyledDesktopNavItem>
+          <StyledDesktopNavLink to="/auth/signin">Sign In</StyledDesktopNavLink>
+        </StyledDesktopNavItem>
+      </>
+    );
+  }
 
-  return <StyledDesktopNavLink to="/auth/signout">Sign Out</StyledDesktopNavLink>;
+  return (
+    <>
+      <StyledDesktopNavItem>
+        <StyledDesktopNavLink to="/auth/profile">Profile</StyledDesktopNavLink>
+      </StyledDesktopNavItem>
+      <StyledDesktopNavItem>
+        <StyledDesktopNavLink to="/auth/signout">Sign Out</StyledDesktopNavLink>
+      </StyledDesktopNavItem>
+    </>
+  );
 };
 
 const MobileNavButton: React.FC<
@@ -242,9 +262,8 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to={modelPageLink}>Models</StyledDesktopNavLink>
           </StyledDesktopNavItem>
-          <StyledDesktopNavItem>
-            <SignInHeaderButton />
-          </StyledDesktopNavItem>
+
+          <AuthDependentHeader />
         </>
       )}
     </nav>
