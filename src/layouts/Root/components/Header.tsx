@@ -17,6 +17,7 @@ import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-ico
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
 import MaxWidthLayout from 'layouts/MaxWidth';
 import { StyledNavigationLink } from './StyledNavigationLink';
+import { useAuth } from '../../../../utils/auth';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
   theme.shadows.lg(
@@ -105,6 +106,14 @@ const Logo: React.FC = () => {
       </Link>
     </div>
   );
+};
+
+const SignInHeaderButton: React.FC = () => {
+  const user = useAuth();
+
+  if (!user) return <StyledDesktopNavLink to="/auth/signin">Sign In?</StyledDesktopNavLink>;
+
+  return <StyledDesktopNavLink to="/auth/signout">Sign Out</StyledDesktopNavLink>;
 };
 
 const MobileNavButton: React.FC<
@@ -232,6 +241,9 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
           </StyledDesktopNavItem>
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to={modelPageLink}>Models</StyledDesktopNavLink>
+          </StyledDesktopNavItem>
+          <StyledDesktopNavItem>
+            <SignInHeaderButton />
           </StyledDesktopNavItem>
         </>
       )}
