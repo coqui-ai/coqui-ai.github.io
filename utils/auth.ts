@@ -49,13 +49,13 @@ type Profile = {
 export function useProfile() {
   const auth = useAuth();
 
-  const { data, loading, error } = useQuery<Profile>(PROFILE, {
+  const { data, loading, error } = useQuery<{ profile: Profile }>(PROFILE, {
     skip: !auth
   });
 
   if (!auth) return { data: null, error: 'No logged in' };
 
-  return { data, loading, error };
+  return { data: data?.profile, loading, error };
 }
 
 export function useLoginEffect() {

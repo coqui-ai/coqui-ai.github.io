@@ -6,11 +6,13 @@
  */
 
 import React from 'react';
-import { useProfile } from '../../../../utils/auth';
+import { useProfile, Profile } from '../../../../utils/auth';
+import { AcceptTerms } from './registration/AcceptTerms';
+import { CompleteProfile } from './registration/CompleteProfile';
 import { VerifyEmail } from './registration/VerifyEmail';
 import { SignInForm } from './SignInForm';
 
-export const ProfileContext = React.createContext(null);
+export const ProfileContext = React.createContext<Profile>(null);
 
 export const RequireAuth = ({ children }) => {
   const { data, loading, error } = useProfile();
@@ -20,8 +22,17 @@ export const RequireAuth = ({ children }) => {
     return <SignInForm />;
   } // TODO: error-specific behaviour?
 
-  if (!data.email_validated) {
-    return <VerifyEmail />;
+  console.log(data);
+
+  // if (!data.email_validated) {
+  //   return <VerifyEmail />;
+  // }
+  if (!data.terms_accepted) {
+    return <AcceptTerms />;
   }
+  if (!data.personal_name || !data.organization_name) {
+    return <CompleteProfile />;
+  }
+
   return <ProfileContext.Provider value={data}>{children}</ProfileContext.Provider>;
 };
