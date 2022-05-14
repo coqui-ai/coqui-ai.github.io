@@ -7,6 +7,7 @@
 
 import React from 'react';
 import { useProfile } from '../../../../utils/auth';
+import { VerifyEmail } from './registration/VerifyEmail';
 import { SignInForm } from './SignInForm';
 
 export const ProfileContext = React.createContext(null);
@@ -19,5 +20,8 @@ export const RequireAuth = ({ children }) => {
     return <SignInForm />;
   } // TODO: error-specific behaviour?
 
+  if (!data.email_validated) {
+    return <VerifyEmail />;
+  }
   return <ProfileContext.Provider value={data}>{children}</ProfileContext.Provider>;
 };

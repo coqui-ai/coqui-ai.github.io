@@ -38,10 +38,18 @@ const PROFILE = gql`
   }
 `;
 
+type Profile = {
+  email: string;
+  personal_name: string;
+  organization_name: string;
+  terms_accepted?: string;
+  email_validated?: string;
+};
+
 export function useProfile() {
   const auth = useAuth();
 
-  const { data, loading, error } = useQuery(PROFILE, {
+  const { data, loading, error } = useQuery<Profile>(PROFILE, {
     skip: !auth
   });
 
