@@ -130,7 +130,7 @@ const AuthDependentHeader: React.FC = () => {
         <StyledDesktopNavLink to="/auth/profile">Profile</StyledDesktopNavLink>
       </StyledDesktopNavItem>
       <StyledDesktopNavItem>
-        <StyledDesktopNavLink to="/auth/signout">Sign Out</StyledDesktopNavLink>
+        <StyledDesktopNavLink to="/auth/signin">Sign Out</StyledDesktopNavLink>
       </StyledDesktopNavItem>
     </>
   );

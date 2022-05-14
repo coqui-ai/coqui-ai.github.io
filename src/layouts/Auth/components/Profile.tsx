@@ -7,21 +7,14 @@
 
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
+import { RequireAuth, ProfileContext } from './RequireAuth';
 
-const PROFILE = gql`
-  query {
-    me {
-      username
-      email
-    }
-  }
-`;
-
-export const Profile: React.FC = () => {
-  const {
-    // loading, error,
-    data
-  } = useQuery(PROFILE);
-
-  return JSON.stringify(data) || '';
-};
+export const Profile: React.FC = () => (
+  <RequireAuth>
+    <ProfileContext.Consumer>
+      {profile => {
+        return JSON.stringify(profile) || '';
+      }}
+    </ProfileContext.Consumer>
+  </RequireAuth>
+);
