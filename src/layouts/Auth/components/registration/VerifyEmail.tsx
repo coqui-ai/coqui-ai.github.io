@@ -9,12 +9,4 @@ import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { RequireAuth, ProfileContext } from './RequireAuth';
 
-export const Profile: React.FC = () => (
-  <RequireAuth>
-    <ProfileContext.Consumer>
-      {profile => {
-        return JSON.stringify(profile) || '';
-      }}
-    </ProfileContext.Consumer>
-  </RequireAuth>
-);
+export const VerifyEmail: React.FC = () => 'Please verify your email';

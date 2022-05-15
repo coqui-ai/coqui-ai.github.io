@@ -5,7 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import { useMutation, gql } from '@apollo/client';
+import { useMutation, gql, useQuery } from '@apollo/client';
 
 import createPersistedState from 'use-persisted-state';
 const useAuthState = createPersistedState('auth');
@@ -26,13 +26,47 @@ const LOGIN = gql`
   }
 `;
 
+const PROFILE = gql`
+  {
+    profile {
+      email
+      personal_name
+      organization_name
+      terms_accepted
+      email_validated
+    }
+  }
+`;
+
+type Profile = {
+  email: string;
+  personal_name: string;
+  organization_name: string;
+  terms_accepted?: string;
+  email_validated?: string;
+};
+
+export function useProfile() {
+  const auth = useAuth();
+
+  const { data, loading, error } = useQuery<{ profile: Profile }>(PROFILE, {
+    skip: !auth
+  });
+
+  if (!auth) return { data: null, error: 'No logged in' };
+
+  return { data: data?.profile, loading, error };
+}
+
 export function useLoginEffect() {
   const [, setAuthState] = useAuthState();
   const [login, { data, loading, error }] = useMutation(LOGIN);
 
   return [
-    (username, password) => {
-      login({ variables: { username, password } }).then(({ data: d }) => setAuthState(d));
+    async (username, password) => {
+      const authdata = await login({ variables: { username, password } });
+
+      setAuthState(authdata.data);
     },
     {
       data,
