@@ -18,6 +18,7 @@ export const RequireAuth = ({ children }) => {
   const { data: profile, loading, error } = useProfile();
 
   if (loading) return 'Loading...';
+
   if (error || !profile) {
     return <SignInForm />;
   } // TODO: error-specific behaviour?

@@ -13,7 +13,7 @@ import RootLayout from 'layouts/Root';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 import { Profile } from 'layouts/Auth/components/Profile';
-import { RequireAuth } from './RequireAuth';
+import { RequireAuth } from 'components/RequireAuth';
 
 const ProfilePage: React.FC = () => {
   useEffect(() => {

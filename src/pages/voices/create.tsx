@@ -14,8 +14,9 @@ import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 import { RequireAuth } from 'components/RequireAuth';
 import { Voices } from 'layouts/Voices/components/Voices';
+import { CreateVoice } from 'layouts/Voices/components/CreateVoice';
 
-const VoicesPage: React.FC = () => {
+const CreateVoicePage: React.FC = () => {
   useEffect(() => {
     consentedToGoogleAnalytics();
   });
@@ -24,7 +25,7 @@ const VoicesPage: React.FC = () => {
     <RootLayout hasSkipNav={false}>
       <SEO />
       <RequireAuth>
-        <Voices />
+        <CreateVoice />
       </RequireAuth>
 
       <GogleAnalyticsCookieConsent />
@@ -32,4 +33,4 @@ const VoicesPage: React.FC = () => {
   );
 };
 
-export default VoicesPage;
+export default CreateVoicePage;
