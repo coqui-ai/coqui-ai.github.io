@@ -6,11 +6,11 @@
  */
 
 import React from 'react';
-import { useProfile, Profile } from '../../../../utils/auth';
-import { AcceptTerms } from './registration/AcceptTerms';
-import { CompleteProfile } from './registration/CompleteProfile';
-import { VerifyEmail } from './registration/VerifyEmail';
-import { SignInForm } from './SignInForm';
+import { useProfile, Profile } from '../../utils/auth';
+import { AcceptTerms } from 'layouts/Auth/components/registration/AcceptTerms';
+import { CompleteProfile } from 'layouts/Auth/components/registration/CompleteProfile';
+import { VerifyEmail } from 'layouts/Auth/components/registration/VerifyEmail';
+import { SignInForm } from 'layouts/Auth/components/SignInForm';
 
 export const ProfileContext = React.createContext<Profile>(null);
 

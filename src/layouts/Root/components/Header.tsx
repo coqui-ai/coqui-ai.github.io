@@ -127,6 +127,9 @@ const AuthDependentHeader: React.FC = () => {
   return (
     <>
       <StyledDesktopNavItem>
+        <StyledDesktopNavLink to="/voices">My Voices</StyledDesktopNavLink>
+      </StyledDesktopNavItem>
+      <StyledDesktopNavItem>
         <StyledDesktopNavLink to="/auth/profile">Profile</StyledDesktopNavLink>
       </StyledDesktopNavItem>
       <StyledDesktopNavItem>

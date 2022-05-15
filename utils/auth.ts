@@ -38,7 +38,7 @@ const PROFILE = gql`
   }
 `;
 
-type Profile = {
+export type Profile = {
   email: string;
   personal_name: string;
   organization_name: string;
