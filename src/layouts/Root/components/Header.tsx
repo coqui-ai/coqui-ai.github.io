@@ -18,6 +18,7 @@ import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-ico
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
 import MaxWidthLayout from 'layouts/MaxWidth';
 import { StyledNavigationLink } from './StyledNavigationLink';
+import { StyledNavigationItem } from './StyledNavigationItem';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
   theme.shadows.lg(
@@ -35,6 +36,12 @@ const StyledDesktopNavItem = styled.div`
 `;
 
 const StyledDesktopNavLink = styled(StyledNavigationLink).attrs({ partiallyActive: true })`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledDesktopNavMenu = styled(StyledNavigationItem).attrs({ partiallyActive: true })`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,6 +155,11 @@ const StyledMobileNavLink = styled(StyledNavigationLink).attrs({ partiallyActive
   margin-top: ${p => p.theme.space.base * 2}px;
 `;
 
+const StyledMobileNavMenu = styled(StyledNavigationItem).attrs({ partiallyActive: true })`
+  display: block;
+  margin-top: ${p => p.theme.space.base * 2}px;
+`;
+
 interface IMobileNavLayoutProps {
   isSubscribing: boolean;
 }
@@ -189,27 +201,30 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
           >
             <Trigger>
               <StyledMobileNavItem>
-                <StyledMobileNavLink>Use Cases</StyledMobileNavLink>
+                <StyledMobileNavMenu>Use Cases</StyledMobileNavMenu>
               </StyledMobileNavItem>
             </Trigger>
             <Menu hasArrow>
-              <Item value="video-games">Video Games</Item>
-              <Item value="post-production">Post Production</Item>
-              <Item value="dubbing">Dubbing</Item>
-              <Item value="brand-voices">Brand Voices</Item>
+              <Item value="/video-games">Video Games</Item>
+              <Item value="/post-production">Post Production</Item>
+              <Item value="/dubbing">Dubbing</Item>
+              <Item value="/brand-voices">Brand Voices</Item>
             </Menu>
           </Dropdown>
           <StyledMobileNavItem>
-            <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
+            <StyledMobileNavLink to="/pricing">Pricing</StyledMobileNavLink>
+          </StyledMobileNavItem>
+          <StyledMobileNavItem>
+            <StyledMobileNavLink to="https://github.com/coqui-ai">Open Source</StyledMobileNavLink>
           </StyledMobileNavItem>
           <StyledMobileNavItem>
             <StyledMobileNavLink to={modelPageLink}>Models</StyledMobileNavLink>
           </StyledMobileNavItem>
           <StyledMobileNavItem>
-            <StyledMobileNavLink to="/jobs">Jobs</StyledMobileNavLink>
+            <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
           </StyledMobileNavItem>
           <StyledMobileNavItem>
-            <StyledMobileNavLink to="/about">About</StyledMobileNavLink>
+            <StyledMobileNavLink to="/sign-in">Sign In</StyledMobileNavLink>
           </StyledMobileNavItem>
         </>
       )}
@@ -249,29 +264,34 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
               window.location.href = item;
             }}
           >
-            <Trigger>
+            <Trigger type="div">
               <StyledDesktopNavItem>
-                <StyledDesktopNavLink>Use Cases</StyledDesktopNavLink>
+                <StyledDesktopNavMenu>Use Cases</StyledDesktopNavMenu>
               </StyledDesktopNavItem>
             </Trigger>
             <Menu hasArrow>
-              <Item value="video-games">Video Games</Item>
-              <Item value="post-production">Post Production</Item>
-              <Item value="dubbing">Dubbing</Item>
-              <Item value="brand-voices">Brand Voices</Item>
+              <Item value="/video-games">Video Games</Item>
+              <Item value="/post-production">Post Production</Item>
+              <Item value="/dubbing">Dubbing</Item>
+              <Item value="/brand-voices">Brand Voices</Item>
             </Menu>
           </Dropdown>
           <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
+            <StyledDesktopNavLink to="/pricing">Pricing</StyledDesktopNavLink>
+          </StyledDesktopNavItem>
+          <StyledDesktopNavItem>
+            <StyledDesktopNavLink to="https://github.com/coqui-ai">
+              Open Source
+            </StyledDesktopNavLink>
           </StyledDesktopNavItem>
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to={modelPageLink}>Models</StyledDesktopNavLink>
           </StyledDesktopNavItem>
           <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="/jobs">Jobs</StyledDesktopNavLink>
+            <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
           </StyledDesktopNavItem>
           <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="/about">About</StyledDesktopNavLink>
+            <StyledDesktopNavLink to="/sign-in">Sign In</StyledDesktopNavLink>
           </StyledDesktopNavItem>
         </>
       )}
