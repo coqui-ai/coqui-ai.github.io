@@ -32,8 +32,7 @@ export const CreateVoice: React.FC = () => {
 
   const [createVoice, { data, loading, error }] = useMutation(CREATE_VOICE);
 
-  if (loading) return '' + loading;
-  if (error) return '' + error;
+  if (loading) return 'loading';
 
   const submitForm = () => {
     if (!nameValue) {
@@ -52,6 +51,7 @@ export const CreateVoice: React.FC = () => {
   return (
     <div>
       <pre>{JSON.stringify(data)}</pre>
+      <pre>{JSON.stringify(error)}</pre>
       <Field>
         <Radio
           name="source"
