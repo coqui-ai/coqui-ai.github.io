@@ -44,7 +44,7 @@ export const Enhance: React.FC = () => {
           >
             <SectionCallout
               header="Enhance"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim lectus ut enim faucibus, id rhoncus elit molestie. Nullam quam est, consequat sit amet turpis sit amet, pharetra condimentum neque."
+              description="Once you've cloned the voice of your talent, you can use it to work magic in post: punching-in script changes, modifying diction, replacinig brand names, tweaking accent... Anything!"
               css={css`
                 ${p => mediaQuery('up', 'sm', p.theme)} {
                   margin-right: auto;

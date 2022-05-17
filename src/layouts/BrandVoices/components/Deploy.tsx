@@ -68,7 +68,7 @@ export const Deploy: React.FC = () => {
           >
             <SectionCallout
               header="Deploy"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim lectus ut enim faucibus, id rhoncus elit molestie. Nullam quam est, consequat sit amet turpis sit amet, pharetra condimentum neque."
+              description="Whether prototyping or premiering, deployment is a click away, bringing production times down from months to minutes."
               css={css`
                 ${p => mediaQuery('up', 'sm', p.theme)} {
                   margin-right: auto;

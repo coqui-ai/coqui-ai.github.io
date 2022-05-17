@@ -48,7 +48,7 @@ export const Import: React.FC = () => {
           >
             <SectionCallout
               header="Import"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim lectus ut enim faucibus, id rhoncus elit molestie. Nullam quam est, consequat sit amet turpis sit amet, pharetra condimentum neque."
+              description="Import the audio assets, e.g. recordings of your voice talent, into Coqui's pipeline with the click of a button."
               css={css`
                 ${p => mediaQuery('up', 'sm', p.theme)} {
                   margin-right: auto;

@@ -79,9 +79,9 @@ export const TextToSpeech: React.FC = () => {
                   }
                 `}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare mollis
-                condimentum. Nunc iaculis purus ut felis eleifend dignissim. Morbi facilisis est in
-                mollis porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                With text-to-speech, experience the immediacy of script-to-performance. Cast from a
+                wide selection of high-quality, directable, emotive voices or clone a voice to suit
+                your needs. With Coqui text-to-speech production times go from months to minutes.
               </XL>
             </Paragraph>
           </Col>

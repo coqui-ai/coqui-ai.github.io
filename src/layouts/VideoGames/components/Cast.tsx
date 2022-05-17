@@ -48,7 +48,7 @@ export const Cast: React.FC = () => {
           >
             <SectionCallout
               header="Cast"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim lectus ut enim faucibus, id rhoncus elit molestie. Nullam quam est, consequat sit amet turpis sit amet, pharetra condimentum neque."
+              description="Cast from a wide selection of high-quality, directable, emotive voices selected and tuned to game developers' needs. From glee to gall, delight to disconsolate, apathy to awe; we've got you covered."
               css={css`
                 ${p => mediaQuery('up', 'sm', p.theme)} {
                   margin-right: auto;

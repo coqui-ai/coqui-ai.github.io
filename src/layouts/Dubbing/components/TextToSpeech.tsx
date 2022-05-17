@@ -79,9 +79,10 @@ export const TextToSpeech: React.FC = () => {
                   }
                 `}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare mollis
-                condimentum. Nunc iaculis purus ut felis eleifend dignissim. Morbi facilisis est in
-                mollis porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Dubbing is easy with Coqui&apos;s text-to-speech. Effortlessly clone the voice of
+                your talent into another language! The cloned voice can speak not only the source
+                language but also any number of other languages with the same timbre, tone, and
+                tenor as the original.
               </XL>
             </Paragraph>
           </Col>

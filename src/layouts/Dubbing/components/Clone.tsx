@@ -64,7 +64,7 @@ export const Clone: React.FC = () => {
           >
             <SectionCallout
               header="Clone"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim lectus ut enim faucibus, id rhoncus elit molestie. Nullam quam est, consequat sit amet turpis sit amet, pharetra condimentum neque."
+              description="With the click of a button, you can clone the voice of your talent into another language. The clone can speak not only the source language but also any number of target languages."
               css={css`
                 ${p => mediaQuery('up', 'sm', p.theme)} {
                   margin-right: auto;

@@ -79,9 +79,10 @@ export const TextToSpeech: React.FC = () => {
                   }
                 `}
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare mollis
-                condimentum. Nunc iaculis purus ut felis eleifend dignissim. Morbi facilisis est in
-                mollis porttitor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Coqui text-to-speech will let your brand voice talent sleep in. Effortlessly clone
+                the voice of your brand talent and have the clone handle burning the midnight oil:
+                reading breaking news broadcasts in the middle of the night, narrating news stories
+                on your website, or simply reading out the station identification.
               </XL>
             </Paragraph>
           </Col>

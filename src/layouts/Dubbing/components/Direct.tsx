@@ -44,7 +44,7 @@ export const Direct: React.FC = () => {
           >
             <SectionCallout
               header="Direct"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dignissim lectus ut enim faucibus, id rhoncus elit molestie. Nullam quam est, consequat sit amet turpis sit amet, pharetra condimentum neque."
+              description="Your cloned voices are also directable. You control the enunciation and emotion; the pitch and prosody; rate, duration, and contour. It's all under your control. You are the director of their performance."
               css={css`
                 ${p => mediaQuery('up', 'sm', p.theme)} {
                   margin-right: auto;
