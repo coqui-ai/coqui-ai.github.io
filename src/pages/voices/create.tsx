@@ -12,10 +12,11 @@ import RootLayout from 'layouts/Root';
 // import { graphql, useStaticQuery } from 'gatsby';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
-import { Profile } from 'layouts/Auth/components/Profile';
 import { RequireAuth } from 'components/RequireAuth';
+import { Voices } from 'layouts/Voices/components/Voices';
+import { CreateVoice } from 'layouts/Voices/components/CreateVoice';
 
-const ProfilePage: React.FC = () => {
+const CreateVoicePage: React.FC = () => {
   useEffect(() => {
     consentedToGoogleAnalytics();
   });
@@ -24,11 +25,12 @@ const ProfilePage: React.FC = () => {
     <RootLayout hasSkipNav={false}>
       <SEO />
       <RequireAuth>
-        <Profile />
+        <CreateVoice />
       </RequireAuth>
+
       <GogleAnalyticsCookieConsent />
     </RootLayout>
   );
 };
 
-export default ProfilePage;
+export default CreateVoicePage;
