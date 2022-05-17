@@ -9,8 +9,32 @@ import React from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { Link } from '@reach/router';
 
-export const Voices: React.FC = () => (
-  <div>
-    all my voices <Link to="/voices/create">Create</Link>
-  </div>
-);
+const VOICES = gql`
+  {
+    voices {
+      id
+      name
+    }
+  }
+`;
+
+export const Voices: React.FC = () => {
+  const { data, loading, error } = useQuery(VOICES);
+
+  if (loading) return 'loading';
+  if (error) return <pre>{JSON.stringify(error)}</pre>;
+
+  return (
+    <div>
+      all my voices <Link to="/voices/create">Create</Link>
+      <hr />
+      <ul>
+        {data.voices.map(voice => (
+          <li>
+            {voice.name} {voice.id}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
