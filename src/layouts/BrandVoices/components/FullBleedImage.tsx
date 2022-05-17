@@ -21,8 +21,8 @@ export const HeaderText = styled.div`
 
 export const StyledVideoGamesTitle = styled.div`
   position: absolute;
-  top: 20%;
-  left: 17%;
+  top: 12%;
+  left: 40%;
 `;
 
 export const FullBleedImage: React.FC = () => {
