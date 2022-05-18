@@ -9,9 +9,6 @@ const envalid = require('envalid');
 const fs = require('fs');
 const path = require('path');
 const { tagNameMap } = require('./src/layouts/Models/components/TagNameMap');
-const { introspectSchema } = require(`@graphql-tools/wrap`);
-const { linkToExecutor } = require(`@graphql-tools/links`);
-const { createHttpLink } = require(`@apollo/client`);
 
 require('dotenv').config();
 
@@ -30,34 +27,6 @@ module.exports = {
     description: `Coqui, Freeing Speech.`
   },
   plugins: [
-    {
-      resolve: `gatsby-source-graphql`,
-      options: {
-        // token: process.env.REACT_APP_GITHUB_KEY,
-        typeName: `CreatorApplications`,
-        fieldName: `creatorapplications`,
-        url: `${process.env.BACKEND_URL}/app/graphql/`,
-        // This is to make sure the schema isn't cached for local dev
-        // See : https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-graphql/src/gatsby-node.js#L51
-        createSchema: async options => {
-          console.log('Reloading backend schema...');
-          return await introspectSchema(
-            linkToExecutor(
-              createHttpLink({
-                uri: options.url,
-                // fetch,
-                // fetchOptions,
-                headers:
-                  typeof options.headers === `function` ? await options.headers() : options.headers
-              })
-            )
-          );
-        }
-        // headers: {
-        //   Authorization: `Bearer your-github-token`,
-        // },
-      }
-    },
     {
       resolve: `gatsby-source-github-api`,
       options: {
