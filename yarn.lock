@@ -2942,6 +2942,14 @@
     "@babel/runtime" "^7.8.4"
     "@reach/auto-id" "^0.16.0"
 
+"@zendeskgarden/container-utilities@^0.7.0":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@zendeskgarden/container-utilities/-/container-utilities-0.7.1.tgz#de9d02b82e9e29dfa209aac1bfad83ff868aeb9e"
+  integrity sha512-L+OOI2FfqlNb1LVDtGFrnxNEwxaM+LrL1dy1r3wKakUZ2ww1FbrcHWjnF07WLHa56l7ufNjLvqahZdpHNHEE6Q==
+  dependencies:
+    "@babel/runtime" "^7.8.4"
+    "@reach/auto-id" "^0.16.0"
+
 "@zendeskgarden/css-bedrock@8.0.1":
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/@zendeskgarden/css-bedrock/-/css-bedrock-8.0.1.tgz#3810ed52b0542b8976c27e766b57b48720a25d97"
@@ -3012,16 +3020,18 @@
     date-fns "^2.0.0-beta.2"
     react-popper "^1.3.4"
 
-"@zendeskgarden/react-dropdowns@8.31.0":
-  version "8.31.0"
-  resolved "https://registry.yarnpkg.com/@zendeskgarden/react-dropdowns/-/react-dropdowns-8.31.0.tgz#28584e165a2a9e6e1f02c696eca0174c3207e191"
-  integrity sha512-rlr7uJdnY8pieT/xyI3BEWxOz5RfWVuyv+eqn/ey5iTV0U7wpchduXHinfh+Boxa4tmkSvBBJRxRFVWePkUUhg==
+"@zendeskgarden/react-dropdowns@8.51.0":
+  version "8.51.0"
+  resolved "https://registry.yarnpkg.com/@zendeskgarden/react-dropdowns/-/react-dropdowns-8.51.0.tgz#b9d4badf42bc9597c0bbfdadc0dc6bfeeb9be648"
+  integrity sha512-xgpM/O6Fjudb+BgSdaJdhi82BQ1QgHIcbY4ITThiaXcap2NKwtzT8CvDq+18eGJimU9hrz41cY0UIXI7/1lbZw==
   dependencies:
     "@zendeskgarden/container-selection" "^1.3.8"
-    "@zendeskgarden/container-utilities" "^0.5.5"
-    "@zendeskgarden/react-forms" "^8.31.0"
+    "@zendeskgarden/container-utilities" "^0.7.0"
+    "@zendeskgarden/react-forms" "^8.51.0"
     downshift "^6.0.0"
     polished "^4.0.0"
+    prop-types "^15.5.7"
+    react-merge-refs "^1.1.0"
     react-popper "^1.3.4"
 
 "@zendeskgarden/react-forms@8.31.0":
@@ -3033,16 +3043,17 @@
     "@zendeskgarden/container-utilities" "^0.5.5"
     polished "^4.0.0"
 
-"@zendeskgarden/react-forms@^8.31.0":
-  version "8.40.0"
-  resolved "https://registry.yarnpkg.com/@zendeskgarden/react-forms/-/react-forms-8.40.0.tgz#01296a07fa3503fc71e05e322c52fbc284f79992"
-  integrity sha512-UnEJsu8NZdmZu1MBOqlRE2vCVZMkUaVbYSScF3P3Nohyg6XjSsOIgnUZ8RshiPGsdHKSs1jir2KvILqAFk+Juw==
+"@zendeskgarden/react-forms@^8.51.0":
+  version "8.51.0"
+  resolved "https://registry.yarnpkg.com/@zendeskgarden/react-forms/-/react-forms-8.51.0.tgz#21f9c923709f24ef8095404eda421a12d6e2f8ba"
+  integrity sha512-UvqEbZd+3my/wTGGBVK7QXvoYMC89OxMBqufZlB4+kvMs3swIwoBg57yRXs2BG3GyFEoIGO3fPpuTCRJ4LjeKg==
   dependencies:
     "@zendeskgarden/container-field" "^1.3.6"
-    "@zendeskgarden/container-utilities" "^0.5.5"
+    "@zendeskgarden/container-utilities" "^0.7.0"
     lodash.debounce "^4.0.8"
     polished "^4.0.0"
     prop-types "^15.5.7"
+    react-merge-refs "^1.1.0"
 
 "@zendeskgarden/react-grid@8.31.0":
   version "8.31.0"
