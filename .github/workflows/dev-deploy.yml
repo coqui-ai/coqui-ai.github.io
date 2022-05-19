@@ -30,6 +30,8 @@ env:
   DEFAULT_INFRA_LIVE_BRANCH: "main"
   # Infra git repo must be in ssh form.
   INFRASTRUCTURE_REPO_SSH: "git@github.com:coqui-ai/MLOpsInfrastructure.git"
+  # On infrastructure live specific location of service  (it must exist as deployment simply changes tag name)
+  APP_DEPLOY_PATH: "dev/us-east-1/dev/services/website-frontend"
   # value of this variable will be changed with TAG of this docker image  built (usually git branch name)
   IMAGE_TAG_VARNAME: "tag"
   # Root URL of backend that website will communicate with
