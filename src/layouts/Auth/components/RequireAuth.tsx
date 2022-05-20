@@ -22,16 +22,16 @@ export const RequireAuth = ({ children }) => {
     return <SignInForm />;
   } // TODO: error-specific behaviour?
 
-  // if (!profile.email_validated) {
-  //   return <VerifyEmail />;
-  // }
-
   if (!profile.personal_name || !profile.organization_name) {
     return <CompleteProfile profile={profile} />;
   }
 
   if (!profile.terms_accepted) {
     return <AcceptTerms />;
+  }
+
+  if (!profile.email_validated) {
+    return <VerifyEmail />;
   }
 
   return <ProfileContext.Provider value={profile}>{children}</ProfileContext.Provider>;

@@ -34,10 +34,9 @@ export const SignInForm = () => {
         }}
       >
         <Form>
-          <Field id="username" name="username" label="Username" as={Input} />
+          <Field name="username" label="E-Mail" as={Input} type="email" />
 
           <Field
-            id="password"
             name="password"
             label="Password"
             as={Input}

@@ -54,7 +54,7 @@ export const CenterWell = ({ title, children }) => (
     css={css`
       width: 553px;
       margin: 163px auto;
-      height: 526px;
+      min-height: 526px;
       padding: 0;
       & p {
         text-align: center;
