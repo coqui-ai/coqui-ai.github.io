@@ -5,46 +5,56 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React from 'react';
-import { useAuth, useLoginEffect, useLogoutEffect } from '../../../../utils/auth';
-import { Formik, Field, Form } from 'formik';
+import React, { useEffect } from 'react';
+import { useAuth, useLoginEffect } from '../../../../utils/auth';
+import { Formik, Form } from 'formik';
+import { Link, navigate } from 'gatsby';
+import { CenterWell, Loading } from 'layouts/Root/components/Styled';
+import { Field, Submit } from 'layouts/Root/components/Forms';
+import { Input } from '@zendeskgarden/react-forms';
+import { Paragraph, Span } from '@zendeskgarden/react-typography';
 
 export const SignInForm = () => {
   const user = useAuth();
-  const [login, { data, loading, error }] = useLoginEffect();
-  const [logout] = useLogoutEffect();
+  const [login, { loading, error }] = useLoginEffect();
 
-  if (user)
-    return (
-      <>
-        already logged in
-        <button onClick={() => logout()}>sign out</button>
-      </>
-    );
-
-  if (error) return 'error ' + error;
-  if (loading) return 'loading ' + loading;
-  if (data) return 'data ' + data;
+  useEffect(() => {
+    if (user) navigate('/auth/profile');
+  }, [user]);
 
   return (
-    <Formik
-      initialValues={{
-        username: '',
-        password: ''
-      }}
-      onSubmit={values => {
-        login(values.username, values.password);
-      }}
-    >
-      <Form>
-        <label htmlFor="username">Username</label>
-        <Field id="username" name="username" placeholder="" />
+    <CenterWell title="Sign In">
+      <Formik
+        initialValues={{
+          username: '',
+          password: ''
+        }}
+        onSubmit={values => {
+          login(values.username, values.password);
+        }}
+      >
+        <Form>
+          <Field id="username" name="username" label="Username" as={Input} />
 
-        <label htmlFor="password">Password</label>
-        <Field id="password" name="password" type="password" placeholder="" />
+          <Field
+            id="password"
+            name="password"
+            label="Password"
+            as={Input}
+            type="password"
+            error={error ? 'Please, enter valid credentials' : null}
+          />
 
-        <button type="submit">Sign In</button>
-      </Form>
-    </Formik>
+          {loading || user ? <Loading /> : <Submit>Sign In</Submit>}
+
+          <Paragraph>
+            Don’t have an account yet?{' '}
+            <Span isBold>
+              <Link to="/auth/signup">Sign Up Here</Link>
+            </Span>
+          </Paragraph>
+        </Form>
+      </Formik>
+    </CenterWell>
   );
 };

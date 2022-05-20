@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { gql, useMutation } from '@apollo/client';
-import { navigate } from '@reach/router';
+import { navigate } from 'gatsby';
 
 const VERIFY_EMAIL = gql`
   mutation verifyEmail($token: String!) {

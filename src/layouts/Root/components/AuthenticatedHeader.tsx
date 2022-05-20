@@ -115,7 +115,7 @@ const UserMenu = ({ profile }: { profile: Profile }) => {
       <Menu>
         {/* <Item value="cactus">Edit Profile</Item> */}
         <Item value="/voices">Use Voice</Item>
-        <Item value="/logout">Log Out</Item>
+        <Item value="/auth/signout">Log Out</Item>
       </Menu>
     </Dropdown>
   );

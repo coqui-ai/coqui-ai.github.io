@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
-import { Link } from '@reach/router';
+import { Link } from 'gatsby';
 
 const VOICES = gql`
   {
