@@ -18,6 +18,7 @@ import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x
 import MaxWidthLayout from 'layouts/MaxWidth';
 import { StyledNavigationLink } from './StyledNavigationLink';
 import { useAuth } from '../../../../utils/auth';
+import { AuthenticatedHeader } from './AuthenticatedHeader';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
   theme.shadows.lg(
@@ -105,37 +106,6 @@ const Logo: React.FC = () => {
         </div>
       </Link>
     </div>
-  );
-};
-
-const AuthDependentHeader: React.FC = () => {
-  const user = useAuth();
-
-  if (!user) {
-    return (
-      <>
-        <StyledDesktopNavItem>
-          <StyledDesktopNavLink to="/auth/signup">Sign Up</StyledDesktopNavLink>
-        </StyledDesktopNavItem>
-        <StyledDesktopNavItem>
-          <StyledDesktopNavLink to="/auth/signin">Sign In</StyledDesktopNavLink>
-        </StyledDesktopNavItem>
-      </>
-    );
-  }
-
-  return (
-    <>
-      <StyledDesktopNavItem>
-        <StyledDesktopNavLink to="/voices">My Voices</StyledDesktopNavLink>
-      </StyledDesktopNavItem>
-      <StyledDesktopNavItem>
-        <StyledDesktopNavLink to="/auth/profile">Profile</StyledDesktopNavLink>
-      </StyledDesktopNavItem>
-      <StyledDesktopNavItem>
-        <StyledDesktopNavLink to="/auth/signin">Sign Out</StyledDesktopNavLink>
-      </StyledDesktopNavItem>
-    </>
   );
 };
 
@@ -266,7 +236,12 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
             <StyledDesktopNavLink to={modelPageLink}>Models</StyledDesktopNavLink>
           </StyledDesktopNavItem>
 
-          <AuthDependentHeader />
+          <StyledDesktopNavItem>
+            <StyledDesktopNavLink to="/auth/signup">Sign Up</StyledDesktopNavLink>
+          </StyledDesktopNavItem>
+          <StyledDesktopNavItem>
+            <StyledDesktopNavLink to="/auth/signin">Sign In</StyledDesktopNavLink>
+          </StyledDesktopNavItem>
         </>
       )}
     </nav>
@@ -279,6 +254,9 @@ interface IHeaderLayoutProps {
 
 const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing }) => {
   const [isNavigationVisible, setIsNavigationVisible] = useState(false);
+  const user = useAuth();
+
+  if (user) return <AuthenticatedHeader />;
 
   return (
     <>
