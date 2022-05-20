@@ -9,94 +9,68 @@ import React, { useState, HTMLAttributes, useEffect, useMemo } from 'react';
 import Img from 'gatsby-image';
 import debounce from 'lodash.debounce';
 // import { Field, Input } from '@zendeskgarden/react-forms';
-import { Item, Menu, Field, Label, Dropdown, Combobox } from '@zendeskgarden/react-dropdowns';
+import {
+  Item,
+  Menu,
+  Field,
+  Label,
+  Dropdown,
+  Combobox,
+  Trigger
+} from '@zendeskgarden/react-dropdowns';
+import { navigate, Link } from 'gatsby';
 
 import { Col, Grid, Row } from '@zendeskgarden/react-grid';
 import { ReactComponent as SearchIcon } from '@zendeskgarden/svg-icons/src/16/search-stroke.svg';
+import { Button } from '@zendeskgarden/react-buttons';
 
 import styled, { css, DefaultTheme } from 'styled-components';
 import { graphql, useStaticQuery } from 'gatsby';
-import { useProfile } from '../../../../utils/auth';
+import { useProfile, Profile } from '../../../../utils/auth';
 import { LG } from '@zendeskgarden/react-typography';
-import { SearchNormal1 } from 'iconsax-react';
+import { SearchNormal1, ArrowDown2 } from 'iconsax-react';
+import { OrangeButton } from './Styled';
+import { gql, useLazyQuery } from '@apollo/client';
 
-const Aa = styled.div`
-  background: pink;
+const HeaderRow = styled(Row)`
+  height: 84px;
+  border-bottom: 1px solid #c2c8cc80;
 `;
 
-const CreateNewVoice = () => <div>aa</div>;
-const UserCorner = () => <div>UserCorner</div>;
-
-const Search = () => (
-  <Field
-    css={css`
-      background: black;
-    `}
-  >
-    <Input />
-  </Field>
-);
-
-const options = [
-  'Asparagus',
-  'Brussel sprouts',
-  'Cauliflower',
-  'Garlic',
-  'Jerusalem artichoke',
-  'Kale',
-  'Lettuce',
-  'Onion',
-  'Mushroom',
-  'Potato',
-  'Radish',
-  'Spinach',
-  'Tomato',
-  'Yam',
-  'Zucchini'
-];
+const VOICE_SEARCH = gql`
+  query voiceSearch($query: String!) {
+    voiceSearch(query: $query) {
+      id
+      name
+    }
+  }
+`;
 
 export const SearchDropdown = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [searchVoices, { data, loading }] = useLazyQuery(VOICE_SEARCH);
+
+  const matchingVoices = data?.voiceSearch || [];
+
   const [inputValue, setInputValue] = useState('');
-  const [matchingOptions, setMatchingOptions] = useState<string[]>([]);
-
-  /**
-   * Debounce filtering
-   */
-  const filterMatchingOptions = useMemo(
-    () =>
-      debounce((value: string) => {
-        if (value.length > 0) {
-          const valueRegexp = new RegExp(value!, 'gui');
-
-          setMatchingOptions(options.filter(option => option.match(valueRegexp)) || []);
-        } else {
-          setMatchingOptions([]);
-        }
-        setIsLoading(false);
-      }, 250),
-    []
-  );
 
   useEffect(() => {
-    setIsLoading(true);
-    filterMatchingOptions(inputValue);
-
-    return () => filterMatchingOptions.cancel();
-  }, [filterMatchingOptions, inputValue]);
+    if (inputValue) {
+      searchVoices({ variables: { query: inputValue } });
+    }
+  }, [inputValue]);
 
   const renderOptions = () => {
-    if (isLoading) {
+    if (loading) {
       return <Item disabled>Loading items...</Item>;
     }
 
-    if (matchingOptions.length === 0) {
+    if (matchingVoices.length === 0) {
       return <Item disabled>No matches found</Item>;
     }
 
-    return matchingOptions.map(option => (
-      <Item key={option} value={option}>
-        <span>{option}</span>
+    return matchingVoices.map(voice => (
+      <Item key={voice.id} value={voice.id}>
+        <span>{voice.name}</span>
       </Item>
     ));
   };
@@ -105,14 +79,44 @@ export const SearchDropdown = () => {
     <Dropdown
       inputValue={inputValue}
       onInputValueChange={value => setInputValue(value)}
-      onSelect={item => {
-        setInputValue(item);
+      onSelect={voiceId => {
+        navigate('/voices/' + voiceId);
       }}
     >
       <Field>
-        <Combobox end={<SearchNormal1 />} placeholder="Search for a voice" />
+        <Combobox placeholder="Search for a voice" end={<SearchNormal1 color="#ED8F1C" />} />
       </Field>
       <Menu>{renderOptions()}</Menu>
+    </Dropdown>
+  );
+};
+
+const UserMenu = ({ profile }: { profile: Profile }) => {
+  const [rotated, setRotated] = useState<boolean | undefined>();
+
+  return (
+    <Dropdown
+      onSelect={item => navigate(item)}
+      onStateChange={options => Object.hasOwn(options, 'isOpen') && setRotated(options.isOpen)}
+    >
+      <Trigger>
+        <Button
+          isBasic
+          css={css`
+            color: black;
+          `}
+        >
+          {profile.email}
+          <Button.EndIcon isRotated={rotated}>
+            <ArrowDown2 size="32" color="#FF8A65" variant="Bold" />
+          </Button.EndIcon>
+        </Button>
+      </Trigger>
+      <Menu>
+        {/* <Item value="cactus">Edit Profile</Item> */}
+        <Item value="/voices">Use Voice</Item>
+        <Item value="/logout">Log Out</Item>
+      </Menu>
     </Dropdown>
   );
 };
@@ -136,36 +140,31 @@ export const AuthenticatedHeader = () => {
 
   return (
     <Grid>
-      <Row
-        css={`
-          height: 84px;
-          border-bottom: 1px solid #c2c8cc80;
-        `}
-        alignItems="center"
-      >
+      <HeaderRow alignItems="center">
         <Col
           size={2}
           css={`
             height: 25px;
           `}
         >
-          <div
-            css={`
-              height: 25px;
-              margin-left: 50px;
-            `}
-          >
-            <Img fixed={logoWordmarkImage.file.childImageSharp.fixed} />
-          </div>
-          {/* <HeaderItemText>Zendesk Garden</HeaderItemText> */}
+          <Link to="/voices">
+            <Img
+              css={`
+                margin-left: 50px;
+              `}
+              fixed={logoWordmarkImage.file.childImageSharp.fixed}
+            />
+          </Link>
         </Col>
         <Col>
           <SearchDropdown />
         </Col>
-        <Col size={2}>Create</Col>
+        <Col size={2}>
+          <OrangeButton onClick={() => navigate('/voices/create')}>Create new voice</OrangeButton>
+        </Col>
 
-        <Col size={2}>{profile ? profile.email : ''}</Col>
-      </Row>
+        <Col size={2}>{profile ? <UserMenu profile={profile} /> : ''}</Col>
+      </HeaderRow>
     </Grid>
   );
 };
