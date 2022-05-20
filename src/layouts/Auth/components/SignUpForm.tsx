@@ -29,7 +29,7 @@ const SIGN_UP = gql`
 export const SignUpForm = () => {
   const user = useAuth();
   const [login] = useLoginEffect();
-  const [signUp, { data, loading, error }] = useMutation(SIGN_UP);
+  const [signUp, { loading }] = useMutation(SIGN_UP);
 
   useEffect(() => {
     if (user) navigate('/auth/profile');
@@ -68,7 +68,7 @@ export const SignUpForm = () => {
           })
         }
       >
-        {({ errors, touched, status }) => (
+        {({ status }) => (
           <Form>
             {status?.__all__ ? <div>{status.__all__}</div> : null}
 
