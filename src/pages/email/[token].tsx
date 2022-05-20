@@ -5,7 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { navigate } from 'gatsby';
 
