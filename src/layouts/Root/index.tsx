@@ -23,6 +23,13 @@ const GlobalStyling = createGlobalStyle`
   * {
     -ms-overflow-style: -ms-autohiding-scrollbar;
   }
+
+  body a { color: #313940; }
+
+
+  body a:focus, body a:hover{
+    color: #313940;
+  }
 `;
 
 interface IRootLayoutProps {
