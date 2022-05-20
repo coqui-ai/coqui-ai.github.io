@@ -5,10 +5,14 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React from 'react';
-import { useAuth, useLoginEffect, useLogoutEffect } from '../../../../utils/auth';
-import { Formik, Field, Form } from 'formik';
+import React, { useEffect } from 'react';
+import { useAuth, useLoginEffect } from '../../../../utils/auth';
+import { Formik, Form } from 'formik';
 import { useMutation, gql } from '@apollo/client';
+import { navigate } from 'gatsby';
+import { CenterWell, Loading } from 'layouts/Root/components/Styled';
+import { Input } from '@zendeskgarden/react-forms';
+import { Field, Submit } from 'layouts/Root/components/Forms';
 
 const SIGN_UP = gql`
   mutation SignUp($email: String!, $password: String!) {
@@ -24,74 +28,60 @@ const SIGN_UP = gql`
 
 export const SignUpForm = () => {
   const user = useAuth();
+  const [login] = useLoginEffect();
   const [signUp, { data, loading, error }] = useMutation(SIGN_UP);
-  const [logout] = useLogoutEffect();
 
-  if (user)
-    return (
-      <>
-        already logged in
-        <button onClick={() => logout()}>sign out</button>
-      </>
-    );
-
-  if (error) return 'error ' + error;
-  // if (loading) return 'loading ' + loading;
-  if (data?.signUp?.date_joined) return 'data ' + data.signUp.date_joined;
+  useEffect(() => {
+    if (user) navigate('/auth/profile');
+  }, [user]);
 
   return (
-    <Formik
-      initialValues={{
-        email: '',
-        password: '',
-        password2: ''
-      }}
-      validate={values => {
-        const errors = {};
+    <CenterWell title="Sign Up">
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+          password2: ''
+        }}
+        validate={values => {
+          const errors = {};
 
-        ['email', 'password', 'password2'].forEach(k => {
-          if (!values[k]) errors[k] = 'Required.';
-        });
+          ['email', 'password', 'password2'].forEach(k => {
+            if (!values[k]) errors[k] = 'Required.';
+          });
 
-        if (values.password != values.password2) errors.password2 = 'Passwords must match';
+          if (values.password != values.password2) errors.password2 = 'Passwords must match';
 
-        return errors;
-      }}
-      onSubmit={({ email, password }, formik) =>
-        signUp({ variables: { email, password } }).then(({ data }) => {
-          if (data.signUp.errors) {
-            formik.setStatus(
-              Object.fromEntries(
-                data.signUp.errors.map(({ field, errors }) => [field, errors.join(' ')])
-              )
-            );
-          } else {
-            return data;
-          }
-        })
-      }
-    >
-      {({ errors, touched, status }) => (
-        <Form>
-          {status?.__all__ ? <div>{status.__all__}</div> : null}
+          return errors;
+        }}
+        onSubmit={({ email, password }, formik) =>
+          signUp({ variables: { email, password } }).then(({ data }) => {
+            if (data.signUp.errors) {
+              formik.setStatus(
+                Object.fromEntries(
+                  data.signUp.errors.map(({ field, errors }) => [field, errors.join(' ')])
+                )
+              );
+            } else {
+              login(email, password);
+            }
+          })
+        }
+      >
+        {({ errors, touched, status }) => (
+          <Form>
+            {status?.__all__ ? <div>{status.__all__}</div> : null}
 
-          <label htmlFor="email">Email</label>
-          <Field id="email" name="email" type="email" placeholder="" />
-          {errors.email && touched.email ? <div>{errors.email}</div> : null}
-          {status?.email ? <div>{status.email}</div> : null}
+            <Field name="email" label="E-Mail" as={Input} type="email" />
 
-          <label htmlFor="password">Password</label>
-          <Field id="password" name="password" type="password" placeholder="" />
-          {errors.password && touched.password ? <div>{errors.password}</div> : null}
-          {status?.password ? <div>{status.password}</div> : null}
+            <Field name="password" label="Password" as={Input} type="password" />
 
-          <label htmlFor="password2">Password</label>
-          <Field id="password2" name="password2" type="password2" placeholder="" />
-          {errors.password2 && touched.password2 ? <div>{errors.password2}</div> : null}
+            <Field name="password2" label="Please repeat the password" as={Input} type="password" />
 
-          <button type="submit">Sign Up</button>
-        </Form>
-      )}
-    </Formik>
+            {loading || user ? <Loading /> : <Submit>Sign Up</Submit>}
+          </Form>
+        )}
+      </Formik>
+    </CenterWell>
   );
 };

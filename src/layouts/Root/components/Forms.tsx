@@ -29,7 +29,19 @@ export const Submit = ({ children }) => (
   </OrangeButton>
 );
 
-export const Field = props => {
+export const Field = Formik.connect(props => {
+  const error =
+    props.error ||
+    props.formik.errors[props.name] ||
+    (props.formik.status ? props.formik.status[props.name] : null);
+
+  const fieldProps = {
+    id: props.name,
+    validation: error ? 'error' : null,
+    ...props,
+    error
+  };
+
   return (
     <GardenForms.Field
       css={`
@@ -43,12 +55,8 @@ export const Field = props => {
       >
         {props.label}
       </GardenForms.Label>
-      <Formik.Field {...props} validation={props.validation || (props.error ? 'error' : null)} />
-      {props.error ? (
-        <GardenForms.Message validation="error">{props.error}</GardenForms.Message>
-      ) : (
-        ''
-      )}
+      <Formik.Field {...fieldProps} />
+      {error ? <GardenForms.Message validation="error">{error}</GardenForms.Message> : ''}
     </GardenForms.Field>
   );
-};
+});
