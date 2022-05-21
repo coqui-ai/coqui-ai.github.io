@@ -54,7 +54,7 @@ export const CenterWell = ({ title, children, ...props }) => (
     css={css`
       width: 553px;
       margin: 163px auto;
-      min-height: 526px;
+      min-height: 477px;
       padding: 0;
       color: #313940;
 
