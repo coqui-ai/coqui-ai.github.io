@@ -12,22 +12,27 @@ import React from 'react';
 
 import * as Formik from 'formik'; // { Formik, Field, Form }
 import * as GardenForms from '@zendeskgarden/react-forms';
-import { OrangeButton } from './Styled';
+import { Loading, OrangeButton } from './Styled';
 import { css } from 'styled-components';
 
-export const Submit = ({ children }) => (
-  <OrangeButton
-    css={css`
-      width: 100%;
-      margin-top: 39px;
-      margin-bottom: 39px;
-      height: 47px;
-    `}
-    type="submit"
-  >
-    {children}
-  </OrangeButton>
-);
+export const Submit = ({ loading, children, ...props }) => {
+  if (loading) return <Loading />;
+
+  return (
+    <OrangeButton
+      css={css`
+        width: 100%;
+        margin-top: 39px;
+        margin-bottom: 39px;
+        height: 47px;
+      `}
+      type="submit"
+      {...props}
+    >
+      {children}
+    </OrangeButton>
+  );
+};
 
 export const Field = Formik.connect(props => {
   const error =

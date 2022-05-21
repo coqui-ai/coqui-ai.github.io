@@ -37,7 +37,7 @@ export const Loading = () => (
 );
 
 export const OrangeButton = styled(Button)`
-  &:hover {
+  &:hover:enabled {
     background-color: white;
     color: #ed8f1c;
     border-color: #ed8f1c;
@@ -49,17 +49,20 @@ export const OrangeButton = styled(Button)`
   border-color: #ed8f1c;
 `;
 
-export const CenterWell = ({ title, children }) => (
+export const CenterWell = ({ title, children, ...props }) => (
   <Well
     css={css`
       width: 553px;
       margin: 163px auto;
       min-height: 526px;
       padding: 0;
+      color: #313940;
+
       & p {
         text-align: center;
       }
     `}
+    {...props}
   >
     <Title
       css={css`

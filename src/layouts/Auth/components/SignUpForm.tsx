@@ -10,7 +10,7 @@ import { useAuth, useLoginEffect } from '../../../../utils/auth';
 import { Formik, Form } from 'formik';
 import { useMutation, gql } from '@apollo/client';
 import { navigate } from 'gatsby';
-import { CenterWell, Loading } from 'layouts/Root/components/Styled';
+import { CenterWell } from 'layouts/Root/components/Styled';
 import { Input } from '@zendeskgarden/react-forms';
 import { Field, Submit } from 'layouts/Root/components/Forms';
 
@@ -78,7 +78,7 @@ export const SignUpForm = () => {
 
             <Field name="password2" label="Please repeat the password" as={Input} type="password" />
 
-            {loading || user ? <Loading /> : <Submit>Sign Up</Submit>}
+            <Submit loading={loading || user}>Sign Up</Submit>
           </Form>
         )}
       </Formik>
