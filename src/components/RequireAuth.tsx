@@ -20,7 +20,7 @@ export const RequireAuth = ({ children }) => {
   if (loading) return 'Loading...';
 
   if (error || !profile) {
-    return <SignInForm />;
+    return <SignInForm redirect={false} />;
   } // TODO: error-specific behaviour?
 
   // if (!profile.email_validated) {

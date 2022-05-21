@@ -32,7 +32,7 @@ export const SignUpForm = () => {
   const [signUp, { loading }] = useMutation(SIGN_UP);
 
   useEffect(() => {
-    if (user) navigate('/auth/profile');
+    if (user) navigate('/voices');
   }, [user]);
 
   return (
