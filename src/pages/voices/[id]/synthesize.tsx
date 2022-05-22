@@ -13,9 +13,9 @@ import RootLayout from 'layouts/Root';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 import { RequireAuth } from 'components/RequireAuth';
-import { Voice } from 'layouts/Voices/components/Voice';
+import { Synthesize } from 'layouts/Voices/components/Synthesize';
 
-const VoicePage: React.FC = ({ id }) => {
+const VoicePage: React.FC = ({ location, id }) => {
   useEffect(() => {
     consentedToGoogleAnalytics();
   });
@@ -24,7 +24,7 @@ const VoicePage: React.FC = ({ id }) => {
     <RootLayout hasSkipNav={false}>
       <SEO />
       <RequireAuth>
-        <Voice id={id} />
+        <Synthesize locationState={location.state} id={id} />
       </RequireAuth>
 
       <GogleAnalyticsCookieConsent />

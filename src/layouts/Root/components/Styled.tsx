@@ -36,6 +36,11 @@ export const Loading = () => (
   />
 );
 
+export const CenterContent = styled.div`
+  width: 699px;
+  margin: 33px auto;
+`;
+
 export const TitleBar = ({ children }) => (
   <div
     css={css`
