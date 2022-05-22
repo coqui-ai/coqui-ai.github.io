@@ -6,27 +6,157 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Microphone2, Pause, StopCircle, Trash, VideoCircle } from 'iconsax-react';
+import {
+  ArrowCircleDown2,
+  Microphone2,
+  Pause,
+  StopCircle,
+  Trash,
+  VideoCircle
+} from 'iconsax-react';
 import styled, { css } from 'styled-components';
 import { Progress } from '@zendeskgarden/react-loaders';
 
 import { useAudioRecorder } from '../../../../utils/useAudioRecorder';
 
-import { Col, Grid, Row } from '@zendeskgarden/react-grid';
+const PlayerRow = styled.div`
+  border-radius: 4px;
+  background-color: #012b30;
+  height: 62px;
 
-const RecorderCol = styled(Col)`
+  display: flex;
+`;
+
+const PlayerCol = styled.div`
+  flex-grow: ${props => props.grow || 0};
+  min-width: ${props => props.width || 0}px;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 62px;
 
   border-right: 1px solid #5eae91;
-  &:last {
+  :last-of-type {
     border-right: none;
   }
   & svg {
     margin-left: 3px;
   }
 `;
+
+const renderTime = time => {
+  const secs = Math.floor(time % 60);
+
+  return Math.floor(time / 60) + ':' + (secs >= 10 ? secs : '0' + secs);
+};
+
+export const AudioPlayer = ({ src }) => {
+  const audioPlayer = useRef<HTMLAudioElement>(null);
+  const [audioPlayerState, setAudioPlayerState] = useState(null);
+  const audioPlayerStateChangeHandler = ({ target }: { target: HTMLAudioElement }) =>
+    setAudioPlayerState({
+      duration: target.duration,
+      paused: target.paused,
+      currentTime: target.currentTime
+    });
+
+  const currentTime = audioPlayerState?.currentTime || 0;
+  const currentTimestamp = renderTime(currentTime);
+  const totalTime = audioPlayerState?.duration || 0;
+  const totalTimestamp = renderTime(totalTime);
+
+  return (
+    <PlayerRow>
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+      <audio
+        ref={audioPlayer}
+        src={src}
+        preload="auto"
+        // onChange={console.log}
+        onPlay={audioPlayerStateChangeHandler}
+        onPause={audioPlayerStateChangeHandler}
+        onEnded={audioPlayerStateChangeHandler}
+        onTimeUpdate={audioPlayerStateChangeHandler}
+        onDurationChange={audioPlayerStateChangeHandler}
+      />
+
+      <PlayerCol width={60}>
+        {(() => {
+          if (!audioPlayer?.current?.paused)
+            return (
+              <Pause
+                size="32"
+                color="#ED8F1C"
+                variant="Bold"
+                onClick={() => audioPlayer?.current?.pause()}
+              />
+            );
+
+          return (
+            <VideoCircle
+              size="32"
+              color="#ED8F1C"
+              variant="Bold"
+              onClick={() => audioPlayer?.current?.play()}
+            />
+          );
+        })()}
+      </PlayerCol>
+      <PlayerCol
+        grow={1}
+        css={css`
+          color: white;
+          font-size: 16px;
+          & span {
+            margin-left: 20px;
+          }
+        `}
+      >
+        <Progress
+          value={(100 * (currentTime || 0)) / totalTime}
+          css={css`
+            width: 369px;
+            & div {
+              // transition: width 1s linear;
+              transition: none;
+            }
+          `}
+        />
+
+        <span>
+          {currentTimestamp}/{totalTimestamp}
+        </span>
+      </PlayerCol>
+      <PlayerCol
+        width={134}
+        css={css`
+          font-size: 14px;
+          line-height: 24;
+          margin-left: 9px;
+          & a,
+          & a:hover {
+            color: #5eae91;
+            text-decoration: none;
+          }
+          & svg {
+            position: relative;
+            top: 7px;
+          }
+        `}
+      >
+        <a href={src}>
+          Download
+          <ArrowCircleDown2
+            size="24"
+            color="#5EAE91"
+            variant="Bold"
+            onClick={() => audioPlayer?.current?.pause()}
+          />
+        </a>
+      </PlayerCol>
+    </PlayerRow>
+  );
+};
 
 export const VoiceRecorder = ({ value: lastAudioResult, onChange: setLastAudioResult }) => {
   const [recordingLength, setRecordingLength] = useState<number>(null);
@@ -61,120 +191,107 @@ export const VoiceRecorder = ({ value: lastAudioResult, onChange: setLastAudioRe
     }
   }, [audioResult]);
 
-  const renderTime = time => {
-    const secs = Math.floor(time % 60);
-
-    return Math.floor(time / 60) + ':' + (secs >= 10 ? secs : '0' + secs);
-  };
-
   const currentTime = audioPlayerState ? audioPlayerState?.currentTime || 0 : timer;
-
   const currentTimestamp = renderTime(currentTime);
   const totalTime = audioPlayerState ? recordingLength : 30;
   const totalTimestamp = renderTime(totalTime);
 
   return (
-    <Grid>
-      <Row
+    <PlayerRow>
+      {audioResult ? (
+        // eslint-disable-next-line jsx-a11y/media-has-caption
+        <audio
+          ref={audioPlayer}
+          src={audioResult}
+          preload="auto"
+          // onChange={console.log}
+          onPlay={audioPlayerStateChangeHandler}
+          onPause={audioPlayerStateChangeHandler}
+          onEnded={audioPlayerStateChangeHandler}
+          onTimeUpdate={audioPlayerStateChangeHandler}
+          onDurationChange={audioPlayerStateChangeHandler}
+        />
+      ) : (
+        ''
+      )}
+
+      <PlayerCol width={60}>
+        {(() => {
+          if (lastAudioResult && !audioPlayer?.current?.paused)
+            return (
+              <Pause
+                size="32"
+                color="#ED8F1C"
+                variant="Bold"
+                onClick={() => audioPlayer?.current?.pause()}
+              />
+            );
+          if (lastAudioResult)
+            return (
+              <VideoCircle
+                size="32"
+                color="#5EAE91"
+                variant="Bold"
+                onClick={() => audioPlayer?.current?.play()}
+              />
+            );
+          if (status === 'idle')
+            return (
+              <Microphone2 size="32" color="#ED8F1C" variant="Bold" onClick={startRecording} />
+            );
+          if (status === 'recording')
+            return (
+              <StopCircle
+                size="32"
+                color="#f47373"
+                variant="Bold"
+                onClick={() => {
+                  setRecordingLength(timer);
+                  stopRecording();
+                }}
+              />
+            );
+
+          return '?';
+        })()}
+      </PlayerCol>
+      <PlayerCol
+        grow={1}
         css={css`
-          background-color: #012b30;
-          height: 62px;
+          color: white;
+          font-size: 16px;
+          & span {
+            margin-left: 20px;
+          }
         `}
       >
-        <RecorderCol size={1}>
-          {audioResult ? (
-            // eslint-disable-next-line jsx-a11y/media-has-caption
-            <audio
-              ref={audioPlayer}
-              src={audioResult}
-              preload="auto"
-              // onChange={console.log}
-              onPlay={audioPlayerStateChangeHandler}
-              onPause={audioPlayerStateChangeHandler}
-              onEnded={audioPlayerStateChangeHandler}
-              onTimeUpdate={audioPlayerStateChangeHandler}
-              onDurationChange={audioPlayerStateChangeHandler}
-            />
-          ) : (
-            ''
-          )}
-          {(() => {
-            if (lastAudioResult && !audioPlayer?.current?.paused)
-              return (
-                <Pause
-                  size="32"
-                  color="#ED8F1C"
-                  variant="Bold"
-                  onClick={() => audioPlayer?.current?.pause()}
-                />
-              );
-            if (lastAudioResult)
-              return (
-                <VideoCircle
-                  size="32"
-                  color="#5EAE91"
-                  variant="Bold"
-                  onClick={() => audioPlayer?.current?.play()}
-                />
-              );
-            if (status === 'idle')
-              return (
-                <Microphone2 size="32" color="#ED8F1C" variant="Bold" onClick={startRecording} />
-              );
-            if (status === 'recording')
-              return (
-                <StopCircle
-                  size="32"
-                  color="#f47373"
-                  variant="Bold"
-                  onClick={() => {
-                    setRecordingLength(timer);
-                    stopRecording();
-                  }}
-                />
-              );
+        <Progress
+          value={(100 * (currentTime || 0)) / totalTime}
+          css={css`
+            width: 390px;
+            & div {
+              // transition: width 1s linear;
+              transition: none;
+            }
+          `}
+        />
 
-            return '?';
-          })()}
-        </RecorderCol>
-        <RecorderCol
-          css={css`
-            border-right: none;
-          `}
-        >
-          <Progress
-            value={(100 * (currentTime || 0)) / totalTime}
-            css={css`
-              width: 390px;
-              & div {
-                // transition: width 1s linear;
-                transition: none;
-              }
-            `}
-          />
-        </RecorderCol>
-        <RecorderCol
-          size={2}
-          css={css`
-            color: white;
-            font-size: 16px;
-          `}
-        >
+        <span>
           {currentTimestamp}/{totalTimestamp}
-        </RecorderCol>
-        <RecorderCol size={1}>
-          <Trash
-            size={32}
-            color={lastAudioResult ? '#CC3340' : '#345559'}
-            variant="Bold"
-            onClick={() => {
-              audioPlayer?.current?.pause();
-              if (lastAudioResult) setLastAudioResult(null);
-              setAudioPlayerState(null);
-            }}
-          />
-        </RecorderCol>
-      </Row>
-    </Grid>
+        </span>
+      </PlayerCol>
+      <PlayerCol width={60}>
+        <Trash
+          size={32}
+          color={lastAudioResult ? '#CC3340' : '#345559'}
+          variant="Bold"
+          onClick={() => {
+            audioPlayer?.current?.pause();
+            if (lastAudioResult) setLastAudioResult(null);
+            setAudioPlayerState(null);
+          }}
+        />
+      </PlayerCol>
+    </PlayerRow>
   );
 };

@@ -9,7 +9,7 @@ import React from 'react';
 import { useQuery, gql, useMutation } from '@apollo/client';
 import { Form, Formik, connect, Field as FormikField } from 'formik';
 import * as GardenForms from '@zendeskgarden/react-forms';
-import { DefaultTheme } from 'styled-components';
+import styled, { DefaultTheme, css } from 'styled-components';
 import { ThemeProvider } from '@zendeskgarden/react-theming';
 
 import { VoicesDropdown } from 'layouts/Root/components/VoicesDropdown';
@@ -20,7 +20,7 @@ import { Link } from 'layouts/Root/components/StyledNavigationLink';
 import { ArrowLeft } from 'iconsax-react';
 import { Input, Textarea, Range } from '@zendeskgarden/react-forms';
 import { Well } from '@zendeskgarden/react-notifications';
-import { css } from 'styled-components';
+import { AudioPlayer } from './MediaPlayers';
 
 const VOICE = gql`
   query voice($id: String!) {
@@ -43,7 +43,7 @@ const CREATE_SAMPLE = gql`
         name
         created_at
         voice_id
-        audio
+        audio_url
       }
     }
   }
@@ -132,12 +132,21 @@ const SpeedControl = connect(props => {
   );
 });
 
+const PlayerBar = styled.div`
+  height: 84px;
+  background-color: #f8f8f8;
+  display: flex;
+  align-items: center;
+`;
+
 export const Synthesize: React.FC = ({ locationState = null, id }) => {
   const { data, loading: voiceLoading, error } = useQuery(VOICE, { variables: { id } });
 
   const voice = data?.voice;
 
   const [createSample, createSampleStatus] = useMutation(CREATE_SAMPLE);
+
+  const sample = createSampleStatus?.data?.createSample?.sample;
 
   if (voiceLoading) return <Loading />;
 
@@ -222,6 +231,19 @@ export const Synthesize: React.FC = ({ locationState = null, id }) => {
           )}
         </Formik>
       </CenterContent>
+      {sample && (
+        <PlayerBar>
+          <CenterContent>
+            <AudioPlayer
+              src={
+                sample.audio_url[0] === '/'
+                  ? `${process.env.GATSBY_BACKEND_URL}${sample.audio_url}`
+                  : sample.audio_url
+              }
+            />
+          </CenterContent>
+        </PlayerBar>
+      )}
     </>
   );
 };
