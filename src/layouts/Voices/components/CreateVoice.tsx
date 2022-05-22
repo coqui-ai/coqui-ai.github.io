@@ -5,16 +5,17 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import { Field, Input, Label } from '@zendeskgarden/react-forms';
+import { Field, FileUpload, Input, Label } from '@zendeskgarden/react-forms';
 import { ArrowLeft, LampOn } from 'iconsax-react';
-import { TitleBar } from 'layouts/Root/components/Styled';
-import { Link } from 'gatsby';
+import { OrangeButton, TitleBar } from 'layouts/Root/components/Styled';
+import { Link, navigate } from 'gatsby';
 import { Span, UnorderedList } from '@zendeskgarden/react-typography';
 import styled, { css } from 'styled-components';
 import { Title, Well } from '@zendeskgarden/react-notifications';
 import { Submit } from 'layouts/Root/components/Forms';
+import { useDropzone } from 'react-dropzone';
 
 import { ReactComponent as BigRadioChecked } from '/static/components/big_radio_checked.svg';
 import { ReactComponent as BigRadioUnchhecked } from '/static/components/big_radio_unchecked.svg';
@@ -142,14 +143,27 @@ const Or = () => (
 );
 
 export const CreateVoice: React.FC = () => {
-  const [sourceValue, setSourceValue] = useState('record');
+  const [sourceValue, setSourceValue] = useState<'record' | 'upload'>('record');
   const [nameValue, setNameValue] = useState('');
-  const [fileValue, setFileValue] = useState(null);
+  const [fileValue, setFileValue] = useState<File>(null);
   const [recordingValue, setRecordingValue] = useState(null);
 
   const [createVoice, { data, loading, error }] = useMutation(CREATE_VOICE);
 
-  if (loading) return 'loading';
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: ['audio/wav'],
+    multiple: false,
+    onDrop: (acceptedFiles: File[]) => {
+      if (acceptedFiles && acceptedFiles.length > 0) {
+        setFileValue(acceptedFiles[0]);
+        setSourceValue('upload');
+      }
+    }
+  });
+
+  useEffect(() => {
+    if (data?.createVoice?.voice?.id) navigate(`/voices/${data?.createVoice?.voice?.id}`);
+  }, [data]);
 
   const submitForm = () => {
     if (!nameValue) {
@@ -164,14 +178,13 @@ export const CreateVoice: React.FC = () => {
     });
   };
 
-  const onFileChange = e => {
-    if (e.target.validity.valid) {
-      setFileValue(e.target.files[0]);
-    }
-  };
-
   return (
-    <>
+    <form
+      onSubmit={e => {
+        e.preventDefault();
+        submitForm();
+      }}
+    >
       <TitleBar>
         <Link to="/voices">
           <ArrowLeft size={24} />
@@ -216,14 +229,39 @@ export const CreateVoice: React.FC = () => {
         <Radio checked={sourceValue === 'upload'} onClick={e => setSourceValue('upload')}>
           <Span isBold>Upload audio file here</Span>
         </Radio>
-        <input
-          type="file"
-          required
-          onChange={f => {
-            onFileChange(f);
-            setSourceValue('upload');
-          }}
-        />
+
+        <FileUpload
+          {...getRootProps()}
+          isDragging={isDragActive}
+          css={css`
+            height: 241px;
+            margin-bottom: 30px;
+            flex-flow: column;
+          `}
+        >
+          {isDragActive ? (
+            <span>Drop the file here</span>
+          ) : fileValue ? (
+            <Span isBold>{fileValue.name}</Span>
+          ) : (
+            <>
+              <OrangeButton>Upload Audio</OrangeButton>
+              <br />
+              <br />
+              <div
+                css={css`
+                  margin-top: 30px;
+                  color: #31394080;
+                `}
+              >
+                or drag in the file to upload
+                <br /> your audio here
+                <br /> <Span isBold>30 secs max</Span>
+              </div>
+            </>
+          )}
+          <Input {...getInputProps()} />
+        </FileUpload>
 
         <Field>
           <Label>Name your voice</Label>
@@ -233,6 +271,6 @@ export const CreateVoice: React.FC = () => {
           Proceed to test your voice
         </Submit>
       </CenterContent>
-    </>
+    </form>
   );
 };

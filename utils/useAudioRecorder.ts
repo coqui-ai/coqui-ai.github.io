@@ -43,33 +43,30 @@ export const useAudioRecorder = () => {
     if (status === RECORD_STATUS.IDLE) {
       try {
         setErrorMessage('');
-        console.log(1);
+
         navigator.mediaDevices
           .getUserMedia({ audio: true })
           .then((mediaStreamObj: MediaStream) => {
             localStream = mediaStreamObj;
-            console.log(2);
+
             mediaRecorder = new MediaRecorder(mediaStreamObj, { mimeType: 'audio/wav' });
 
             mediaRecorder.onstart = () => {
               // handleStartTimer();
               setTimer(0);
-              console.log(3);
+
               setStatus(RECORD_STATUS.RECORDING);
             };
             mediaRecorder.ondataavailable = (event: BlobEvent) => {
               dataArray.current.push(event.data);
               setTimer(t => t + 0.1);
-              console.log(4);
             };
             mediaRecorder.start(100);
           })
           .catch(error => {
-            console.error(error);
             setErrorMessage(error?.message);
           });
       } catch (error) {
-        console.error(error);
         setErrorMessage(error?.message);
       }
     } else {
