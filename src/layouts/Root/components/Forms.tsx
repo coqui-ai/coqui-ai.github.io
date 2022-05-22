@@ -52,6 +52,7 @@ export const Field = Formik.connect(props => {
       css={`
         min-height: 106px;
       `}
+      style={props.fieldStyle}
     >
       <GardenForms.Label
         css={`

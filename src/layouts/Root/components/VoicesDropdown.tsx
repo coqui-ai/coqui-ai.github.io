@@ -19,7 +19,7 @@ const VOICE_SEARCH = gql`
   }
 `;
 
-export const VoicesDropdown = ({ value, onSelect }) => {
+export const VoicesDropdown = ({ value, onSelect, style = null }) => {
   const client = useApolloClient();
   const [searchVoices, { data, loading }] = useLazyQuery(VOICE_SEARCH);
 
@@ -68,7 +68,11 @@ export const VoicesDropdown = ({ value, onSelect }) => {
       onSelect={id => onSelect(lookupVoice(id))}
     >
       <Field>
-        <Combobox placeholder="Search for a voice" end={<SearchNormal1 color="#ED8F1C" />} />
+        <Combobox
+          placeholder="Search for a voice"
+          end={<SearchNormal1 color="#ED8F1C" />}
+          style={style}
+        />
       </Field>
       <Menu>{renderOptions()}</Menu>
     </Dropdown>

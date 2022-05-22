@@ -9,10 +9,10 @@ import React, { useEffect, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { Field, FileUpload, Input, Label } from '@zendeskgarden/react-forms';
 import { ArrowLeft, LampOn } from 'iconsax-react';
-import { OrangeButton, TitleBar } from 'layouts/Root/components/Styled';
+import { CenterContent, OrangeButton, TitleBar } from 'layouts/Root/components/Styled';
 import { Link, navigate } from 'gatsby';
 import { Span, UnorderedList } from '@zendeskgarden/react-typography';
-import styled, { css } from 'styled-components';
+import { css } from 'styled-components';
 import { Title, Well } from '@zendeskgarden/react-notifications';
 import { Submit } from 'layouts/Root/components/Forms';
 import { useDropzone } from 'react-dropzone';
@@ -94,11 +94,6 @@ const QuickTips = () => (
     </UnorderedList>
   </Well>
 );
-
-const CenterContent = styled.div`
-  width: 699px;
-  margin: 33px auto;
-`;
 
 const Radio = ({ children, checked, onClick }) => (
   <div
@@ -191,9 +186,6 @@ export const CreateVoice: React.FC = () => {
         </Link>
         &nbsp;&nbsp; Create a new voice
       </TitleBar>
-
-      <pre>{JSON.stringify(data)}</pre>
-      <pre>{JSON.stringify(error)}</pre>
 
       <QuickTips />
 
