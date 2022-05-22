@@ -162,7 +162,7 @@ export const CreateVoice: React.FC = () => {
   });
 
   useEffect(() => {
-    if (data?.createVoice?.voice?.id) navigate(`/voices/${data?.createVoice?.voice?.id}`);
+    if (data?.createVoice?.voice?.id) navigate(`/voices/${data.createVoice.voice.id}/synthesize`);
   }, [data]);
 
   const submitForm = () => {

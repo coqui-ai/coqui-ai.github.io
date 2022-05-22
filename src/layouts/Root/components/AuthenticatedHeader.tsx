@@ -5,91 +5,25 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useState, HTMLAttributes, useEffect, useMemo } from 'react';
+import React, { useState } from 'react';
 import Img from 'gatsby-image';
-import debounce from 'lodash.debounce';
 // import { Field, Input } from '@zendeskgarden/react-forms';
-import {
-  Item,
-  Menu,
-  Field,
-  Label,
-  Dropdown,
-  Combobox,
-  Trigger
-} from '@zendeskgarden/react-dropdowns';
-import { navigate, Link } from 'gatsby';
+import { Item, Menu, Dropdown, Trigger } from '@zendeskgarden/react-dropdowns';
+import { navigate, Link, graphql, useStaticQuery } from 'gatsby';
 
 import { Col, Grid, Row } from '@zendeskgarden/react-grid';
-import { ReactComponent as SearchIcon } from '@zendeskgarden/svg-icons/src/16/search-stroke.svg';
 import { Button } from '@zendeskgarden/react-buttons';
 
-import styled, { css, DefaultTheme } from 'styled-components';
-import { graphql, useStaticQuery } from 'gatsby';
+import styled, { css } from 'styled-components';
 import { useProfile, Profile } from '../../../../utils/auth';
-import { LG } from '@zendeskgarden/react-typography';
-import { SearchNormal1, ArrowDown2 } from 'iconsax-react';
+import { ArrowDown2 } from 'iconsax-react';
 import { OrangeButton } from './Styled';
-import { gql, useLazyQuery } from '@apollo/client';
+import { VoicesDropdown } from './VoicesDropdown';
 
 const HeaderRow = styled(Row)`
   height: 84px;
   border-bottom: 1px solid #c2c8cc80;
 `;
-
-const VOICE_SEARCH = gql`
-  query voiceSearch($query: String!) {
-    voiceSearch(query: $query) {
-      id
-      name
-    }
-  }
-`;
-
-export const SearchDropdown = () => {
-  const [searchVoices, { data, loading }] = useLazyQuery(VOICE_SEARCH);
-
-  const matchingVoices = data?.voiceSearch || [];
-
-  const [inputValue, setInputValue] = useState('');
-
-  useEffect(() => {
-    if (inputValue) {
-      searchVoices({ variables: { query: inputValue } });
-    }
-  }, [inputValue]);
-
-  const renderOptions = () => {
-    if (loading) {
-      return <Item disabled>Loading items...</Item>;
-    }
-
-    if (matchingVoices.length === 0) {
-      return <Item disabled>No matches found</Item>;
-    }
-
-    return matchingVoices.map(voice => (
-      <Item key={voice.id} value={voice.id}>
-        <span>{voice.name}</span>
-      </Item>
-    ));
-  };
-
-  return (
-    <Dropdown
-      inputValue={inputValue}
-      onInputValueChange={value => setInputValue(value)}
-      onSelect={voiceId => {
-        navigate('/voices/' + voiceId);
-      }}
-    >
-      <Field>
-        <Combobox placeholder="Search for a voice" end={<SearchNormal1 color="#ED8F1C" />} />
-      </Field>
-      <Menu>{renderOptions()}</Menu>
-    </Dropdown>
-  );
-};
 
 const UserMenu = ({ profile }: { profile: Profile }) => {
   const [rotated, setRotated] = useState<boolean | undefined>();
@@ -157,7 +91,11 @@ export const AuthenticatedHeader = () => {
           </Link>
         </Col>
         <Col>
-          <SearchDropdown />
+          <VoicesDropdown
+            onSelect={voice => {
+              navigate(`/voices/${voice.id}/synthesize`);
+            }}
+          />
         </Col>
         <Col size={2}>
           <OrangeButton onClick={() => navigate('/voices/create')}>Create new voice</OrangeButton>

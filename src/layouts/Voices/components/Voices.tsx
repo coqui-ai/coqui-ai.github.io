@@ -31,7 +31,7 @@ export const Voices: React.FC = () => {
       <ul>
         {data.voices.map(voice => (
           <li>
-            <Link to={'/voices/' + voice.id}>
+            <Link to={`/voices/${voice.id}/synthesize`}>
               {voice.name} {voice.id}
             </Link>
           </li>
