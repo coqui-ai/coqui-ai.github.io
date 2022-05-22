@@ -36,6 +36,28 @@ export const Loading = () => (
   />
 );
 
+export const TitleBar = ({ children }) => (
+  <div
+    css={css`
+      height: 84px;
+      border-bottom: 1px solid rgba(194, 200, 204, 0.5);
+      display: flex;
+      align-items: center;
+      padding-left: 57px;
+    `}
+  >
+    <h1
+      css={css`
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 11px;
+      `}
+    >
+      {children}
+    </h1>
+  </div>
+);
+
 export const OrangeButton = styled(Button)`
   &:hover:enabled {
     background-color: white;
