@@ -5,31 +5,20 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
 import { Field, Input, Label } from '@zendeskgarden/react-forms';
-import {
-  ArrowLeft,
-  LampOn,
-  Microphone2,
-  Pause,
-  StopCircle,
-  Trash,
-  VideoCircle
-} from 'iconsax-react';
+import { ArrowLeft, LampOn } from 'iconsax-react';
 import { TitleBar } from 'layouts/Root/components/Styled';
 import { Link } from 'gatsby';
 import { Span, UnorderedList } from '@zendeskgarden/react-typography';
 import styled, { css } from 'styled-components';
 import { Title, Well } from '@zendeskgarden/react-notifications';
 import { Submit } from 'layouts/Root/components/Forms';
-import { Progress } from '@zendeskgarden/react-loaders';
-
-import { useAudioRecorder } from '@sarafhbk/react-audio-recorder';
 
 import { ReactComponent as BigRadioChecked } from '/static/components/big_radio_checked.svg';
 import { ReactComponent as BigRadioUnchhecked } from '/static/components/big_radio_unchecked.svg';
-import { Col, Grid, Row } from '@zendeskgarden/react-grid';
+import { VoiceRecorder } from './MediaPlayers';
 
 const CREATE_VOICE = gql`
   mutation CreateVoice($name: String!, $voice: Upload!) {
@@ -151,184 +140,6 @@ const Or = () => (
     </div>
   </div>
 );
-
-const RecorderCol = styled(Col)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-right: 1px solid #5eae91;
-  &:last {
-    border-right: none;
-  }
-  & svg {
-    margin-left: 3px;
-  }
-`;
-
-const VoiceRecorder = ({ value: lastAudioResult, onChange: setLastAudioResult }) => {
-  const [recordingLength, setRecordingLength] = useState<number>(null);
-  // const [lastAudioResult, setLastAudioResult] = useState<{ blob: Blob; length: number }>(null);
-
-  const audioPlayer = useRef<HTMLAudioElement>(null);
-  const [audioPlayerState, setAudioPlayerState] = useState(null);
-  const audioPlayerStateChangeHandler = ({ target }: { target: HTMLAudioElement }) =>
-    setAudioPlayerState({
-      duration: target.duration,
-      paused: target.paused,
-      currentTime: target.currentTime
-    });
-
-  console.log(audioPlayerState);
-
-  const {
-    audioResult,
-    timer,
-    startRecording,
-    stopRecording,
-    pauseRecording,
-    resumeRecording,
-    status,
-    errorMessage
-  } = useAudioRecorder();
-
-  useEffect(() => {
-    if (audioResult) {
-      fetch(audioResult).then(async r =>
-        setLastAudioResult({ blob: await r.blob(), length: recordingLength })
-      );
-    }
-  }, [audioResult]);
-
-  // useEffect(() => {
-  //   if (audioResult) {
-  //     const pl = new Audio(audioResult);
-
-  //     setAudioPlayer(pl);
-  //     pl.on
-
-  //     return () => pl.pause();
-  //   }
-  // }, [audioResult]);
-
-  const renderTime = time => {
-    const secs = Math.floor(time % 60);
-
-    return Math.floor(time / 60) + ':' + (secs >= 10 ? secs : '0' + secs);
-  };
-
-  const currentTime = audioPlayerState ? audioPlayerState?.currentTime || 0 : timer;
-
-  const currentTimestamp = renderTime(currentTime);
-  const totalTime = audioPlayerState ? recordingLength : 30;
-  const totalTimestamp = renderTime(totalTime);
-
-  console.log(audioResult, timer, currentTime, totalTime, audioPlayer?.current);
-
-  return (
-    <Grid>
-      <Row
-        css={css`
-          background-color: #012b30;
-          height: 62px;
-        `}
-      >
-        <RecorderCol size={1}>
-          {audioResult ? (
-            // eslint-disable-next-line jsx-a11y/media-has-caption
-            <audio
-              ref={audioPlayer}
-              src={audioResult}
-              preload
-              // onChange={console.log}
-              onPlay={audioPlayerStateChangeHandler}
-              onPause={audioPlayerStateChangeHandler}
-              onEnded={audioPlayerStateChangeHandler}
-              onTimeUpdate={audioPlayerStateChangeHandler}
-              onDurationChange={audioPlayerStateChangeHandler}
-            />
-          ) : (
-            ''
-          )}
-          {(() => {
-            if (lastAudioResult && !audioPlayer?.current?.paused)
-              return (
-                <Pause
-                  size="32"
-                  color="#ED8F1C"
-                  variant="Bold"
-                  onClick={() => audioPlayer?.current?.pause()}
-                />
-              );
-            if (lastAudioResult)
-              return (
-                <VideoCircle
-                  size="32"
-                  color="#5EAE91"
-                  variant="Bold"
-                  onClick={() => audioPlayer?.current?.play()}
-                />
-              );
-            if (status === 'idle')
-              return (
-                <Microphone2 size="32" color="#ED8F1C" variant="Bold" onClick={startRecording} />
-              );
-            if (status === 'recording')
-              return (
-                <StopCircle
-                  size="32"
-                  color="#f47373"
-                  variant="Bold"
-                  onClick={() => {
-                    setRecordingLength(timer);
-                    stopRecording();
-                  }}
-                />
-              );
-
-            return '?';
-          })()}
-        </RecorderCol>
-        <RecorderCol
-          css={css`
-            border-right: none;
-          `}
-        >
-          <Progress
-            value={(100 * (currentTime || 0)) / totalTime}
-            css={css`
-              width: 390px;
-              & div {
-                // transition: width 1s linear;
-                transition: none;
-              }
-            `}
-          />
-        </RecorderCol>
-        <RecorderCol
-          size={2}
-          css={css`
-            color: white;
-            font-size: 16px;
-          `}
-        >
-          {currentTimestamp}/{totalTimestamp}
-        </RecorderCol>
-        <RecorderCol size={1}>
-          <Trash
-            size={32}
-            color={lastAudioResult ? '#CC3340' : '#345559'}
-            variant="Bold"
-            onClick={() => {
-              if (lastAudioResult) setLastAudioResult(null);
-              setAudioPlayerState(null);
-            }}
-          />
-        </RecorderCol>
-      </Row>
-    </Grid>
-  );
-};
 
 export const CreateVoice: React.FC = () => {
   const [sourceValue, setSourceValue] = useState('record');
