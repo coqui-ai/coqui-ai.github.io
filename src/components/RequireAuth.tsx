@@ -17,15 +17,12 @@ export const ProfileContext = React.createContext<Profile>(null);
 export const RequireAuth = ({ children }) => {
   const { data: profile, loading, error } = useProfile();
 
-  if (loading) return 'Loading...';
+  // fixme
+  if (loading) return <div></div>;
 
   if (error || !profile) {
     return <SignInForm />;
   } // TODO: error-specific behaviour?
-
-  // if (!profile.email_validated) {
-  //   return <VerifyEmail />;
-  // }
 
   if (!profile.personal_name || !profile.organization_name) {
     return <CompleteProfile profile={profile} />;
@@ -33,6 +30,10 @@ export const RequireAuth = ({ children }) => {
 
   if (!profile.terms_accepted) {
     return <AcceptTerms />;
+  }
+
+  if (!profile.email_validated) {
+    return <VerifyEmail />;
   }
 
   return <ProfileContext.Provider value={profile}>{children}</ProfileContext.Provider>;

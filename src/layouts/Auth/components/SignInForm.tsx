@@ -14,13 +14,13 @@ import { Field, Submit } from 'layouts/Root/components/Forms';
 import { Input } from '@zendeskgarden/react-forms';
 import { Paragraph, Span } from '@zendeskgarden/react-typography';
 
-export const SignInForm = () => {
+export const SignInForm = ({ redirect = true }) => {
   const user = useAuth();
   const [login, { loading, error }] = useLoginEffect();
 
   useEffect(() => {
-    if (user) navigate('/auth/profile');
-  }, [user]);
+    if (user && redirect) navigate('/voices');
+  }, [user, redirect]);
 
   return (
     <CenterWell title="Sign In">

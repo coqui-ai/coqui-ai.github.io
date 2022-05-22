@@ -8,7 +8,7 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import { gql, useMutation } from '@apollo/client';
-import { CenterWell, Loading } from 'layouts/Root/components/Styled';
+import { CenterWell } from 'layouts/Root/components/Styled';
 import { Submit, Field } from 'layouts/Root/components/Forms';
 import { Input } from '@zendeskgarden/react-forms';
 
@@ -68,7 +68,7 @@ export const CompleteProfile = ({ profile }) => {
             <Field name="personal_name" label="Enter your name here:" as={Input} />
             <Field name="organization_name" label="Name of Organization:" as={Input} />
 
-            {loading ? <Loading /> : <Submit>Sign Up & Login</Submit>}
+            <Submit loading={loading}>Sign Up & Login</Submit>
           </Form>
         )}
       </Formik>
