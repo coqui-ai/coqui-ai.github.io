@@ -50,6 +50,48 @@ const renderTime = time => {
   return Math.floor(time / 60) + ':' + (secs >= 10 ? secs : '0' + secs);
 };
 
+export const useManyPlayers = () => {
+  const [player, setPlayer] = useState<HTMLAudioElement>(null);
+  const [currentTrack, setCurrentTrack] = useState<string>(null);
+
+  useEffect(() => {
+    if (!player) {
+      const aud = new Audio();
+
+      aud.onpause = () => {
+        setCurrentTrack(null);
+      };
+
+      setPlayer(aud);
+
+      return () => {
+        aud.pause();
+        aud.src = null;
+      };
+    }
+  }, [player]);
+
+  const Player = ({ src, children }) => (
+    // eslint-disable-next-line
+    <div
+      onClick={() => {
+        if (currentTrack === src) {
+          setCurrentTrack(null);
+          player.pause();
+        } else {
+          setCurrentTrack(src);
+          player.src = src;
+          player.play();
+        }
+      }}
+    >
+      {children}
+    </div>
+  );
+
+  return { currentTrack, Player };
+};
+
 export const AudioPlayer = ({ src }) => {
   const audioPlayer = useRef<HTMLAudioElement>(null);
   const [audioPlayerState, setAudioPlayerState] = useState(null);
@@ -146,12 +188,7 @@ export const AudioPlayer = ({ src }) => {
       >
         <a href={src}>
           Download
-          <ArrowCircleDown2
-            size="24"
-            color="#5EAE91"
-            variant="Bold"
-            onClick={() => audioPlayer?.current?.pause()}
-          />
+          <ArrowCircleDown2 size="24" color="#5EAE91" variant="Bold" />
         </a>
       </PlayerCol>
     </PlayerRow>

@@ -68,7 +68,6 @@ export const OrangeButton = styled(Button)`
     background-color: white;
     color: #ed8f1c;
     border-color: #ed8f1c;
-    text-decoration: none !important;
   }
   font-weight: 700;
   background-color: #ed8f1c;
