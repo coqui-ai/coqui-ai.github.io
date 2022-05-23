@@ -9,4 +9,5 @@ ARG REACT_APP_GITHUB_KEY
 RUN yarn build
 
 FROM nginx:1.21.6
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/public /usr/share/nginx/html
