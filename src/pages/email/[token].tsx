@@ -5,9 +5,13 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import SEO from 'components/SEO';
+import RootLayout from 'layouts/Root';
+import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { gql, useMutation } from '@apollo/client';
 import { navigate } from 'gatsby';
+import { CenterWell } from 'layouts/Root/components/Styled';
 
 const VERIFY_EMAIL = gql`
   mutation verifyEmail($token: String!) {
@@ -22,22 +26,52 @@ const VERIFY_EMAIL = gql`
 `;
 
 const TokenPage: React.FC = ({ token }) => {
-  const [verifyEmail, verifyEmailStatus] = useMutation(VERIFY_EMAIL);
+  const [verifyStatus, setVerifyStatus] = useState('verifying');
+  const [errorInfo, setErrorInfo] = useState('');
+  const [verifyEmail, { verifying }] = useMutation(VERIFY_EMAIL);
 
   useEffect(() => {
     verifyEmail({
       variables: {
         token
       }
-    }).then(() => {
-      navigate('/auth/profile'); // TODO: something better here (right now this redirect leads to a 404, which requires a manual refresh to work)
-    });
-  });
+    })
+      .then(({ data }) => {
+        if (data.verifyEmail.errors) {
+          setVerifyStatus('error');
+          setErrorInfo(data.verifyEmail.errors[0].errors[0]);
+        } else {
+          setVerifyStatus('verified');
+          navigate('/voices');
+        }
+      })
+      .catch(() => {
+        setVerifyStatus('error');
+        setErrorInfo('');
+      });
+  }, [token, verifyEmail]);
 
   return (
-    <div>
-      <pre>{JSON.stringify([verifyEmailStatus.data, verifyEmailStatus.error])}</pre>
-    </div>
+    <RootLayout hasSkipNav={false}>
+      <SEO />
+
+      <CenterWell title="Email address verification">
+        {verifying || (verifyStatus === 'verifying' && <p>Verifying your email address...</p>)}
+        {verifyStatus === 'verified' && <p>Your email address has been verified!</p>}
+        {verifyStatus === 'error' && (
+          <>
+            <p>Error verifying your email address: {errorInfo}</p>
+            <p>
+              Please{' '}
+              <a href="mailto:info@coqui.ai?subject=I can't verify my email address">contact us</a>{' '}
+              to solve this.
+            </p>
+          </>
+        )}
+      </CenterWell>
+
+      <GogleAnalyticsCookieConsent />
+    </RootLayout>
   );
 };
 
