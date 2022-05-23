@@ -10,6 +10,7 @@
 import { useState, useRef } from 'react';
 import { MediaRecorder, register } from 'extendable-media-recorder';
 import { connect } from 'extendable-media-recorder-wav-encoder';
+import { Blob } from 'buffer';
 
 connect().then(register);
 
