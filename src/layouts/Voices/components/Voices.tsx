@@ -12,7 +12,7 @@ import { Loading, OrangeButton, TitleBar } from 'layouts/Root/components/Styled'
 import styled, { css } from 'styled-components';
 import { MusicPlaylist, Trash } from 'iconsax-react';
 import { Button } from '@zendeskgarden/react-buttons';
-import { Modal, Header, Body, Footer, FooterItem, Close } from '@zendeskgarden/react-modals';
+import { DeleteModal } from '../../Root/components/DeleteModal';
 
 const VOICES = gql`
   {
@@ -47,7 +47,7 @@ const VoiceBox = styled.li`
 
   background: #012b30;
   border-radius: 8px;
-  border: 1px black solid;
+  border: 1px #012b30 solid;
 `;
 const VoiceTitle = styled.div`
   height: 135px;
@@ -101,65 +101,35 @@ const TrashButton = props => (
   </Button>
 );
 
-const DeleteModal = ({ isDeleting, setIsDeleting }) => {
-  const [deleteVoice, { loading, data }] = useMutation(DELETE_VOICE, { refetchQueries: [VOICES] });
-
-  useEffect(() => {
-    if (data) setIsDeleting(null);
-  });
-
-  return isDeleting ? (
-    <Modal
-      onClose={() => setIsDeleting(null)}
-      css={css`
-        width: 477px;
-      `}
-    >
-      <Header>Are you sure you want to delete this voice and your audio files?</Header>
-      <Body>
-        {loading ? (
-          <Loading />
-        ) : (
-          <OrangeButton
-            onClick={() => {
-              deleteVoice({ variables: { id: isDeleting.id } });
-            }}
-            css={css`
-              width: 100%;
-            `}
-          >
-            Yes, delete
-          </OrangeButton>
-        )}
-
-        <Button
-          onClick={() => setIsDeleting(null)}
-          css={css`
-            width: 100%;
-            border: none;
-            color: black;
-            margin-top: 10px;
-          `}
-        >
-          Cancel
-        </Button>
-      </Body>
-      <Close aria-label="Close modal" />
-    </Modal>
-  ) : (
-    ''
-  );
-};
-
 export const Voices: React.FC = () => {
   const { data, loading } = useQuery(VOICES);
   const [isDeleting, setIsDeleting] = useState(null);
+  const [deleteVoice, deleteVoiceResults] = useMutation(DELETE_VOICE, {
+    refetchQueries: [VOICES]
+  });
+
+  useEffect(() => {
+    if (deleteVoiceResults.data) {
+      setIsDeleting(null);
+      deleteVoiceResults.reset();
+    }
+  }, [deleteVoiceResults, setIsDeleting]);
 
   if (loading) return <Loading />;
 
   return (
     <>
-      <DeleteModal isDeleting={isDeleting} setIsDeleting={setIsDeleting} />
+      {isDeleting ? (
+        <DeleteModal
+          loading={deleteVoiceResults.loading}
+          onDelete={() => deleteVoice({ variables: { id: isDeleting.id } })}
+          onCancel={() => setIsDeleting(null)}
+        >
+          Are you sure you want to delete this voice and your audio files?
+        </DeleteModal>
+      ) : (
+        ''
+      )}
       <TitleBar>My Voices</TitleBar>
       <VoiceList>
         {data.voices.map(voice => (
