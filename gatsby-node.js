@@ -116,7 +116,7 @@ exports.onCreateWebpackConfig = ({ stage, actions, loaders, getConfig }) => {
   if (stage === 'build-html' || stage === 'develop-html') {
     config.module.rules = [
       {
-        test: /extendable-media-recorder/,
+        test: /useAudioRecorder/,
         use: loaders.null()
       },
       ...config.module.rules
