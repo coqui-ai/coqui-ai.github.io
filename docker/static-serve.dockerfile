@@ -1,8 +1,8 @@
-FROM node:16.15-bullseye-slim as build
+FROM node:14.16-slim as build
 WORKDIR /app
 COPY ./package.json /app/package.json
 COPY ./yarn.lock /app/yarn.lock
-RUN yarn install
+RUN yarn install --frozen-lockfile
 COPY . .
 ARG GATSBY_BACKEND_URL
 ARG REACT_APP_GITHUB_KEY
