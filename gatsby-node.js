@@ -97,7 +97,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   });
 };
 
-exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
+exports.onCreateWebpackConfig = ({ stage, actions, loaders, getConfig }) => {
   const config = getConfig();
 
   const exampleTranspileJsRule = config.module.rules.filter(
@@ -112,6 +112,16 @@ exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
 
     ...config.module.rules
   ];
+
+  if (stage === 'build-html' || stage === 'develop-html') {
+    config.module.rules = [
+      {
+        test: /useAudioRecorder/,
+        use: loaders.null()
+      },
+      ...config.module.rules
+    ];
+  }
 
   actions.replaceWebpackConfig(config);
 };
