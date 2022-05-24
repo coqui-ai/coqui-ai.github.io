@@ -146,7 +146,7 @@ export const CreateVoice: React.FC = () => {
   const [createVoice, { data, loading, error }] = useMutation(CREATE_VOICE);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: ['audio/wav'],
+    accept: ['.wav', '.mp3', '.ogg', '.webm'],
     multiple: false,
     onDrop: (acceptedFiles: File[]) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
