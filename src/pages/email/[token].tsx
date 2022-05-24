@@ -12,6 +12,7 @@ import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { gql, useMutation } from '@apollo/client';
 import { navigate } from 'gatsby';
 import { CenterWell } from 'layouts/Root/components/Styled';
+import { useProfile } from '../../../utils/auth';
 
 const VERIFY_EMAIL = gql`
   mutation verifyEmail($token: String!) {
@@ -29,6 +30,7 @@ const TokenPage: React.FC = ({ token }) => {
   const [verifyStatus, setVerifyStatus] = useState('verifying');
   const [errorInfo, setErrorInfo] = useState('');
   const [verifyEmail, { verifying }] = useMutation(VERIFY_EMAIL);
+  const { refetch } = useProfile();
 
   useEffect(() => {
     verifyEmail({
@@ -41,6 +43,7 @@ const TokenPage: React.FC = ({ token }) => {
           setVerifyStatus('error');
           setErrorInfo(data.verifyEmail.errors[0].errors[0]);
         } else {
+          refetch();
           setVerifyStatus('verified');
           navigate('/voices');
         }
@@ -49,7 +52,7 @@ const TokenPage: React.FC = ({ token }) => {
         setVerifyStatus('error');
         setErrorInfo('');
       });
-  }, [token, verifyEmail]);
+  }, [token, verifyEmail, refetch]);
 
   return (
     <RootLayout hasSkipNav={false}>

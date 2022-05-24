@@ -40,24 +40,24 @@ const CREATE_VOICE = gql`
 const QuickTips = () => (
   <Well
     css={css`
-      width: 699px;
       margin: 33px auto;
-      min-height: 341px;
-      padding: 0;
-      background: #fff7ed;
       border-color: #fff7ed;
+      background: #fff7ed;
+      padding: 0;
+      width: 699px;
+      min-height: 341px;
       color: #313940;
       font-weight: 500;
     `}
   >
     <Title
       css={css`
-        border-bottom: 1px solid #c2c8cc;
-        height: 57px;
         display: flex;
         align-items: center;
-        font-size: 20px;
+        border-bottom: 1px solid #c2c8cc;
         padding-left: 28px;
+        height: 57px;
+        font-size: 20px;
       `}
     >
       <LampOn
@@ -81,8 +81,8 @@ const QuickTips = () => (
         English voice samples result in increased voice similarity.
       </UnorderedList.Item>
       <UnorderedList.Item>On average 30 secs recording is necessary.</UnorderedList.Item>
-      <UnorderedList.Item>Don't stutter or stammer in the recording.</UnorderedList.Item>
-      <UnorderedList.Item>Don't pause too long.</UnorderedList.Item>
+      <UnorderedList.Item>Don&apos;t stutter or stammer in the recording.</UnorderedList.Item>
+      <UnorderedList.Item>Don&apos;t pause too long.</UnorderedList.Item>
       <UnorderedList.Item>
         Eliminate background noise as much as possible, although the model is robust against a
         certain noise level.
@@ -118,17 +118,17 @@ const Radio = ({ children, checked, onClick }) => (
 const Or = () => (
   <div
     css={css`
-      border-bottom: 1px #aaa solid;
       margin: 39px 0;
+      border-bottom: 1px #aaa solid;
     `}
   >
     <div
       css={css`
         margin: 0 auto;
-        width: 30px;
-        background: white;
-        text-align: center;
         margin-bottom: -9.5px;
+        background: #fff;
+        width: 30px;
+        text-align: center;
         color: #aaa;
       `}
     >
@@ -143,10 +143,10 @@ export const CreateVoice: React.FC = () => {
   const [fileValue, setFileValue] = useState<File>(null);
   const [recordingValue, setRecordingValue] = useState(null);
 
-  const [createVoice, { data, loading, error }] = useMutation(CREATE_VOICE);
+  const [createVoice, { data, loading }] = useMutation(CREATE_VOICE);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    accept: ['audio/wav'],
+    accept: ['.wav', '.mp3', '.ogg', '.webm'],
     multiple: false,
     onDrop: (acceptedFiles: File[]) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
@@ -171,6 +171,8 @@ export const CreateVoice: React.FC = () => {
         voice: sourceValue === 'record' ? recordingValue.blob : fileValue
       }
     });
+
+    return true;
   };
 
   return (
@@ -190,7 +192,7 @@ export const CreateVoice: React.FC = () => {
       <QuickTips />
 
       <CenterContent>
-        <Radio checked={sourceValue === 'record'} onClick={e => setSourceValue('record')}>
+        <Radio checked={sourceValue === 'record'} onClick={() => setSourceValue('record')}>
           <Span isBold>Record audio</Span> &mdash; Read and record the text sample below{' '}
           <Span hue="rgb(47 57 65 / 50%)">~30seconds minimum</Span>
         </Radio>
@@ -198,8 +200,8 @@ export const CreateVoice: React.FC = () => {
         <Well
           isRecessed
           css={css`
-            padding: 12px 19px;
             margin-bottom: 32px;
+            padding: 12px 19px;
           `}
         >
           Once upon a time, the King’s youngest son became filled with the desire to go abroad, and
@@ -218,7 +220,7 @@ export const CreateVoice: React.FC = () => {
 
         <Or />
 
-        <Radio checked={sourceValue === 'upload'} onClick={e => setSourceValue('upload')}>
+        <Radio checked={sourceValue === 'upload'} onClick={() => setSourceValue('upload')}>
           <Span isBold>Upload audio file here</Span>
         </Radio>
 
@@ -226,9 +228,9 @@ export const CreateVoice: React.FC = () => {
           {...getRootProps()}
           isDragging={isDragActive}
           css={css`
-            height: 241px;
-            margin-bottom: 30px;
             flex-flow: column;
+            margin-bottom: 30px;
+            height: 241px;
           `}
         >
           {isDragActive ? (
