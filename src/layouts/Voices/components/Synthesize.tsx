@@ -94,9 +94,9 @@ const SpeedControl = connect(props => {
               }
             `}
           >
-            <div onClick={() => props.formik.setFieldValue('speed', 0)}>0.5x (2x slower)</div>
-            <div onClick={() => props.formik.setFieldValue('speed', 1)}>1x (normal)</div>
-            <div onClick={() => props.formik.setFieldValue('speed', 2)}>2x (faster)</div>
+            <div onClick={() => props.formik.setFieldValue('speed', 0)}>Slower</div>
+            <div onClick={() => props.formik.setFieldValue('speed', 1)}>Normal</div>
+            <div onClick={() => props.formik.setFieldValue('speed', 2)}>Faster</div>
           </div>
           <div
             css={css`
