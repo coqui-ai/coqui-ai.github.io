@@ -180,7 +180,7 @@ export const Synthesize: React.FC = ({ locationState = null, id }) => {
             createSample({
               variables: {
                 ...values,
-                speed: { 0: '0.5', 1: '1', 2: '2' }[values.speed],
+                speed: { 0: '2', 1: '1', 2: '0.5' }[values.speed],
                 voice_id: voice.id
               }
             });
