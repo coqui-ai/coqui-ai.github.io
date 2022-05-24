@@ -8,9 +8,9 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery, gql, useMutation } from '@apollo/client';
 import { Link } from 'gatsby';
-import { Loading, OrangeButton, TitleBar } from 'layouts/Root/components/Styled';
+import { Loading, OrangeButton, TitleBar, CenterContent } from 'layouts/Root/components/Styled';
 import styled, { css } from 'styled-components';
-import { MusicPlaylist, Trash } from 'iconsax-react';
+import { MusicPlaylist, Trash, Add } from 'iconsax-react';
 import { Button } from '@zendeskgarden/react-buttons';
 import { DeleteModal } from '../../Root/components/DeleteModal';
 
@@ -65,7 +65,29 @@ const VoiceControls = styled.div`
     display: inline-block;
   }
 `;
+const AddVoiceBox = styled.div`
+  width: 280px;
+  height: 230px;
+  margin: 7px;
+  flex-shrink: 0;
 
+  background: #fff;
+  border-radius: 8px;
+  border: 1px #C4C4C4 dashed;
+`;
+const AddVoiceText = styled.div`
+  line-height: 54px;
+  padding: 23px 30px;
+`;
+const CreateNewVoiceButton = styled(OrangeButton)`
+  &:hover:enabled {
+    background-color: white;
+    color: #ed8f1c;
+    border-color: #ed8f1c;
+  }
+  margin-left: 64px;
+  margin-right: 64px;
+`;
 const SamplesButton = styled(Button)`
   &:hover:enabled {
     background-color: #90bbbb;
@@ -101,6 +123,76 @@ const TrashButton = props => (
   </Button>
 );
 
+const AddVoiceContent = () => (
+  <CenterContent>
+    <Link
+      to={`/voices/create`}
+      css={css`
+        &,
+        &:hover {
+          text-decoration: none;
+        }
+      `}
+    >
+      <AddVoiceBox>
+        <AddVoiceText>
+        You have not created a voice yet
+        </AddVoiceText>
+        <Add
+          size={58}
+          color="#292D32"
+          style={{ margin: "auto", display: "block", paddingBottom: 20 }}
+        />
+        <CreateNewVoiceButton>
+          Create new voice
+        </CreateNewVoiceButton>
+      </AddVoiceBox>
+    </Link>
+  </CenterContent>
+);
+
+const VoiceBoxes = props => {
+  return props.voices.map(voice => (
+    <VoiceBox key={voice.id}>
+      <VoiceTitle>{voice.name}</VoiceTitle>
+      <VoiceControls>
+        <Link
+          to={`/voices/${voice.id}/synthesize`}
+          css={css`
+            &,
+            &:hover {
+              text-decoration: none;
+            }
+          `}
+        >
+          <OrangeButton>
+            <MusicPlaylist
+              size={16}
+              color="#012B30"
+              variant="Bold"
+              style={{ marginRight: 10 }}
+            />
+            Synthesize Voice
+          </OrangeButton>
+        </Link>
+        <Link
+          to={`/voices/${voice.id}/samples`}
+          css={css`
+            &,
+            &:hover {
+              text-decoration: none;
+            }
+          `}
+        >
+          <SamplesButton>{voice.samples_count} Audio Files</SamplesButton>
+        </Link>
+
+        <TrashButton onClick={() => props.trashClicked(voice)} />
+      </VoiceControls>
+    </VoiceBox>
+  ));
+};
+
 export const Voices: React.FC = () => {
   const { data, loading } = useQuery(VOICES);
   const [isDeleting, setIsDeleting] = useState(null);
@@ -131,47 +223,17 @@ export const Voices: React.FC = () => {
         ''
       )}
       <TitleBar>My Voices</TitleBar>
-      <VoiceList>
-        {data.voices.map(voice => (
-          <VoiceBox key={voice.id}>
-            <VoiceTitle>{voice.name}</VoiceTitle>
-            <VoiceControls>
-              <Link
-                to={`/voices/${voice.id}/synthesize`}
-                css={css`
-                  &,
-                  &:hover {
-                    text-decoration: none;
-                  }
-                `}
-              >
-                <OrangeButton>
-                  <MusicPlaylist
-                    size={16}
-                    color="#012B30"
-                    variant="Bold"
-                    style={{ marginRight: 10 }}
-                  />
-                  Synthesize Voice
-                </OrangeButton>
-              </Link>
-              <Link
-                to={`/voices/${voice.id}/samples`}
-                css={css`
-                  &,
-                  &:hover {
-                    text-decoration: none;
-                  }
-                `}
-              >
-                <SamplesButton>{voice.samples_count} Audio Files</SamplesButton>
-              </Link>
-
-              <TrashButton onClick={() => setIsDeleting(voice)} />
-            </VoiceControls>
-          </VoiceBox>
-        ))}
-      </VoiceList>
+      { data.voices.length > 0 ? (
+        <VoiceList>
+          <VoiceBoxes
+            voices={data.voices}
+            trashClicked={voice => setIsDeleting(voice)}
+          />
+        </VoiceList>
+        ) : (
+          <AddVoiceContent/>
+        )
+      }
     </>
   );
 };
