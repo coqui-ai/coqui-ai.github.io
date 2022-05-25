@@ -66,7 +66,7 @@ export const Creator: React.FC = () => {
             text-align: center;
           `}
         >
-          $XXX/month
+          $XX/month
         </XL>
       </Title>
       <Paragraph>
@@ -76,8 +76,8 @@ export const Creator: React.FC = () => {
             margin-bottom: ${p => p.theme.space.lg};
           `}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum orci tortor, quis
-          ultricies tortor semper vel.
+          Coqui&apos;s lightning-fast voice cloning, all the quality with none of the hassle. Get
+          started immediately!
         </LG>
       </Paragraph>
       <Span>
@@ -85,25 +85,19 @@ export const Creator: React.FC = () => {
           <CheckIconStyled>
             <CheckIcon />
           </CheckIconStyled>{' '}
-          Utterly amazing feature one
+          Lightning-fast voice cloning
         </LG>
         <LG>
           <CheckIconStyled>
             <CheckIcon />
           </CheckIconStyled>{' '}
-          Utterly amazing feature two
+          Up to A saved voices
         </LG>
         <LG>
           <CheckIconStyled>
             <CheckIcon />
           </CheckIconStyled>{' '}
-          Utterly amazing feature three
-        </LG>
-        <LG>
-          <CheckIconStyled>
-            <CheckIcon />
-          </CheckIconStyled>{' '}
-          Utterly amazing feature four
+          Up to B saved audio clips per voice
         </LG>
         <LG
           css={css`
@@ -114,9 +108,21 @@ export const Creator: React.FC = () => {
           <CheckIconStyled>
             <CheckIcon />
           </CheckIconStyled>{' '}
-          Utterly amazing feature five
+          Unlimited audio clip downloads
         </LG>
       </Span>
+      <Paragraph>
+        <LG
+          isBold
+          css={css`
+            ${textStyling}
+            margin-bottom: ${p => p.theme.space.md};
+            text-align: center;
+          `}
+        >
+          Sign up for the upcoming launch!
+        </LG>
+      </Paragraph>
       <Row>
         <Col textAlign="center">
           <Link to="/signup?tags=4282575">

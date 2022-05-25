@@ -76,8 +76,8 @@ export const Enterprise: React.FC = () => {
         `}
       >
         <LG>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum orci tortor, quis
-          ultricies tortor semper vel.
+          The same lightning-fast, quality voice cloning in Pro, but with bespoke features required
+          for the enterprise.
         </LG>
       </Paragraph>
       <Span>
@@ -85,25 +85,19 @@ export const Enterprise: React.FC = () => {
           <CheckIconStyled>
             <CheckIcon />
           </CheckIconStyled>{' '}
-          Utterly amazing feature one
+          Everything in Pro plus…
         </LG>
         <LG>
           <CheckIconStyled>
             <CheckIcon />
           </CheckIconStyled>{' '}
-          Utterly amazing feature two
+          Unlimited number of saved voices
         </LG>
         <LG>
           <CheckIconStyled>
             <CheckIcon />
           </CheckIconStyled>{' '}
-          Utterly amazing feature three
-        </LG>
-        <LG>
-          <CheckIconStyled>
-            <CheckIcon />
-          </CheckIconStyled>{' '}
-          Utterly amazing feature four
+          Unlimited number of saved audio clips
         </LG>
         <LG
           css={css`
@@ -114,9 +108,21 @@ export const Enterprise: React.FC = () => {
           <CheckIconStyled>
             <CheckIcon />
           </CheckIconStyled>{' '}
-          Utterly amazing feature five
+          Unlimited audio clip downloads
         </LG>
       </Span>
+      <Paragraph>
+        <LG
+          isBold
+          css={css`
+            ${textStyling}
+            margin-bottom: ${p => p.theme.space.md};
+            text-align: center;
+          `}
+        >
+          Sign up for the upcoming launch!
+        </LG>
+      </Paragraph>
       <Row>
         <Col textAlign="center">
           <Link to="/signup?tags=4282583">

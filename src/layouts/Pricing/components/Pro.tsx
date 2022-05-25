@@ -87,7 +87,7 @@ export const Pro: React.FC = () => {
             text-align: center;
           `}
         >
-          $XXX/month
+          $XX/month
         </XL>
       </Title>
       <Paragraph
@@ -97,8 +97,8 @@ export const Pro: React.FC = () => {
         `}
       >
         <LG>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum orci tortor, quis
-          ultricies tortor semper vel.
+          The same lightning-fast voice cloning in Creator, but more of it: more voices, more clips
+          with the same quality.
         </LG>
       </Paragraph>
       <Span>
@@ -106,25 +106,19 @@ export const Pro: React.FC = () => {
           <CheckIconStyled>
             <CheckIcon />
           </CheckIconStyled>{' '}
-          Utterly amazing feature one
+          Everything in Creator plus…
         </LG>
         <LG>
           <CheckIconStyled>
             <CheckIcon />
           </CheckIconStyled>{' '}
-          Utterly amazing feature two
+          Up to M saved voices
         </LG>
         <LG>
           <CheckIconStyled>
             <CheckIcon />
           </CheckIconStyled>{' '}
-          Utterly amazing feature three
-        </LG>
-        <LG>
-          <CheckIconStyled>
-            <CheckIcon />
-          </CheckIconStyled>{' '}
-          Utterly amazing feature four
+          Up to N saved audio clips per voice
         </LG>
         <LG
           css={css`
@@ -135,9 +129,21 @@ export const Pro: React.FC = () => {
           <CheckIconStyled>
             <CheckIcon />
           </CheckIconStyled>{' '}
-          Utterly amazing feature five
+          Unlimited audio clip downloads
         </LG>
       </Span>
+      <Paragraph>
+        <LG
+          isBold
+          css={css`
+            ${textStyling}
+            margin-bottom: ${p => p.theme.space.md};
+            text-align: center;
+          `}
+        >
+          Sign up for the upcoming launch!
+        </LG>
+      </Paragraph>
       <Row>
         <Col textAlign="center">
           <Link to="/signup?tags=4282579">
