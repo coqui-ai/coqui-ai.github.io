@@ -7,13 +7,14 @@
 
 import React from 'react';
 import { css } from 'styled-components';
+import { Anchor } from '@zendeskgarden/react-buttons';
 import { headerStyling, textStyling } from './Styles';
-import { LG, XXXL } from '@zendeskgarden/react-typography';
+import { LG, XL, XXXL } from '@zendeskgarden/react-typography';
 import { Well, Title, Paragraph } from '@zendeskgarden/react-notifications';
 
 export const PricesFAQText: React.FC = () => {
   return (
-    <Well isFloating>
+    <Well>
       <Title
         css={css`
           ${headerStyling}
@@ -31,6 +32,9 @@ export const PricesFAQText: React.FC = () => {
           Pricing FAQ
         </XXXL>
       </Title>
+      <Title>
+        <XL isBold>Can I purchase more saved voices and/or more audio clips?</XL>
+      </Title>
       <Paragraph>
         <LG
           css={css`
@@ -38,10 +42,40 @@ export const PricesFAQText: React.FC = () => {
             margin-bottom: ${p => p.theme.space.lg};
           `}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices nisi quis dapibus
-          suscipit. Donec consequat, mauris vitae blandit gravida, enim felis volutpat turpis, nec
-          pellentesque massa ante non arcu. Maecenas lacus ipsum, faucibus a libero vel, fringilla
-          elementum nunc. Vivamus vel volutpat lacus, sed finibus neque.
+          It is always possible to purchase more saved voices and/or more audio clips. The primary
+          way to do so is to subscribe to the next highest tier, e.g. moving from Creator to Pro or
+          moving from Pro to Enterprise.
+        </LG>
+      </Paragraph>
+      <Title>
+        <XL isBold>Where can I learn more about the Enterprise plan?</XL>
+      </Title>
+      <Paragraph>
+        <LG
+          css={css`
+            ${textStyling}
+            margin-bottom: ${p => p.theme.space.lg};
+          `}
+        >
+          As Enterprise largely consists of bespoke features tuned to your use cases, the best way
+          to discover the details of Enterprise is to contact us directly at{' '}
+          <Anchor href="mail:enterprise@coqui.ai">enterprise@coqui.ai</Anchor> and we can discuss
+          what we can provide for you.
+        </LG>
+      </Paragraph>
+      <Title>
+        <XL isBold>How do I go over the saved audio clips per voice limit for my plan?</XL>
+      </Title>
+      <Paragraph>
+        <LG
+          css={css`
+            ${textStyling}
+          `}
+        >
+          We have found that it is not uncommon for a customer to require a single saved voice to
+          have many saved audio clips, so many saved audio clips that it is over the limit of their
+          current tier. If the next higher tier, e.g. Pro, allows for the desired number of audio
+          clips per voice, the easiest solution is to subscribe to the next highest tier.
         </LG>
       </Paragraph>
       <Paragraph>
@@ -51,10 +85,10 @@ export const PricesFAQText: React.FC = () => {
             margin-bottom: ${p => p.theme.space.lg};
           `}
         >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices nisi quis dapibus
-          suscipit. Donec consequat, mauris vitae blandit gravida, enim felis volutpat turpis, nec
-          pellentesque massa ante non arcu. Maecenas lacus ipsum, faucibus a libero vel, fringilla
-          elementum nunc. Vivamus vel volutpat lacus, sed finibus neque.
+          However, it may be that the next higher tier, e.g. Pro, still does not have a high enough
+          audio clips per voice limit. If this is the case, it is best to contact us directly at{' '}
+          <Anchor href="mail:enterprise@coqui.ai">enterprise@coqui.ai</Anchor> and we can discuss
+          what we can provide for you.
         </LG>
       </Paragraph>
     </Well>
