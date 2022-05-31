@@ -70,6 +70,7 @@ const AddVoiceBox = styled.div`
   height: 230px;
   margin: 7px;
   flex-shrink: 0;
+  margin: auto;
 
   background: #fff;
   border-radius: 8px;
