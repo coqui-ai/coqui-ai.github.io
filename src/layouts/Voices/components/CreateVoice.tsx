@@ -143,7 +143,14 @@ export const CreateVoice: React.FC = () => {
   const [fileValue, setFileValue] = useState<File>(null);
   const [recordingValue, setRecordingValue] = useState(null);
 
-  const [createVoice, { data, loading }] = useMutation(CREATE_VOICE);
+  const [createVoice, { data, loading }] = useMutation(CREATE_VOICE, {
+    update: cache => {
+      cache.evict({
+        id: 'ROOT_QUERY',
+        fieldName: 'voices'
+      });
+    }
+  });
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: ['.wav', '.mp3', '.ogg', '.webm'],

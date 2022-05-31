@@ -155,7 +155,7 @@ export const AudioPlayer = ({ src }) => {
         `}
       >
         <Progress
-          value={(100 * (currentTime || 0)) / totalTime}
+          value={(100 * (currentTime || 0)) / totalTime || 0}
           css={css`
             width: 369px;
             & div {

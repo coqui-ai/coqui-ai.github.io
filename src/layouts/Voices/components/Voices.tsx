@@ -74,7 +74,7 @@ const AddVoiceBox = styled.div`
 
   background: #fff;
   border-radius: 8px;
-  border: 1px #C4C4C4 dashed;
+  border: 1px #c4c4c4 dashed;
 `;
 const AddVoiceText = styled.div`
   line-height: 54px;
@@ -136,17 +136,13 @@ const AddVoiceContent = () => (
       `}
     >
       <AddVoiceBox>
-        <AddVoiceText>
-        You have not created a voice yet
-        </AddVoiceText>
+        <AddVoiceText>You have not created a voice yet</AddVoiceText>
         <Add
           size={58}
           color="#292D32"
-          style={{ margin: "auto", display: "block", paddingBottom: 20 }}
+          style={{ margin: 'auto', display: 'block', paddingBottom: 20 }}
         />
-        <CreateNewVoiceButton>
-          Create new voice
-        </CreateNewVoiceButton>
+        <CreateNewVoiceButton>Create new voice</CreateNewVoiceButton>
       </AddVoiceBox>
     </Link>
   </CenterContent>
@@ -167,12 +163,7 @@ const VoiceBoxes = props => {
           `}
         >
           <OrangeButton>
-            <MusicPlaylist
-              size={16}
-              color="#012B30"
-              variant="Bold"
-              style={{ marginRight: 10 }}
-            />
+            <MusicPlaylist size={16} color="#012B30" variant="Bold" style={{ marginRight: 10 }} />
             Synthesize Voice
           </OrangeButton>
         </Link>
@@ -198,7 +189,12 @@ export const Voices: React.FC = () => {
   const { data, loading } = useQuery(VOICES);
   const [isDeleting, setIsDeleting] = useState(null);
   const [deleteVoice, deleteVoiceResults] = useMutation(DELETE_VOICE, {
-    refetchQueries: [VOICES]
+    update: cache => {
+      cache.evict({
+        id: 'ROOT_QUERY',
+        fieldName: 'voices'
+      });
+    }
   });
 
   useEffect(() => {
@@ -224,17 +220,13 @@ export const Voices: React.FC = () => {
         ''
       )}
       <TitleBar>My Voices</TitleBar>
-      { data.voices.length > 0 ? (
+      {data.voices.length > 0 ? (
         <VoiceList>
-          <VoiceBoxes
-            voices={data.voices}
-            trashClicked={voice => setIsDeleting(voice)}
-          />
+          <VoiceBoxes voices={data.voices} trashClicked={voice => setIsDeleting(voice)} />
         </VoiceList>
-        ) : (
-          <AddVoiceContent/>
-        )
-      }
+      ) : (
+        <AddVoiceContent />
+      )}
     </>
   );
 };
