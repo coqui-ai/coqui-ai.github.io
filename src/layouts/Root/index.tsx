@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import { createGlobalStyle, css } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import { SkipNav } from '@zendeskgarden/react-chrome';
 import Footer from './components/Footer';
 import Header, { headerBoxShadow, headerHeight } from './components/Header';
@@ -32,12 +32,25 @@ const GlobalStyling = createGlobalStyle`
   }
 `;
 
+const Main = styled.main`
+  flex-grow: 1;
+  flex-shrink: 1;
+`;
+
+const GrayedMain = styled(Main)`
+  background-color: #E9EBED;
+`;
+
 interface IRootLayoutProps {
   hasSkipNav?: boolean;
+  showVoiceSearch?: boolean;
+  grayedBackground?: boolean;
   isSubscribing: boolean;
 }
 
-const RootLayout: React.FC<IRootLayoutProps> = ({ children, hasSkipNav, isSubscribing }) => {
+const RootLayout: React.FC<IRootLayoutProps> = ({ children, hasSkipNav, isSubscribing, showVoiceSearch, grayedBackground }) => {
+  const MainType = grayedBackground ? GrayedMain : Main;
+
   return (
     <div
       css={`
@@ -59,22 +72,20 @@ const RootLayout: React.FC<IRootLayoutProps> = ({ children, hasSkipNav, isSubscr
           Skip to main content
         </SkipNav>
       )}
-      <Header isSubscribing={isSubscribing} />
-      <main
-        css={`
-          flex-grow: 1;
-          flex-shrink: 1;
-        `}
-      >
+      <Header isSubscribing={isSubscribing} showVoiceSearch={showVoiceSearch} />
+
+      <MainType>
         {children}
-      </main>
+      </MainType>
       <Footer isSubscribing={isSubscribing} />
     </div>
   );
 };
 
 RootLayout.defaultProps = {
-  hasSkipNav: true
+  hasSkipNav: true,
+  showVoiceSearch: false,
+  grayedBackground: false,
 };
 
 export default RootLayout;
