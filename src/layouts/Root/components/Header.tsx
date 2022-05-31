@@ -18,7 +18,7 @@ import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x
 import MaxWidthLayout from 'layouts/MaxWidth';
 import { StyledNavigationLink } from './StyledNavigationLink';
 import { useAuth } from '../../../../utils/auth';
-import { AuthenticatedHeader } from './AuthenticatedHeader';
+import { VoiceSearchHeader } from './VoiceSearchHeader';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
   theme.shadows.lg(
@@ -250,13 +250,14 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
 
 interface IHeaderLayoutProps {
   isSubscribing: boolean;
+  showVoiceSearch: boolean;
 }
 
-const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing }) => {
+const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing, showVoiceSearch }) => {
   const [isNavigationVisible, setIsNavigationVisible] = useState(false);
   const user = useAuth();
 
-  if (user) return <AuthenticatedHeader />;
+  if (showVoiceSearch && user) return <VoiceSearchHeader />;
 
   return (
     <>

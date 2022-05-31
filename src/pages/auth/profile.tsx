@@ -21,7 +21,7 @@ const ProfilePage: React.FC = () => {
   });
 
   return (
-    <RootLayout hasSkipNav={false}>
+    <RootLayout hasSkipNav={false} showVoiceSearch={true}>
       <SEO />
       <RequireAuth>
         <Profile />

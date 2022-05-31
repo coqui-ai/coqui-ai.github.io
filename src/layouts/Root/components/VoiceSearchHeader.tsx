@@ -55,7 +55,7 @@ const UserMenu = ({ profile }: { profile: Profile }) => {
   );
 };
 
-export const AuthenticatedHeader = () => {
+export const VoiceSearchHeader = () => {
   const logoWordmarkImage = useStaticQuery(
     graphql`
       query {
