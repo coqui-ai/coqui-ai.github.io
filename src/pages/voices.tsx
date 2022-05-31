@@ -14,14 +14,17 @@ import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 import { RequireAuth } from 'components/RequireAuth';
 import { Voices } from 'layouts/Voices/components/Voices';
+import { useProfileIsComplete } from '../../utils/auth';
 
 const VoicesPage: React.FC = () => {
   useEffect(() => {
     consentedToGoogleAnalytics();
   });
 
+  const isComplete = useProfileIsComplete();
+
   return (
-    <RootLayout hasSkipNav={false} showVoiceSearch={true}>
+    <RootLayout hasSkipNav={false} showVoiceSearch={true} grayedBackground={!isComplete}>
       <SEO />
       <RequireAuth>
         <Voices />
