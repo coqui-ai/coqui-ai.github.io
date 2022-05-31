@@ -74,25 +74,22 @@ const SampleControl = styled.div`
   }
 `;
 
-const TrashButton = props => (
-  <Button
-    {...props}
-    css={css`
-      background-color: #303f2c;
-      border-color: #303f2c;
-      width: 40px;
-      padding: 0;
-      margin-left: 10px;
-    `}
-  ></Button>
-);
-
 export const Samples: React.FC = ({ voice_id }) => {
   const { data, loading } = useQuery(SAMPLES, { variables: { voice_id } });
 
   const [isDeleting, setIsDeleting] = useState(null);
   const [deleteSample, deleteSampleResults] = useMutation(DELETE_SAMPLE, {
-    refetchQueries: [SAMPLES]
+    update: cache => {
+      cache.evict({
+        id: 'ROOT_QUERY',
+        fieldName: 'samples',
+        args: { voice_id }
+      });
+      cache.evict({
+        id: 'ROOT_QUERY',
+        fieldName: 'voices'
+      });
+    }
   });
   const { currentTrack, Player } = useManyPlayers();
 

@@ -5,7 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import { useMutation, gql, useQuery } from '@apollo/client';
+import { useMutation, gql, useQuery, useApolloClient } from '@apollo/client';
 
 import createPersistedState from 'use-persisted-state';
 const useAuthState = createPersistedState('auth');
@@ -81,12 +81,14 @@ export function useProfileIsComplete(): boolean {
 export function useLoginEffect() {
   const [, setAuthState] = useAuthState();
   const [login, { data, loading, error }] = useMutation(LOGIN);
+  const client = useApolloClient();
 
   return [
     async (username, password) => {
       const authdata = await login({ variables: { username, password } });
 
       setAuthState(authdata.data);
+      client.resetStore();
     },
     {
       data,
@@ -98,6 +100,12 @@ export function useLoginEffect() {
 
 export function useLogoutEffect() {
   const [, setState] = useAuthState();
+  const client = useApolloClient();
 
-  return [() => setState(null)];
+  return [
+    () => {
+      setState(null);
+      client.resetStore();
+    }
+  ];
 }

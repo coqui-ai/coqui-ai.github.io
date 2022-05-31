@@ -5,8 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useEffect } from 'react';
-import { useMutation } from '@apollo/client';
+import React from 'react';
 import { Loading, OrangeButton } from 'layouts/Root/components/Styled';
 import { css } from 'styled-components';
 import { Button } from '@zendeskgarden/react-buttons';

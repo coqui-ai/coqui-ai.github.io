@@ -144,7 +144,21 @@ export const Synthesize: React.FC = ({ locationState = null, id }) => {
 
   const voice = data?.voice;
 
-  const [createSample, createSampleStatus] = useMutation(CREATE_SAMPLE);
+  const [createSample, createSampleStatus] = useMutation(CREATE_SAMPLE, {
+    update: (cache, result) => {
+      if (result?.data?.createSample?.sample?.voice_id) {
+        cache.evict({
+          id: 'ROOT_QUERY',
+          fieldName: 'samples',
+          args: { voice_id: result.data.createSample.sample.voice_id }
+        });
+        cache.evict({
+          id: 'ROOT_QUERY',
+          fieldName: 'voices'
+        });
+      }
+    }
+  });
 
   const sample = createSampleStatus?.data?.createSample?.sample;
 
