@@ -58,20 +58,24 @@ export function useProfile() {
   return { data: data?.profile, loading, error, refetch };
 }
 
-export function useProfileIsComplete() : boolean {
+export function useProfileIsComplete(): boolean {
   const auth = useAuth();
 
-  const { data, loading, error, refetch } = useQuery<{ profile: Profile }>(PROFILE, {
+  const { data } = useQuery<{ profile: Profile }>(PROFILE, {
     skip: !auth
   });
 
   if (!auth) return false;
 
   const profile = data?.profile;
-  return (profile.personal_name &&
+
+  return !!(
+    profile &&
+    profile.personal_name &&
     profile.organization_name &&
     profile.terms_accepted &&
-    profile.email_validated);
+    profile.email_validated
+  );
 }
 
 export function useLoginEffect() {
