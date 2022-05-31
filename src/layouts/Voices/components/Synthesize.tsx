@@ -13,7 +13,7 @@ import styled, { DefaultTheme, css } from 'styled-components';
 import { ThemeProvider } from '@zendeskgarden/react-theming';
 
 import { VoicesDropdown } from 'layouts/Root/components/VoicesDropdown';
-import { Field, Submit } from 'layouts/Root/components/Forms';
+import { Field, WordCountField, Submit } from 'layouts/Root/components/Forms';
 import { CenterContent, Loading, TitleBar } from 'layouts/Root/components/Styled';
 import { navigate } from 'gatsby';
 import { Link } from 'layouts/Root/components/StyledNavigationLink';
@@ -216,9 +216,10 @@ export const Synthesize: React.FC = ({ locationState = null, id }) => {
                 />
               </GardenForms.Field>
 
-              <Field
+              <WordCountField
                 name="text"
                 label="Input your text here"
+                wordCountDenominator={250}
                 as={Textarea}
                 style={{ height: 229 }}
                 fieldStyle={{ minHeight: 285 }}

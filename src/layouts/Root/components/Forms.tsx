@@ -8,7 +8,7 @@
 // This file is mostly about reconciling
 // `formik`, `@zendeskgarden/react-forms`, and our forms api
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import * as Formik from 'formik'; // { Formik, Field, Form }
 import * as GardenForms from '@zendeskgarden/react-forms';
@@ -60,6 +60,45 @@ export const Field = Formik.connect(props => {
         `}
       >
         {props.label}
+      </GardenForms.Label>
+      <Formik.Field {...fieldProps} />
+      {error ? <GardenForms.Message validation="error">{error}</GardenForms.Message> : ''}
+    </GardenForms.Field>
+  );
+});
+
+export const WordCountField = Formik.connect(props => {
+  const error =
+    props.error ||
+    props.formik.errors[props.name] ||
+    (props.formik.status ? props.formik.status[props.name] : null);
+
+  const [wordCount, setWordCount] = useState(0);
+  const fieldProps = {
+    id: props.name,
+    validation: error ? 'error' : null,
+    ...props,
+    error,
+    validate: value => {
+      setWordCount(value.trim().split(" ").length);
+    },
+  };
+
+  return (
+    <GardenForms.Field
+      css={`
+        min-height: 106px;
+      `}
+      style={props.fieldStyle}
+    >
+      <GardenForms.Label
+        css={`
+          font-weight: 400;
+        `}
+      >
+       <div style={{display: "flex"}}>
+        <span style={{flexGrow: 1}}>{props.label}</span><div>{wordCount}/{props.wordCountDenominator}</div>
+       </div>
       </GardenForms.Label>
       <Formik.Field {...fieldProps} />
       {error ? <GardenForms.Message validation="error">{error}</GardenForms.Message> : ''}
