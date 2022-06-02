@@ -37,7 +37,6 @@ export const AudioPlayer: React.FC<{
       if (audioRef.current.ended) {
         setIsPlaying(false);
         rangeElement.current.value = duration;
-        setTrackProgress(duration);
       } else {
         setTrackProgress(audioRef.current.currentTime);
       }
