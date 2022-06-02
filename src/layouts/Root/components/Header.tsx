@@ -9,16 +9,16 @@ import React, { useState, HTMLAttributes, useEffect } from 'react';
 import Img from 'gatsby-image';
 import queryString from 'query-string';
 import { useLocation } from '@reach/router';
-import styled, { css, DefaultTheme } from 'styled-components';
+import MaxWidthLayout from 'layouts/MaxWidth';
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { IconButton } from '@zendeskgarden/react-buttons';
+import { StyledNavigationLink } from './StyledNavigationLink';
+import { StyledNavigationItem } from './StyledNavigationItem';
+import styled, { css, DefaultTheme } from 'styled-components';
+import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { Dropdown, Menu, Item, Trigger } from '@zendeskgarden/react-dropdowns';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
-import MaxWidthLayout from 'layouts/MaxWidth';
-import { StyledNavigationLink } from './StyledNavigationLink';
-import { StyledNavigationItem } from './StyledNavigationItem';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
   theme.shadows.lg(
@@ -201,7 +201,13 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
           >
             <Trigger>
               <StyledMobileNavItem>
-                <StyledMobileNavMenu>Use Cases</StyledMobileNavMenu>
+                <StyledMobileNavMenu
+                  css={css`
+                    background-color: ${p => p.theme.palette.tofu};
+                  `}
+                >
+                  Use Cases
+                </StyledMobileNavMenu>
               </StyledMobileNavItem>
             </Trigger>
             <Menu hasArrow>
@@ -224,7 +230,18 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
             <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
           </StyledMobileNavItem>
           <StyledMobileNavItem>
-            <StyledMobileNavLink to="/sign-in">Sign In</StyledMobileNavLink>
+            <StyledMobileNavLink to="/auth/signin">Sign In</StyledMobileNavLink>
+          </StyledMobileNavItem>
+          <StyledMobileNavItem>
+            <StyledMobileNavLink
+              to="/auth/signup"
+              css={css`
+                background-color: ${p => getColor('yellow', 600, p.theme)};
+                color: #fff;
+              `}
+            >
+              Try now for free
+            </StyledMobileNavLink>
           </StyledMobileNavItem>
         </>
       )}
@@ -291,7 +308,18 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
             <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
           </StyledDesktopNavItem>
           <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="/sign-in">Sign In</StyledDesktopNavLink>
+            <StyledDesktopNavLink to="/auth/signin">Sign In</StyledDesktopNavLink>
+          </StyledDesktopNavItem>
+          <StyledDesktopNavItem>
+            <StyledDesktopNavLink
+              to="/auth/signup"
+              css={css`
+                background-color: ${p => getColor('kale', 800, p.theme)};
+                color: #fff;
+              `}
+            >
+              Try now for free
+            </StyledDesktopNavLink>
           </StyledDesktopNavItem>
         </>
       )}

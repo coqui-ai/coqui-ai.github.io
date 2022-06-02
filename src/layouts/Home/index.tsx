@@ -6,14 +6,16 @@
  */
 
 import React from 'react';
-import { Newsletter } from './components/Newsletter';
-import { News } from './components/News';
+import { CtA } from './components/CtA';
+import { Users } from './components/Users';
+import { TTSModels } from './components/TTSModels';
 
 const HomeLayout: React.FC = () => {
   return (
     <>
-      <Newsletter />
-      <News />
+      <CtA />
+      <Users />
+      <TTSModels />
     </>
   );
 };
