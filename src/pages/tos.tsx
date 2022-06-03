@@ -53,7 +53,7 @@ const PrivacyPage: React.FC = () => {
               </Row>
               <Row>
                 <Paragraph>
-                  <LG>Effective Date: May 23, 2022</LG>
+                  <LG>Effective Date: June 3, 2022</LG>
                 </Paragraph>
               </Row>
               <Row
@@ -164,13 +164,14 @@ const PrivacyPage: React.FC = () => {
                     We take no responsibility and assume no liability for Content you or any third
                     party uploads or posts on or through the Service. However, by posting Content
                     using the Service you grant us a perpetual right and license to use, modify,
-                    perform, display, reproduce, and distribute such Content on and through the
-                    Service. Coqui’s Service includes software which (algorithmically or otherwise)
-                    generates &quot;models&quot; based on the Content you upload, and stores such
-                    models on its servers. Any such models derived from any Content (including
-                    speech) which you upload as well as any other derivations from the Content
-                    (whether the models, data, usage insight, Feedback, or other derivations) are
-                    and shall remain the property of Coqui (the &quot;Derivations&quot;).
+                    perform, display (if applicable), reproduce, and distribute such Content on and
+                    through the Service. Coqui’s Service includes software which (algorithmically or
+                    otherwise) generates &quot;models&quot; based on the Content you upload, and
+                    stores such models on its servers. Any such models derived from any Content
+                    (including speech) which you upload as well as any other derivations from the
+                    Content (whether the models, data, usage insight, Feedback, or other
+                    derivations) are and shall remain the property of Coqui (the
+                    &quot;Derivations&quot;).
                   </LG>
                 </Paragraph>
                 <Paragraph>
@@ -213,9 +214,9 @@ const PrivacyPage: React.FC = () => {
                     the restriction of access to your computer and/or account. You agree to accept
                     responsibility for any and all activities or actions that occur under your
                     account and/or password, whether your password is with our Service or a
-                    third-party service. You must notify us immediately upon becoming aware of any
-                    (actual, threatened, or potential) breach of security or unauthorized use of
-                    your account.
+                    third-party service. You must notify us immediately (by email or otherwise) upon
+                    becoming aware of any (actual, threatened, or potential) breach of security or
+                    unauthorized use of your account.
                   </LG>
                 </Paragraph>
               </Row>
@@ -248,16 +249,17 @@ const PrivacyPage: React.FC = () => {
                   <LG>
                     You agree that you will not (a) modify, copy, decompile, disassemble or reverse
                     engineer, or cause any other party to modify, copy, decompile, disassemble or
-                    reverse engineer our software, technology, and/or the Service; (b) sublicense
-                    any of our intellectual property to third parties or sell, resell, rent,
-                    sublicense or lease the Service to third parties; (c) otherwise violate the
-                    license grant or restrictions set forth herein; (d) use the Service to store or
-                    transmit malicious code nor upload any Content which you do not have rights in
-                    or to; (e) interfere with or disrupt the integrity or performance of the Service
-                    or third-party data contained therein, (f) attempt to gain unauthorized access
-                    to the Services or their related systems or networks; (g) misappropriate any of
-                    our software, technology or other services or use the Service or permit enable
-                    or assist a third party to create competing products or services.
+                    reverse engineer our software, technology, and/or the Service; (b) unless you
+                    obtain our explicit permission in advance, sublicense any of our intellectual
+                    property to third parties or sell, resell, rent, sublicense or lease the Service
+                    to third parties; (c) otherwise violate the license grant or restrictions set
+                    forth herein; (d) use the Service to store or transmit malicious code nor upload
+                    any Content which you do not have rights in or to; (e) interfere with or disrupt
+                    the integrity or performance of the Service or third-party data contained
+                    therein, (f) attempt to gain unauthorized access to the Services or their
+                    related systems or networks; (g) misappropriate any of our software, technology
+                    or other services or use the Service or permit enable or assist a third party to
+                    create competing products or services.
                   </LG>
                 </Paragraph>
               </Row>
@@ -385,9 +387,9 @@ const PrivacyPage: React.FC = () => {
                 <Paragraph>
                   <LG>
                     All provisions of these Terms which by their nature should survive termination
-                    shall survive termination, including, without limitation, intellectual
-                    property/ownership provisions, warranty disclaimers, indemnity and limitations
-                    of liability.
+                    (e.g., Section 5, Section 6, Section 10, and Section 11 hereunder) shall survive
+                    termination, including, without limitation, intellectual property/ownership
+                    provisions, warranty disclaimers, indemnity and limitations of liability.
                   </LG>
                 </Paragraph>
               </Row>
@@ -486,7 +488,7 @@ const PrivacyPage: React.FC = () => {
                 <Paragraph>
                   <LG>
                     These Terms shall be governed and construed in accordance with the laws of
-                    California, United States, without regard to its conflict of law provisions.
+                    Delaware, United States, without regard to its conflict of law provisions.
                   </LG>
                 </Paragraph>
                 <Paragraph>
