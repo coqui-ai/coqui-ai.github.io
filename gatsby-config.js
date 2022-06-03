@@ -11,7 +11,6 @@ const path = require('path');
 const { tagNameMap } = require('./src/layouts/Models/components/TagNameMap');
 
 require('dotenv').config();
-envalid.cleanEnv(process.env, { ABSTRACT_TOKEN: envalid.str() });
 
 const capitalize = s => {
   if (typeof s !== 'string') {
