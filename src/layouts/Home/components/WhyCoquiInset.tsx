@@ -67,6 +67,7 @@ export const WhyCoquiInset: React.FC<{
                   css={css`
                     transform: scale(-1, 1);
                     transform-origin: center;
+                    vertical-align: text-top;
                   `}
                 />
               </Link>
