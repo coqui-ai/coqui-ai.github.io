@@ -8,8 +8,8 @@
 import React from 'react';
 import { css } from 'styled-components';
 import { Button } from '@zendeskgarden/react-buttons';
-import { StyledNavigationLink } from './StyledNavigationLink';
 import { getColor } from '@zendeskgarden/react-theming';
+import { StyledNavigationLink } from './StyledNavigationLink';
 
 export const TryNowButton: React.FC = () => {
   return (
