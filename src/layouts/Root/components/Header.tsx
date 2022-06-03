@@ -218,9 +218,6 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
             </Menu>
           </Dropdown>
           <StyledMobileNavItem>
-            <StyledMobileNavLink to="/pricing">Pricing</StyledMobileNavLink>
-          </StyledMobileNavItem>
-          <StyledMobileNavItem>
             <StyledMobileNavLink to="https://github.com/coqui-ai">Open Source</StyledMobileNavLink>
           </StyledMobileNavItem>
           <StyledMobileNavItem>
@@ -293,9 +290,6 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
               <Item value="/brand-voices">Brand Voices</Item>
             </Menu>
           </Dropdown>
-          <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="/pricing">Pricing</StyledDesktopNavLink>
-          </StyledDesktopNavItem>
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to="https://github.com/coqui-ai">
               Open Source
