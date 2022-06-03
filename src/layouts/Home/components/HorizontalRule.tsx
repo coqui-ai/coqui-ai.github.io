@@ -15,7 +15,7 @@ export const HorizontalRule: React.FC = () => {
       css={css`
         margin: auto;
         margin-bottom: ${p => p.theme.space.sm};
-        color: ${p => getColor('kale', 500, p.theme, 0.8)};
+        color: ${p => getColor('kale', 400, p.theme, 0.8)};
       `}
     />
   );

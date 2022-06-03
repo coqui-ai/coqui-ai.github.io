@@ -59,7 +59,7 @@ export const WhyCoquiInset: React.FC<{
               <Link
                 to={to}
                 css={css`
-                  color: ${p => getColor('kale', 600, p.theme)};
+                  color: ${p => getColor('kale', 500, p.theme)};
                 `}
               >
                 Learn More{' '}
