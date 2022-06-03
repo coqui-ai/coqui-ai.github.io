@@ -8,6 +8,7 @@
 import React from 'react';
 import { CtA } from './components/CtA';
 import { Users } from './components/Users';
+import { WhyCoqui } from './components/WhyCoqui';
 import { TTSModels } from './components/TTSModels';
 
 const HomeLayout: React.FC = () => {
@@ -16,6 +17,7 @@ const HomeLayout: React.FC = () => {
       <CtA />
       <Users />
       <TTSModels />
+      <WhyCoqui />
     </>
   );
 };
