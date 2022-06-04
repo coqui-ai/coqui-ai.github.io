@@ -94,7 +94,7 @@ export const AudioPlayer: React.FC<{
               color: ${isOriginal ? 'white' : getColor('kale', 700)};
             `}
           >
-            {title}
+            {isOriginal ? `${title}` : `"${title}"`}
           </LG>
         </Col>
         <Col size={8} />
