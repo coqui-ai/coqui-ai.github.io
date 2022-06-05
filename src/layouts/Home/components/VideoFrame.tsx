@@ -73,7 +73,8 @@ export const VideoFrame: React.FC = () => {
                     width: '100%',
                     height: '100%'
                   }}
-                  src="https://www.youtube.com/embed/eS_CZsrNpxI"
+                  allow="autoplay"
+                  src="https://www.youtube.com/embed/eS_CZsrNpxI?autoplay=1"
                   title="How To Clone"
                 />
               </Body>
