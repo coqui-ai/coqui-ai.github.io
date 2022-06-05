@@ -15,10 +15,8 @@ import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 export const Video: React.FC = () => {
   return (
     <StandardWidthLayout>
-      <Grid gutters="lg">
+      <Grid gutters={false}>
         <Row
-          alignItems="center"
-          justifyContent="center"
           css={css`
             padding-bottom: ${p => p.theme.space.xxl};
 
@@ -28,17 +26,11 @@ export const Video: React.FC = () => {
           `}
         >
           <Col
-            size={12}
-            order={0}
             css={css`
-              margin-right: auto;
               margin-bottom: ${p => p.theme.space.lg};
-              margin-left: auto;
             `}
           >
-            <div align="center">
-              <VideoFrame />
-            </div>
+            <VideoFrame />
           </Col>
         </Row>
       </Grid>
