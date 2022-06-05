@@ -258,7 +258,6 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
             >
               <p css="font-weight: 700">Product</p>
               <StyledLinksItem to="/models">Models</StyledLinksItem>
-              <StyledLinksItem to="/pricing">Pricing</StyledLinksItem>
             </div>
             <div
               css={css`
@@ -267,7 +266,7 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
               `}
             >
               <p css="font-weight: 700">Resources</p>
-              <StyledLinksItem to="/terms">Terms & Conditions</StyledLinksItem>
+              <StyledLinksItem to="/tos">Terms & Conditions</StyledLinksItem>
               <StyledLinksItem to="/privacy">Privacy Policy</StyledLinksItem>
             </div>
             <div
@@ -288,7 +287,7 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
               `}
             >
               <p css="font-weight: 700">Support</p>
-              <StyledLinksItem to="/community">Community</StyledLinksItem>
+              <StyledLinksItem to="https://gitter.im/coqui-ai/community">Community</StyledLinksItem>
               <StyledLinksItem to="mailto:info@coqui.ai">Contact us</StyledLinksItem>
             </div>
           </div>
