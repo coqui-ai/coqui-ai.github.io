@@ -17,8 +17,8 @@ import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-ico
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
 import MaxWidthLayout from 'layouts/MaxWidth';
 import { StyledNavigationLink } from './StyledNavigationLink';
-import { useAuth } from '../../../../utils/auth';
-import { VoiceSearchHeader } from './VoiceSearchHeader';
+import { useAuth, useProfile } from '../../../../utils/auth';
+import { UserMenu, VoiceSearchHeader } from './VoiceSearchHeader';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
   theme.shadows.lg(
@@ -200,6 +200,7 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
   const modelPageLink = parsedParameters.callback_url
     ? `/models?callback_url=${parsedParameters.callback_url}`
     : `/models`;
+  const { data: profile } = useProfile();
 
   return (
     <nav
@@ -235,7 +236,10 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to={modelPageLink}>Models</StyledDesktopNavLink>
           </StyledDesktopNavItem>
-
+        </>
+      )}
+      {!isSubscribing && !profile ? (
+        <>
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to="/auth/signup">Sign Up</StyledDesktopNavLink>
           </StyledDesktopNavItem>
@@ -243,6 +247,10 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
             <StyledDesktopNavLink to="/auth/signin">Sign In</StyledDesktopNavLink>
           </StyledDesktopNavItem>
         </>
+      ) : (
+        <StyledDesktopNavItem>
+          <UserMenu profile={profile} />
+        </StyledDesktopNavItem>
       )}
     </nav>
   );

@@ -21,11 +21,11 @@ import { OrangeButton } from './Styled';
 import { VoicesDropdown } from './VoicesDropdown';
 
 const HeaderRow = styled(Row)`
-  height: 84px;
   border-bottom: 1px solid #c2c8cc80;
+  height: 84px;
 `;
 
-const UserMenu = ({ profile }: { profile: Profile }) => {
+export const UserMenu = ({ profile }: { profile: Profile }) => {
   const [rotated, setRotated] = useState<boolean | undefined>();
 
   return (
@@ -37,7 +37,7 @@ const UserMenu = ({ profile }: { profile: Profile }) => {
         <Button
           isBasic
           css={css`
-            color: black;
+            color: #000;
           `}
         >
           {profile.email}
@@ -48,7 +48,7 @@ const UserMenu = ({ profile }: { profile: Profile }) => {
       </Trigger>
       <Menu>
         {/* <Item value="cactus">Edit Profile</Item> */}
-        <Item value="/voices">Use Voice</Item>
+        <Item value="/voices">My Voices</Item>
         <Item value="/auth/signout">Log Out</Item>
       </Menu>
     </Dropdown>
@@ -81,7 +81,7 @@ export const VoiceSearchHeader = () => {
             height: 25px;
           `}
         >
-          <Link to="/voices">
+          <Link to="/">
             <Img
               css={`
                 margin-left: 50px;
