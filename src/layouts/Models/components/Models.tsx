@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import queryString from 'query-string';
 import SearchForm from './SearchForm';
 import { useLocation } from '@reach/router';
-import MinWidthLayout from 'layouts/MinWidth';
+import StandardWidthLayout from 'layouts/StandardWidth';
 import { Anchor } from '@zendeskgarden/react-buttons';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import { Pagination } from '@zendeskgarden/react-pagination';
@@ -174,7 +174,7 @@ export const Models: React.FC = () => {
   };
 
   return (
-    <MinWidthLayout>
+    <StandardWidthLayout>
       <Tabs
         selectedItem={selectedTab}
         onChange={setSelectedTab}
@@ -338,6 +338,6 @@ export const Models: React.FC = () => {
         </TabPanel>
         <TabPanel item="tts">TS Models (Coming Soon)</TabPanel>
       </Tabs>
-    </MinWidthLayout>
+    </StandardWidthLayout>
   );
 };
