@@ -164,6 +164,11 @@
     "use-persisted-state": "^0.3.3",
     "vfile": "4.2.0"
   },
+  "overrides": {
+    "gatsby": {
+      "devcert": "1.2.0"
+    }
+  },
   "resolutions": {
     "@types/vfile-message": "1.0.1",
     "gatsby-react-router-scroll": "3.0.3"
