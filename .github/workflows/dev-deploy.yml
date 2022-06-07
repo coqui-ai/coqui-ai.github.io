@@ -35,7 +35,7 @@ env:
   # value of this variable will be changed with TAG of this docker image  built (usually git branch name)
   IMAGE_TAG_VARNAME: "tag"
   # Root URL of backend that website will communicate with
-  GATSBY_BACKEND_URL: https://creator-app.dev-coqui.com
+  GATSBY_BACKEND_URL: https://creator-app-backend
   # ECR repository must exist
   ECR_REPO_URL: "646105116760.dkr.ecr.us-east-1.amazonaws.com/website-frontend-images"
   # GHCR repository to mirror to
