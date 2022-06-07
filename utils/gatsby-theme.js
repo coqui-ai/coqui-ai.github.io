@@ -13,7 +13,13 @@ export const wrapRootElement = ({ element }) => {
 
   const theme = {
     ...DEFAULT_THEME,
-    palette: { ...DEFAULT_THEME.palette, tofu: '#F6F4F4', oatMilk: '#EDE0CF' }
+    palette: {
+      ...DEFAULT_THEME.palette,
+      tofu: '#F6F4F4',
+      oatMilk: '#EDE0CF',
+      moss: '#468D6A',
+      pumpkin: '#ED8F1C'
+    }
   };
 
   return (

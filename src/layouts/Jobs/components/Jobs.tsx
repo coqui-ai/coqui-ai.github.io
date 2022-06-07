@@ -27,36 +27,6 @@ const rowData: IRow[] = [
     group: 'Product'
   },
   {
-    title: 'Head of Product',
-    url: '../job/head-of-product',
-    location: 'Berlin, Germany OR Remote',
-    group: 'Product'
-  },
-  {
-    title: 'Senior MLOps Training Pipeline Engineer',
-    url: '../job/senior-mlops-training-pipeline-engineer',
-    location: 'Berlin, Germany OR Remote',
-    group: 'MLOps'
-  },
-  {
-    title: 'Senior MLOps Deployment Engineer',
-    url: '../job/senior-mlops-deployment-engineer',
-    location: 'Berlin, Germany OR Remote',
-    group: 'MLOps'
-  },
-  {
-    title: 'Senior MLOps Provisioning Engineer',
-    url: '../job/senior-mlops-provisioning-engineer',
-    location: 'Berlin, Germany OR Remote',
-    group: 'MLOps'
-  },
-  {
-    title: 'Senior STT Deep Learning Engineer',
-    url: '../job/senior-stt-deep-learning-engineer',
-    location: 'Berlin, Germany OR Remote',
-    group: 'Deep Learning'
-  },
-  {
     title: 'Senior Full Stack Engineer',
     url: '../job/senior-full-stack-engineer',
     location: 'Berlin, Germany OR Remote',

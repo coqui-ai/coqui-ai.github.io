@@ -12,8 +12,9 @@
     "lint:css": "stylelint 'src/**/*.{js,ts,tsx}'",
     "lint:js": "eslint ./ --ext js,ts,tsx --max-warnings 0",
     "lint:md": "markdownlint ./*.md {content,src}/**/*.{md,mdx}",
+    "prepare": "git submodule update --depth 1 --init && yarn build",
     "serve": "gatsby build && gatsby serve --open",
-    "start": "gatsby develop -H 0.0.0.0 --open",
+    "start": "gatsby develop --open",
     "test": "prettier-package-json --list-different && yarn format:all --check && yarn lint && yarn tsc"
   },
   "dependencies": {
@@ -31,7 +32,7 @@
     "@types/lodash": "4.14.165",
     "@types/lodash.debounce": "4.0.6",
     "@types/mdx-js__react": "1.5.3",
-    "@types/node": ">=14.0.0",
+    "@types/node": "13.13.34",
     "@types/react": "16.14.2",
     "@types/react-beautiful-dnd": "13.0.0",
     "@types/react-dom": "16.9.10",

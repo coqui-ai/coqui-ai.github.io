@@ -13,7 +13,7 @@ import { getLineHeight, mediaQuery } from '@zendeskgarden/react-theming';
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 import { LG } from '@zendeskgarden/react-typography';
 import FullBleedLayout from 'layouts/FullBleed';
-import { NewsletterForm } from './NewsletterForm';
+import { NewsletterForm } from '../../Root/components/NewsletterForm';
 
 const headerStyling = (p: ThemeProps<DefaultTheme>) => {
   const fontSize = `${p.theme.space.base * 12}px`;
