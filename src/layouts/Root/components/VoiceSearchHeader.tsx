@@ -15,7 +15,7 @@ import { Col, Grid, Row } from '@zendeskgarden/react-grid';
 import { Button } from '@zendeskgarden/react-buttons';
 
 import styled, { css } from 'styled-components';
-import { useProfile, Profile } from '../../../../utils/auth';
+import { useProfile } from '../../../../utils/auth';
 import { ArrowDown2 } from 'iconsax-react';
 import { OrangeButton } from './Styled';
 import { VoicesDropdown } from './VoicesDropdown';
@@ -25,8 +25,9 @@ const HeaderRow = styled(Row)`
   height: 84px;
 `;
 
-export const UserMenu = ({ profile }: { profile: Profile }) => {
+export const UserMenu = () => {
   const [rotated, setRotated] = useState<boolean | undefined>();
+  const { data: profile } = useProfile();
 
   return (
     <Dropdown
@@ -40,7 +41,7 @@ export const UserMenu = ({ profile }: { profile: Profile }) => {
             color: #000;
           `}
         >
-          {profile.email}
+          {profile ? profile.email : ''}
           <Button.EndIcon isRotated={rotated}>
             <ArrowDown2 size="32" color="#FF8A65" variant="Bold" />
           </Button.EndIcon>
@@ -69,8 +70,6 @@ export const VoiceSearchHeader = () => {
       }
     `
   );
-
-  const { data: profile } = useProfile();
 
   return (
     <Grid>
@@ -101,7 +100,9 @@ export const VoiceSearchHeader = () => {
           <OrangeButton onClick={() => navigate('/voices/create')}>Create new voice</OrangeButton>
         </Col>
 
-        <Col size={2}>{profile ? <UserMenu profile={profile} /> : ''}</Col>
+        <Col size={2}>
+          <UserMenu />
+        </Col>
       </HeaderRow>
     </Grid>
   );

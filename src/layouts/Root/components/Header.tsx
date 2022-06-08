@@ -19,7 +19,7 @@ import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { Dropdown, Menu, Item, Trigger } from '@zendeskgarden/react-dropdowns';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
-import { useAuth, useProfile } from '../../../../utils/auth';
+import { useAuth } from '../../../../utils/auth';
 import { UserMenu, VoiceSearchHeader } from './VoiceSearchHeader';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
@@ -252,13 +252,12 @@ interface IDesktopNavLayoutProps {
   isSubscribing: boolean;
 }
 
-const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
+const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing, user }) => {
   const location = useLocation();
   const parsedParameters = queryString.parse(location.search);
   const modelPageLink = parsedParameters.callback_url
     ? `/models?callback_url=${parsedParameters.callback_url}`
     : `/models`;
-  const { data: profile } = useProfile();
 
   return (
     <nav
@@ -304,9 +303,9 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
           </StyledDesktopNavItem>
-          {profile ? (
+          {user ? (
             <StyledDesktopNavItem>
-              <UserMenu profile={profile} />
+              <UserMenu />
             </StyledDesktopNavItem>
           ) : (
             <>
@@ -364,7 +363,7 @@ const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing, showVoiceSearch }
               }}
             />
           )}
-          <DesktopNav isSubscribing={isSubscribing} />
+          <DesktopNav isSubscribing={isSubscribing} user={user} />
         </MaxWidthLayout>
       </StyledHeader>
 
