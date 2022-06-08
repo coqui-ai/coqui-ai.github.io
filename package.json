@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "devcert": "1.2.0",
     "flexsearch": "^0.6.32",
     "md5": "^2.3.0",
     "react-use-flexsearch": "^0.1.1"
