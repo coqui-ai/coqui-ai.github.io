@@ -282,7 +282,13 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
             }}
           >
             <Trigger type="div">
-              <StyledDesktopNavItem>
+              <StyledDesktopNavItem
+                css={`
+                  &:hover {
+                    cursor: pointer;
+                  }
+                `}
+              >
                 <StyledDesktopNavMenu>Use Cases</StyledDesktopNavMenu>
               </StyledDesktopNavItem>
             </Trigger>
