@@ -44,6 +44,22 @@ const PlayerCol = styled.div`
   }
 `;
 
+const PlayerButtonCol = styled(PlayerCol)`
+  &:hover {
+    cursor: pointer;
+    background-color: #5eae91;
+    transition: background-color 50ms;
+    :first-of-type {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+    :last-of-type {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+  }
+`;
+
 const renderTime = time => {
   const secs = Math.floor(time % 60);
 
@@ -159,7 +175,6 @@ export const AudioPlayer = ({ src }) => {
           css={css`
             width: 369px;
             & div {
-              // transition: width 1s linear;
               transition: none;
             }
           `}
@@ -252,7 +267,7 @@ export const VoiceRecorder = ({ value: lastAudioResult, onChange: setLastAudioRe
         ''
       )}
 
-      <PlayerCol width={60}>
+      <PlayerButtonCol width={60}>
         {(() => {
           if (lastAudioResult && !audioPlayer?.current?.paused)
             return (
@@ -291,7 +306,7 @@ export const VoiceRecorder = ({ value: lastAudioResult, onChange: setLastAudioRe
 
           return '?';
         })()}
-      </PlayerCol>
+      </PlayerButtonCol>
       <PlayerCol
         grow={1}
         css={css`
@@ -307,7 +322,6 @@ export const VoiceRecorder = ({ value: lastAudioResult, onChange: setLastAudioRe
           css={css`
             width: 390px;
             & div {
-              // transition: width 1s linear;
               transition: none;
             }
           `}
@@ -317,7 +331,7 @@ export const VoiceRecorder = ({ value: lastAudioResult, onChange: setLastAudioRe
           {currentTimestamp}/{totalTimestamp}
         </span>
       </PlayerCol>
-      <PlayerCol width={60}>
+      <PlayerButtonCol width={60}>
         <Trash
           size={32}
           color={lastAudioResult ? '#CC3340' : '#345559'}
@@ -328,7 +342,7 @@ export const VoiceRecorder = ({ value: lastAudioResult, onChange: setLastAudioRe
             setAudioPlayerState(null);
           }}
         />
-      </PlayerCol>
+      </PlayerButtonCol>
     </PlayerRow>
   );
 };
