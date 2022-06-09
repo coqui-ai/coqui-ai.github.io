@@ -73,11 +73,11 @@ const SpeedControl = connect(props => {
             color: #313940;
             border-color: #186146;
             overflow: hidden;
+            margin-bottom: 30px;
           `}
         >
           <div
             css={css`
-              // border-bottom: 1px solid #c2c8cc;
               background-color: rgba(24, 97, 70, 0.1);
               height: 44px;
               display: flex;
@@ -184,9 +184,13 @@ export const Synthesize: React.FC = ({ locationState = null, id }) => {
           validate={values => {
             const errors = {};
 
-            ['name', 'text'].forEach(k => {
+            ['text'].forEach(k => {
               if (!values[k]) errors[k] = 'Required.';
             });
+
+            if (!values['name'] && values['text']) {
+              values['name'] = values['text'].slice(0, 30);
+            }
 
             return errors;
           }}
@@ -203,7 +207,6 @@ export const Synthesize: React.FC = ({ locationState = null, id }) => {
         >
           {({ values }) => (
             <Form>
-              <Field name="name" label="Name your audio" as={Input} />
               <GardenForms.Field
                 css={`
                   min-height: 106px;
@@ -240,6 +243,8 @@ export const Synthesize: React.FC = ({ locationState = null, id }) => {
               />
 
               <SpeedControl />
+
+              <Field name="name" label="Name your audio" as={Input} />
 
               <Submit loading={createSampleStatus.loading}>Submit</Submit>
             </Form>
