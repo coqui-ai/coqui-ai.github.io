@@ -346,6 +346,11 @@ interface IHeaderLayoutProps {
 const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing, showVoiceSearch }) => {
   const [isNavigationVisible, setIsNavigationVisible] = useState(false);
   const profile = useContext(ProfileContext);
+  const [isClient, setIsClient] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   if (showVoiceSearch && profile) return <VoiceSearchHeader />;
 
@@ -355,6 +360,8 @@ const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing, showVoiceSearch }
         <MaxWidthLayout
           css={css`
             display: flex;
+            transition: opacity 100ms;
+            opacity: ${isClient ? '1.0' : '0.0'};
             height: 100%;
             min-height: 100%;
           `}
