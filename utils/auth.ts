@@ -5,10 +5,12 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+import React, { useEffect } from 'react';
 import { useMutation, gql, useQuery, useApolloClient } from '@apollo/client';
-
 import createPersistedState from 'use-persisted-state';
+
 const useAuthState = createPersistedState('auth');
+const useProfileState = createPersistedState('profile');
 
 export function useAuth() {
   const [state] = useAuthState();
@@ -46,6 +48,8 @@ export type Profile = {
   email_validated?: string;
 };
 
+export const ProfileContext = React.createContext<Profile>(null);
+
 export function useProfile() {
   const auth = useAuth();
 
@@ -56,6 +60,23 @@ export function useProfile() {
   if (!auth) return { data: null, error: 'No logged in' };
 
   return { data: data?.profile, loading, error, refetch };
+}
+
+export function useCachedProfile() {
+  const { data: profileHook } = useProfile();
+  const [profileCache, setProfileCache] = useProfileState();
+
+  useEffect(() => {
+    if (profileHook) {
+      setProfileCache(profileHook);
+    }
+  }, [profileHook, setProfileCache]);
+
+  if (!profileHook && !!profileCache) {
+    return profileCache;
+  }
+
+  return profileHook;
 }
 
 export function useProfileIsComplete(): boolean {
@@ -99,12 +120,14 @@ export function useLoginEffect() {
 }
 
 export function useLogoutEffect() {
-  const [, setState] = useAuthState();
+  const [, setAuthState] = useAuthState();
+  const [, setProfileState] = useProfileState();
   const client = useApolloClient();
 
   return [
     () => {
-      setState(null);
+      setAuthState(null);
+      setProfileState(null);
       client.resetStore();
     }
   ];

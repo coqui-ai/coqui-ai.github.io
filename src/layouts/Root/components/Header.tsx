@@ -5,7 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useState, HTMLAttributes, useEffect } from 'react';
+import React, { useState, HTMLAttributes, useEffect, useContext } from 'react';
 import Img from 'gatsby-image';
 import queryString from 'query-string';
 import { useLocation } from '@reach/router';
@@ -19,7 +19,7 @@ import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { Dropdown, Menu, Item, Trigger } from '@zendeskgarden/react-dropdowns';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
-import { useAuth, useProfile } from '../../../../utils/auth';
+import { ProfileContext } from '../../../../utils/auth';
 import { UserMenu, VoiceSearchHeader } from './VoiceSearchHeader';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
@@ -258,7 +258,7 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
   const modelPageLink = parsedParameters.callback_url
     ? `/models?callback_url=${parsedParameters.callback_url}`
     : `/models`;
-  const { data: profile } = useProfile();
+  const profile = useContext(ProfileContext);
 
   return (
     <nav
@@ -339,9 +339,9 @@ interface IHeaderLayoutProps {
 
 const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing, showVoiceSearch }) => {
   const [isNavigationVisible, setIsNavigationVisible] = useState(false);
-  const user = useAuth();
+  const profile = useContext(ProfileContext);
 
-  if (showVoiceSearch && user) return <VoiceSearchHeader />;
+  if (showVoiceSearch && profile) return <VoiceSearchHeader />;
 
   return (
     <>

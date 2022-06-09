@@ -5,7 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Img from 'gatsby-image';
 // import { Field, Input } from '@zendeskgarden/react-forms';
 import { Item, Menu, Dropdown, Trigger } from '@zendeskgarden/react-dropdowns';
@@ -15,7 +15,7 @@ import { Col, Grid, Row } from '@zendeskgarden/react-grid';
 import { Button } from '@zendeskgarden/react-buttons';
 
 import styled, { css } from 'styled-components';
-import { useProfile, Profile } from '../../../../utils/auth';
+import { ProfileContext } from '../../../../utils/auth';
 import { ArrowDown2 } from 'iconsax-react';
 import { OrangeButton } from './Styled';
 import { VoicesDropdown } from './VoicesDropdown';
@@ -25,8 +25,9 @@ const HeaderRow = styled(Row)`
   height: 84px;
 `;
 
-export const UserMenu = ({ profile }: { profile: Profile }) => {
+export const UserMenu = () => {
   const [rotated, setRotated] = useState<boolean | undefined>();
+  const profile = useContext(ProfileContext);
 
   return (
     <Dropdown
@@ -70,8 +71,6 @@ export const VoiceSearchHeader = () => {
     `
   );
 
-  const { data: profile } = useProfile();
-
   return (
     <Grid>
       <HeaderRow alignItems="center">
@@ -101,7 +100,7 @@ export const VoiceSearchHeader = () => {
           <OrangeButton onClick={() => navigate('/voices/create')}>Create new voice</OrangeButton>
         </Col>
 
-        <Col size={2}>{profile ? <UserMenu profile={profile} /> : ''}</Col>
+        <Col size={2}><UserMenu /></Col>
       </HeaderRow>
     </Grid>
   );

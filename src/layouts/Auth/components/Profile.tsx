@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { useQuery, gql } from '@apollo/client';
-import { ProfileContext } from 'components/RequireAuth';
+import { ProfileContext } from '../../../../utils/auth';
 
 export const Profile: React.FC = () => (
   <ProfileContext.Consumer>
