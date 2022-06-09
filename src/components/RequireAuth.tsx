@@ -6,19 +6,17 @@
  */
 
 import React from 'react';
-import { useProfile, Profile } from '../../utils/auth';
+import { useProfile } from '../../utils/auth';
 import { AcceptTerms } from 'layouts/Auth/components/registration/AcceptTerms';
 import { CompleteProfile } from 'layouts/Auth/components/registration/CompleteProfile';
 import { VerifyEmail } from 'layouts/Auth/components/registration/VerifyEmail';
 import { SignInForm } from 'layouts/Auth/components/SignInForm';
 
-export const ProfileContext = React.createContext<Profile>(null);
-
 export const RequireAuth = ({ children }) => {
   const { data: profile, loading, error } = useProfile();
 
   // fixme
-  if (loading) return <div></div>;
+  if (loading) return '';
 
   if (error || !profile) {
     return <SignInForm />;
@@ -36,5 +34,5 @@ export const RequireAuth = ({ children }) => {
     return <VerifyEmail />;
   }
 
-  return <ProfileContext.Provider value={profile}>{children}</ProfileContext.Provider>;
+  return children;
 };

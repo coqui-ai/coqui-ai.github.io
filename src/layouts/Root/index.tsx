@@ -8,6 +8,7 @@
 import React from 'react';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import { SkipNav } from '@zendeskgarden/react-chrome';
+import { useCachedProfile, ProfileContext } from '../../../utils/auth';
 import Footer from './components/Footer';
 import Header, { headerBoxShadow, headerHeight } from './components/Header';
 
@@ -26,8 +27,7 @@ const GlobalStyling = createGlobalStyle`
 
   body a { color: #313940; }
 
-
-  body a:focus, body a:hover{
+  body a:focus, body a:hover {
     color: #313940;
   }
 `;
@@ -38,7 +38,7 @@ const Main = styled.main`
 `;
 
 const GrayedMain = styled(Main)`
-  background-color: #E9EBED;
+  background-color: #e9ebed;
 `;
 
 interface IRootLayoutProps {
@@ -50,35 +50,38 @@ interface IRootLayoutProps {
 
 const RootLayout: React.FC<IRootLayoutProps> = ({ children, hasSkipNav, isSubscribing, showVoiceSearch, grayedBackground }) => {
   const MainType = grayedBackground ? GrayedMain : Main;
+  const profile = useCachedProfile();
 
   return (
-    <div
-      css={`
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      `}
-    >
-      <GlobalStyling />
-      {hasSkipNav && (
-        <SkipNav
-          targetId="main-content"
-          zIndex={2}
-          css={css`
-            top: ${p => headerHeight(p.theme) / 2}px;
-            box-shadow: ${p => headerBoxShadow(p.theme)};
-          `}
-        >
-          Skip to main content
-        </SkipNav>
-      )}
-      <Header isSubscribing={isSubscribing} showVoiceSearch={showVoiceSearch} />
+    <ProfileContext.Provider value={profile}>
+      <div
+        css={`
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        `}
+      >
+        <GlobalStyling />
+        {hasSkipNav && (
+          <SkipNav
+            targetId="main-content"
+            zIndex={2}
+            css={css`
+              top: ${p => headerHeight(p.theme) / 2}px;
+              box-shadow: ${p => headerBoxShadow(p.theme)};
+            `}
+          >
+            Skip to main content
+          </SkipNav>
+        )}
+        <Header isSubscribing={isSubscribing} showVoiceSearch={showVoiceSearch} />
 
-      <MainType>
-        {children}
-      </MainType>
-      <Footer isSubscribing={isSubscribing} />
-    </div>
+        <MainType>
+          {children}
+        </MainType>
+        <Footer isSubscribing={isSubscribing} />
+      </div>
+    </ProfileContext.Provider>
   );
 };
 
