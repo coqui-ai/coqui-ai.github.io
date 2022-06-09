@@ -74,7 +74,7 @@ export const VideoFrame: React.FC = () => {
                     height: '100%'
                   }}
                   allow="autoplay"
-                  src=" https://www.youtube.com/embed/HPgTvYhpyZg?autoplay=1"
+                  src=" https://www.youtube.com/embed/6eKfsUDelpw?autoplay=1"
                   title="Dubbing"
                 />
               </Body>
