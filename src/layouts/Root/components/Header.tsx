@@ -48,7 +48,7 @@ const StyledDesktopNavMenu = styled(StyledNavigationItem).attrs({ partiallyActiv
 `;
 
 const StyledHeader = styled.header.attrs({ role: 'banner' })`
-  z-index: 1;
+  z-index: 501;
   box-shadow: ${p => headerBoxShadow(p.theme)};
   padding: 0 ${p => p.theme.space.base * 4}px;
   height: ${p => headerHeight(p.theme)}px;
@@ -187,7 +187,7 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
         right: 0;
         bottom: 0;
         left: 0;
-        z-index: 3;
+        z-index: 503;
         background-color: ${p => p.theme.palette.tofu};
         padding: ${p => p.theme.space.lg} ${p => p.theme.space.xxl};
       `}
@@ -214,7 +214,6 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
               <Item value="/video-games">Video Games</Item>
               <Item value="/post-production">Post Production</Item>
               <Item value="/dubbing">Dubbing</Item>
-              <Item value="/brand-voices">Brand Voices</Item>
             </Menu>
           </Dropdown>
           <StyledMobileNavItem>
@@ -287,7 +286,6 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
               <Item value="/video-games">Video Games</Item>
               <Item value="/post-production">Post Production</Item>
               <Item value="/dubbing">Dubbing</Item>
-              <Item value="/brand-voices">Brand Voices</Item>
             </Menu>
           </Dropdown>
           <StyledDesktopNavItem>
