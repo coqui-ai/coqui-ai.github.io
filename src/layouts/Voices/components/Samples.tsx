@@ -10,7 +10,7 @@ import { useQuery, gql, useMutation } from '@apollo/client';
 import { Link } from 'gatsby';
 import { Loading, OrangeButton, TitleBar } from 'layouts/Root/components/Styled';
 import styled, { css } from 'styled-components';
-import { ArrowCircleDown2, MusicPlaylist, Pause, Trash, VideoCircle } from 'iconsax-react';
+import { ArrowCircleDown2, ArrowLeft, MusicPlaylist, Pause, Trash, VideoCircle } from 'iconsax-react';
 import { Button } from '@zendeskgarden/react-buttons';
 import { DeleteModal } from '../../Root/components/DeleteModal';
 import { useManyPlayers } from './MediaPlayers';
@@ -39,7 +39,7 @@ const DELETE_SAMPLE = gql`
 `;
 
 const SampleList = styled.ul`
-  margin: 54px auto;
+  margin: 54px auto 16px;
   width: 80%;
 `;
 const SampleBox = styled.li`
@@ -115,7 +115,12 @@ export const Samples: React.FC = ({ voice_id }) => {
       ) : (
         ''
       )}
-      <TitleBar>Samples for: {data.voice.name}</TitleBar>
+      <TitleBar>
+        <Link to={`/voices/${voice_id}/synthesize`} css="vertical-align: middle; margin-right: 8px;">
+          <ArrowLeft size={24} />
+        </Link>
+        Samples for: {data.voice.name}
+      </TitleBar>
       <SampleList>
         {data.samples.map(sample => (
           <SampleBox key={sample.id}>

@@ -190,10 +190,10 @@ export const CreateVoice: React.FC = () => {
       }}
     >
       <TitleBar>
-        <Link to="/voices">
+        <Link to="/voices" css="vertical-align: middle; margin-right: 8px;">
           <ArrowLeft size={24} />
         </Link>
-        &nbsp;&nbsp; Create a new voice
+        Create a new voice
       </TitleBar>
 
       <QuickTips />

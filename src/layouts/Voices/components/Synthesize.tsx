@@ -167,10 +167,10 @@ export const Synthesize: React.FC = ({ locationState = null, id }) => {
   return (
     <>
       <TitleBar>
-        <Link to="/voices">
+        <Link to="/voices" css="vertical-align: middle; margin-right: 8px;">
           <ArrowLeft size={24} />
         </Link>
-        &nbsp;&nbsp; Synthesize Voice
+        Synthesize Voice
       </TitleBar>
 
       <CenterContent>
