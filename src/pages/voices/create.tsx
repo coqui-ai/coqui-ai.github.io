@@ -13,7 +13,6 @@ import RootLayout from 'layouts/Root';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 import { RequireAuth } from 'components/RequireAuth';
-import { Voices } from 'layouts/Voices/components/Voices';
 import { CreateVoice } from 'layouts/Voices/components/CreateVoice';
 
 const CreateVoicePage: React.FC = () => {
@@ -22,7 +21,7 @@ const CreateVoicePage: React.FC = () => {
   });
 
   return (
-    <RootLayout hasSkipNav={false}>
+    <RootLayout hasSkipNav={false} showVoiceSearch={true}>
       <SEO />
       <RequireAuth>
         <CreateVoice />

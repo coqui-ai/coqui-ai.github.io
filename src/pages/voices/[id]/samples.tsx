@@ -21,7 +21,7 @@ const SamplesPage: React.FC = ({ id }) => {
   });
 
   return (
-    <RootLayout hasSkipNav={false}>
+    <RootLayout hasSkipNav={false} showVoiceSearch={true}>
       <SEO />
       <RequireAuth>
         <Samples voice_id={id} />
