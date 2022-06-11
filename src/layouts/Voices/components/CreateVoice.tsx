@@ -200,8 +200,7 @@ export const CreateVoice: React.FC = () => {
 
       <CenterContent>
         <Radio checked={sourceValue === 'record'} onClick={() => setSourceValue('record')}>
-          <Span isBold>Record audio</Span> &mdash; Read and record the text sample below{' '}
-          <Span hue="rgb(47 57 65 / 50%)">~30seconds minimum</Span>
+          <Span isBold>Record audio</Span> &mdash; Read and record the text sample below
         </Radio>
 
         <Well
