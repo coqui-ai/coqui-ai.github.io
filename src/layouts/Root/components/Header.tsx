@@ -172,6 +172,7 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
   const modelPageLink = parsedParameters.callback_url
     ? `/models?callback_url=${parsedParameters.callback_url}`
     : `/models`;
+  const profile = useContext(ProfileContext);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -218,29 +219,52 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
               <Item value="/dubbing">Dubbing</Item>
             </Menu>
           </Dropdown>
-          <StyledMobileNavItem>
-            <StyledMobileNavLink to="https://github.com/coqui-ai">Open Source</StyledMobileNavLink>
-          </StyledMobileNavItem>
-          <StyledMobileNavItem>
-            <StyledMobileNavLink to={modelPageLink}>Models</StyledMobileNavLink>
-          </StyledMobileNavItem>
+          <Dropdown
+            onSelect={item => {
+              window.location.href = item;
+            }}
+          >
+            <Trigger>
+              <StyledMobileNavItem>
+                <StyledMobileNavMenu
+                  css={css`
+                    background-color: ${p => p.theme.palette.tofu};
+                  `}
+                >
+                  Open Source
+                </StyledMobileNavMenu>
+              </StyledMobileNavItem>
+            </Trigger>
+            <Menu hasArrow>
+              <Item value="https://github.com/coqui-ai">Code</Item>
+              <Item value={modelPageLink}>Models</Item>
+            </Menu>
+          </Dropdown>
           <StyledMobileNavItem>
             <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
           </StyledMobileNavItem>
-          <StyledMobileNavItem>
-            <StyledMobileNavLink to="/auth/signin">Sign In</StyledMobileNavLink>
-          </StyledMobileNavItem>
-          <StyledMobileNavItem>
-            <StyledMobileNavLink
-              to="/auth/signup"
-              css={css`
-                background-color: ${p => getColor('yellow', 600, p.theme)};
-                color: #fff;
-              `}
-            >
-              Try now for free
-            </StyledMobileNavLink>
-          </StyledMobileNavItem>
+          {profile ? (
+            <StyledMobileNavItem>
+              <UserMenu profile={profile} />
+            </StyledMobileNavItem>
+          ) : (
+            <>
+              <StyledMobileNavItem>
+                <StyledMobileNavLink to="/auth/signin">Sign In</StyledMobileNavLink>
+              </StyledMobileNavItem>
+              <StyledMobileNavItem>
+                <StyledMobileNavLink
+                  to="/auth/signup"
+                  css={css`
+                    background-color: ${p => getColor('kale', 800, p.theme)};
+                    color: #fff;
+                  `}
+                >
+                  Try now for free
+                </StyledMobileNavLink>
+              </StyledMobileNavItem>
+            </>
+          )}
         </>
       )}
     </div>
@@ -297,14 +321,27 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
               <Item value="/dubbing">Dubbing</Item>
             </Menu>
           </Dropdown>
-          <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="https://github.com/coqui-ai">
-              Open Source
-            </StyledDesktopNavLink>
-          </StyledDesktopNavItem>
-          <StyledDesktopNavItem>
-            <StyledDesktopNavLink to={modelPageLink}>Models</StyledDesktopNavLink>
-          </StyledDesktopNavItem>
+          <Dropdown
+            onSelect={item => {
+              window.location.href = item;
+            }}
+          >
+            <Trigger type="div">
+              <StyledDesktopNavItem
+                css={`
+                  &:hover {
+                    cursor: pointer;
+                  }
+                `}
+              >
+                <StyledDesktopNavMenu>Open Source</StyledDesktopNavMenu>
+              </StyledDesktopNavItem>
+            </Trigger>
+            <Menu hasArrow>
+              <Item value="https://github.com/coqui-ai">Code</Item>
+              <Item value={modelPageLink}>Models</Item>
+            </Menu>
+          </Dropdown>
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
           </StyledDesktopNavItem>
