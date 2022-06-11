@@ -7,7 +7,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import { Field, FileUpload, Input, Label } from '@zendeskgarden/react-forms';
+import { Field, FileUpload, Input, Label, Message } from '@zendeskgarden/react-forms';
 import { ArrowLeft, LampOn } from 'iconsax-react';
 import { CenterContent, OrangeButton, TitleBar } from 'layouts/Root/components/Styled';
 import { Link, navigate } from 'gatsby';
@@ -143,7 +143,7 @@ export const CreateVoice: React.FC = () => {
   const [fileValue, setFileValue] = useState<File>(null);
   const [recordingValue, setRecordingValue] = useState(null);
 
-  const [createVoice, { data, loading }] = useMutation(CREATE_VOICE, {
+  const [createVoice, { data, loading, error }] = useMutation(CREATE_VOICE, {
     update: cache => {
       cache.evict({
         id: 'ROOT_QUERY',
@@ -177,7 +177,7 @@ export const CreateVoice: React.FC = () => {
         name: nameValue,
         voice: sourceValue === 'record' ? recordingValue.blob : fileValue
       }
-    });
+    }).catch(() => {});
 
     return true;
   };
@@ -268,6 +268,9 @@ export const CreateVoice: React.FC = () => {
           <Label>Name your voice</Label>
           <Input value={nameValue} onChange={e => setNameValue(e.target.value)} />
         </Field>
+
+        {error && <Message validation="error">{error.message}</Message>}
+
         <Submit loading={loading} onClick={submitForm}>
           Proceed to test your voice
         </Submit>
