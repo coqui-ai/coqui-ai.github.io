@@ -146,6 +146,8 @@ export const Samples: React.FC = ({ voice_id }) => {
               >
                 <a
                   href={sample.audio_url}
+                  target="_blank"
+                  download
                   css={css`
                     color: unset !important;
                     text-decoration: unset !important;
