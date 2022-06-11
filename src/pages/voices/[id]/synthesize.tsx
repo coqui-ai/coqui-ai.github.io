@@ -21,7 +21,7 @@ const SynthesizePage: React.FC = ({ location, id }) => {
   });
 
   return (
-    <RootLayout hasSkipNav={false}>
+    <RootLayout hasSkipNav={false} showVoiceSearch={true}>
       <SEO />
       <RequireAuth>
         <Synthesize locationState={location.state} id={id} />

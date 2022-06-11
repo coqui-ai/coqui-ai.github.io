@@ -34,7 +34,7 @@ const DELETE_VOICE = gql`
 `;
 
 const VoiceList = styled.ul`
-  margin: 54px auto;
+  margin: 54px auto 54px 20px;
   width: ${280 * 4 + 14 * 5}px;
   display: flex;
   flex-wrap: wrap;
@@ -67,17 +67,20 @@ const VoiceControls = styled.div`
 `;
 const AddVoiceBox = styled.div`
   width: 280px;
-  height: 230px;
-  margin: 7px;
+  height: 290px;
   flex-shrink: 0;
   margin: auto;
+  position: relative;
 
   background: #fff;
   border-radius: 8px;
   border: 1px #c4c4c4 dashed;
 `;
-const AddVoiceText = styled.div`
-  line-height: 54px;
+const AddVoiceText = styled.span`
+  display: inline-block;
+  position: absolute;
+  top: 30px;
+  height: 80px;
   padding: 23px 30px;
 `;
 const CreateNewVoiceButton = styled(OrangeButton)`
@@ -88,6 +91,8 @@ const CreateNewVoiceButton = styled(OrangeButton)`
   }
   margin-left: 64px;
   margin-right: 64px;
+  position: absolute;
+  bottom: 40px;
 `;
 const SamplesButton = styled(Button)`
   &:hover:enabled {
@@ -124,11 +129,14 @@ const TrashButton = props => (
   </Button>
 );
 
-const AddVoiceContent = () => (
-  <CenterContent>
+const AddVoiceLink = (props: {noVoiceText: boolean}) => {
+  const addNoVoiceText = props.noVoiceText || false;
+  return (
     <Link
       to={`/voices/create`}
       css={css`
+        margin: 7px;
+
         &,
         &:hover {
           text-decoration: none;
@@ -136,17 +144,17 @@ const AddVoiceContent = () => (
       `}
     >
       <AddVoiceBox>
-        <AddVoiceText>You have not created a voice yet</AddVoiceText>
+        <AddVoiceText>{addNoVoiceText && "You have not created a voice yet"}</AddVoiceText>
         <Add
-          size={58}
+          size={90}
           color="#292D32"
-          style={{ margin: 'auto', display: 'block', paddingBottom: 20 }}
+          style={{ display: 'block', position: 'absolute', top: '80px', width: '90px', left: 'calc(50% - 45px)' }}
         />
         <CreateNewVoiceButton>Create new voice</CreateNewVoiceButton>
       </AddVoiceBox>
     </Link>
-  </CenterContent>
-);
+  );
+};
 
 const VoiceBoxes = props => {
   return props.voices.map(voice => (
@@ -223,9 +231,12 @@ export const Voices: React.FC = () => {
       {data.voices.length > 0 ? (
         <VoiceList>
           <VoiceBoxes voices={data.voices} trashClicked={voice => setIsDeleting(voice)} />
+          <AddVoiceLink />
         </VoiceList>
       ) : (
-        <AddVoiceContent />
+        <CenterContent>
+          <AddVoiceLink noVoiceText={true} />
+        </CenterContent>
       )}
     </>
   );

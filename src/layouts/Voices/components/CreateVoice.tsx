@@ -190,18 +190,17 @@ export const CreateVoice: React.FC = () => {
       }}
     >
       <TitleBar>
-        <Link to="/voices">
+        <Link to="/voices" css="vertical-align: middle; margin-right: 8px;">
           <ArrowLeft size={24} />
         </Link>
-        &nbsp;&nbsp; Create a new voice
+        Create a new voice
       </TitleBar>
 
       <QuickTips />
 
       <CenterContent>
         <Radio checked={sourceValue === 'record'} onClick={() => setSourceValue('record')}>
-          <Span isBold>Record audio</Span> &mdash; Read and record the text sample below{' '}
-          <Span hue="rgb(47 57 65 / 50%)">~30seconds minimum</Span>
+          <Span isBold>Record audio</Span> &mdash; Read and record the text sample below
         </Radio>
 
         <Well

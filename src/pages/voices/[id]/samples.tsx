@@ -9,7 +9,9 @@ import React, { useEffect } from 'react';
 // import navs from '../nav/blog';
 import SEO from 'components/SEO';
 import RootLayout from 'layouts/Root';
-// import { graphql, useStaticQuery } from 'gatsby';
+import { Link } from 'gatsby';
+import { OrangeButton } from 'layouts/Root/components/Styled';
+import { MusicPlaylist } from 'iconsax-react';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 import { RequireAuth } from 'components/RequireAuth';
@@ -21,10 +23,28 @@ const SamplesPage: React.FC = ({ id }) => {
   });
 
   return (
-    <RootLayout hasSkipNav={false}>
+    <RootLayout hasSkipNav={false} showVoiceSearch={true}>
       <SEO />
       <RequireAuth>
         <Samples voice_id={id} />
+        <Link
+          to={`/voices/${id}/synthesize`}
+          css={css`
+            display: block;
+            margin-left: 10%;
+            margin-bottom: 16px;
+
+            &,
+            &:hover {
+              text-decoration: none;
+            }
+          `}
+        >
+          <OrangeButton>
+            <MusicPlaylist size={16} color="#012B30" variant="Bold" style={{ marginRight: 10 }} />
+            Synthesize New Sample
+          </OrangeButton>
+        </Link>
       </RequireAuth>
 
       <GogleAnalyticsCookieConsent />
