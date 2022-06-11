@@ -18,7 +18,7 @@ import { CenterContent, Loading, TitleBar } from 'layouts/Root/components/Styled
 import { navigate } from 'gatsby';
 import { Link } from 'layouts/Root/components/StyledNavigationLink';
 import { ArrowLeft } from 'iconsax-react';
-import { Input, Textarea, Range } from '@zendeskgarden/react-forms';
+import { Input, Textarea, Range, Message } from '@zendeskgarden/react-forms';
 import { Well } from '@zendeskgarden/react-notifications';
 import { AudioPlayer } from './MediaPlayers';
 
@@ -201,8 +201,7 @@ export const Synthesize: React.FC = ({ locationState = null, id }) => {
                 speed: { 0: '1.5', 1: '1', 2: '0.7' }[values.speed],
                 voice_id: voice.id
               }
-            });
-            // todo: show errors
+            }).catch(() => {});
           }}
         >
           {({ values }) => (
@@ -245,6 +244,8 @@ export const Synthesize: React.FC = ({ locationState = null, id }) => {
               <SpeedControl />
 
               <Field name="name" label="Name your audio" as={Input} />
+
+              {createSampleStatus.error && <Message validation="error">{createSampleStatus.error.message}</Message>}
 
               <Submit loading={createSampleStatus.loading}>Submit</Submit>
             </Form>
