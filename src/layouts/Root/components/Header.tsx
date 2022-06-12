@@ -216,12 +216,27 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
               <Item value="/dubbing">Dubbing</Item>
             </Menu>
           </Dropdown>
-          <StyledMobileNavItem>
-            <StyledMobileNavLink to="https://github.com/coqui-ai">Open Source</StyledMobileNavLink>
-          </StyledMobileNavItem>
-          <StyledMobileNavItem>
-            <StyledMobileNavLink to={modelPageLink}>Models</StyledMobileNavLink>
-          </StyledMobileNavItem>
+          <Dropdown
+            onSelect={item => {
+              window.location.href = item;
+            }}
+          >
+            <Trigger>
+              <StyledMobileNavItem>
+                <StyledMobileNavMenu
+                  css={css`
+                    background-color: ${p => p.theme.palette.tofu};
+                  `}
+                >
+                  Open Source
+                </StyledMobileNavMenu>
+              </StyledMobileNavItem>
+            </Trigger>
+            <Menu hasArrow>
+              <Item value="https://github.com/coqui-ai">Code</Item>
+              <Item value={modelPageLink}>Models</Item>
+            </Menu>
+          </Dropdown>
           <StyledMobileNavItem>
             <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
           </StyledMobileNavItem>
@@ -288,14 +303,21 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
               <Item value="/dubbing">Dubbing</Item>
             </Menu>
           </Dropdown>
-          <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="https://github.com/coqui-ai">
-              Open Source
-            </StyledDesktopNavLink>
-          </StyledDesktopNavItem>
-          <StyledDesktopNavItem>
-            <StyledDesktopNavLink to={modelPageLink}>Models</StyledDesktopNavLink>
-          </StyledDesktopNavItem>
+          <Dropdown
+            onSelect={item => {
+              window.location.href = item;
+            }}
+          >
+            <Trigger type="div">
+              <StyledDesktopNavItem>
+                <StyledDesktopNavMenu>Open Source</StyledDesktopNavMenu>
+              </StyledDesktopNavItem>
+            </Trigger>
+            <Menu hasArrow>
+              <Item value="https://github.com/coqui-ai">Code</Item>
+              <Item value={modelPageLink}>Models</Item>
+            </Menu>
+          </Dropdown>
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
           </StyledDesktopNavItem>
