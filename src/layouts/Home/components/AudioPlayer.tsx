@@ -23,22 +23,22 @@ export const AudioPlayer: React.FC<{
   const [trackProgress, setTrackProgress] = useState(0);
 
   const intervalRef = useRef();
-  const audioRef = useRef(new Audio(audioSrc));
+  const audioRef = useRef<HTMLAudioElement>();
 
   const rangeElement = useRef();
 
-  const duration = audioRef.current.duration;
+  const duration = audioRef?.current?.duration || 0;
 
   const startTimer = () => {
     // Clear any timers already running
     clearInterval(intervalRef.current);
 
     intervalRef.current = setInterval(() => {
-      if (audioRef.current.ended) {
+      if (audioRef?.current?.ended) {
         setIsPlaying(false);
         rangeElement.current.value = duration;
       } else {
-        setTrackProgress(audioRef.current.currentTime);
+        setTrackProgress(audioRef?.current?.currentTime);
       }
     }, [10]);
   };
@@ -60,10 +60,10 @@ export const AudioPlayer: React.FC<{
 
   useEffect(() => {
     if (isPlaying) {
-      audioRef.current.play();
+      audioRef?.current?.play();
       startTimer();
     } else {
-      audioRef.current.pause();
+      audioRef?.current?.pause();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPlaying]);
@@ -72,7 +72,7 @@ export const AudioPlayer: React.FC<{
     // Pause and clean up on unmount
     return () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      audioRef.current.pause();
+      audioRef?.current?.pause();
       clearInterval(intervalRef.current);
     };
   }, []);
@@ -101,6 +101,8 @@ export const AudioPlayer: React.FC<{
       </Row>
       <Row alignItems="center" wrap="nowrap">
         <Col size={1}>
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <audio ref={audioRef} src={audioSrc} preload="auto" />
           <AudioControls isPlaying={isPlaying} onPlayPauseClick={setIsPlaying} />
         </Col>
         <Col size={11}>

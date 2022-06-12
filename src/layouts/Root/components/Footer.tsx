@@ -63,6 +63,14 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
           margin: ${p => p.theme.space.lg} auto ${p => p.theme.space.lg} auto;
           width: 1080px;
 
+          ${p => mediaQuery('down', 'lg', p.theme)} {
+            width: 982px;
+          }
+
+          ${p => mediaQuery('down', 'md', p.theme)} {
+            width: 732px;
+          }
+
           ${p => mediaQuery('down', 'sm', p.theme)} {
             width: 100%;
           }
@@ -244,8 +252,11 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
               column-gap: 100px;
               justify-content: end;
 
-              ${p => mediaQuery('down', 'sm', p.theme)} {
+              ${p => mediaQuery('down', 'md', p.theme)} {
                 grid-template-columns: 80px 140px;
+              }
+
+              ${p => mediaQuery('down', 'sm', p.theme)} {
                 justify-content: start;
               }
             `}

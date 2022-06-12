@@ -5,7 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useState, HTMLAttributes, useEffect } from 'react';
+import React, { useState, HTMLAttributes, useEffect, useContext } from 'react';
 import Img from 'gatsby-image';
 import queryString from 'query-string';
 import { useLocation } from '@reach/router';
@@ -19,6 +19,8 @@ import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { Dropdown, Menu, Item, Trigger } from '@zendeskgarden/react-dropdowns';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
+import { ProfileContext } from '../../../../utils/auth';
+import { UserMenu, VoiceSearchHeader } from './VoiceSearchHeader';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
   theme.shadows.lg(
@@ -170,6 +172,7 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
   const modelPageLink = parsedParameters.callback_url
     ? `/models?callback_url=${parsedParameters.callback_url}`
     : `/models`;
+  const profile = useContext(ProfileContext);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -240,20 +243,28 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
           <StyledMobileNavItem>
             <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
           </StyledMobileNavItem>
-          <StyledMobileNavItem>
-            <StyledMobileNavLink to="/auth/signin">Sign In</StyledMobileNavLink>
-          </StyledMobileNavItem>
-          <StyledMobileNavItem>
-            <StyledMobileNavLink
-              to="/auth/signup"
-              css={css`
-                background-color: ${p => getColor('yellow', 600, p.theme)};
-                color: #fff;
-              `}
-            >
-              Try now for free
-            </StyledMobileNavLink>
-          </StyledMobileNavItem>
+          {profile ? (
+            <StyledMobileNavItem>
+              <UserMenu profile={profile} />
+            </StyledMobileNavItem>
+          ) : (
+            <>
+              <StyledMobileNavItem>
+                <StyledMobileNavLink to="/auth/signin">Sign In</StyledMobileNavLink>
+              </StyledMobileNavItem>
+              <StyledMobileNavItem>
+                <StyledMobileNavLink
+                  to="/auth/signup"
+                  css={css`
+                    background-color: ${p => getColor('kale', 800, p.theme)};
+                    color: #fff;
+                  `}
+                >
+                  Try now for free
+                </StyledMobileNavLink>
+              </StyledMobileNavItem>
+            </>
+          )}
         </>
       )}
     </div>
@@ -270,6 +281,7 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
   const modelPageLink = parsedParameters.callback_url
     ? `/models?callback_url=${parsedParameters.callback_url}`
     : `/models`;
+  const profile = useContext(ProfileContext);
 
   return (
     <nav
@@ -293,7 +305,13 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
             }}
           >
             <Trigger type="div">
-              <StyledDesktopNavItem>
+              <StyledDesktopNavItem
+                css={`
+                  &:hover {
+                    cursor: pointer;
+                  }
+                `}
+              >
                 <StyledDesktopNavMenu>Use Cases</StyledDesktopNavMenu>
               </StyledDesktopNavItem>
             </Trigger>
@@ -321,20 +339,28 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
           </StyledDesktopNavItem>
-          <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="/auth/signin">Sign In</StyledDesktopNavLink>
-          </StyledDesktopNavItem>
-          <StyledDesktopNavItem>
-            <StyledDesktopNavLink
-              to="/auth/signup"
-              css={css`
-                background-color: ${p => getColor('kale', 800, p.theme)};
-                color: #fff;
-              `}
-            >
-              Try now for free
-            </StyledDesktopNavLink>
-          </StyledDesktopNavItem>
+          {profile ? (
+            <StyledDesktopNavItem>
+              <UserMenu profile={profile} />
+            </StyledDesktopNavItem>
+          ) : (
+            <>
+              <StyledDesktopNavItem>
+                <StyledDesktopNavLink to="/auth/signin">Sign In</StyledDesktopNavLink>
+              </StyledDesktopNavItem>
+              <StyledDesktopNavItem>
+                <StyledDesktopNavLink
+                  to="/auth/signup"
+                  css={css`
+                    background-color: ${p => getColor('kale', 800, p.theme)};
+                    color: #fff;
+                  `}
+                >
+                  Try now for free
+                </StyledDesktopNavLink>
+              </StyledDesktopNavItem>
+            </>
+          )}
         </>
       )}
     </nav>
@@ -343,10 +369,19 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
 
 interface IHeaderLayoutProps {
   isSubscribing: boolean;
+  showVoiceSearch: boolean;
 }
 
-const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing }) => {
+const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing, showVoiceSearch }) => {
   const [isNavigationVisible, setIsNavigationVisible] = useState(false);
+  const profile = useContext(ProfileContext);
+  const [isClient, setIsClient] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (showVoiceSearch && profile) return <VoiceSearchHeader />;
 
   return (
     <>
@@ -354,6 +389,8 @@ const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing }) => {
         <MaxWidthLayout
           css={css`
             display: flex;
+            transition: opacity 100ms;
+            opacity: ${isClient ? '1.0' : '0.0'};
             height: 100%;
             min-height: 100%;
           `}
