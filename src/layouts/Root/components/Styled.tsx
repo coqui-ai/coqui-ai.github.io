@@ -10,6 +10,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 import { Well, Title } from '@zendeskgarden/react-notifications';
 import { Button } from '@zendeskgarden/react-buttons';
+import { mediaQuery } from '@zendeskgarden/react-theming';
 
 import { ChartCircle } from 'iconsax-react';
 
@@ -38,6 +39,9 @@ export const Loading = () => (
 
 export const CenterContent = styled.div`
   width: 699px;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    width: 349px;
+  }
   margin: 33px auto;
 `;
 
@@ -49,6 +53,10 @@ export const TitleBar = ({ children }) => (
       display: flex;
       align-items: center;
       padding-left: 57px;
+
+      ${p => mediaQuery('down', 'sm', p.theme)} {
+        padding-left: 30px;
+      }
     `}
   >
     <h1
@@ -87,6 +95,11 @@ export const CenterWell = ({ title, children, ...props }) => (
       & p {
         text-align: center;
       }
+
+      ${p => mediaQuery('down', 'sm', p.theme)} {
+        width: 350px;
+        margin: 32px auto;
+      }
     `}
     {...props}
   >
@@ -97,6 +110,10 @@ export const CenterWell = ({ title, children, ...props }) => (
         display: flex;
         justify-content: center;
         align-items: center;
+
+        ${p => mediaQuery('down', 'sm', p.theme)} {
+          height: 69px;
+        }
       `}
     >
       {title}
@@ -104,6 +121,10 @@ export const CenterWell = ({ title, children, ...props }) => (
     <div
       css={css`
         padding: 39px 86px;
+
+        ${p => mediaQuery('down', 'sm', p.theme)} {
+          padding: 39px 28px;
+        }
       `}
     >
       {children}
