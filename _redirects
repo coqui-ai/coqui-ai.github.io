@@ -7,3 +7,8 @@ https://www.zendesk.garden/* https://garden.zendesk.com/:splat 301!
 
 # redirect css-components to gh-pages
 https://garden.zendesk.com/css-components/* https://zendeskgarden.github.io/css-components/:splat 301!
+
+## Created with gatsby-plugin-netlify
+/email/:token  /email/[token]  200
+/voices/:id/samples  /voices/[id]/samples  200
+/voices/:id/synthesize  /voices/[id]/synthesize  200

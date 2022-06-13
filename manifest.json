@@ -1,4 +1,14 @@
 {
   "main.js": "render-page.js",
-  "main.js.map": "render-page.js.map"
+  "main.js.map": "render-page.js.map",
+  "static/brand-voices.mp4": "static/brand-voices-138b8fc61a97c02a99d8d309d1c05d0f.mp4",
+  "static/brand-voices.webm": "static/brand-voices-e35443d8accd678319b107caa8fdf89b.webm",
+  "static/dubbing.mp4": "static/dubbing-39b93ed93cbcffef9ad3644e37697c57.mp4",
+  "static/dubbing.webm": "static/dubbing-65bc5d5d128ef721b465ab78f102281c.webm",
+  "static/how-to-video.mp4": "static/how-to-video-354e7f09238e172362ec42485626a335.mp4",
+  "static/how-to-video.webm": "static/how-to-video-4e85f39e0bb3faf3420a027ca342424b.webm",
+  "static/post-production.mp4": "static/post-production-b2a8380014273e60dc086e3e98e42570.mp4",
+  "static/post-production.webm": "static/post-production-dea58aceff274133b3119ece93c21a74.webm",
+  "static/video-games.mp4": "static/video-games-a3f602da6145bcead89c72dbf6364304.mp4",
+  "static/video-games.webm": "static/video-games-a82fcd56d39ba2c3392081ec585b1e83.webm"
 }
