@@ -216,7 +216,7 @@ export const AudioPlayer = ({ src }) => {
   );
 };
 
-export const VoiceRecorder = ({ value: lastAudioResult, onChange: setLastAudioResult }) => {
+export const VoiceRecorder = ({ maxDuration, value: lastAudioResult, onChange: setLastAudioResult }) => {
   const [recordingLength, setRecordingLength] = useState<number>(null);
   // const [lastAudioResult, setLastAudioResult] = useState<{ blob: Blob; length: number }>(null);
 
@@ -248,6 +248,13 @@ export const VoiceRecorder = ({ value: lastAudioResult, onChange: setLastAudioRe
       );
     }
   }, [audioResult]);
+
+  useEffect(() => {
+    if (status === 'recording' && timer >= maxDuration) {
+      setRecordingLength(timer);
+      stopRecording();
+    }
+  }, [timer, stopRecording]);
 
   const currentTime = audioPlayerState ? audioPlayerState?.currentTime || 0 : timer;
   const currentTimestamp = renderTime(currentTime);
@@ -346,6 +353,7 @@ export const VoiceRecorder = ({ value: lastAudioResult, onChange: setLastAudioRe
             audioPlayer?.current?.pause();
             if (lastAudioResult) setLastAudioResult(null);
             setAudioPlayerState(null);
+            setRecordingLength(0);
           }}
         />
       </PlayerButtonCol>
