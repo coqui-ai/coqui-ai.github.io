@@ -101,6 +101,8 @@ export const useAudioRecorder = () => {
   const stopRecording = () => {
     // eslint-disable-next-line no-negated-condition
     if (status !== RECORD_STATUS.IDLE) {
+      setTimer(0);
+
       mediaRecorder.stop();
       mediaRecorder.onstop = () => {
         // handleResetTimer();

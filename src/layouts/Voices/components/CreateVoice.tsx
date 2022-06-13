@@ -7,7 +7,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { gql, useMutation } from '@apollo/client';
-import { Field, FileUpload, Input, Label, Message } from '@zendeskgarden/react-forms';
+import { Field, File, FileUpload, Input, Label, Message } from '@zendeskgarden/react-forms';
 import { ArrowLeft, LampOn } from 'iconsax-react';
 import { CenterContent, OrangeButton, TitleBar } from 'layouts/Root/components/Styled';
 import { Link, navigate } from 'gatsby';
@@ -148,7 +148,9 @@ export const CreateVoice: React.FC = () => {
   const [sourceValue, setSourceValue] = useState<'record' | 'upload'>('record');
   const [nameValue, setNameValue] = useState('');
   const [fileValue, setFileValue] = useState<File>(null);
+  const [fileError, setFileError] = useState(null);
   const [recordingValue, setRecordingValue] = useState(null);
+  const maxFileSize = Math.ceil(Math.pow(2, 20)) * 45;
 
   const [createVoice, { data, loading, error }] = useMutation(CREATE_VOICE, {
     update: cache => {
@@ -164,6 +166,11 @@ export const CreateVoice: React.FC = () => {
     multiple: false,
     onDrop: (acceptedFiles: File[]) => {
       if (acceptedFiles && acceptedFiles.length > 0) {
+        if (acceptedFiles[0].size > maxFileSize) {
+          setFileError('Max file size exceeded (45MiB)');
+        } else {
+          setFileError(null);
+        }
         setFileValue(acceptedFiles[0]);
         setSourceValue('upload');
       }
@@ -176,6 +183,10 @@ export const CreateVoice: React.FC = () => {
 
   const submitForm = () => {
     if (!nameValue) {
+      return false;
+    }
+
+    if (fileError !== null) {
       return false;
     }
 
@@ -224,6 +235,7 @@ export const CreateVoice: React.FC = () => {
         </Well>
 
         <VoiceRecorder
+          maxDuration={30}
           value={recordingValue}
           onChange={v => {
             setRecordingValue(v);
@@ -249,7 +261,10 @@ export const CreateVoice: React.FC = () => {
           {isDragActive ? (
             <span>Drop the file here</span>
           ) : fileValue ? (
-            <Span isBold>{fileValue.name}</Span>
+            <>
+              <File type="generic" aria-label="Uploaded file" validation={fileError ? "error" : "success"}>{fileValue.name}</File>
+              <Span isBold hue="rgb(204, 51, 64)">{fileError && fileError}</Span>
+            </>
           ) : (
             <>
               <OrangeButton>Upload Audio</OrangeButton>
