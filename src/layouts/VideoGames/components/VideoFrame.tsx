@@ -74,7 +74,7 @@ export const VideoFrame: React.FC = () => {
                     height: '100%'
                   }}
                   allow="autoplay"
-                  src="https://www.youtube.com/embed/G78yiWIYCQM?autoplay=1"
+                  src="https://www.youtube.com/embed/x8tEdwll_CY?autoplay=1"
                   title="Video Games"
                 />
               </Body>
