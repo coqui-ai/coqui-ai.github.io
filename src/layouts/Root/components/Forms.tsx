@@ -67,20 +67,25 @@ export const Field = Formik.connect(props => {
   );
 });
 
-export const WordCountField = Formik.connect(props => {
+export const MaxCharCountField = Formik.connect(props => {
   const error =
     props.error ||
     props.formik.errors[props.name] ||
     (props.formik.status ? props.formik.status[props.name] : null);
 
-  const [wordCount, setWordCount] = useState(0);
+  const [charCount, setCharCount] = useState(0);
   const fieldProps = {
     id: props.name,
     validation: error ? 'error' : null,
     ...props,
     error,
     validate: value => {
-      setWordCount(value.trim().split(" ").length);
+      let error;
+      setCharCount(value.length);
+      if (value.length > props.maxCharCount) {
+        error = `Maximum character count exceeded (${props.maxCharCount})`;
+      }
+      return error;
     },
   };
 
@@ -97,7 +102,7 @@ export const WordCountField = Formik.connect(props => {
         `}
       >
        <div style={{display: "flex"}}>
-        <span style={{flexGrow: 1}}>{props.label}</span><div>{wordCount}/{props.wordCountDenominator}</div>
+        <span style={{flexGrow: 1}}>{props.label}</span><div>{charCount}/{props.maxCharCount}</div>
        </div>
       </GardenForms.Label>
       <Formik.Field {...fieldProps} />
