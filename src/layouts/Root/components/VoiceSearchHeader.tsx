@@ -93,6 +93,54 @@ export const UserMenu = () => {
   );
 };
 
+export const HomeNavUserMenu = props => {
+  const [rotated, setRotated] = useState<boolean | undefined>();
+  const profile = useContext(ProfileContext);
+
+  return (
+    <Dropdown
+      onSelect={item => navigate(item)}
+      onStateChange={options => Object.hasOwn(options, 'isOpen') && setRotated(options.isOpen)}
+    >
+      <Trigger>
+        <Button
+          isBasic
+          css={`
+            color: #000;
+            width: 100%;
+          `}
+        >
+          <span
+            css={css`
+              overflow: hidden;
+              text-overflow: ellipsis;
+            `}
+          >
+            {profile.email}
+          </span>
+          <Button.EndIcon isRotated={rotated}>
+            <ArrowDown2
+              size="32"
+              color="#FF8A65"
+              variant="Bold"
+              css={css`
+                ${p => mediaQuery('down', 'sm', p.theme)} {
+                  margin-left: 4px;
+                }
+              `}
+            />
+          </Button.EndIcon>
+        </Button>
+      </Trigger>
+      <Menu>
+        {/* <Item value="cactus">Edit Profile</Item> */}
+        <Item value="/voices">My Voices</Item>
+        <Item value="/auth/signout">Log Out</Item>
+      </Menu>
+    </Dropdown>
+  );
+};
+
 export const VoiceSearchHeader = () => {
   const logoWordmarkImage = useStaticQuery(
     graphql`
