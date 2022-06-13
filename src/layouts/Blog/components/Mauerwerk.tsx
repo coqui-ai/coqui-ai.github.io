@@ -88,7 +88,13 @@ export const Mauerwerk: React.FC<{
   images: any;
 }> = ({ navs, images }) => {
   return (
-    <MaxWidthLayout>
+    <MaxWidthLayout
+      css={`
+        & * {
+          z-index: 0;
+        }
+      `}
+    >
       <Grid
         // Arbitrary data, should contain keys, possibly heights, etc.
         data={navs}

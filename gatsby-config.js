@@ -5,7 +5,6 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-const envalid = require('envalid');
 const fs = require('fs');
 const path = require('path');
 const { tagNameMap } = require('./src/layouts/Models/components/TagNameMap');
@@ -27,6 +26,12 @@ module.exports = {
     description: `Coqui, Freeing Speech.`
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-apollo',
+      options: {
+        uri: `${process.env.GATSBY_BACKEND_URL}/graphql/`
+      }
+    },
     {
       resolve: `gatsby-source-github-api`,
       options: {

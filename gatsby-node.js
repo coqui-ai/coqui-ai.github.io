@@ -96,3 +96,32 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     });
   });
 };
+
+exports.onCreateWebpackConfig = ({ stage, actions, loaders, getConfig }) => {
+  const config = getConfig();
+
+  const exampleTranspileJsRule = config.module.rules.filter(
+    rule => /node_modules/.test(rule.include) && String(rule.test) === String(/\.js$/)
+  )[0];
+
+  config.module.rules = [
+    {
+      ...exampleTranspileJsRule,
+      include: v => /node_modules\/rxjs-interop/.test(v)
+    },
+
+    ...config.module.rules
+  ];
+
+  if (stage === 'build-html' || stage === 'develop-html') {
+    config.module.rules = [
+      {
+        test: /useAudioRecorder/,
+        use: loaders.null()
+      },
+      ...config.module.rules
+    ];
+  }
+
+  actions.replaceWebpackConfig(config);
+};
