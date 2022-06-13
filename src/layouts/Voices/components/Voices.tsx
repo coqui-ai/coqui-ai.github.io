@@ -10,6 +10,7 @@ import { useQuery, gql, useMutation } from '@apollo/client';
 import { Link } from 'gatsby';
 import { Loading, OrangeButton, TitleBar, CenterContent } from 'layouts/Root/components/Styled';
 import styled, { css } from 'styled-components';
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import { MusicPlaylist, Trash, Add } from 'iconsax-react';
 import { Button } from '@zendeskgarden/react-buttons';
 import { DeleteModal } from '../../Root/components/DeleteModal';
@@ -38,6 +39,11 @@ const VoiceList = styled.ul`
   width: ${280 * 4 + 14 * 5}px;
   display: flex;
   flex-wrap: wrap;
+
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    width: 280px;
+    margin: 20px auto 32px auto;
+  }
 `;
 const VoiceBox = styled.li`
   width: 280px;

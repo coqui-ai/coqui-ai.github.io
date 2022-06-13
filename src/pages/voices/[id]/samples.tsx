@@ -27,24 +27,6 @@ const SamplesPage: React.FC = ({ id }) => {
       <SEO />
       <RequireAuth>
         <Samples voice_id={id} />
-        <Link
-          to={`/voices/${id}/synthesize`}
-          css={css`
-            display: block;
-            margin-left: 10%;
-            margin-bottom: 16px;
-
-            &,
-            &:hover {
-              text-decoration: none;
-            }
-          `}
-        >
-          <OrangeButton>
-            <MusicPlaylist size={16} color="#012B30" variant="Bold" style={{ marginRight: 10 }} />
-            Synthesize New Sample
-          </OrangeButton>
-        </Link>
       </RequireAuth>
 
       <GogleAnalyticsCookieConsent />

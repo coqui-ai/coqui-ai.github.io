@@ -10,6 +10,7 @@ import { useQuery, gql, useMutation } from '@apollo/client';
 import { Link } from 'gatsby';
 import { Loading, OrangeButton, TitleBar } from 'layouts/Root/components/Styled';
 import styled, { css } from 'styled-components';
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import { ArrowCircleDown2, ArrowLeft, MusicPlaylist, Pause, Trash, VideoCircle } from 'iconsax-react';
 import { Button } from '@zendeskgarden/react-buttons';
 import { DeleteModal } from '../../Root/components/DeleteModal';
@@ -41,16 +42,25 @@ const DELETE_SAMPLE = gql`
 const SampleList = styled.ul`
   margin: 54px auto 16px;
   width: 80%;
+
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    margin: 20px auto 16px;
+    width: 349px;
+  }
 `;
 const SampleBox = styled.li`
   width: 100%;
 
-  height: 134px;
+  height: 135px;
 
   background: #012b30;
   border-radius: 8px;
   border: 1px #012b30 solid;
   margin-bottom: 18px;
+`;
+const ButtonBox = styled.li`
+  display: flex;
+  justify-content: center;
 `;
 const SampleTitle = styled.div`
   height: 64px;
@@ -59,6 +69,10 @@ const SampleTitle = styled.div`
   color: white;
   font-size: 24px;
   font-weight: 600;
+
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    padding: 20px;
+  }
 `;
 const SampleControls = styled.div`
   height: 70px;
@@ -71,6 +85,10 @@ const SampleControl = styled.div`
   border-right: 1px solid #5eae91;
   &:last-of-type {
     border-right: none;
+  }
+
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    padding: 16px 20px;
   }
 `;
 
@@ -116,10 +134,36 @@ export const Samples: React.FC = ({ voice_id }) => {
         ''
       )}
       <TitleBar>
-        <Link to={`/voices/${voice_id}/synthesize`} css="vertical-align: middle; margin-right: 8px;">
-          <ArrowLeft size={24} />
-        </Link>
-        Samples for: {data.voice.name}
+        <div
+          css={`
+            display: flex;
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              width: 319px;
+            }
+          `}
+        >
+          <Link
+            to={`/voices/${voice_id}/synthesize`}
+            css="
+              vertical-align: middle;
+              margin-right: 8px;
+              flex-grow: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <ArrowLeft size={24} />
+          </Link>
+          <div css="flex-grow: 1;">
+            <span css="font-size: 16px; font-weight: 400;">
+              Samples for voice:
+            </span>
+            <div css="margin-top: 6px;">
+              {data.voice.name}
+            </div>
+          </div>
+        </div>
       </TitleBar>
       <SampleList>
         {data.samples.map(sample => (
@@ -183,6 +227,24 @@ export const Samples: React.FC = ({ voice_id }) => {
             </SampleControls>
           </SampleBox>
         ))}
+        <ButtonBox>
+          <Link
+            to={`/voices/${voice_id}/synthesize`}
+            css={css`
+              display: block;
+
+              &,
+              &:hover {
+                text-decoration: none;
+              }
+            `}
+          >
+            <OrangeButton>
+              <MusicPlaylist size={16} color="#012B30" variant="Bold" style={{ marginRight: 10 }} />
+              Synthesize New Sample
+            </OrangeButton>
+          </Link>
+        </ButtonBox>
       </SampleList>
     </>
   );

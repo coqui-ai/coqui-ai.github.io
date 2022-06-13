@@ -11,6 +11,7 @@ import { Paragraph, Span } from '@zendeskgarden/react-typography';
 import { CenterWell } from 'layouts/Root/components/Styled';
 import { Submit } from 'layouts/Root/components/Forms';
 import { css } from 'styled-components';
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import { Checkbox, Field, Label } from '@zendeskgarden/react-forms';
 
 const ACCEPT_TERMS = gql`
@@ -35,9 +36,12 @@ export const AcceptTerms: React.FC = () => {
     <CenterWell
       title="Before you get started"
       css={css`
-        width: 603px;
         & p {
           text-align: left;
+        }
+
+        ${p => mediaQuery('up', 'sm', p.theme)} {
+          width: 603px;
         }
       `}
     >

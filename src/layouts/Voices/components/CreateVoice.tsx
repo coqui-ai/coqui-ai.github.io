@@ -13,6 +13,7 @@ import { CenterContent, OrangeButton, TitleBar } from 'layouts/Root/components/S
 import { Link, navigate } from 'gatsby';
 import { Span, UnorderedList } from '@zendeskgarden/react-typography';
 import { css } from 'styled-components';
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import { Title, Well } from '@zendeskgarden/react-notifications';
 import { Submit } from 'layouts/Root/components/Forms';
 import { useDropzone } from 'react-dropzone';
@@ -48,6 +49,9 @@ const QuickTips = () => (
       min-height: 341px;
       color: #313940;
       font-weight: 500;
+      ${p => mediaQuery('down', 'sm', p.theme)} {
+        width: 349px;
+      }
     `}
   >
     <Title
@@ -74,13 +78,16 @@ const QuickTips = () => (
       css={css`
         & li {
           margin: 24px 26px;
+
+          ${p => mediaQuery('down', 'sm', p.theme)} {
+            margin: 16px 20px;
+          }
         }
       `}
     >
       <UnorderedList.Item>
-        English voice samples result in increased voice similarity.
+        Speaking in English when recording improves voice similarity.
       </UnorderedList.Item>
-      <UnorderedList.Item>On average 30 secs recording is necessary.</UnorderedList.Item>
       <UnorderedList.Item>Don&apos;t stutter or stammer in the recording.</UnorderedList.Item>
       <UnorderedList.Item>Don&apos;t pause too long.</UnorderedList.Item>
       <UnorderedList.Item>
