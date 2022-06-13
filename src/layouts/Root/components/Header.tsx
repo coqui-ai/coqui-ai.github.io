@@ -20,7 +20,7 @@ import { Dropdown, Menu, Item, Trigger } from '@zendeskgarden/react-dropdowns';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
 import { ProfileContext, useProfileIsComplete } from '../../../../utils/auth';
-import { UserMenu, VoiceSearchHeader } from './VoiceSearchHeader';
+import { HomeNavUserMenu, VoiceSearchHeader } from './VoiceSearchHeader';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
   theme.shadows.lg(
@@ -245,7 +245,7 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
           </StyledMobileNavItem>
           {profile ? (
             <StyledMobileNavItem>
-              <UserMenu profile={profile} />
+              <HomeNavUserMenu profile={profile} />
             </StyledMobileNavItem>
           ) : (
             <>
@@ -347,7 +347,7 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
           </StyledDesktopNavItem>
           {profile ? (
             <StyledDesktopNavItem>
-              <UserMenu profile={profile} />
+              <HomeNavUserMenu profile={profile} />
             </StyledDesktopNavItem>
           ) : (
             <>
