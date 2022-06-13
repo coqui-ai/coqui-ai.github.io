@@ -19,7 +19,7 @@ import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { Dropdown, Menu, Item, Trigger } from '@zendeskgarden/react-dropdowns';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
-import { ProfileContext } from '../../../../utils/auth';
+import { ProfileContext, useProfileIsComplete } from '../../../../utils/auth';
 import { UserMenu, VoiceSearchHeader } from './VoiceSearchHeader';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
@@ -381,13 +381,14 @@ interface IHeaderLayoutProps {
 const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing, showVoiceSearch }) => {
   const [isNavigationVisible, setIsNavigationVisible] = useState(false);
   const profile = useContext(ProfileContext);
+  const profileComplete = useProfileIsComplete();
   const [isClient, setIsClient] = useState<boolean>(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  if (showVoiceSearch && profile) return <VoiceSearchHeader />;
+  if (showVoiceSearch && profile && profileComplete) return <VoiceSearchHeader />;
 
   return (
     <>

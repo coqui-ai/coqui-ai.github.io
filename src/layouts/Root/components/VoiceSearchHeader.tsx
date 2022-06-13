@@ -15,6 +15,7 @@ import { Col, Grid, Row } from '@zendeskgarden/react-grid';
 import { Button } from '@zendeskgarden/react-buttons';
 
 import styled, { css } from 'styled-components';
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import { ProfileContext } from '../../../../utils/auth';
 import { ArrowDown2 } from 'iconsax-react';
 import { OrangeButton } from './Styled';
@@ -23,6 +24,9 @@ import { VoicesDropdown } from './VoicesDropdown';
 const HeaderRow = styled(Row)`
   border-bottom: 1px solid #c2c8cc80;
   height: 84px;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    justify-content: space-between;
+  }
 `;
 
 export const UserMenu = () => {
@@ -39,15 +43,48 @@ export const UserMenu = () => {
           isBasic
           css={css`
             color: #000;
+            width: 100%;
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              padding: 0;
+              border-left: 1px solid #C2C8CC;
+              border-radius: 0px;
+              margin-left: 8px;
+            }
           `}
         >
-          {profile.email}
+          <span
+            css={css`
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                display: none;
+              }
+              overflow: hidden;
+              text-overflow: ellipsis;
+            `}
+          >
+            {profile.email}
+          </span>
           <Button.EndIcon isRotated={rotated}>
-            <ArrowDown2 size="32" color="#FF8A65" variant="Bold" />
+            <ArrowDown2
+              size="32"
+              color="#FF8A65"
+              variant="Bold"
+              css={css`
+                ${p => mediaQuery('down', 'sm', p.theme)} {
+                  margin-left: 4px;
+                }
+              `}
+            />
           </Button.EndIcon>
         </Button>
       </Trigger>
-      <Menu>
+      <Menu
+        css={css`
+          ${p => mediaQuery('down', 'sm', p.theme)} {
+            position: absolute !important;
+            left: -142px;
+          }
+        `}
+      >
         {/* <Item value="cactus">Edit Profile</Item> */}
         <Item value="/voices">My Voices</Item>
         <Item value="/auth/signout">Log Out</Item>
@@ -84,23 +121,67 @@ export const VoiceSearchHeader = () => {
             <Img
               css={`
                 margin-left: 50px;
+
+                ${p => mediaQuery('down', 'sm', p.theme)} {
+                  margin-left: 22px;
+                }
               `}
               fixed={logoWordmarkImage.file.childImageSharp.fixed}
             />
           </Link>
         </Col>
-        <Col>
+        <Col
+          css={css`
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              display: none;
+            }
+          `}
+        >
           <VoicesDropdown
             onSelect={voice => {
               navigate(`/voices/${voice.id}/synthesize`);
             }}
           />
         </Col>
-        <Col size={2}>
-          <OrangeButton onClick={() => navigate('/voices/create')}>Create new voice</OrangeButton>
+        <Col
+          size={2}
+          css={css`
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              max-width: unset;
+              margin-right: 10px;
+              display: flex;
+              align-items: center;
+            }
+          `}
+        >
+          <OrangeButton
+            onClick={() => navigate('/voices/create')}
+            css="width: 90%;"
+          >
+            Create new voice
+          </OrangeButton>
+          <div
+            css={css`
+                ${p => mediaQuery('up', 'md', p.theme)} {
+                  display: none;
+                }
+                width: 16px;
+            `}
+          >
+            <UserMenu/>
+          </div>
         </Col>
 
-        <Col size={2}><UserMenu /></Col>
+        <Col
+          size={3}
+          css={css`
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              display: none;
+            }
+          `}
+        >
+          <UserMenu />
+        </Col>
       </HeaderRow>
     </Grid>
   );

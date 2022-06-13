@@ -15,6 +15,7 @@ import {
   VideoCircle
 } from 'iconsax-react';
 import styled, { css } from 'styled-components';
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import { Progress } from '@zendeskgarden/react-loaders';
 
 import { useAudioRecorder } from '../../../../utils/useAudioRecorder';
@@ -41,6 +42,11 @@ const PlayerCol = styled.div`
   }
   & svg {
     margin-left: 3px;
+  }
+
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 `;
 
