@@ -53,20 +53,20 @@ export const AudioPlayer: React.FC<{
   const onScrubEnd = () => {
     // If not already playing, start
     if (!isPlaying) {
+      audioRef?.current?.play();
       setIsPlaying(true);
     }
     startTimer();
   };
 
-  useEffect(() => {
-    if (isPlaying) {
+  const playPauseHandler = playing => {
+    if (playing) {
       audioRef?.current?.play();
       startTimer();
     } else {
       audioRef?.current?.pause();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPlaying]);
+  };
 
   useEffect(() => {
     // Pause and clean up on unmount
@@ -103,7 +103,7 @@ export const AudioPlayer: React.FC<{
         <Col size={1}>
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <audio ref={audioRef} src={audioSrc} preload="auto" />
-          <AudioControls isPlaying={isPlaying} onPlayPauseClick={setIsPlaying} />
+          <AudioControls isPlaying={isPlaying} onPlayPauseClick={playPauseHandler} />
         </Col>
         <Col size={11}>
           <Range
