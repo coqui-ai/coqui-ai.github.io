@@ -22,58 +22,42 @@ export const AudioPlayer: React.FC<{
   const [isPlaying, setIsPlaying] = useState(false);
   const [trackProgress, setTrackProgress] = useState(0);
 
-  const intervalRef = useRef();
   const audioRef = useRef<HTMLAudioElement>();
 
   const rangeElement = useRef();
 
   const duration = audioRef?.current?.duration || 0;
 
-  const startTimer = () => {
-    // Clear any timers already running
-    clearInterval(intervalRef.current);
-
-    intervalRef.current = setInterval(() => {
-      if (audioRef?.current?.ended) {
-        setIsPlaying(false);
-        rangeElement.current.value = duration;
-      } else {
-        setTrackProgress(audioRef?.current?.currentTime);
-      }
-    }, [10]);
-  };
-
   const onScrub = value => {
-    // Clear any timers already running
-    clearInterval(intervalRef.current);
     audioRef.current.currentTime = value;
-    setTrackProgress(audioRef.current.currentTime);
   };
 
   const onScrubEnd = () => {
     // If not already playing, start
     if (!isPlaying) {
+      audioRef?.current?.play();
       setIsPlaying(true);
     }
-    startTimer();
   };
 
-  useEffect(() => {
-    if (isPlaying) {
+  const playPauseHandler = playing => {
+    if (playing) {
       audioRef?.current?.play();
-      startTimer();
     } else {
       audioRef?.current?.pause();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPlaying]);
+    setIsPlaying(playing);
+  };
+
+  const timeUpdateHandler = ({ target }) => {
+    setTrackProgress(target.currentTime);
+  };
 
   useEffect(() => {
     // Pause and clean up on unmount
     return () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       audioRef?.current?.pause();
-      clearInterval(intervalRef.current);
     };
   }, []);
 
@@ -102,8 +86,8 @@ export const AudioPlayer: React.FC<{
       <Row alignItems="center" wrap="nowrap">
         <Col size={1}>
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-          <audio ref={audioRef} src={audioSrc} preload="auto" />
-          <AudioControls isPlaying={isPlaying} onPlayPauseClick={setIsPlaying} />
+          <audio ref={audioRef} src={audioSrc} preload="auto" onTimeUpdate={timeUpdateHandler} />
+          <AudioControls isPlaying={isPlaying} onPlayPauseClick={playPauseHandler} />
         </Col>
         <Col size={11}>
           <Range
