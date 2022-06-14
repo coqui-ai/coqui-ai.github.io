@@ -66,6 +66,7 @@ export const AudioPlayer: React.FC<{
     } else {
       audioRef?.current?.pause();
     }
+    setIsPlaying(playing);
   };
 
   useEffect(() => {
