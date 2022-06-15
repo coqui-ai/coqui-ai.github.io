@@ -73,7 +73,7 @@ export const Users: React.FC = () => {
                 text-align: center;
               `}
             >
-              Used by
+              Coqui’s code used by
             </MD>
           </Col>
         </Row>
@@ -104,7 +104,7 @@ export const Users: React.FC = () => {
               }
             `}
           >
-            <User user="amazon" images={data.allImageSharp.edges} />
+            <User user="t2" images={data.allImageSharp.edges} />
           </Col>
           <Col
             orderLg={2}
