@@ -229,9 +229,7 @@ export const CreateVoice: React.FC = () => {
           `}
         >
           Once upon a time, the King’s youngest son became filled with the desire to go abroad, and
-          see the world. He got his father’s permission to leave on an adventure, kissed his parents
-          goodbye, mounted his black horse, and galloped away down the high road. Soon the grey
-          towers of the old castle, in which he had been born, disappeared behind him.
+          see the world.
         </Well>
 
         <VoiceRecorder
