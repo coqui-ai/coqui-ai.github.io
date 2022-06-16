@@ -228,7 +228,7 @@ export const CreateVoice: React.FC = () => {
             padding: 12px 19px;
           `}
         >
-          Once upon a time, the King’s youngest son became filled with the desire to go abroad, and
+          Once upon a time, the King’s youngest son became filled with the desire to go abroad and
           see the world.
         </Well>
 

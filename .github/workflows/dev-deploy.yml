@@ -12,7 +12,7 @@
 name: Deploy frontend to dev
 on:
   push:
-    branches: ["new-dashboard"]
+    branches: ["development"]
   pull_request:
 env:
   GRUNTWORK_INSTALLER_VERSION: v0.0.38
