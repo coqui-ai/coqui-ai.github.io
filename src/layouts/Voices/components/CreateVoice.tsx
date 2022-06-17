@@ -85,19 +85,9 @@ const QuickTips = () => (
         }
       `}
     >
-      <UnorderedList.Item>
-        Speaking in English when recording improves voice similarity.
-      </UnorderedList.Item>
-      <UnorderedList.Item>Don&apos;t stutter or stammer in the recording.</UnorderedList.Item>
-      <UnorderedList.Item>Don&apos;t pause too long.</UnorderedList.Item>
-      <UnorderedList.Item>
-        Eliminate background noise as much as possible, although the model is robust against a
-        certain noise level.
-      </UnorderedList.Item>
-      <UnorderedList.Item>
-        The system is optimized for voice similarity, and the accent and speaking style is not yet
-        factored in.
-      </UnorderedList.Item>
+      <UnorderedList.Item>Keep down background noise</UnorderedList.Item>
+      <UnorderedList.Item>Avoid long pauses</UnorderedList.Item>
+      <UnorderedList.Item>Avoid stuttering or stammering</UnorderedList.Item>
     </UnorderedList>
   </Well>
 );
