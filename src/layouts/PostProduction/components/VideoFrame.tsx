@@ -82,7 +82,16 @@ export const VideoFrame: React.FC = () => {
             </Modal>
           )}
         </div>
-        <video autoPlay loop muted playsInline>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          css={css`
+            max-width: 100%;
+            height: auto;
+          `}
+        >
           <source src={PostProductionMp4} type="video/mp4" />
           <source src={PostProductionWebM} type="video/webm" />
         </video>
