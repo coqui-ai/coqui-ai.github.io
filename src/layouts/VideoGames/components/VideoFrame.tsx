@@ -9,13 +9,16 @@ import React, { useState } from 'react';
 import { css } from 'styled-components';
 import { StyledButton } from './StyledButtons';
 import { getColor } from '@zendeskgarden/react-theming';
-import { Modal, Body, Close } from '@zendeskgarden/react-modals';
 import VideoGameMp4 from '../../../data/videos/use-cases/video-games/video-games.mp4';
 import VideoGameWebM from '../../../data/videos/use-cases/video-games/video-games.webm';
 import { ReactComponent as SpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-unmuted-stroke.svg';
 
 export const VideoFrame: React.FC = () => {
-  const [visible, setVisible] = useState(false);
+  const [mutedAttribute, setMutedAttribute] = useState({ muted: true });
+
+  const toggleMuted = () => {
+    setMutedAttribute(mutedAttribute.muted ? { muted: false } : { muted: true });
+  };
 
   return (
     <div
@@ -42,7 +45,7 @@ export const VideoFrame: React.FC = () => {
           `}
         >
           <StyledButton
-            onClick={() => setVisible(true)}
+            onClick={() => toggleMuted()}
             css={css`
               border-width: 0;
               background-color: ${p => getColor('yellow', 600, p.theme)};
@@ -55,37 +58,14 @@ export const VideoFrame: React.FC = () => {
                 margin-right: ${p => p.theme.space.xs};
               `}
             />
-            Play with sound
+            {mutedAttribute.muted ? 'Play with sound' : 'Play w/out sound'}
           </StyledButton>
-          {visible && (
-            <Modal
-              isLarge
-              onClose={() => setVisible(false)}
-              css={css`
-                background-color: #0001;
-                width: 90%;
-                height: 90%;
-              `}
-            >
-              <Body>
-                <iframe
-                  style={{
-                    width: '100%',
-                    height: '100%'
-                  }}
-                  allow="autoplay"
-                  src="https://www.youtube.com/embed/x8tEdwll_CY?autoplay=1"
-                  title="Video Games"
-                />
-              </Body>
-              <Close aria-label="Close" />
-            </Modal>
-          )}
         </div>
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
         <video
           autoPlay
           loop
-          muted
+          {...mutedAttribute}
           playsInline
           css={css`
             max-width: 100%;
