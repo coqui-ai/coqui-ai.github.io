@@ -27,20 +27,13 @@ export const VideoFrame: React.FC = () => {
       if (videoRef.current) {
         if (videoRef.current.currentTime >= 20.28) {
           if (isLooping) {
-            videoRef.current.load();
+            videoRef.current.currentTime = 0.0;
           }
         }
       }
     } else {
       setLooping(false);
     }
-  };
-
-  const preserveSize = (event: Event) => {
-    const video = event.target;
-
-    video.width = video.clientWidth;
-    video.height = video.clientHeight;
   };
 
   return (
@@ -96,7 +89,6 @@ export const VideoFrame: React.FC = () => {
           `}
           ref={videoRef}
           onTimeUpdate={() => conditionallyRestart()}
-          onLoadedMetadata={event => preserveSize(event)}
         >
           <source src={HowToVideoMp4} type="video/mp4" />
           <source src={HowToVideoWebM} type="video/webm" />
