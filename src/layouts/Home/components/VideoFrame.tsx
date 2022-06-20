@@ -36,6 +36,13 @@ export const VideoFrame: React.FC = () => {
     }
   };
 
+  const preserveSize = (event: Event) => {
+    const video = event.target;
+
+    video.width = video.clientWidth;
+    video.height = video.clientHeight;
+  };
+
   return (
     <div
       css={css`
@@ -89,6 +96,7 @@ export const VideoFrame: React.FC = () => {
           `}
           ref={videoRef}
           onTimeUpdate={() => conditionallyRestart()}
+          onLoadedMetadata={event => preserveSize(event)}
         >
           <source src={HowToVideoMp4} type="video/mp4" />
           <source src={HowToVideoWebM} type="video/webm" />
