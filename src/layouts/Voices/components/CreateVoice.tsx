@@ -46,9 +46,9 @@ const QuickTips = () => (
       background: #fff7ed;
       padding: 0;
       width: 699px;
-      min-height: 341px;
       color: #313940;
       font-weight: 500;
+
       ${p => mediaQuery('down', 'sm', p.theme)} {
         width: 349px;
       }
@@ -77,11 +77,7 @@ const QuickTips = () => (
       size="large"
       css={css`
         & li {
-          margin: 24px 26px;
-
-          ${p => mediaQuery('down', 'sm', p.theme)} {
-            margin: 16px 20px;
-          }
+          margin: 16px 20px;
         }
       `}
     >
