@@ -68,7 +68,7 @@ export const CtA: React.FC = () => {
                     }
                   `}
                 >
-                  Coqui, Emotion Spoken
+                  Emotion on Call
                 </h1>
                 <LG
                   tag="p"
@@ -81,7 +81,7 @@ export const CtA: React.FC = () => {
                     }
                   `}
                 >
-                  Synthetic speech, human emotion.
+                  AI Voice Actors for All Creators
                 </LG>
                 <div
                   css={css`
