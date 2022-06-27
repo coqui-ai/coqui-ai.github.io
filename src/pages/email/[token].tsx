@@ -52,7 +52,8 @@ const TokenPage: React.FC = ({ token }) => {
         setVerifyStatus('error');
         setErrorInfo('');
       });
-  }, [token, verifyEmail, refetch]);
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  }, [token]);
 
   return (
     <RootLayout hasSkipNav={false}>
