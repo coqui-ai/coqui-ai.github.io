@@ -12,7 +12,7 @@ import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { gql, useMutation } from '@apollo/client';
 import { navigate } from 'gatsby';
 import { CenterWell } from 'layouts/Root/components/Styled';
-import { useProfile } from '../../../utils/auth';
+import { useProfile } from 'utils/auth';
 
 const VERIFY_EMAIL = gql`
   mutation verifyEmail($token: String!) {

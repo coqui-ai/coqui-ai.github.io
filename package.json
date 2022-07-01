@@ -12,7 +12,6 @@
     "lint:css": "stylelint 'src/**/*.{js,ts,tsx}'",
     "lint:js": "eslint ./ --ext js,ts,tsx --max-warnings 0",
     "lint:md": "markdownlint ./*.md {content,src}/**/*.{md,mdx}",
-    "prepare": "yarn build",
     "serve": "gatsby build && gatsby serve --open",
     "start": "gatsby develop --open",
     "test": "prettier-package-json --list-different && yarn format:all --check && yarn lint && yarn tsc"
@@ -166,11 +165,12 @@
   },
   "overrides": {
     "gatsby": {
-      "devcert": "1.2.0"
+      "devcert": "1.2.2"
     }
   },
   "resolutions": {
     "@types/vfile-message": "1.0.1",
-    "gatsby-react-router-scroll": "3.0.3"
+    "gatsby-react-router-scroll": "3.0.3",
+    "devcert": "1.2.2"
   }
 }

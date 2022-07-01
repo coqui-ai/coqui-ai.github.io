@@ -36,6 +36,7 @@ const PROFILE = gql`
       organization_name
       terms_accepted
       email_validated
+      can_access_editor
     }
   }
 `;

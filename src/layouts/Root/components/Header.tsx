@@ -19,7 +19,7 @@ import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { Dropdown, Menu, Item, Trigger } from '@zendeskgarden/react-dropdowns';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
-import { ProfileContext, useProfileIsComplete } from '../../../../utils/auth';
+import { ProfileContext, useProfileIsComplete } from 'utils/auth';
 import { HomeNavUserMenu, VoiceSearchHeader } from './VoiceSearchHeader';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>

@@ -12,7 +12,7 @@ import RootLayout from 'layouts/Root';
 // import { graphql, useStaticQuery } from 'gatsby';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
-import { RequireAuth } from 'components/RequireAuth';
+import RequireAuth from 'layouts/Auth/components/RequireAuth';
 import { Synthesize } from 'layouts/Voices/components/Synthesize';
 
 const SynthesizePage: React.FC = ({ location, id }) => {

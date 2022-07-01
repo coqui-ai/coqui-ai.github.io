@@ -14,7 +14,7 @@ import { OrangeButton } from 'layouts/Root/components/Styled';
 import { MusicPlaylist } from 'iconsax-react';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
-import { RequireAuth } from 'components/RequireAuth';
+import RequireAuth from 'layouts/Auth/components/RequireAuth';
 import { Samples } from 'layouts/Voices/components/Samples';
 
 const SamplesPage: React.FC = ({ id }) => {

@@ -8,7 +8,7 @@
 import React from 'react';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import { SkipNav } from '@zendeskgarden/react-chrome';
-import { useCachedProfile, ProfileContext } from '../../../utils/auth';
+import { useCachedProfile, ProfileContext } from 'utils/auth';
 import Footer from './components/Footer';
 import Header, { headerBoxShadow, headerHeight } from './components/Header';
 
