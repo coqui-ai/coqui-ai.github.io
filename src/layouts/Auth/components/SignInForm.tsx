@@ -6,7 +6,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { useAuth, useLoginEffect } from '../../../../utils/auth';
+import { useAuth, useLoginEffect } from 'utils/auth';
 import { Formik, Form } from 'formik';
 import { Link, navigate } from 'gatsby';
 import { CenterWell, Loading } from 'layouts/Root/components/Styled';

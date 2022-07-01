@@ -12,9 +12,9 @@ import RootLayout from 'layouts/Root';
 // import { graphql, useStaticQuery } from 'gatsby';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
-import { RequireAuth } from 'components/RequireAuth';
+import RequireAuth from 'layouts/Auth/components/RequireAuth';
 import { Voices } from 'layouts/Voices/components/Voices';
-import { useProfileIsComplete } from '../../utils/auth';
+import { useProfileIsComplete } from 'utils/auth';
 
 const VoicesPage: React.FC = () => {
   useEffect(() => {

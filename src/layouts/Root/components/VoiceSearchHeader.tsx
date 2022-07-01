@@ -16,7 +16,7 @@ import { Button } from '@zendeskgarden/react-buttons';
 
 import styled, { css } from 'styled-components';
 import { mediaQuery } from '@zendeskgarden/react-theming';
-import { ProfileContext } from '../../../../utils/auth';
+import { ProfileContext } from 'utils/auth';
 import { ArrowDown2 } from 'iconsax-react';
 import { OrangeButton } from './Styled';
 import { VoicesDropdown } from './VoicesDropdown';

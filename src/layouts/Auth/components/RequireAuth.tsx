@@ -6,13 +6,13 @@
  */
 
 import React from 'react';
-import { useProfile } from '../../utils/auth';
+import { useProfile } from 'utils/auth';
 import { AcceptTerms } from 'layouts/Auth/components/registration/AcceptTerms';
 import { CompleteProfile } from 'layouts/Auth/components/registration/CompleteProfile';
 import { VerifyEmail } from 'layouts/Auth/components/registration/VerifyEmail';
 import { SignInForm } from 'layouts/Auth/components/SignInForm';
 
-export const RequireAuth = ({ children }) => {
+const RequireAuth = ({ children }) => {
   const { data: profile, loading, error } = useProfile();
 
   // fixme
@@ -36,3 +36,5 @@ export const RequireAuth = ({ children }) => {
 
   return children;
 };
+
+export default RequireAuth;

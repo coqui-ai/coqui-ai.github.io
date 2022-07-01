@@ -7,7 +7,7 @@
 
 import React, { useEffect } from 'react';
 import { navigate } from 'gatsby';
-import { useLogoutEffect } from '../../../utils/auth';
+import { useLogoutEffect } from 'utils/auth';
 
 const SignOutPage: React.FC = () => {
   const [logout] = useLogoutEffect();
