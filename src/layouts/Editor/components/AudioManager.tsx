@@ -132,7 +132,7 @@ const AudioManager = ({ project_id, scene_id }) => {
           <Label>Text</Label>
           <Input value={lineText} onChange={e => setLineText(e.target.value)}/>
         </Field>
-        <Submit loading={creating} onClick={submitForm}>Create line</Submit>
+        <Submit loading={creating}>Create line</Submit>
       </form>
     </>
   );

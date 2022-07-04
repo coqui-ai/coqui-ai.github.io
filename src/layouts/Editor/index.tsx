@@ -103,7 +103,7 @@ const ProjectListLayout = () => {
             <Label>Description</Label>
             <Input value={projectDesc} onChange={e => setProjectDesc(e.target.value)}/>
           </Field>
-          <Submit loading={creating} onClick={submitForm}>Create project</Submit>
+          <Submit loading={creating}>Create project</Submit>
         </form>
       </RequireEditorAccess>
     </ClientSide>
