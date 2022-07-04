@@ -72,7 +72,10 @@ const ProjectLayout = ({project_id}) => {
   }
 
   useEffect(() => {
-    if (!scenes?.scenes?.length) {
+    if (!scenes) {
+      return;
+    }
+    if (!scenes.scenes?.length) {
       createDefaultScene();
     } else {
       // Go to first scene
