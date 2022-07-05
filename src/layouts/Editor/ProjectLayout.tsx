@@ -5,22 +5,15 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { Link, navigate } from 'gatsby';
-import { css } from 'styled-components';
-import { Field, Input, Label } from '@zendeskgarden/react-forms';
-import { Submit } from 'layouts/Root/components/Forms';
-import { mediaQuery } from '@zendeskgarden/react-theming';
+import { navigate } from 'gatsby';
 import RequireEditorAccess from './components/RequireEditorAccess';
 import ClientSide from './components/ClientSide';
 import * as mutations from './components/Mutations';
 import * as queries from './components/Queries';
 
 const ProjectLayout = ({projectId}) => {
-  const [projectName, setProjectName] = useState('');
-  const [projectDesc, setProjectDesc] = useState('');
-
   const { data: scenes, loading } = useQuery(queries.SCENES, { variables: { project_id: projectId } });
   const [createScene, { createdScene, creating, error }] = useMutation(mutations.CREATE_SCENE, {
     update: cache => {

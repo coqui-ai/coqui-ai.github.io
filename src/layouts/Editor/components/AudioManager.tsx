@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 import { css } from 'styled-components';
 
 import { useQuery, useMutation } from '@apollo/client';
+import { navigate } from 'gatsby';
 import { Add as AddIcon } from 'iconsax-react';
 
 import { Button } from '@zendeskgarden/react-buttons';
@@ -22,6 +23,7 @@ import * as mutations from './Mutations';
 import SceneDropdown from './SceneDropdown';
 
 const AudioManager = ({ projectId, sceneId }) => {
+  const [selectedScene, setSelectedScene] = useState(null);
   const [isSceneModalOpen, setIsSceneModalOpen] = useState(false);
 
   const openSceneModal = () => setIsSceneModalOpen(true);
@@ -43,6 +45,13 @@ const AudioManager = ({ projectId, sceneId }) => {
       });
     }
   });
+
+  const onSelectScene = (item) => {
+    if (item) {
+      setSelectedScene(item);
+      navigate(`/editor/project/${projectId}/scene/${item.id}/`);
+    }
+  };
 
   const newLine = () => {
     createLine({
@@ -84,35 +93,29 @@ const AudioManager = ({ projectId, sceneId }) => {
           `}
         >
           <SceneDropdown
-            projectId={projectId}
             scenes={scenes?.scenes}
             scene={scene?.scene}
+            onSelect={onSelectScene}
           />
           <Button
             onClick={openSceneModal}
-            css={css`
-              margin-left: ${p => p.theme.space.base * 4}px;
-            `}
+            css={css`margin-left: ${p => p.theme.space.base * 4}px;`}
           >
             <Button.StartIcon>
               <AddIcon size="64" color="#ED8F1C" />
             </Button.StartIcon>
             Add New Scene
           </Button>
-          <NewSceneModal projectId={projectId} isOpen={isSceneModalOpen} close={closeSceneModal} />
-          <div
-            css={css`
-              margin-left: ${p => p.theme.space.base * 4}px;
-            `}
-          >
+          <NewSceneModal
+            projectId={projectId}
+            isOpen={isSceneModalOpen}
+            close={closeSceneModal}
+          />
+          <div css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
             Scene Description: {scene?.scene.description}
           </div>
         </div>
-        <Button
-          css={css`
-            margin-left: ${p => p.theme.space.base * 4}px;
-          `}
-        >
+        <Button css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
           Share
         </Button>
       </div>
