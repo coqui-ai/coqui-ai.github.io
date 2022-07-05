@@ -8,7 +8,7 @@
 import React, { useState } from 'react';
 import { css } from 'styled-components';
 
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { Add as AddIcon, Copy, Menu as MenuIcon, Microphone2, PlayCircle, Trash } from 'iconsax-react';
 
 import { Button, IconButton } from '@zendeskgarden/react-buttons';
@@ -18,28 +18,14 @@ import { Tooltip } from '@zendeskgarden/react-tooltips';
 
 import EmotionDropdown from './EmotionDropdown';
 import LineTextInput from './LineTextInput';
+import * as mutations from './Mutations';
 import SpeedRange from './SpeedRange';
-
-const CREATE_LINE = gql`
-  mutation createLine($scene_id: String!, $text: String!, $speaker_id: String!, $emotion_id: String!, $speed: Float!, $emotion_intensity: Float!) {
-    createLine(scene_id: $scene_id, text: $text, speaker_id: $speaker_id, emotion_id: $emotion_id, speed: $speed, emotion_intensity: $emotion_intensity) {
-      line {
-        id
-        text
-      }
-      take {
-        id
-        audio_url
-      }
-    }
-  }
-`;
 
 const LineEditor = ({ scene, line, speakers, emotions }) => {
   const [lineText, setLineText] = useState(line?.text || '');
   const [lineSpeed, setLineSpeed] = useState(line?.speed || 1.0);
 
-  const [createLine, { createdLine, creating, error }] = useMutation(CREATE_LINE, {
+  const [createLine, { createdLine, creating, error }] = useMutation(mutations.CREATE_LINE, {
     update: cache => {
       cache.evict({
         id: 'ROOT_QUERY',

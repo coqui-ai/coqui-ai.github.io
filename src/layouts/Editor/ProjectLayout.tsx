@@ -6,7 +6,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { gql, useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { Link, navigate } from 'gatsby';
 import { css } from 'styled-components';
 import { Field, Input, Label } from '@zendeskgarden/react-forms';
@@ -14,41 +14,15 @@ import { Submit } from 'layouts/Root/components/Forms';
 import { mediaQuery } from '@zendeskgarden/react-theming';
 import RequireEditorAccess from './components/RequireEditorAccess';
 import ClientSide from './components/ClientSide';
-
-const SCENES = gql`
-  query scenes($project_id: String!) {
-    scenes(project_id: $project_id) {
-      id
-      name
-      description
-      created_at
-    }
-  }
-`;
-
-const CREATE_SCENE = gql`
-  mutation createScene($project_id: String!, $name: String!, $description: String!) {
-    createScene(project_id: $project_id, name: $name, description: $description) {
-      errors {
-        field
-        errors
-      }
-      scene {
-        id
-        name
-        description
-        created_at
-      }
-    }
-  }
-`;
+import * as mutations from './components/Mutations';
+import * as queries from './components/Queries';
 
 const ProjectLayout = ({projectId}) => {
   const [projectName, setProjectName] = useState('');
   const [projectDesc, setProjectDesc] = useState('');
 
-  const { data: scenes, loading } = useQuery(SCENES, { variables: { project_id: projectId } });
-  const [createScene, { createdScene, creating, error }] = useMutation(CREATE_SCENE, {
+  const { data: scenes, loading } = useQuery(queries.SCENES, { variables: { project_id: projectId } });
+  const [createScene, { createdScene, creating, error }] = useMutation(mutations.CREATE_SCENE, {
     update: cache => {
       cache.evict({
         id: 'ROOT_QUERY',

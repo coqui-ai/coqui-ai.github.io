@@ -14,29 +14,13 @@ import { Field, Input, Label, Textarea } from '@zendeskgarden/react-forms';
 import { DrawerModal } from '@zendeskgarden/react-modals';
 
 import { Submit } from 'layouts/Root/components/Forms';
-
-const CREATE_SCENE = gql`
-  mutation createScene($project_id: String!, $name: String!, $description: String!) {
-    createScene(project_id: $project_id, name: $name, description: $description) {
-      errors {
-        field
-        errors
-      }
-      scene {
-        id
-        name
-        description
-        created_at
-      }
-    }
-  }
-`;
+import * as mutations from './Mutations';
 
 const NewSceneModal = ({ projectId, isOpen, close }) => {
   const [sceneName, setSceneName] = useState('');
   const [sceneDesc, setSceneDesc] = useState('');
 
-  const [createScene, { createdScene, creating, error }] = useMutation(CREATE_SCENE, {
+  const [createScene, { createdScene, creating, error }] = useMutation(mutations.CREATE_SCENE, {
     update: cache => {
       cache.evict({
         id: 'ROOT_QUERY',

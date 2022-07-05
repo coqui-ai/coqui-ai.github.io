@@ -6,7 +6,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { gql, useQuery, useMutation } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { Link, navigate } from 'gatsby';
 import { css } from 'styled-components';
 import { Field, Input, Label } from '@zendeskgarden/react-forms';
@@ -15,39 +15,15 @@ import { mediaQuery } from '@zendeskgarden/react-theming';
 import RequireEditorAccess from './components/RequireEditorAccess';
 import ClientSide from './components/ClientSide';
 import Breadcrumb from './components/Breadcrumb';
-
-const PROJECTS = gql`{
-  projects {
-    id
-    name
-    description
-    created_at
-  }
-}`;
-
-const CREATE_PROJECT = gql`
-  mutation createProject($name: String!, $description: String!) {
-    createProject(name: $name, description: $description) {
-      errors {
-        field
-        errors
-      }
-      project {
-        id
-        name
-        description
-        created_at
-      }
-    }
-  }
-`;
+import * as mutations from './components/Mutations';
+import * as queries from './components/Queries';
 
 const ProjectListLayout = () => {
   const [projectName, setProjectName] = useState('');
   const [projectDesc, setProjectDesc] = useState('');
 
-  const { data: projects, loading } = useQuery(PROJECTS);
-  const [createProject, { createdProject, creating, error }] = useMutation(CREATE_PROJECT, {
+  const { data: projects, loading } = useQuery(queries.PROJECTS);
+  const [createProject, { createdProject, creating, error }] = useMutation(mutations.CREATE_PROJECT, {
     update: cache => {
       cache.evict({
         id: 'ROOT_QUERY',

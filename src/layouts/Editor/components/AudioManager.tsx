@@ -8,7 +8,7 @@
 import React, { useState } from 'react';
 import { css } from 'styled-components';
 
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Add as AddIcon } from 'iconsax-react';
 
 import { Button } from '@zendeskgarden/react-buttons';
@@ -17,77 +17,8 @@ import SEO from 'components/SEO';
 import Breadcrumb from './Breadcrumb';
 import LineEditor from './LineEditor';
 import NewSceneModal from './NewSceneModal';
+import * as queries from './Queries';
 import SceneDropdown from './SceneDropdown';
-
-const PROJECT = gql`
-  query project($project_id: String!) {
-    project(id: $project_id) {
-      id
-      name
-      description
-      created_at
-    }
-  }
-`;
-
-const SCENES = gql`
-  query scenes($project_id: String!) {
-    scenes(project_id: $project_id) {
-      id
-      name
-      description
-      created_at
-    }
-  }
-`;
-
-const SCENE = gql`
-  query scene($scene_id: String!) {
-    scene(id: $scene_id) {
-      id
-      name
-      description
-      created_at
-    }
-  }
-`;
-
-const LINES = gql`
-  query lines($scene_id: String!) {
-    lines(scene_id: $scene_id) {
-      id
-      text
-      speaker {
-        id
-        name
-      }
-      emotion {
-        id
-        name
-      }
-      emotion_intensity
-      speed
-      takes {
-        id
-        audio_url
-      }
-    }
-  }
-`;
-
-const EMOTIONS = gql`{
-  emotions {
-    id
-    name
-  }
-}`;
-
-const SPEAKERS = gql`{
-  speakers {
-    id
-    name
-  }
-}`;
 
 const AudioManager = ({ projectId, sceneId }) => {
   const [isSceneModalOpen, setIsSceneModalOpen] = useState(false);
@@ -95,12 +26,12 @@ const AudioManager = ({ projectId, sceneId }) => {
   const openSceneModal = () => setIsSceneModalOpen(true);
   const closeSceneModal = () => setIsSceneModalOpen(false);
 
-  const { data: project } = useQuery(PROJECT, { variables: { project_id: projectId } });
-  const { data: scenes } = useQuery(SCENES, { variables: { project_id: projectId } });
-  const { data: scene } = useQuery(SCENE, { variables: { scene_id: sceneId } });
-  const { data: lines } = useQuery(LINES, { variables: { scene_id: sceneId } });
-  const { data: emotions } = useQuery(EMOTIONS);
-  const { data: speakers } = useQuery(SPEAKERS);
+  const { data: project } = useQuery(queries.PROJECT, { variables: { project_id: projectId } });
+  const { data: scenes } = useQuery(queries.SCENES, { variables: { project_id: projectId } });
+  const { data: scene } = useQuery(queries.SCENE, { variables: { scene_id: sceneId } });
+  const { data: lines } = useQuery(queries.LINES, { variables: { scene_id: sceneId } });
+  const { data: emotions } = useQuery(queries.EMOTIONS);
+  const { data: speakers } = useQuery(queries.SPEAKERS);
 
   return (
     <>
