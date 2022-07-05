@@ -14,6 +14,7 @@ import { Submit } from 'layouts/Root/components/Forms';
 import { mediaQuery } from '@zendeskgarden/react-theming';
 import RequireEditorAccess from './components/RequireEditorAccess';
 import ClientSide from './components/ClientSide';
+import Breadcrumb from './components/Breadcrumb';
 
 const PROJECTS = gql`{
   projects {
@@ -79,6 +80,11 @@ const ProjectListLayout = () => {
   return (
     <ClientSide>
       <RequireEditorAccess>
+        <Breadcrumb
+          items={[
+            ['My Projects', '/editor/'],
+          ]}
+        />
         Project list
         <ul>
           {projects && projects.projects.map(proj => (
