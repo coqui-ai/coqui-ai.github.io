@@ -7,32 +7,20 @@
 
 import React, { useState } from 'react';
 
-import { navigate } from 'gatsby';
 import { DocumentText } from 'iconsax-react';
 import { Dropdown, Field, Item, Label, Menu, Select } from '@zendeskgarden/react-dropdowns';
 
-const SceneDropdown = ({ projectId, scenes, scene }) => {
-  const [selectedItem, setSelectedItem] = useState(scene);
-
-  const onSelect = (item) => {
-    if (item) {
-      setSelectedItem(item);
-      navigate(`/editor/project/${projectId}/scene/${item.id}/`);
-    }
-  };
-
+const SceneDropdown = ({ scenes, scene, onSelect }) => {
   return (
     <Dropdown
-      selectedItem={selectedItem}
+      selectedItem={scene}
       onSelect={onSelect}
       downshiftProps={{ itemToString: (item) => item && item.name }}
     >
       <Field>
         <Label hidden>Select scene</Label>
-        <Select
-          start={<DocumentText color="#ed8f1c" variant="Bold" />}
-        >
-          {selectedItem?.name || 'Scene'}
+        <Select start={<DocumentText color="#ed8f1c" variant="Bold" />}>
+          {scene?.name || 'Scene'}
         </Select>
       </Field>
       <Menu>

@@ -8,7 +8,8 @@
 import React, { useState } from 'react';
 import { css } from 'styled-components';
 
-import { gql, useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
+import { navigate } from 'gatsby';
 import { Add as AddIcon } from 'iconsax-react';
 
 import { Button } from '@zendeskgarden/react-buttons';
@@ -17,90 +18,53 @@ import SEO from 'components/SEO';
 import Breadcrumb from './Breadcrumb';
 import LineEditor from './LineEditor';
 import NewSceneModal from './NewSceneModal';
+import * as queries from './Queries';
+import * as mutations from './Mutations';
 import SceneDropdown from './SceneDropdown';
 
-const PROJECT = gql`
-  query project($project_id: String!) {
-    project(id: $project_id) {
-      id
-      name
-      description
-      created_at
-    }
-  }
-`;
-
-const SCENES = gql`
-  query scenes($project_id: String!) {
-    scenes(project_id: $project_id) {
-      id
-      name
-      description
-      created_at
-    }
-  }
-`;
-
-const SCENE = gql`
-  query scene($scene_id: String!) {
-    scene(id: $scene_id) {
-      id
-      name
-      description
-      created_at
-    }
-  }
-`;
-
-const LINES = gql`
-  query lines($scene_id: String!) {
-    lines(scene_id: $scene_id) {
-      id
-      text
-      speaker {
-        id
-        name
-      }
-      emotion {
-        id
-        name
-      }
-      emotion_intensity
-      speed
-      takes {
-        id
-        audio_url
-      }
-    }
-  }
-`;
-
-const EMOTIONS = gql`{
-  emotions {
-    id
-    name
-  }
-}`;
-
-const SPEAKERS = gql`{
-  speakers {
-    id
-    name
-  }
-}`;
-
 const AudioManager = ({ projectId, sceneId }) => {
+  const [selectedScene, setSelectedScene] = useState(null);
   const [isSceneModalOpen, setIsSceneModalOpen] = useState(false);
 
   const openSceneModal = () => setIsSceneModalOpen(true);
   const closeSceneModal = () => setIsSceneModalOpen(false);
 
-  const { data: project } = useQuery(PROJECT, { variables: { project_id: projectId } });
-  const { data: scenes } = useQuery(SCENES, { variables: { project_id: projectId } });
-  const { data: scene } = useQuery(SCENE, { variables: { scene_id: sceneId } });
-  const { data: lines } = useQuery(LINES, { variables: { scene_id: sceneId } });
-  const { data: emotions } = useQuery(EMOTIONS);
-  const { data: speakers } = useQuery(SPEAKERS);
+  const { data: project } = useQuery(queries.PROJECT, { variables: { project_id: projectId } });
+  const { data: scenes } = useQuery(queries.SCENES, { variables: { project_id: projectId } });
+  const { data: scene } = useQuery(queries.SCENE, { variables: { scene_id: sceneId } });
+  const { data: lines } = useQuery(queries.LINES, { variables: { scene_id: sceneId } });
+  const { data: emotions } = useQuery(queries.EMOTIONS);
+  const { data: speakers } = useQuery(queries.SPEAKERS);
+
+  const [createLine, { createdLine, creating, error }] = useMutation(mutations.CREATE_LINE, {
+    update: cache => {
+      cache.evict({
+        id: 'ROOT_QUERY',
+        fieldName: 'lines',
+        args: { scene_id: scene.id }
+      });
+    }
+  });
+
+  const onSelectScene = (item) => {
+    if (item) {
+      setSelectedScene(item);
+      navigate(`/editor/project/${projectId}/scene/${item.id}/`);
+    }
+  };
+
+  const newLine = () => {
+    createLine({
+      variables: {
+        scene_id: sceneId,
+        text: "New line",
+        speed: 1.0,
+        emotion_id: "7b56cb9e-735c-4c37-8540-6ad62c380155", // Neutral
+        speaker_id: "f536ac80-3068-40d8-9f62-9d3428cab6b9",
+        emotion_intensity: 1.0,
+      }
+    });
+  };
 
   return (
     <>
@@ -129,49 +93,57 @@ const AudioManager = ({ projectId, sceneId }) => {
           `}
         >
           <SceneDropdown
-            projectId={projectId}
             scenes={scenes?.scenes}
             scene={scene?.scene}
+            onSelect={onSelectScene}
           />
           <Button
             onClick={openSceneModal}
-            css={css`
-              margin-left: ${p => p.theme.space.base * 4}px;
-            `}
+            css={css`margin-left: ${p => p.theme.space.base * 4}px;`}
           >
             <Button.StartIcon>
               <AddIcon size="64" color="#ED8F1C" />
             </Button.StartIcon>
             Add New Scene
           </Button>
-          <NewSceneModal projectId={projectId} isOpen={isSceneModalOpen} close={closeSceneModal} />
-          <div
-            css={css`
-              margin-left: ${p => p.theme.space.base * 4}px;
-            `}
-          >
+          <NewSceneModal
+            projectId={projectId}
+            isOpen={isSceneModalOpen}
+            close={closeSceneModal}
+          />
+          <div css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
             Scene Description: {scene?.scene.description}
           </div>
         </div>
-        <Button
-          css={css`
-            margin-left: ${p => p.theme.space.base * 4}px;
-          `}
-        >
+        <Button css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
           Share
         </Button>
       </div>
-      <ul css={css`margin: ${p => p.theme.space.base * 4}px;`}>
-        {lines?.lines?.map(line => (
-          <LineEditor
-            key={line.id}
-            scene={scene?.scene}
-            line={line}
-            speakers={speakers?.speakers}
-            emotions={emotions?.emotions}
-          />
-        ))}
-      </ul>
+      {lines?.lines?.length > 0 ? (
+        <ul css={css`margin: ${p => p.theme.space.base * 4}px;`}>
+          {lines?.lines?.map(line => (
+            <LineEditor
+              key={line.id}
+              scene={scene?.scene}
+              line={line}
+              speakers={speakers?.speakers}
+              emotions={emotions?.emotions}
+            />
+          ))}
+        </ul>
+      ) : (
+        <div css={css`margin: ${p => p.theme.space.base * 4}px;`}>
+          <Button
+            disabled={creating}
+            onClick={newLine}
+          >
+            <Button.StartIcon>
+              <AddIcon color="#ed8f1c" />
+            </Button.StartIcon>
+            Add New Line
+          </Button>
+        </div>
+      )}
     </>
   );
 };
