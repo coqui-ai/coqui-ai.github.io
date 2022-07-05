@@ -14,6 +14,7 @@ import { Submit } from 'layouts/Root/components/Forms';
 import { mediaQuery } from '@zendeskgarden/react-theming';
 import RequireEditorAccess from './components/RequireEditorAccess';
 import ClientSide from './components/ClientSide';
+import Breadcrumb from './components/Breadcrumb';
 
 const PROJECTS = gql`{
   projects {
@@ -79,12 +80,19 @@ const ProjectListLayout = () => {
   return (
     <ClientSide>
       <RequireEditorAccess>
+        <Breadcrumb
+          items={[
+            ['My Projects', '/editor/'],
+          ]}
+        />
         Project list
         <ul>
           {projects && projects.projects.map(proj => (
-            <Link to={`/editor/project/${proj.id}`}>
-              <li css="list-style-type: circle;" key={proj.id}>{proj.name} - {proj.description}</li>
-            </Link>
+            <li css="list-style-type: circle;" key={proj.id}>
+              <Link to={`/editor/project/${proj.id}`}>
+                {proj.name} - {proj.description}
+              </Link>
+            </li>
           ))}
         </ul>
         <hr/>
@@ -103,7 +111,7 @@ const ProjectListLayout = () => {
             <Label>Description</Label>
             <Input value={projectDesc} onChange={e => setProjectDesc(e.target.value)}/>
           </Field>
-          <Submit loading={creating} onClick={submitForm}>Create project</Submit>
+          <Submit loading={creating}>Create project</Submit>
         </form>
       </RequireEditorAccess>
     </ClientSide>

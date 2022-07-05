@@ -9,10 +9,12 @@ import React, { useEffect, useState } from 'react';
 import RootLayout from 'layouts/Root';
 import ProjectListLayout from 'layouts/Editor';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
+import SEO from 'components/SEO';
 
 const EditorPage = ({ project_id }) => {
   return (
     <RootLayout hasSkipNav={false}>
+      <SEO title="My Projects" />
       <ProjectListLayout/>
       <GogleAnalyticsCookieConsent />
     </RootLayout>
