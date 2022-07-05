@@ -82,9 +82,11 @@ const ProjectListLayout = () => {
         Project list
         <ul>
           {projects && projects.projects.map(proj => (
-            <Link to={`/editor/project/${proj.id}`}>
-              <li css="list-style-type: circle;" key={proj.id}>{proj.name} - {proj.description}</li>
-            </Link>
+            <li css="list-style-type: circle;" key={proj.id}>
+              <Link to={`/editor/project/${proj.id}`}>
+                {proj.name} - {proj.description}
+              </Link>
+            </li>
           ))}
         </ul>
         <hr/>
