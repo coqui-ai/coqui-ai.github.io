@@ -13,7 +13,7 @@ import GogleAnalyticsCookieConsent from 'components/Cookies';
 const ScenePage = ({ project_id, scene_id }) => {
   return (
     <RootLayout hasSkipNav={false}>
-      <SceneLayout project_id={project_id} scene_id={scene_id}/>
+      <SceneLayout projectId={project_id} sceneId={scene_id}/>
       <GogleAnalyticsCookieConsent />
     </RootLayout>
   );

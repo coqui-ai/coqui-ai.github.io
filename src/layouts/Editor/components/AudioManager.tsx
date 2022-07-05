@@ -5,13 +5,52 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useEffect, useState } from 'react';
-import { gql, useQuery, useMutation } from '@apollo/client';
-import { Link, navigate } from 'gatsby';
-import styled, { css } from 'styled-components';
-import { mediaQuery } from '@zendeskgarden/react-theming';
-import { Field, Input, Label } from '@zendeskgarden/react-forms';
-import { Submit } from 'layouts/Root/components/Forms';
+import React, { useState } from 'react';
+import { css } from 'styled-components';
+
+import { gql, useQuery } from '@apollo/client';
+import { Add as AddIcon } from 'iconsax-react';
+
+import { Button } from '@zendeskgarden/react-buttons';
+
+import SEO from 'components/SEO';
+import Breadcrumb from './Breadcrumb';
+import LineEditor from './LineEditor';
+import NewSceneModal from './NewSceneModal';
+import SceneDropdown from './SceneDropdown';
+
+const PROJECT = gql`
+  query project($project_id: String!) {
+    project(id: $project_id) {
+      id
+      name
+      description
+      created_at
+    }
+  }
+`;
+
+const SCENES = gql`
+  query scenes($project_id: String!) {
+    scenes(project_id: $project_id) {
+      id
+      name
+      description
+      created_at
+    }
+  }
+`;
+
+const SCENE = gql`
+  query scene($scene_id: String!) {
+    scene(id: $scene_id) {
+      id
+      name
+      description
+      created_at
+    }
+  }
+`;
 
 const LINES = gql`
   query lines($scene_id: String!) {
@@ -50,90 +89,89 @@ const SPEAKERS = gql`{
   }
 }`;
 
-const CREATE_LINE = gql`
-  mutation createLine($scene_id: String!, $text: String!, $speaker_id: String!, $emotion_id: String!, $speed: Float!, $emotion_intensity: Float!) {
-    createLine(scene_id: $scene_id, text: $text, speaker_id: $speaker_id, emotion_id: $emotion_id, speed: $speed, emotion_intensity: $emotion_intensity) {
-      line {
-        id
-        text
-      }
-      take {
-        id
-        audio_url
-      }
-    }
-  }
-`;
+const AudioManager = ({ projectId, sceneId }) => {
+  const [isSceneModalOpen, setIsSceneModalOpen] = useState(false);
 
-const AudioManager = ({ project_id, scene_id }) => {
+  const openSceneModal = () => setIsSceneModalOpen(true);
+  const closeSceneModal = () => setIsSceneModalOpen(false);
+
+  const { data: project } = useQuery(PROJECT, { variables: { project_id: projectId } });
+  const { data: scenes } = useQuery(SCENES, { variables: { project_id: projectId } });
+  const { data: scene } = useQuery(SCENE, { variables: { scene_id: sceneId } });
+  const { data: lines } = useQuery(LINES, { variables: { scene_id: sceneId } });
   const { data: emotions } = useQuery(EMOTIONS);
   const { data: speakers } = useQuery(SPEAKERS);
-  const { data: lines } = useQuery(LINES, { variables: { scene_id } });
-  const [createLine, { createdLine, creating, error }] = useMutation(CREATE_LINE, {
-    update: cache => {
-      cache.evict({
-        id: 'ROOT_QUERY',
-        fieldName: 'lines',
-        args: { scene_id }
-      });
-    }
-  });
-
-  const [lineText, setLineText] = useState('');
-
-  const submitForm = () => {
-    if (!lineText) {
-      return false;
-    }
-
-    createLine({
-      variables: {
-        scene_id,
-        text: lineText,
-        speed: 1.0,
-        emotion_id: "1875abba-17c2-4e03-9382-36448972d7c9",
-        speaker_id: "f78d46da-b51a-4d26-9003-d3dd69430b81",
-        emotion_intensity: 1.0,
-      }
-    });
-
-    return true;
-  };
 
   return (
     <>
-      <p>Project {project_id} - Scene {scene_id}</p>
-      <p>
-        Lines:
-        <ul>
-        {lines?.lines?.map(l => (<li key={l.id}>{l.id} - {l.text} - {l.takes?.length > 0 && <audio src={l.takes[0].audio_url} controls></audio>}</li>))}
-        </ul>
-      </p>
-      <p>
-        Emotions:
-        <ul>
-        {emotions?.emotions.map(e => (<li key={e.name}>{e.name}</li>))}
-        </ul>
-      </p>
-      <p>
-        Speakers:
-        <ul>
-        {speakers?.speakers.map(s => (<li key={s.name}>{s.name}</li>))}
-        </ul>
-      </p>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          submitForm();
-        }}
+      <SEO title="Audio Manager" />
+      <Breadcrumb
+        items={[
+          ['My Projects', '/editor/'],
+          [project?.project.name, `/editor/project/${projectId}/`],
+        ]}
+      />
+      <div
+        css={css`
+          border-top: 1px solid #eff7f4;
+          border-bottom: 1px solid #eff7f4;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: ${p => p.theme.space.base * 4}px;
+          padding: ${p => p.theme.space.base * 2}px ${p => p.theme.space.base * 4}px;
+        `}
       >
-        <p>Create new line</p>
-        <Field>
-          <Label>Text</Label>
-          <Input value={lineText} onChange={e => setLineText(e.target.value)}/>
-        </Field>
-        <Submit loading={creating}>Create line</Submit>
-      </form>
+        <div
+          css={css`
+            display: flex;
+            align-items: center;
+          `}
+        >
+          <SceneDropdown
+            projectId={projectId}
+            scenes={scenes?.scenes}
+            scene={scene?.scene}
+          />
+          <Button
+            onClick={openSceneModal}
+            css={css`
+              margin-left: ${p => p.theme.space.base * 4}px;
+            `}
+          >
+            <Button.StartIcon>
+              <AddIcon size="64" color="#ED8F1C" />
+            </Button.StartIcon>
+            Add New Scene
+          </Button>
+          <NewSceneModal projectId={projectId} isOpen={isSceneModalOpen} close={closeSceneModal} />
+          <div
+            css={css`
+              margin-left: ${p => p.theme.space.base * 4}px;
+            `}
+          >
+            Scene Description: {scene?.scene.description}
+          </div>
+        </div>
+        <Button
+          css={css`
+            margin-left: ${p => p.theme.space.base * 4}px;
+          `}
+        >
+          Share
+        </Button>
+      </div>
+      <ul css={css`margin: ${p => p.theme.space.base * 4}px;`}>
+        {lines?.lines?.map(line => (
+          <LineEditor
+            key={line.id}
+            scene={scene?.scene}
+            line={line}
+            speakers={speakers?.speakers}
+            emotions={emotions?.emotions}
+          />
+        ))}
+      </ul>
     </>
   );
 };

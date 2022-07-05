@@ -43,11 +43,11 @@ const CREATE_SCENE = gql`
   }
 `;
 
-const ProjectLayout = ({project_id}) => {
+const ProjectLayout = ({projectId}) => {
   const [projectName, setProjectName] = useState('');
   const [projectDesc, setProjectDesc] = useState('');
 
-  const { data: scenes, loading } = useQuery(SCENES, { variables: { project_id } });
+  const { data: scenes, loading } = useQuery(SCENES, { variables: { project_id: projectId } });
   const [createScene, { createdScene, creating, error }] = useMutation(CREATE_SCENE, {
     update: cache => {
       cache.evict({
@@ -60,14 +60,14 @@ const ProjectLayout = ({project_id}) => {
   const createDefaultScene = async () => {
     const scene = await createScene({
       variables: {
-        project_id: project_id,
+        project_id: projectId,
         name: "Scene 1",
         description: "",
       }
     });
     // Default scene created, navigate to it
     if (scene?.createScene?.scene?.id) {
-      navigate(`/editor/project/${project_id}/scene/${scene?.createScene?.scene?.id}/`);
+      navigate(`/editor/project/${projectId}/scene/${scene?.createScene?.scene?.id}/`);
     }
   }
 
@@ -79,14 +79,14 @@ const ProjectLayout = ({project_id}) => {
       createDefaultScene();
     } else {
       // Go to first scene
-      navigate(`/editor/project/${project_id}/scene/${scenes.scenes[0].id}/`);
+      navigate(`/editor/project/${projectId}/scene/${scenes.scenes[0].id}/`);
     }
   }, [scenes]);
 
   return (
     <ClientSide>
       <RequireEditorAccess>
-        Project {project_id}
+        Project {projectId}
       </RequireEditorAccess>
     </ClientSide>
   );

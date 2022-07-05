@@ -11,11 +11,11 @@ import RequireEditorAccess from './components/RequireEditorAccess';
 import ClientSide from './components/ClientSide';
 import AudioManager from './components/AudioManager';
 
-const SceneLayout = ({project_id, scene_id}) => {
+const SceneLayout = ({projectId, sceneId}) => {
   return (
     <ClientSide>
       <RequireEditorAccess>
-        <AudioManager project_id={project_id} scene_id={scene_id}/>
+        <AudioManager projectId={projectId} sceneId={sceneId}/>
       </RequireEditorAccess>
     </ClientSide>
   );

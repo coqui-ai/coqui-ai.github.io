@@ -13,7 +13,7 @@ import GogleAnalyticsCookieConsent from 'components/Cookies';
 const ProjectPage = ({project_id}) => {
   return (
     <RootLayout hasSkipNav={false}>
-      <ProjectLayout project_id={project_id}/>
+      <ProjectLayout projectId={project_id}/>
       <GogleAnalyticsCookieConsent/>
     </RootLayout>
   );
