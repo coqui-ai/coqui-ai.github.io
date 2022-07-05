@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import { css } from 'styled-components';
 
 import { useMutation } from '@apollo/client';
-import { Add as AddIcon, Copy, Menu as MenuIcon, Microphone2, PlayCircle, Trash } from 'iconsax-react';
+import { Add as AddIcon, Copy, Menu as MenuIcon, Microphone2, Trash } from 'iconsax-react';
 
 import { Button, IconButton } from '@zendeskgarden/react-buttons';
 import { Field as DropdownField, Item, Dropdown, Menu, Select } from '@zendeskgarden/react-dropdowns';
@@ -19,6 +19,7 @@ import { Tooltip } from '@zendeskgarden/react-tooltips';
 import EmotionDropdown from './EmotionDropdown';
 import LineTextInput from './LineTextInput';
 import * as mutations from './Mutations';
+import PlayButton from './PlayButton';
 import SpeedRange from './SpeedRange';
 
 const LineEditor = ({ scene, line, speakers, emotions }) => {
@@ -168,27 +169,19 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
             justify-content: space-between;
           `}
         >
-          {line.takes?.length > 0 && <audio src={line.takes[0].audio_url} />}
-          <div
-            css={css`
-              border-top: 1px solid rgba(255,255,255,.1);
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              padding: ${p => p.theme.space.sm} ${p => p.theme.space.md};
-            `}
-          >
-            <Tooltip content="Play">
-              <Button isBasic>
-                <PlayCircle
-                  size="48"
-                  color="#ed8f1c"
-                  variant="Bold"
-                />
-              </Button>
-            </Tooltip>
-          </div>
-
+          {line.takes?.length > 0 &&
+            <div
+              css={css`
+                border-top: 1px solid rgba(255,255,255,.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: ${p => p.theme.space.sm} ${p => p.theme.space.md};
+              `}
+            >
+              <PlayButton src={line.takes[0].audio_url} />
+            </div>
+          }
           <div
             css={css`
               border-top: 1px solid rgba(255,255,255,.1);
