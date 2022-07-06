@@ -111,13 +111,24 @@ const AudioManager = ({ projectId, sceneId }) => {
             isOpen={isSceneModalOpen}
             close={closeSceneModal}
           />
+          <Button isBasic css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
+            <Button.StartIcon>
+              <AddIcon size="64" color="#ED8F1C" />
+            </Button.StartIcon>
+            Add New Word to Dictionary
+          </Button>
           <div css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
             Scene Description: {scene?.scene.description}
           </div>
         </div>
-        <Button css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
-          Share
-        </Button>
+        <div>
+          <Button css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
+            Share
+          </Button>
+          <Button css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
+            Export
+          </Button>
+        </div>
       </div>
       {lines?.lines?.length > 0 ? (
         <ul css={css`margin: ${p => p.theme.space.base * 4}px;`}>

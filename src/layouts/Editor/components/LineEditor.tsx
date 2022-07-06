@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import { css } from 'styled-components';
 
 import { useMutation } from '@apollo/client';
-import { Add as AddIcon, Copy, Menu as MenuIcon, Microphone2, Trash } from 'iconsax-react';
+import { Add as AddIcon, Copy, Export, Menu as MenuIcon, Microphone2, Refresh, Sound, Translate, Trash } from 'iconsax-react';
 
 import { Button, IconButton } from '@zendeskgarden/react-buttons';
 import { Field as DropdownField, Item, Dropdown, Menu, Select } from '@zendeskgarden/react-dropdowns';
@@ -158,6 +158,30 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
               value={lineSpeed}
               onChange={setLineSpeed}
             />
+            <Button isBasic>
+              <Button.StartIcon>
+                <Translate color="#ed8f1c" variant="Bold" />
+              </Button.StartIcon>
+              English
+            </Button>
+            <Button isBasic>
+              <Button.StartIcon>
+                <Sound color="#ed8f1c" />
+              </Button.StartIcon>
+              Edit Pitch
+            </Button>
+            <Button isBasic>
+              <Button.StartIcon>
+                <Refresh color="#ed8f1c" />
+              </Button.StartIcon>
+              New Take
+            </Button>
+            <Button isBasic>
+              <Button.StartIcon>
+                <Export color="#ed8f1c" />
+              </Button.StartIcon>
+              Export
+            </Button>
             <Button
               disabled={creating}
               isBasic
