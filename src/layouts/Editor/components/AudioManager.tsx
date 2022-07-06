@@ -16,7 +16,7 @@ import { Button } from '@zendeskgarden/react-buttons';
 
 import SEO from 'components/SEO';
 import Breadcrumb from './Breadcrumb';
-import LineEditor from './LineEditor';
+import LineEditor, { getDefaultEmotion, getDefaultSpeaker } from './LineEditor';
 import NewSceneModal from './NewSceneModal';
 import * as queries from './Queries';
 import * as mutations from './Mutations';
@@ -59,8 +59,8 @@ const AudioManager = ({ projectId, sceneId }) => {
         scene_id: sceneId,
         text: "New line",
         speed: 1.0,
-        emotion_id: "7b56cb9e-735c-4c37-8540-6ad62c380155", // Neutral
-        speaker_id: "f536ac80-3068-40d8-9f62-9d3428cab6b9",
+        emotion_id: getDefaultEmotion(emotions?.emotions)?.id,
+        speaker_id: getDefaultSpeaker(speakers?.speakers)?.id,
         emotion_intensity: 1.0,
       }
     });
