@@ -41,7 +41,7 @@ const AudioManager = ({ projectId, sceneId }) => {
       cache.evict({
         id: 'ROOT_QUERY',
         fieldName: 'lines',
-        args: { scene_id: scene.id }
+        args: { scene_id: scene?.scene.id }
       });
     }
   });
