@@ -35,6 +35,7 @@ Finally, in a new terminal start the frontend development server and point it to
 
 ```bash
 $ cd coqui-ai.github.io
+$ nvm use 14.19
 $ yarn install
 $ export REACT_APP_GITHUB_KEY=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
 $ export GATSBY_BACKEND_URL="http://localhost:8001"
