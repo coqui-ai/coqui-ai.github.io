@@ -22,6 +22,14 @@ import * as mutations from './Mutations';
 import PlayButton from './PlayButton';
 import SpeedRange from './SpeedRange';
 
+export const getDefaultEmotion = (emotions) => {
+  return emotions?.find(e => e.name === 'Neutral');
+};
+
+export const getDefaultSpeaker = (speakers) => {
+  return speakers?.find(s => s.name === 'ESD_0011');
+};
+
 const LineEditor = ({ scene, line, speakers, emotions }) => {
   const [lineText, setLineText] = useState(line?.text || '');
   const [lineSpeed, setLineSpeed] = useState(line?.speed || 1.0);
@@ -42,8 +50,8 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
         scene_id: scene.id,
         text: lineText,
         speed: lineSpeed,
-        emotion_id: "7b56cb9e-735c-4c37-8540-6ad62c380155", // Neutral
-        speaker_id: "f536ac80-3068-40d8-9f62-9d3428cab6b9",
+        emotion_id: getDefaultEmotion(emotions)?.id,
+        speaker_id: getDefaultSpeaker(speakers)?.id,
         emotion_intensity: 1.0,
       }
     });
@@ -55,8 +63,8 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
         scene_id: scene.id,
         text: "New line",
         speed: 1.0,
-        emotion_id: "7b56cb9e-735c-4c37-8540-6ad62c380155", // Neutral
-        speaker_id: "f536ac80-3068-40d8-9f62-9d3428cab6b9",
+        emotion_id: getDefaultEmotion(emotions)?.id,
+        speaker_id: getDefaultSpeaker(speakers)?.id,
         emotion_intensity: 1.0,
       }
     });
