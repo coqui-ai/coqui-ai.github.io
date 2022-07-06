@@ -9,25 +9,21 @@ import React, { useState } from 'react';
 
 import { Dropdown, Field, Item, Label, Menu, Select } from '@zendeskgarden/react-dropdowns';
 
-const EmotionDropdown = ({ emotions, emotion }) => {
-  const neutral = emotions?.find(e => e.name === 'Neutral');
-
-  const [selectedItem, setSelectedItem] = useState(emotion || neutral);
-
+const EmotionDropdown = ({ items, selectedItem, onSelect }) => {
   return (
     <Dropdown
       selectedItem={selectedItem}
-      onSelect={setSelectedItem}
+      onSelect={onSelect}
       downshiftProps={{ itemToString: (item) => item && item.name }}
     >
       <Field>
         <Label hidden>Select emotion</Label>
         <Select>
-          {selectedItem ? selectedItem.name : 'Emotion'}
+          {selectedItem?.name || 'Emotion'}
         </Select>
       </Field>
       <Menu>
-        {emotions?.map(item => <Item key={item.id} value={item}>{item.name}</Item>)}
+        {items?.map(item => <Item key={item.id} value={item}>{item.name}</Item>)}
       </Menu>
     </Dropdown>
   );

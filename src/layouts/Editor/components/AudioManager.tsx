@@ -93,8 +93,8 @@ const AudioManager = ({ projectId, sceneId }) => {
           `}
         >
           <SceneDropdown
-            scenes={scenes?.scenes}
-            scene={scene?.scene}
+            items={scenes?.scenes}
+            selectedItem={scene?.scene}
             onSelect={onSelectScene}
           />
           <Button

@@ -33,6 +33,7 @@ export const getDefaultSpeaker = (speakers) => {
 const LineEditor = ({ scene, line, speakers, emotions }) => {
   const [lineText, setLineText] = useState(line?.text || '');
   const [lineSpeed, setLineSpeed] = useState(line?.speed || 1.0);
+  const [lineEmotion, setLineEmotion] = useState(line?.emotion || getDefaultEmotion(emotions));
   const [lineSpeaker, setLineSpeaker] = useState(line?.speaker || getDefaultSpeaker(speakers));
 
   const [createLine, { createdLine, creating, error }] = useMutation(mutations.CREATE_LINE, {
@@ -50,22 +51,9 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
       variables: {
         scene_id: scene.id,
         text: lineText,
-        speed: lineSpeed,
-        emotion_id: getDefaultEmotion(emotions)?.id,
-        speaker_id: getDefaultSpeaker(speakers)?.id,
-        emotion_intensity: 1.0,
-      }
-    });
-  };
-
-  const newLine = () => {
-    createLine({
-      variables: {
-        scene_id: scene.id,
-        text: "New line",
-        speed: 1.0,
-        emotion_id: getDefaultEmotion(emotions)?.id,
-        speaker_id: getDefaultSpeaker(speakers)?.id,
+        speed: parseFloat(lineSpeed),
+        emotion_id: lineEmotion.id,
+        speaker_id: lineSpeaker.id,
         emotion_intensity: 1.0,
       }
     });
@@ -94,12 +82,18 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
               padding: ${p => p.theme.space.md};
             `}
           >
-            <Dropdown>
+            <Dropdown
+              selectedItem={lineSpeaker}
+              onSelect={setLineSpeaker}
+              downshiftProps={{ itemToString: (item) => item && item.name }}
+            >
               <DropdownField>
-                <Select>{ lineSpeaker?.name || 'Character' }</Select>
+                <Select>
+                  { lineSpeaker?.name || 'Character' }
+                </Select>
               </DropdownField>
               <Menu>
-                {speakers?.map(s => (<Item key={s.name} value={s.name}>{s.name}</Item>))}
+                {speakers?.map(item => <Item key={item.id} value={item}>{item.name}</Item>)}
               </Menu>
             </Dropdown>
           </div>
@@ -118,7 +112,8 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
 
         <div
           css={css`
-            background-color: #F6F4F4};
+            background-color: #f2f4f4;
+            border: 1px solid #c5d1d0;
             border-radius: 5px;
             flex-grow: 1;
             display: flex;
@@ -141,7 +136,10 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
                 margin-right: ${p => p.theme.space.md};
               `}
             />
-            <LineTextInput text={lineText} />
+            <LineTextInput
+              value={lineText}
+              onChange={setLineText}
+            />
           </div>
           <div
             css={css`
@@ -152,16 +150,18 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
             `}
           >
             <EmotionDropdown
-              emotions={emotions}
-              emotion={emotions?.find(e => e.id === line.emotion?.id)}
+              items={emotions}
+              selectedItem={lineEmotion}
+              onSelect={setLineEmotion}
             />
             <SpeedRange
               value={lineSpeed}
               onChange={setLineSpeed}
             />
             <Button
+              disabled={creating}
               isBasic
-              onClick={newLine}
+              onClick={duplicateLine}
             >
               <Button.StartIcon>
                 <AddIcon color="#ed8f1c" />
@@ -217,12 +217,13 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
           >
             <Tooltip content="Duplicate Line">
               <Button
+                disabled={creating}
                 isBasic
                 onClick={duplicateLine}
               >
                 <Copy
                   size="24"
-                  color="#ed8f1c"
+                  color="#5eae91"
                 />
               </Button>
             </Tooltip>
