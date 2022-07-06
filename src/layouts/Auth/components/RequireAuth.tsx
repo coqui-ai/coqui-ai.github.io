@@ -5,12 +5,26 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useProfile } from 'utils/auth';
 import { AcceptTerms } from 'layouts/Auth/components/registration/AcceptTerms';
 import { CompleteProfile } from 'layouts/Auth/components/registration/CompleteProfile';
 import { VerifyEmail } from 'layouts/Auth/components/registration/VerifyEmail';
 import { SignInForm } from 'layouts/Auth/components/SignInForm';
+
+const ClientOnly = ({ children }) => {
+  const [display, setDisplay] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setDisplay(true);
+    }
+  }, []);
+
+  if (!display) return null;
+
+  return children;
+};
 
 const RequireAuth = ({ children }) => {
   const { data: profile, loading, error } = useProfile();
@@ -19,7 +33,11 @@ const RequireAuth = ({ children }) => {
   if (loading) return '';
 
   if (error || !profile) {
-    return <SignInForm />;
+    return (
+      <ClientOnly>
+        <SignInForm />
+      </ClientOnly>
+    );
   } // TODO: error-specific behaviour?
 
   if (!profile.personal_name || !profile.organization_name) {
