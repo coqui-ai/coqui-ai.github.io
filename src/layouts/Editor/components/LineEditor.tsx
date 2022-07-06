@@ -33,6 +33,7 @@ export const getDefaultSpeaker = (speakers) => {
 const LineEditor = ({ scene, line, speakers, emotions }) => {
   const [lineText, setLineText] = useState(line?.text || '');
   const [lineSpeed, setLineSpeed] = useState(line?.speed || 1.0);
+  const [lineSpeaker, setLineSpeaker] = useState(line?.speaker || getDefaultSpeaker(speakers));
 
   const [createLine, { createdLine, creating, error }] = useMutation(mutations.CREATE_LINE, {
     update: cache => {
@@ -93,22 +94,25 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
               padding: ${p => p.theme.space.md};
             `}
           >
-            Character 1
-          </div>
-          <div
-            css={css`
-              border-top: 1px solid rgba(255,255,255,.1);
-              padding: ${p => p.theme.space.sm} ${p => p.theme.space.md};
-            `}
-          >
             <Dropdown>
               <DropdownField>
-                <Select start={<Microphone2 color="#ed8f1c" variant="Bold" />}>Speaker</Select>
+                <Select>{ lineSpeaker?.name || 'Character' }</Select>
               </DropdownField>
               <Menu>
                 {speakers?.map(s => (<Item key={s.name} value={s.name}>{s.name}</Item>))}
               </Menu>
             </Dropdown>
+          </div>
+          <div
+            css={css`
+              border-top: 1px solid rgba(255,255,255,.1);
+              display: flex;
+              align-items: center;
+              padding: ${p => p.theme.space.sm} ${p => p.theme.space.md};
+            `}
+          >
+            <Microphone2 color="#ed8f1c" variant="Bold" css={css`margin-right: ${p => p.theme.space.base}px;`} />
+            {lineSpeaker?.name || 'VVA'}
           </div>
         </div>
 
