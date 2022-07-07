@@ -153,6 +153,7 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
             />
             <LineTextInput
               value={lineText}
+              emotion={lineEmotion}
               onChange={setLineText}
             />
           </div>

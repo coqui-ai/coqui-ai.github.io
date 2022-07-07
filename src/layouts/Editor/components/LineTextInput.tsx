@@ -5,11 +5,19 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Field, Label, Textarea } from '@zendeskgarden/react-forms';
 
-const LineTextInput = ({ value, onChange }) => {
+import { getEmotionColor } from './EmotionDropdown';
+
+const LineTextInput = ({ value, emotion, onChange }) => {
+  const [color, setColor] = useState(null);
+
+  useEffect(() => {
+    setColor(getEmotionColor(emotion));
+  }, [emotion]);
+
   return (
     <Field
       css={css`
@@ -23,6 +31,10 @@ const LineTextInput = ({ value, onChange }) => {
         maxRows={4}
         onChange={e => onChange(e.target.value)}
         onBlur={() => console.log(value)}
+        emotionColor={color}
+        css={css`
+          ${p => p.emotionColor && `color: ${p.emotionColor};`}
+        `}
       />
     </Field>
   );
