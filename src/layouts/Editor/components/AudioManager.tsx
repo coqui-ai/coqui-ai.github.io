@@ -21,13 +21,17 @@ import NewSceneModal from './NewSceneModal';
 import * as queries from './Queries';
 import * as mutations from './Mutations';
 import SceneDropdown from './SceneDropdown';
+import ShareModal from './ShareModal';
 
 const AudioManager = ({ projectId, sceneId }) => {
   const [selectedScene, setSelectedScene] = useState(null);
   const [isSceneModalOpen, setIsSceneModalOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
   const openSceneModal = () => setIsSceneModalOpen(true);
   const closeSceneModal = () => setIsSceneModalOpen(false);
+  const openShareModal = () => setIsShareModalOpen(true);
+  const closeShareModal = () => setIsShareModalOpen(false);
 
   const { data: project } = useQuery(queries.PROJECT, { variables: { project_id: projectId } });
   const { data: scenes } = useQuery(queries.SCENES, { variables: { project_id: projectId } });
@@ -134,6 +138,7 @@ const AudioManager = ({ projectId, sceneId }) => {
         </div>
         <div>
           <Button
+            onClick={openShareModal}
             css={css`
               background-color: #fbe9d2;
               border-color: #ed8f1c;
@@ -143,6 +148,11 @@ const AudioManager = ({ projectId, sceneId }) => {
           >
             Share
           </Button>
+          <ShareModal
+            projectId={projectId}
+            isOpen={isShareModalOpen}
+            onClose={closeShareModal}
+          />
           <Button 
             css={css`
               background-color: #012b30;
