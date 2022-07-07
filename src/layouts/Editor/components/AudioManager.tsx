@@ -153,7 +153,8 @@ const AudioManager = ({ projectId, sceneId }) => {
             isOpen={isShareModalOpen}
             onClose={closeShareModal}
           />
-          <Button 
+          <Button
+            disabled
             css={css`
               background-color: #012b30;
               border-color: #144543;

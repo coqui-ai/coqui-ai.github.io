@@ -6,7 +6,7 @@
  */
 
 import React, { useState } from 'react';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { useMutation } from '@apollo/client';
 import { Add as AddIcon, Copy, Export, Menu as MenuIcon, Microphone2, Refresh, Sound, Translate, Trash } from 'iconsax-react';
@@ -20,6 +20,16 @@ import LineTextInput from './LineTextInput';
 import * as mutations from './Mutations';
 import PlayButton from './PlayButton';
 import SpeedRange from './SpeedRange';
+
+const StyledButton = styled(Button).attrs({
+  isBasic: true,
+})`
+  color: #012b30;
+
+  &:disabled {
+    background-color: transparent;
+  }
+`;
 
 export const getDefaultEmotion = (emotions) => {
   return emotions?.find(e => e.name === 'Neutral');
@@ -163,41 +173,36 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
               value={lineSpeed}
               onChange={setLineSpeed}
             />
-            <Button isBasic css={css`color: #012b30;`}>
+            <StyledButton disabled>
               <Button.StartIcon>
                 <Translate color="#ed8f1c" variant="Bold" />
               </Button.StartIcon>
               English
-            </Button>
-            <Button isBasic css={css`color: #012b30;`}>
+            </StyledButton>
+            <StyledButton disabled>
               <Button.StartIcon>
                 <Sound color="#ed8f1c" />
               </Button.StartIcon>
               Edit Pitch
-            </Button>
-            <Button isBasic css={css`color: #012b30;`}>
+            </StyledButton>
+            <StyledButton disabled>
               <Button.StartIcon>
                 <Refresh color="#ed8f1c" />
               </Button.StartIcon>
               New Take
-            </Button>
-            <Button isBasic css={css`color: #012b30;`}>
+            </StyledButton>
+            <StyledButton disabled>
               <Button.StartIcon>
                 <Export color="#ed8f1c" />
               </Button.StartIcon>
               Export
-            </Button>
-            <Button
-              disabled={creating}
-              isBasic
-              onClick={duplicateLine}
-              css={css`color: #012b30;`}
-            >
+            </StyledButton>
+            <StyledButton disabled={creating} onClick={duplicateLine}>
               <Button.StartIcon>
                 <AddIcon color="#ed8f1c" />
               </Button.StartIcon>
               New Line
-            </Button>
+            </StyledButton>
           </div>
         </div>
 
@@ -258,13 +263,13 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
               </Button>
             </Tooltip>
             <Tooltip content="Delete Line">
-              <Button isBasic>
+              <StyledButton disabled>
                 <Trash
                   size="24"
                   color="#cc3340"
                   variant="Bold"
                 />
-              </Button>
+              </StyledButton>
             </Tooltip>
           </div>
         </div>
