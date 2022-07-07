@@ -50,7 +50,7 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
       variables: {
         scene_id: scene.id,
         text: lineText,
-        speed: parseFloat(lineSpeed),
+        speed: lineSpeed,
         emotion_id: lineEmotion.id,
         speaker_id: lineSpeaker.id,
         emotion_intensity: 1.0,

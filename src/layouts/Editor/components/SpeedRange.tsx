@@ -5,12 +5,34 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Range } from '@zendeskgarden/react-forms';
 import { Tooltip } from '@zendeskgarden/react-tooltips';
 
+const MIN_SPEED = 0.1;
+const MAX_SPEED = 2.0;
+
+// `speed` in our API corresponds to `length_scale` in the TTS model, where
+// larger values result in slower speech. We need to clamp our value and
+// reverse it for compatibility.
+const normalize = (value) => {
+  if (!value) {
+    return 1.0;
+  }
+  value = parseFloat(value);
+  value = Math.min(Math.max(value, MIN_SPEED), MAX_SPEED);
+  value = MIN_SPEED + MAX_SPEED - value;
+  return parseFloat(value.toFixed(1));
+};
+
 const SpeedRange = ({ value, onChange }) => {
+  const [inputValue, setInputValue] = useState(1.0);
+
+  useEffect(() => {
+    setInputValue(normalize(value));
+  }, [value]);
+
   return (
     <div
       css={css`
@@ -27,13 +49,13 @@ const SpeedRange = ({ value, onChange }) => {
       >
         Speed:
       </div>
-      <Tooltip content={value}>
+      <Tooltip content={inputValue.toFixed(1)}>
         <Range
-          value={value}
+          value={inputValue}
           step={0.1}
-          min={0.1}
-          max={2}
-          onChange={e => onChange(e.target.value)}
+          min={MIN_SPEED}
+          max={MAX_SPEED}
+          onChange={e => onChange(normalize(e.target.value))}
           css={css`
             &::-moz-range-track {
               background-color: #5eae91;
