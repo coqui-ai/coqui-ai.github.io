@@ -19,7 +19,14 @@ const SceneDropdown = ({ items, selectedItem, onSelect }) => {
     >
       <Field>
         <Label hidden>Select scene</Label>
-        <Select start={<DocumentText color="#ed8f1c" variant="Bold" />}>
+        <Select
+          start={<DocumentText color="#ed8f1c" variant="Bold" />}
+          css={css`
+            background-color: #012b30;
+            border-color: #144543;
+            color: #fff;
+          `}
+        >
           {selectedItem?.name || 'Scene'}
         </Select>
       </Field>

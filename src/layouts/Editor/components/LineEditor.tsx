@@ -13,7 +13,6 @@ import { Add as AddIcon, Copy, Export, Menu as MenuIcon, Microphone2, Refresh, S
 
 import { Button, IconButton } from '@zendeskgarden/react-buttons';
 import { Field as DropdownField, Item, Dropdown, Menu, Select } from '@zendeskgarden/react-dropdowns';
-import { getColor } from '@zendeskgarden/react-theming';
 import { Tooltip } from '@zendeskgarden/react-tooltips';
 
 import EmotionDropdown from './EmotionDropdown';
@@ -69,7 +68,7 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
       >
         <div
           css={css`
-            background-color: ${p => getColor('kale', 700, p.theme)};
+            background-color: #012b30;
             border-radius: 5px;
             color: #fff;
             display: flex;
@@ -88,7 +87,13 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
               downshiftProps={{ itemToString: (item) => item && item.name }}
             >
               <DropdownField>
-                <Select>
+                <Select
+                  css={css`
+                    background-color: #012b30;
+                    border-color: transparent;
+                    color: #fff;
+                  `}
+                >
                   { lineSpeaker?.name || 'Character' }
                 </Select>
               </DropdownField>
@@ -102,7 +107,7 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
               border-top: 1px solid rgba(255,255,255,.1);
               display: flex;
               align-items: center;
-              padding: ${p => p.theme.space.sm} ${p => p.theme.space.md};
+              padding: ${p => p.theme.space.md};
             `}
           >
             <Microphone2 color="#ed8f1c" variant="Bold" css={css`margin-right: ${p => p.theme.space.base}px;`} />
@@ -158,25 +163,25 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
               value={lineSpeed}
               onChange={setLineSpeed}
             />
-            <Button isBasic>
+            <Button isBasic css={css`color: #012b30;`}>
               <Button.StartIcon>
                 <Translate color="#ed8f1c" variant="Bold" />
               </Button.StartIcon>
               English
             </Button>
-            <Button isBasic>
+            <Button isBasic css={css`color: #012b30;`}>
               <Button.StartIcon>
                 <Sound color="#ed8f1c" />
               </Button.StartIcon>
               Edit Pitch
             </Button>
-            <Button isBasic>
+            <Button isBasic css={css`color: #012b30;`}>
               <Button.StartIcon>
                 <Refresh color="#ed8f1c" />
               </Button.StartIcon>
               New Take
             </Button>
-            <Button isBasic>
+            <Button isBasic css={css`color: #012b30;`}>
               <Button.StartIcon>
                 <Export color="#ed8f1c" />
               </Button.StartIcon>
@@ -186,6 +191,7 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
               disabled={creating}
               isBasic
               onClick={duplicateLine}
+              css={css`color: #012b30;`}
             >
               <Button.StartIcon>
                 <AddIcon color="#ed8f1c" />
@@ -197,7 +203,7 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
 
         <div
           css={css`
-            background-color: ${p => getColor('kale', 700, p.theme)};
+            background-color: #012b30;
             border-radius: 5px;
             color: #fff;
             display: flex;

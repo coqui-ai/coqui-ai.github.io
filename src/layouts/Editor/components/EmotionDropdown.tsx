@@ -18,7 +18,11 @@ const EmotionDropdown = ({ items, selectedItem, onSelect }) => {
     >
       <Field>
         <Label hidden>Select emotion</Label>
-        <Select>
+        <Select
+          css={css`
+            background-color: transparent;
+          `}
+        >
           {selectedItem?.name || 'Emotion'}
         </Select>
       </Field>

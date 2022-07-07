@@ -41,9 +41,11 @@ const SpeedRange = ({ value, onChange }) => {
             &::-webkit-slider-runnable-track {
               background-color: #5eae91;
             }
+
             &::-moz-range-progress {
               background-color: #5eae91;
             }
+
             &::-moz-range-thumb {
               background-color: #144543;
               border-color: #144543;
@@ -52,7 +54,6 @@ const SpeedRange = ({ value, onChange }) => {
               background-color: #144543;
               border-color: #144543;
             }
-            &:active::
           `}
         />
       </Tooltip>
