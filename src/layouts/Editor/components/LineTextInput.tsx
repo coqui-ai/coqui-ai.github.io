@@ -9,9 +9,7 @@ import React, { useState } from 'react';
 
 import { Field, Label, Textarea } from '@zendeskgarden/react-forms';
 
-const LineTextInput = ({ text }) => {
-  const [value, setValue] = useState(text);
-
+const LineTextInput = ({ value, onChange }) => {
   return (
     <Field
       css={css`
@@ -23,7 +21,7 @@ const LineTextInput = ({ text }) => {
         value={value}
         isBare
         maxRows={4}
-        onChange={e => setValue(e.target.value)}
+        onChange={e => onChange(e.target.value)}
         onBlur={() => console.log(value)}
       />
     </Field>

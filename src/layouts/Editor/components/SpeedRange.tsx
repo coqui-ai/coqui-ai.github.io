@@ -5,16 +5,12 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 import { Range } from '@zendeskgarden/react-forms';
 import { Tooltip } from '@zendeskgarden/react-tooltips';
 
-const SpeedRange = ({ speed }) => {
-  const rangeElement = useRef();
-
-  const [value, setValue] = useState(speed || 1.0);
-
+const SpeedRange = ({ value, onChange }) => {
   return (
     <div
       css={css`
@@ -33,12 +29,32 @@ const SpeedRange = ({ speed }) => {
       </div>
       <Tooltip content={value}>
         <Range
-          ref={rangeElement}
           value={value}
           step={0.1}
-          min={0}
+          min={0.1}
           max={2}
-          onChange={e => setValue(e.target.value)}
+          onChange={e => onChange(e.target.value)}
+          css={css`
+            &::-moz-range-track {
+              background-color: #5eae91;
+            }
+            &::-webkit-slider-runnable-track {
+              background-color: #5eae91;
+            }
+
+            &::-moz-range-progress {
+              background-color: #5eae91;
+            }
+
+            &::-moz-range-thumb {
+              background-color: #144543;
+              border-color: #144543;
+            }
+            &::-webkit-slider-thumb {
+              background-color: #144543;
+              border-color: #144543;
+            }
+          `}
         />
       </Tooltip>
     </div>

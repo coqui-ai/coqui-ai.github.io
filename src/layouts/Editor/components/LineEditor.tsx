@@ -9,11 +9,10 @@ import React, { useState } from 'react';
 import { css } from 'styled-components';
 
 import { useMutation } from '@apollo/client';
-import { Add as AddIcon, Copy, Menu as MenuIcon, Microphone2, Trash } from 'iconsax-react';
+import { Add as AddIcon, Copy, Export, Menu as MenuIcon, Microphone2, Refresh, Sound, Translate, Trash } from 'iconsax-react';
 
 import { Button, IconButton } from '@zendeskgarden/react-buttons';
 import { Field as DropdownField, Item, Dropdown, Menu, Select } from '@zendeskgarden/react-dropdowns';
-import { getColor } from '@zendeskgarden/react-theming';
 import { Tooltip } from '@zendeskgarden/react-tooltips';
 
 import EmotionDropdown from './EmotionDropdown';
@@ -33,6 +32,8 @@ export const getDefaultSpeaker = (speakers) => {
 const LineEditor = ({ scene, line, speakers, emotions }) => {
   const [lineText, setLineText] = useState(line?.text || '');
   const [lineSpeed, setLineSpeed] = useState(line?.speed || 1.0);
+  const [lineEmotion, setLineEmotion] = useState(line?.emotion || getDefaultEmotion(emotions));
+  const [lineSpeaker, setLineSpeaker] = useState(line?.speaker || getDefaultSpeaker(speakers));
 
   const [createLine, { createdLine, creating, error }] = useMutation(mutations.CREATE_LINE, {
     update: cache => {
@@ -49,22 +50,9 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
       variables: {
         scene_id: scene.id,
         text: lineText,
-        speed: lineSpeed,
-        emotion_id: getDefaultEmotion(emotions)?.id,
-        speaker_id: getDefaultSpeaker(speakers)?.id,
-        emotion_intensity: 1.0,
-      }
-    });
-  };
-
-  const newLine = () => {
-    createLine({
-      variables: {
-        scene_id: scene.id,
-        text: "New line",
-        speed: 1.0,
-        emotion_id: getDefaultEmotion(emotions)?.id,
-        speaker_id: getDefaultSpeaker(speakers)?.id,
+        speed: parseFloat(lineSpeed),
+        emotion_id: lineEmotion.id,
+        speaker_id: lineSpeaker.id,
         emotion_intensity: 1.0,
       }
     });
@@ -80,7 +68,7 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
       >
         <div
           css={css`
-            background-color: ${p => getColor('kale', 700, p.theme)};
+            background-color: #012b30;
             border-radius: 5px;
             color: #fff;
             display: flex;
@@ -93,28 +81,44 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
               padding: ${p => p.theme.space.md};
             `}
           >
-            Character 1
+            <Dropdown
+              selectedItem={lineSpeaker}
+              onSelect={setLineSpeaker}
+              downshiftProps={{ itemToString: (item) => item && item.name }}
+            >
+              <DropdownField>
+                <Select
+                  css={css`
+                    background-color: #012b30;
+                    border-color: transparent;
+                    color: #fff;
+                  `}
+                >
+                  { lineSpeaker?.name || 'Character' }
+                </Select>
+              </DropdownField>
+              <Menu>
+                {speakers?.map(item => <Item key={item.id} value={item}>{item.name}</Item>)}
+              </Menu>
+            </Dropdown>
           </div>
           <div
             css={css`
               border-top: 1px solid rgba(255,255,255,.1);
-              padding: ${p => p.theme.space.sm} ${p => p.theme.space.md};
+              display: flex;
+              align-items: center;
+              padding: ${p => p.theme.space.md};
             `}
           >
-            <Dropdown>
-              <DropdownField>
-                <Select start={<Microphone2 color="#ed8f1c" variant="Bold" />}>Speaker</Select>
-              </DropdownField>
-              <Menu>
-                {speakers?.map(s => (<Item key={s.name} value={s.name}>{s.name}</Item>))}
-              </Menu>
-            </Dropdown>
+            <Microphone2 color="#ed8f1c" variant="Bold" css={css`margin-right: ${p => p.theme.space.base}px;`} />
+            {lineSpeaker?.name || 'VVA'}
           </div>
         </div>
 
         <div
           css={css`
-            background-color: #F6F4F4};
+            background-color: #f2f4f4;
+            border: 1px solid #c5d1d0;
             border-radius: 5px;
             flex-grow: 1;
             display: flex;
@@ -137,7 +141,10 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
                 margin-right: ${p => p.theme.space.md};
               `}
             />
-            <LineTextInput text={lineText} />
+            <LineTextInput
+              value={lineText}
+              onChange={setLineText}
+            />
           </div>
           <div
             css={css`
@@ -148,16 +155,43 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
             `}
           >
             <EmotionDropdown
-              emotions={emotions}
-              emotion={emotions?.find(e => e.id === line.emotion?.id)}
+              items={emotions}
+              selectedItem={lineEmotion}
+              onSelect={setLineEmotion}
             />
             <SpeedRange
               value={lineSpeed}
               onChange={setLineSpeed}
             />
+            <Button isBasic css={css`color: #012b30;`}>
+              <Button.StartIcon>
+                <Translate color="#ed8f1c" variant="Bold" />
+              </Button.StartIcon>
+              English
+            </Button>
+            <Button isBasic css={css`color: #012b30;`}>
+              <Button.StartIcon>
+                <Sound color="#ed8f1c" />
+              </Button.StartIcon>
+              Edit Pitch
+            </Button>
+            <Button isBasic css={css`color: #012b30;`}>
+              <Button.StartIcon>
+                <Refresh color="#ed8f1c" />
+              </Button.StartIcon>
+              New Take
+            </Button>
+            <Button isBasic css={css`color: #012b30;`}>
+              <Button.StartIcon>
+                <Export color="#ed8f1c" />
+              </Button.StartIcon>
+              Export
+            </Button>
             <Button
+              disabled={creating}
               isBasic
-              onClick={newLine}
+              onClick={duplicateLine}
+              css={css`color: #012b30;`}
             >
               <Button.StartIcon>
                 <AddIcon color="#ed8f1c" />
@@ -169,7 +203,7 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
 
         <div
           css={css`
-            background-color: ${p => getColor('kale', 700, p.theme)};
+            background-color: #012b30;
             border-radius: 5px;
             color: #fff;
             display: flex;
@@ -213,12 +247,13 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
           >
             <Tooltip content="Duplicate Line">
               <Button
+                disabled={creating}
                 isBasic
                 onClick={duplicateLine}
               >
                 <Copy
                   size="24"
-                  color="#ed8f1c"
+                  color="#5eae91"
                 />
               </Button>
             </Tooltip>

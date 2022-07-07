@@ -21,13 +21,17 @@ import NewSceneModal from './NewSceneModal';
 import * as queries from './Queries';
 import * as mutations from './Mutations';
 import SceneDropdown from './SceneDropdown';
+import ShareModal from './ShareModal';
 
 const AudioManager = ({ projectId, sceneId }) => {
   const [selectedScene, setSelectedScene] = useState(null);
   const [isSceneModalOpen, setIsSceneModalOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
   const openSceneModal = () => setIsSceneModalOpen(true);
   const closeSceneModal = () => setIsSceneModalOpen(false);
+  const openShareModal = () => setIsShareModalOpen(true);
+  const closeShareModal = () => setIsShareModalOpen(false);
 
   const { data: project } = useQuery(queries.PROJECT, { variables: { project_id: projectId } });
   const { data: scenes } = useQuery(queries.SCENES, { variables: { project_id: projectId } });
@@ -93,16 +97,21 @@ const AudioManager = ({ projectId, sceneId }) => {
           `}
         >
           <SceneDropdown
-            scenes={scenes?.scenes}
-            scene={scene?.scene}
+            items={scenes?.scenes}
+            selectedItem={scene?.scene}
             onSelect={onSelectScene}
           />
           <Button
             onClick={openSceneModal}
-            css={css`margin-left: ${p => p.theme.space.base * 4}px;`}
+            css={css`
+              background-color: #fbe9d2;
+              border-color: #ed8f1c;
+              color: #012b30;
+              margin-left: ${p => p.theme.space.base * 4}px;
+            `}
           >
             <Button.StartIcon>
-              <AddIcon size="64" color="#ED8F1C" />
+              <AddIcon size="64" color="#012b30" />
             </Button.StartIcon>
             Add New Scene
           </Button>
@@ -111,13 +120,50 @@ const AudioManager = ({ projectId, sceneId }) => {
             isOpen={isSceneModalOpen}
             close={closeSceneModal}
           />
+          <Button
+            isBasic
+            css={css`
+              color: #012b30;
+              margin-left: ${p => p.theme.space.base * 4}px;`
+            }
+          >
+            <Button.StartIcon>
+              <AddIcon size="64" color="#ED8F1C" />
+            </Button.StartIcon>
+            Add New Word to Dictionary
+          </Button>
           <div css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
-            Scene Description: {scene?.scene.description}
+            <b>Scene Description:</b> {scene?.scene.description}
           </div>
         </div>
-        <Button css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
-          Share
-        </Button>
+        <div>
+          <Button
+            onClick={openShareModal}
+            css={css`
+              background-color: #fbe9d2;
+              border-color: #ed8f1c;
+              color: #012b30;
+              margin-left: ${p => p.theme.space.base * 4}px;
+            `}
+          >
+            Share
+          </Button>
+          <ShareModal
+            projectId={projectId}
+            isOpen={isShareModalOpen}
+            onClose={closeShareModal}
+          />
+          <Button 
+            css={css`
+              background-color: #012b30;
+              border-color: #144543;
+              color: #fff;
+              margin-left: ${p => p.theme.space.base * 4}px;
+            `}
+          >
+            Export
+          </Button>
+        </div>
       </div>
       {lines?.lines?.length > 0 ? (
         <ul css={css`margin: ${p => p.theme.space.base * 4}px;`}>

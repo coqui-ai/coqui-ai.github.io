@@ -50,7 +50,7 @@ const StyledDesktopNavMenu = styled(StyledNavigationItem).attrs({ partiallyActiv
 `;
 
 const StyledHeader = styled.header.attrs({ role: 'banner' })`
-  z-index: 501;
+  z-index: 301;
   box-shadow: ${p => headerBoxShadow(p.theme)};
   padding: 0 ${p => p.theme.space.base * 4}px;
   height: ${p => headerHeight(p.theme)}px;
