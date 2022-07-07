@@ -58,23 +58,41 @@ const SpeedRange = ({ value, onChange }) => {
           onChange={e => onChange(normalize(e.target.value))}
           css={css`
             &::-moz-range-track {
-              background-color: #5eae91;
+              background: #5eae91;
             }
             &::-webkit-slider-runnable-track {
-              background-color: #5eae91;
+              background: #5eae91;
             }
 
             &::-moz-range-progress {
-              background-color: #5eae91;
+              background: #5eae91;
             }
 
             &::-moz-range-thumb {
-              background-color: #144543;
+              background: #144543;
               border-color: #144543;
             }
             &::-webkit-slider-thumb {
-              background-color: #144543;
+              background: #144543;
               border-color: #144543;
+            }
+
+            &:hover::-moz-range-thumb {
+              background: #0d2b2a;
+              border-color: #0d2b2a;
+            }
+            &:hover::-webkit-slider-thumb {
+              background: #0d2b2a;
+              border-color: #0d2b2a;
+            }
+
+            &:active::-moz-range-thumb {
+              background: #0d2b2a;
+              border-color: #237875;
+            }
+            &:active::-webkit-slider-thumb {
+              background: #0d2b2a;
+              border-color: #237875;
             }
           `}
         />
