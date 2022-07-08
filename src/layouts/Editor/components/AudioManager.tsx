@@ -22,6 +22,7 @@ import * as queries from './Queries';
 import * as mutations from './Mutations';
 import SceneDropdown from './SceneDropdown';
 import ShareModal from './ShareModal';
+import Timeline from './Timeline';
 
 const AudioManager = ({ projectId, sceneId }) => {
   const [selectedScene, setSelectedScene] = useState(null);
@@ -191,6 +192,7 @@ const AudioManager = ({ projectId, sceneId }) => {
           </Button>
         </div>
       )}
+      <Timeline lines={lines?.lines} />
     </>
   );
 };
