@@ -11,10 +11,18 @@ import { Link } from 'gatsby';
 import { Loading, OrangeButton, TitleBar } from 'layouts/Root/components/Styled';
 import styled, { css } from 'styled-components';
 import { mediaQuery } from '@zendeskgarden/react-theming';
-import { ArrowCircleDown2, ArrowLeft, MusicPlaylist, Pause, Trash, VideoCircle } from 'iconsax-react';
+import {
+  ArrowCircleDown2,
+  ArrowLeft,
+  MusicPlaylist,
+  Pause,
+  Trash,
+  VideoCircle
+} from 'iconsax-react';
 import { Button } from '@zendeskgarden/react-buttons';
 import { DeleteModal } from '../../Root/components/DeleteModal';
 import { useManyPlayers } from './MediaPlayers';
+import { WaitForSampleGeneration } from './WaitForSampleGeneration';
 
 const SAMPLES = gql`
   query Samples($voice_id: String!) {
@@ -156,12 +164,8 @@ export const Samples: React.FC = ({ voice_id }) => {
             <ArrowLeft size={24} />
           </Link>
           <div css="flex-grow: 1;">
-            <span css="font-size: 16px; font-weight: 400;">
-              Samples for voice:
-            </span>
-            <div css="margin-top: 6px;">
-              {data.voice.name}
-            </div>
+            <span css="font-size: 16px; font-weight: 400;">Samples for voice:</span>
+            <div css="margin-top: 6px;">{data.voice.name}</div>
           </div>
         </div>
       </TitleBar>
@@ -175,13 +179,20 @@ export const Samples: React.FC = ({ voice_id }) => {
                   padding: 19px 38px;
                 `}
               >
-                <Player src={sample.audio_url}>
-                  {currentTrack === sample.audio_url ? (
-                    <Pause size="32" color="#ED8F1C" variant="Bold" />
-                  ) : (
-                    <VideoCircle size="32" color="#ED8F1C" variant="Bold" />
+                <WaitForSampleGeneration
+                  sample={sample}
+                  loading={<Loading size={32} marginTop={0} />}
+                >
+                  {sample => (
+                    <Player src={sample.audio_url}>
+                      {currentTrack === sample.audio_url ? (
+                        <Pause size="32" color="#ED8F1C" variant="Bold" />
+                      ) : (
+                        <VideoCircle size="32" color="#ED8F1C" variant="Bold" />
+                      )}
+                    </Player>
                   )}
-                </Player>
+                </WaitForSampleGeneration>
               </SampleControl>
               <SampleControl
                 css={css`

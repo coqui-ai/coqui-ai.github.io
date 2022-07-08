@@ -21,6 +21,7 @@ import { ArrowLeft } from 'iconsax-react';
 import { Input, Textarea, Range, Message } from '@zendeskgarden/react-forms';
 import { Well } from '@zendeskgarden/react-notifications';
 import { AudioPlayer } from './MediaPlayers';
+import { WaitForSampleGeneration } from './WaitForSampleGeneration';
 
 const VOICE = gql`
   query voice($id: String!) {
@@ -245,7 +246,9 @@ export const Synthesize: React.FC = ({ locationState = null, id }) => {
 
               <Field name="name" label="Name your audio" as={Input} />
 
-              {createSampleStatus.error && <Message validation="error">{createSampleStatus.error.message}</Message>}
+              {createSampleStatus.error && (
+                <Message validation="error">{createSampleStatus.error.message}</Message>
+              )}
 
               <Submit loading={createSampleStatus.loading}>Submit</Submit>
             </Form>
@@ -253,17 +256,21 @@ export const Synthesize: React.FC = ({ locationState = null, id }) => {
         </Formik>
       </CenterContent>
       {sample && (
-        <PlayerBar>
-          <CenterContent>
-            <AudioPlayer
-              src={
-                sample.audio_url[0] === '/'
-                  ? `${process.env.GATSBY_BACKEND_URL}${sample.audio_url}`
-                  : sample.audio_url
-              }
-            />
-          </CenterContent>
-        </PlayerBar>
+        <WaitForSampleGeneration sample={sample}>
+          {sample => (
+            <PlayerBar>
+              <CenterContent>
+                <AudioPlayer
+                  src={
+                    sample.audio_url[0] === '/'
+                      ? `${process.env.GATSBY_BACKEND_URL}${sample.audio_url}`
+                      : sample.audio_url
+                  }
+                />
+              </CenterContent>
+            </PlayerBar>
+          )}
+        </WaitForSampleGeneration>
       )}
     </>
   );

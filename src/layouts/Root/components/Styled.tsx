@@ -23,15 +23,17 @@ const rotationAnimation = keyframes`
   }
 `;
 
-export const Loading = () => (
+export const Loading = ({ size, marginTop }) => (
   <ChartCircle
     css={`
       animation: ${rotationAnimation} 2s infinite linear;
-      margin: 39px auto;
       height: 47px;
       display: block;
     `}
-    size="47"
+    style={{
+      marginTop: `${marginTop || 39}px auto`
+    }}
+    size={size || 47}
     color="#FF8A65"
     variant="Bulk"
   />
