@@ -184,21 +184,33 @@ const AudioManager = ({ projectId, sceneId }) => {
               >
                 {lines?.lines?.map((line, index) => (
                   <Draggable key={line.id} draggableId={line.id} index={index}>
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        <LineEditor
-                          key={line.id}
-                          scene={scene?.scene}
-                          line={line}
-                          speakers={speakers?.speakers}
-                          emotions={emotions?.emotions}
-                        />
-                      </div>
-                    )}
+                    {(provided, snapshot) => {
+                      // Restrict dragging to vertical axis
+                      // See: https://github.com/atlassian/react-beautiful-dnd/issues/958
+                      let transform = provided.draggableProps.style.transform;
+                      if (snapshot.isDragging && transform) {
+                        transform = transform.replace(/\(.+\,/, "(0,");
+                      }
+                      return (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          style={{
+                            ...provided.draggableProps.style,
+                            transform,
+                          }}
+                        >
+                          <LineEditor
+                            key={line.id}
+                            scene={scene?.scene}
+                            line={line}
+                            speakers={speakers?.speakers}
+                            emotions={emotions?.emotions}
+                          />
+                        </div>
+                      )
+                    }}
                   </Draggable>
                 ))}
                 {provided.placeholder}
