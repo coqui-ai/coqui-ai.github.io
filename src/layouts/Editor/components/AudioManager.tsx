@@ -195,7 +195,6 @@ const AudioManager = ({ projectId, sceneId }) => {
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
-                          {...provided.dragHandleProps}
                           style={{
                             ...provided.draggableProps.style,
                             transform,
@@ -207,6 +206,7 @@ const AudioManager = ({ projectId, sceneId }) => {
                             line={line}
                             speakers={speakers?.speakers}
                             emotions={emotions?.emotions}
+                            provided={provided}
                           />
                         </div>
                       )

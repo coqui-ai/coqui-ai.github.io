@@ -144,13 +144,14 @@ const LineEditor = ({ scene, line, speakers, emotions }) => {
               padding: ${p => p.theme.space.md};
             `}
           >
-            <MenuIcon
-              size="24"
-              css={css`
-                cursor: grab;
-                margin-right: ${p => p.theme.space.md};
-              `}
-            />
+            <div {...provided.dragHandleProps}>
+              <MenuIcon
+                size="24"
+                css={css`
+                  margin-right: ${p => p.theme.space.md};
+                `}
+              />
+            </div>
             <LineTextInput
               value={lineText}
               emotion={lineEmotion}
