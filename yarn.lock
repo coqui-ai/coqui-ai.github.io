@@ -1398,6 +1398,11 @@
   resolved "https://registry.yarnpkg.com/@iarna/toml/-/toml-2.2.5.tgz#b32366c89b43c6f8cefbdefac778b9c828e3ba8c"
   integrity sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg==
 
+"@interactjs/types@1.10.16":
+  version "1.10.16"
+  resolved "https://registry.yarnpkg.com/@interactjs/types/-/types-1.10.16.tgz#468e1e8afc278081267f5471db209ef7fdaa0f99"
+  integrity sha512-bH6S9oYok2BZeo2gBfgJkz7I+GPUnc29TTC7zx0QJs5w9wlOBflkg2y13cAvAuhVgKBKe8WVx3cnaQB1UhqToQ==
+
 "@jest/types@^25.5.0":
   version "25.5.0"
   resolved "https://registry.yarnpkg.com/@jest/types/-/types-25.5.0.tgz#4d6a4793f7b9599fc3680877b856a97dbccf2a9d"
@@ -11157,6 +11162,13 @@ inquirer@^7.0.0:
     string-width "^4.1.0"
     strip-ansi "^6.0.0"
     through "^2.3.6"
+
+interactjs@^1.10.16:
+  version "1.10.16"
+  resolved "https://registry.yarnpkg.com/interactjs/-/interactjs-1.10.16.tgz#0d3f1836e217f4feb0db720ab83f293dfdb12aba"
+  integrity sha512-/xo1jN2sow0DTqBnWIpGuvJ0Dd7lMgLOBdQxyLV3lUTd6g+1Q9pcMOMHJ1OUMrTdoCneGBE3R8gimMD+xy4YcQ==
+  dependencies:
+    "@interactjs/types" "1.10.16"
 
 internal-ip@^4.3.0:
   version "4.3.0"

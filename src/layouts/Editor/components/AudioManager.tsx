@@ -174,50 +174,53 @@ const AudioManager = ({ projectId, sceneId }) => {
         </div>
       </div>
       {lines?.lines?.length > 0 ? (
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Droppable droppableId="droppable-lines">
-            {(provided, snapshot) => (
-              <ul
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-                css={css`margin: ${p => p.theme.space.base * 4}px;`}
-              >
-                {lines?.lines?.map((line, index) => (
-                  <Draggable key={line.id} draggableId={line.id} index={index}>
-                    {(provided, snapshot) => {
-                      // Restrict dragging to vertical axis
-                      // See: https://github.com/atlassian/react-beautiful-dnd/issues/958
-                      let transform = provided.draggableProps.style.transform;
-                      if (snapshot.isDragging && transform) {
-                        transform = transform.replace(/\(.+\,/, "(0,");
-                      }
-                      return (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          style={{
-                            ...provided.draggableProps.style,
-                            transform,
-                          }}
-                        >
-                          <LineEditor
-                            key={line.id}
-                            scene={scene?.scene}
-                            line={line}
-                            speakers={speakers?.speakers}
-                            emotions={emotions?.emotions}
-                            provided={provided}
-                          />
-                        </div>
-                      )
-                    }}
-                  </Draggable>
-                ))}
-                {provided.placeholder}
-              </ul>
-            )}
-          </Droppable>
-        </DragDropContext>
+        <>
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId="droppable-lines">
+              {(provided, snapshot) => (
+                <ul
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  css={css`margin: ${p => p.theme.space.base * 4}px;`}
+                >
+                  {lines?.lines?.map((line, index) => (
+                    <Draggable key={line.id} draggableId={line.id} index={index}>
+                      {(provided, snapshot) => {
+                        // Restrict dragging to vertical axis
+                        // See: https://github.com/atlassian/react-beautiful-dnd/issues/958
+                        let transform = provided.draggableProps.style.transform;
+                        if (snapshot.isDragging && transform) {
+                          transform = transform.replace(/\(.+\,/, "(0,");
+                        }
+                        return (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            style={{
+                              ...provided.draggableProps.style,
+                              transform,
+                            }}
+                          >
+                            <LineEditor
+                              key={line.id}
+                              scene={scene?.scene}
+                              line={line}
+                              speakers={speakers?.speakers}
+                              emotions={emotions?.emotions}
+                              provided={provided}
+                            />
+                          </div>
+                        )
+                      }}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
+          </DragDropContext>
+          <Timeline lines={lines?.lines} />
+        </>
       ) : (
         <div css={css`margin: ${p => p.theme.space.base * 4}px;`}>
           <Button
@@ -231,7 +234,6 @@ const AudioManager = ({ projectId, sceneId }) => {
           </Button>
         </div>
       )}
-      <Timeline lines={lines?.lines} />
     </>
   );
 };

@@ -9,6 +9,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import { Add, Minus, PlayCircle, Sound, StopCircle } from 'iconsax-react';
+import interact from 'interactjs';
 import { Button } from '@zendeskgarden/react-buttons';
 import { Range } from '@zendeskgarden/react-forms';
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
@@ -45,7 +46,7 @@ const Character = styled.div`
   white-space: nowrap;
 `;
 
-const Sample = styled.div`
+const Box = styled.div`
   background-color: #144543;
   border: 1px solid #5eae91;
   border-radius: 5px;
@@ -175,6 +176,7 @@ const Timeline = ({ lines }) => {
   const [durations, setDurations] = useState([]); // milliseconds
   const [positions, setPositions] = useState([]); // milliseconds
 
+  const [isReady, setIsReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [position, setPosition] = useState(0);
   const [length, setLength] = useState(0);
@@ -193,20 +195,24 @@ const Timeline = ({ lines }) => {
     }));
 
     audioPlayers.current = audioPlayers.current.slice(0, lines.length);
-    for (let i = 0; i < lines.length; i++) {
+
+    lines.map((line, i) => {
       if (!audioPlayers.current[i]) {
-        audioPlayers.current[i] = new Audio(lines?.[i].takes[0].audio_url);
+        audioPlayers.current[i] = new Audio(line.takes[0].audio_url);
         audioPlayers.current[i].preload = "metadata";
         audioPlayers.current[i].addEventListener("loadedmetadata", () => {
-          let d = durations;
-          d[i] = audioPlayers.current[i].duration * 1000;
-          setDurations(d);
-          calculatePositions();
+          setDurations(durations => {
+            return [
+            ...durations.slice(0, i),
+            audioPlayers.current[i].duration * 1000,
+            ...durations.slice(i + 1)
+          ]});
+          setIsReady(positions.every(p => p));
         });
       } else {
-        audioPlayers.current[i].src = lines?.[i].takes[0].audio_url;
+        audioPlayers.current[i].src = line.takes[0].audio_url;
       }
-    }
+    });
   }, [lines]);
 
   useEffect(() => {
@@ -227,11 +233,19 @@ const Timeline = ({ lines }) => {
       }
     });
   }, [isPlaying, position]);
+
+  useEffect(() => {
+    calculatePositions();
+  }, [durations]);
+
+  useEffect(() => {
+    calculateLength();
+  }, [positions]);
   
   useEffect(() => {
     return () => stop();
   }, []);
-  
+
   const animate = (time) => {
     if (previousTime.current !== undefined) {
       const delta = time - previousTime.current;
@@ -260,7 +274,7 @@ const Timeline = ({ lines }) => {
 
   const toTimeString = (s) => {
     const date = new Date(0);
-    date.setSeconds(s);
+    date.setSeconds(s > 0 ? s : 0);
     return date.toISOString().substr(11, 8);
   };
 
@@ -270,8 +284,43 @@ const Timeline = ({ lines }) => {
       total += duration;
       return total - duration;
     }));
-    setLength(total);
   };
+
+  const calculateLength = () => {
+    setLength(Math.max(...positions.map((p, i) => p + durations[i])));
+  }
+
+  useEffect(() => {
+    if (!isReady) {
+      return;
+    }
+    interact(".draggable").draggable({
+      startAxis: "x",
+      lockAxis: "x",
+      cursorChecker (action, interactable, element, interacting) {
+        return interacting ? "grabbing" : "grab";
+      },
+      listeners: {
+        move (event) {
+          if (event.target.dataset.lineIndex !== undefined) {
+            const index = parseInt(event.target.dataset.lineIndex);
+            const delta = event.dx * 1000 / scale;
+            setPositions(p => {
+              const newPosition = p[index] + delta;
+              if (newPosition < 0) {
+                return p;
+              }
+              return [
+                ...p.slice(0, index),
+                newPosition,
+                ...p.slice(index + 1).map(p => p + delta)
+              ];
+            });
+          }
+        },
+      }
+    });
+  }, [isReady]);
 
   return (
     <TimelineContainer>
@@ -415,15 +464,17 @@ const Timeline = ({ lines }) => {
               <TrackRow key={track.speaker.id}>
                 {lines?.map((line, i) => line.speaker.id === track.speaker.id &&
                   <Tooltip key={line.id} content={line.text}>
-                    <Sample
+                    <Box
+                      className="draggable"
                       key={line.id}
+                      data-line-index={i}
                       style={{
                         width: `${((durations[i] / 1000) || 1) * scale}px`,
                         transform: `translateX(${(positions[i] / 1000) * scale}px)`,
                       }}
                     >
                       <Sound size="32" color="#012b30" variant="Bold" />
-                    </Sample>
+                    </Box>
                   </Tooltip>
                 )}
               </TrackRow>
