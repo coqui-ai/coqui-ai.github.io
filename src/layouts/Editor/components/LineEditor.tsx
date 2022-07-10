@@ -39,7 +39,7 @@ export const getDefaultSpeaker = (speakers) => {
   return speakers?.find(s => s.name === 'ESD_0011');
 };
 
-const LineEditor = ({ scene, line, speakers, emotions }) => {
+const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
   const [lineText, setLineText] = useState(line?.text || '');
   const [lineSpeed, setLineSpeed] = useState(line?.speed || 1.0);
   const [lineEmotion, setLineEmotion] = useState(line?.emotion || getDefaultEmotion(emotions));
