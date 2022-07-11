@@ -46,7 +46,7 @@ export const UserMenu = () => {
             width: 100%;
             ${p => mediaQuery('down', 'sm', p.theme)} {
               padding: 0;
-              border-left: 1px solid #C2C8CC;
+              border-left: 1px solid #c2c8cc;
               border-radius: 0px;
               margin-left: 8px;
             }
@@ -202,21 +202,18 @@ export const VoiceSearchHeader = () => {
             }
           `}
         >
-          <OrangeButton
-            onClick={() => navigate('/voices/create')}
-            css="width: 90%;"
-          >
+          <OrangeButton onClick={() => navigate('/voices/create')} css="width: 90%;">
             Create new voice
           </OrangeButton>
           <div
             css={css`
-                ${p => mediaQuery('up', 'md', p.theme)} {
-                  display: none;
-                }
-                width: 16px;
+              ${p => mediaQuery('up', 'md', p.theme)} {
+                display: none;
+              }
+              width: 16px;
             `}
           >
-            <UserMenu/>
+            <UserMenu />
           </div>
         </Col>
 

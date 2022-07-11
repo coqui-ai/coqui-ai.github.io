@@ -6,7 +6,7 @@
  */
 
 import React, { useEffect } from 'react';
-import * as Sentry from '@sentry/browser';
+// import * as Sentry from '@sentry/browser';
 import { useMutation, gql, useQuery, useApolloClient } from '@apollo/client';
 import createPersistedState from 'use-persisted-state';
 
@@ -18,7 +18,7 @@ export function useAuth() {
 
   if (!state?.token || !state?.profile?.id) return null;
 
-  Sentry.setUser(state.profile);
+  // Sentry.setUser(state.profile);
 
   return state;
 }
