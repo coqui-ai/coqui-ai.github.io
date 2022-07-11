@@ -6,11 +6,24 @@
  */
 
 import React from 'react';
+import * as Sentry from '@sentry/browser';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import { SkipNav } from '@zendeskgarden/react-chrome';
 import { useCachedProfile, ProfileContext } from 'utils/auth';
 import Footer from './components/Footer';
 import Header, { headerBoxShadow, headerHeight } from './components/Header';
+
+(function _configureEnvForSentry() {
+  window.configureEnv = function ({ environment }) {
+    Sentry.init({ environment });
+  };
+
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = '/configureEnv.js';
+
+  document.head.appendChild(script);
+})();
 
 /**
  * Global styling
@@ -48,7 +61,13 @@ interface IRootLayoutProps {
   isSubscribing: boolean;
 }
 
-const RootLayout: React.FC<IRootLayoutProps> = ({ children, hasSkipNav, isSubscribing, showVoiceSearch, grayedBackground }) => {
+const RootLayout: React.FC<IRootLayoutProps> = ({
+  children,
+  hasSkipNav,
+  isSubscribing,
+  showVoiceSearch,
+  grayedBackground
+}) => {
   const MainType = grayedBackground ? GrayedMain : Main;
   const profile = useCachedProfile();
 
@@ -76,9 +95,7 @@ const RootLayout: React.FC<IRootLayoutProps> = ({ children, hasSkipNav, isSubscr
         )}
         <Header isSubscribing={isSubscribing} showVoiceSearch={showVoiceSearch} />
 
-        <MainType>
-          {children}
-        </MainType>
+        <MainType>{children}</MainType>
         <Footer isSubscribing={isSubscribing} />
       </div>
     </ProfileContext.Provider>
@@ -88,7 +105,7 @@ const RootLayout: React.FC<IRootLayoutProps> = ({ children, hasSkipNav, isSubscr
 RootLayout.defaultProps = {
   hasSkipNav: true,
   showVoiceSearch: false,
-  grayedBackground: false,
+  grayedBackground: false
 };
 
 export default RootLayout;
