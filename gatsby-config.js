@@ -33,7 +33,7 @@ module.exports = {
         sampleRate: 1,
         tracesSampleRate: 1,
         enabled: false, // it's enabled in /src/layouts/Root/index.tsx
-        release: process.env.CONFIG_APP_RELEASE
+        release: process.env.GITHUB_SHA
       }
     },
     {
