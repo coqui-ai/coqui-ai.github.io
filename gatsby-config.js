@@ -33,7 +33,8 @@ module.exports = {
         sampleRate: 1,
         tracesSampleRate: 1,
         environment: process.env.CONFIG_APP_ENVIRONMENT_NAME,
-        enabled: !!process.env.CONFIG_APP_ENVIRONMENT_NAME
+        enabled: !!process.env.CONFIG_APP_ENVIRONMENT_NAME,
+        release: process.env.CONFIG_APP_RELEASE
       }
     },
     {
