@@ -29,9 +29,11 @@ export const Loading = ({ size, marginTop }) => (
       animation: ${rotationAnimation} 2s infinite linear;
       height: 47px;
       display: block;
+      margin-left: 0;
+      margin-right: 0;
     `}
     style={{
-      marginTop: `${marginTop || 39}px auto`
+      marginTop: `${marginTop || 39}px`
     }}
     size={size || 47}
     color="#FF8A65"

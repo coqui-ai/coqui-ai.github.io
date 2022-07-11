@@ -181,7 +181,7 @@ export const Samples: React.FC = ({ voice_id }) => {
               >
                 <WaitForSampleGeneration
                   sample={sample}
-                  loading={<Loading size={32} marginTop={0} />}
+                  loading={<Loading size={32} marginTop="0" />}
                 >
                   {sample => (
                     <Player src={sample.audio_url}>
