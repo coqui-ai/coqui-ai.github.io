@@ -19,6 +19,9 @@ const capitalize = s => {
   return s.charAt(0).toUpperCase() + s.slice(1);
 };
 
+console.log(process.env);
+console.log(process.env.CONFIG_APP_RELEASE);
+
 module.exports = {
   siteMetadata: {
     title: 'Coqui',
