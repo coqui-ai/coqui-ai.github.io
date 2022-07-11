@@ -112,8 +112,8 @@ module.exports = {
           data.allGithubData.nodes[0].data.repository.releases.nodes.map(node => ({
             name: node.name,
             language: capitalize(node.tagName.split('/')[0]),
-            creator: tagNameMap[node.tagName][0],
-            creatorURL: tagNameMap[node.tagName][1],
+            creator: tagNameMap[node.tagName]?.[0],
+            creatorURL: tagNameMap[node.tagName]?.[1],
             sttVersion: 'Coqui STT v1.0.0',
             modelVersion: node.tagName.split('/')[2],
             tagName: node.tagName
