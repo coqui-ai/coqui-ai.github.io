@@ -15,7 +15,7 @@ import Header, { headerBoxShadow, headerHeight } from './components/Header';
 
 (function _configureEnvForSentry() {
   window.configureEnv = function ({ environment }) {
-    Sentry.init({ environment });
+    Sentry.init({ enabled: true, environment });
   };
 
   var script = document.createElement('script');
