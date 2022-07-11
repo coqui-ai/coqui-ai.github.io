@@ -29,8 +29,8 @@ export const Loading = ({ size, marginTop }) => (
       animation: ${rotationAnimation} 2s infinite linear;
       height: 47px;
       display: block;
-      margin-left: 0;
-      margin-right: 0;
+      margin-left: auto;
+      margin-right: auto;
     `}
     style={{
       marginTop: `${marginTop || 39}px`
