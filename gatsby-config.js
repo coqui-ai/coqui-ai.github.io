@@ -27,6 +27,16 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: '@sentry/gatsby',
+      options: {
+        dsn: 'https://2d4b56fdd9f447ccae309eb3d7dcad42@o1314061.ingest.sentry.io/6564921',
+        sampleRate: 1,
+        tracesSampleRate: 1,
+        environment: process.env.CONFIG_APP_ENVIRONMENT_NAME,
+        enabled: !!process.env.CONFIG_APP_ENVIRONMENT_NAME
+      }
+    },
+    {
       resolve: 'gatsby-plugin-apollo',
       options: {
         uri: `${process.env.GATSBY_BACKEND_URL}/graphql/`
