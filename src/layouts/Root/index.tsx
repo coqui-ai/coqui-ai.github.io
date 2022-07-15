@@ -6,24 +6,24 @@
  */
 
 import React from 'react';
-// import * as Sentry from '@sentry/browser';
+import * as Sentry from '@sentry/browser';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import { SkipNav } from '@zendeskgarden/react-chrome';
 import { useCachedProfile, ProfileContext } from 'utils/auth';
 import Footer from './components/Footer';
 import Header, { headerBoxShadow, headerHeight } from './components/Header';
 
-// (function _configureEnvForSentry() {
-//   window.configureEnv = function ({ environment }) {
-//     Sentry.init({ enabled: true, environment });
-//   };
+(function _configureEnvForSentry() {
+  window.configureEnv = ({ environment }) => {
+    Sentry.init({ enabled: true, environment });
+  };
 
-//   var script = document.createElement('script');
-//   script.type = 'text/javascript';
-//   script.src = '/configureEnv.js';
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = '/configureEnv.js';
 
-//   document.head.appendChild(script);
-// })();
+  document.head.appendChild(script);
+})();
 
 /**
  * Global styling

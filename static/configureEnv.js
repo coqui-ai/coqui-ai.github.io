@@ -1,0 +1,1 @@
+configureEnv({ environment: 'prod' });
