@@ -177,18 +177,6 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
             />
             <StyledButton disabled>
               <Button.StartIcon>
-                <Translate color="#ed8f1c" variant="Bold" />
-              </Button.StartIcon>
-              English
-            </StyledButton>
-            <StyledButton disabled>
-              <Button.StartIcon>
-                <Sound color="#ed8f1c" />
-              </Button.StartIcon>
-              Edit Pitch
-            </StyledButton>
-            <StyledButton disabled>
-              <Button.StartIcon>
                 <Refresh color="#ed8f1c" />
               </Button.StartIcon>
               New Take
