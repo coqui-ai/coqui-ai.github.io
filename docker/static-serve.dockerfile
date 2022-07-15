@@ -15,6 +15,7 @@ ENV GATSBY_BACKEND_URL="https://creator-app-backend"
 # in the end, because they change often
 ARG CONFIG_APP_RELEASE
 ENV SOURCE_VERSION=${CONFIG_APP_RELEASE:-unreleased}
+ENV GATSBY_SOURCE_VERSION=${CONFIG_APP_RELEASE:-unreleased}
 
 RUN yarn build
 

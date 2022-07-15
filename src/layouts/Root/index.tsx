@@ -14,8 +14,16 @@ import Footer from './components/Footer';
 import Header, { headerBoxShadow, headerHeight } from './components/Header';
 
 (function _configureEnvForSentry() {
+  if (typeof window === 'undefined') return;
+  if (!process.env.GATSBY_SOURCE_VERSION) return;
+
   window.configureEnv = ({ environment }) => {
-    Sentry.init({ enabled: true, environment });
+    Sentry.init({
+      enabled: true,
+      release: process.env.GATSBY_SOURCE_VERSION,
+      dsn: 'https://2d4b56fdd9f447ccae309eb3d7dcad42@o1314061.ingest.sentry.io/6564921',
+      environment
+    });
   };
 
   const script = document.createElement('script');
