@@ -219,7 +219,6 @@ const AudioManager = ({ projectId, sceneId }) => {
               )}
             </Droppable>
           </DragDropContext>
-          <Timeline lines={lines?.lines} />
         </>
       ) : (
         <div css={css`margin: ${p => p.theme.space.base * 4}px;`}>
@@ -234,6 +233,7 @@ const AudioManager = ({ projectId, sceneId }) => {
           </Button>
         </div>
       )}
+      <Timeline lines={lines?.lines} />
     </>
   );
 };
