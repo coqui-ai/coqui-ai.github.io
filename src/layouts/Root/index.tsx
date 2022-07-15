@@ -6,24 +6,32 @@
  */
 
 import React from 'react';
-// import * as Sentry from '@sentry/browser';
+import * as Sentry from '@sentry/browser';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import { SkipNav } from '@zendeskgarden/react-chrome';
 import { useCachedProfile, ProfileContext } from 'utils/auth';
 import Footer from './components/Footer';
 import Header, { headerBoxShadow, headerHeight } from './components/Header';
 
-// (function _configureEnvForSentry() {
-//   window.configureEnv = function ({ environment }) {
-//     Sentry.init({ enabled: true, environment });
-//   };
+(function _configureEnvForSentry() {
+  if (typeof window === 'undefined') return;
+  if (!process.env.GATSBY_SOURCE_VERSION) return;
 
-//   var script = document.createElement('script');
-//   script.type = 'text/javascript';
-//   script.src = '/configureEnv.js';
+  window.configureEnv = ({ environment }) => {
+    Sentry.init({
+      enabled: true,
+      release: process.env.GATSBY_SOURCE_VERSION,
+      dsn: 'https://2d4b56fdd9f447ccae309eb3d7dcad42@o1314061.ingest.sentry.io/6564921',
+      environment
+    });
+  };
 
-//   document.head.appendChild(script);
-// })();
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = '/configureEnv.js';
+
+  document.head.appendChild(script);
+})();
 
 /**
  * Global styling
