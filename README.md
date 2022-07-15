@@ -21,7 +21,7 @@ Then, start the backend server using Docker Compose:
 
 ```bash
 $ cd CreatorApplications
-$ export GITHUB_OAUTH_TOKEN=$REACT_APP_GITHUB_KEY
+$ export GITHUB_OAUTH_TOKEN=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
 $ export AWS_ACCESS_KEY_ID=AKIAXW7NFYT5F2KY3J4D
 $ export AWS_SECRET_ACCESS_KEY=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
 $ docker-compose up -d --build
@@ -37,7 +37,7 @@ Finally, in a new terminal start the frontend development server and point it to
 $ cd coqui-ai.github.io
 $ nvm use 14.19
 $ yarn install
-$ export REACT_APP_GITHUB_KEY=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
+$ export REACT_APP_GITHUB_KEY=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
 $ export GATSBY_BACKEND_URL="http://localhost:8001"
 $ yarn start --https
 ```
