@@ -17,6 +17,7 @@
     "test": "prettier-package-json --list-different && yarn format:all --check && yarn lint && yarn tsc"
   },
   "dependencies": {
+    "@sentry/gatsby": "^7.6.0",
     "axios": "^0.21.1",
     "flexsearch": "^0.6.32",
     "md5": "^2.3.0",

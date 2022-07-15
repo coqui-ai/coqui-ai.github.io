@@ -11,7 +11,7 @@ import { setContext } from '@apollo/client/link/context';
 import { createUploadLink } from 'apollo-upload-client';
 
 const authLink = setContext((_, { headers }) => {
-  const token = JSON.parse(localStorage.getItem('auth'))?.tokenAuth?.token;
+  const token = JSON.parse(localStorage.getItem('auth'))?.token;
 
   return {
     headers: {

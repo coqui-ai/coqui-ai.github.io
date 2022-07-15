@@ -84,7 +84,7 @@ jobs:
           docker pull "${GHCR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest" || true
 
           # Build and push to ECR
-          docker build -f docker/static-serve.dockerfile . --build-arg REACT_APP_GITHUB_KEY=${{ secrets.GITHUB_TOKEN }} -t "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
+          docker build -f docker/static-serve.dockerfile . --build-arg REACT_APP_GITHUB_KEY=${{ secrets.GITHUB_TOKEN }} --build-arg CONFIG_APP_RELEASE=${{ github.sha }} -t "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
           aws ecr get-login-password --region "${AWS_ENVIRONMENT}" | docker login --username AWS --password-stdin "${ECR_REPO_URL}"
           docker push "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
 

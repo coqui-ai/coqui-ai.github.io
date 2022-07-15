@@ -26,6 +26,16 @@ module.exports = {
     description: `Coqui, Freeing Speech.`
   },
   plugins: [
+    // {
+    //   resolve: '@sentry/gatsby',
+    //   options: {
+    //     dsn: 'https://2d4b56fdd9f447ccae309eb3d7dcad42@o1314061.ingest.sentry.io/6564921',
+    //     sampleRate: 1,
+    //     tracesSampleRate: 1,
+    //     enabled: false, // it's enabled in /src/layouts/Root/index.tsx
+    //     release: process.env.GITHUB_SHA
+    //   }
+    // },
     {
       resolve: 'gatsby-plugin-apollo',
       options: {
@@ -102,8 +112,8 @@ module.exports = {
           data.allGithubData.nodes[0].data.repository.releases.nodes.map(node => ({
             name: node.name,
             language: capitalize(node.tagName.split('/')[0]),
-            creator: tagNameMap[node.tagName][0],
-            creatorURL: tagNameMap[node.tagName][1],
+            creator: tagNameMap[node.tagName]?.[0],
+            creatorURL: tagNameMap[node.tagName]?.[1],
             sttVersion: 'Coqui STT v1.0.0',
             modelVersion: node.tagName.split('/')[2],
             tagName: node.tagName

@@ -6,6 +6,7 @@
  */
 
 import React, { useEffect } from 'react';
+// import * as Sentry from '@sentry/browser';
 import { useMutation, gql, useQuery, useApolloClient } from '@apollo/client';
 import createPersistedState from 'use-persisted-state';
 
@@ -14,6 +15,10 @@ const useProfileState = createPersistedState('profile');
 
 export function useAuth() {
   const [state] = useAuthState();
+
+  if (!state?.token || !state?.profile?.id) return null;
+
+  // Sentry.setUser(state.profile);
 
   return state;
 }
@@ -24,6 +29,11 @@ const LOGIN = gql`
       token
       refresh_token
       payload
+
+      profile {
+        id
+        email
+      }
     }
   }
 `;
@@ -58,7 +68,7 @@ export function useProfile() {
     skip: !auth
   });
 
-  if (!auth) return { data: null, error: 'No logged in' };
+  if (!auth || error) return { data: null, error: 'No logged in' };
 
   return { data: data?.profile, loading, error, refetch };
 }
@@ -83,11 +93,11 @@ export function useCachedProfile() {
 export function useProfileIsComplete(): boolean {
   const auth = useAuth();
 
-  const { data } = useQuery<{ profile: Profile }>(PROFILE, {
+  const { data, error } = useQuery<{ profile: Profile }>(PROFILE, {
     skip: !auth
   });
 
-  if (!auth) return false;
+  if (!auth || error) return false;
 
   const profile = data?.profile;
 
@@ -109,8 +119,11 @@ export function useLoginEffect() {
     async (username, password) => {
       const authdata = await login({ variables: { username, password } });
 
-      setAuthState(authdata.data);
-      client.resetStore();
+      if (authdata.data.tokenAuth.token) {
+        setAuthState(authdata.data.tokenAuth);
+
+        client.resetStore();
+      }
     },
     {
       data,
