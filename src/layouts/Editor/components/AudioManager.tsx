@@ -117,10 +117,10 @@ const AudioManager = ({ projectId, sceneId }) => {
               margin-left: ${p => p.theme.space.base * 4}px;
             `}
           >
-            <Button.StartIcon>
-              <AddIcon size="64" color="#012b30" />
-            </Button.StartIcon>
             Add New Scene
+            <Button.EndIcon>
+              <AddIcon size="16" color="#012b30" />
+            </Button.EndIcon>
           </Button>
           <NewSceneModal
             projectId={projectId}
@@ -134,10 +134,10 @@ const AudioManager = ({ projectId, sceneId }) => {
               margin-left: ${p => p.theme.space.base * 4}px;`
             }
           >
-            <Button.StartIcon>
-              <AddIcon size="64" color="#ED8F1C" />
-            </Button.StartIcon>
             Add New Word to Dictionary
+            <Button.EndIcon>
+              <AddIcon size="16" color="#012b30" />
+            </Button.EndIcon>
           </Button>
           <div css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
             <b>Scene Description:</b> {scene?.scene.description}
