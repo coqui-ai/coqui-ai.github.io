@@ -100,6 +100,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 exports.onCreateWebpackConfig = ({ stage, actions, loaders, getConfig }) => {
   const config = getConfig();
 
+  // it's not clear why sentry won't pick up the variable itself.
+  // i gave up and hardcoded the logic here
+  if (config?.plugins?.SentryCliPlugin) {
+    config.plugins.SentryCliPlugin = process.env.SENTRY_RELEASE;
+  }
+
   const exampleTranspileJsRule = config.module.rules.filter(
     rule => /node_modules/.test(rule.include) && String(rule.test) === String(/\.js$/)
   )[0];
