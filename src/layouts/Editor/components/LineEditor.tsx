@@ -14,7 +14,7 @@ import { Add as AddIcon, Copy, Menu as MenuIcon, Microphone2, Refresh, Sound, Tr
 import { Button, IconButton } from '@zendeskgarden/react-buttons';
 import { Field as DropdownField, Item, Dropdown, Menu, Select } from '@zendeskgarden/react-dropdowns';
 import { Tooltip } from '@zendeskgarden/react-tooltips';
-
+import CharacterDropdown from './CharacterDropdown';
 import EmotionDropdown from './EmotionDropdown';
 import LineTextInput from './LineTextInput';
 import * as mutations from './Mutations';
@@ -91,26 +91,11 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
               padding: ${p => p.theme.space.md};
             `}
           >
-            <Dropdown
+            <CharacterDropdown
+              items={speakers}
               selectedItem={lineSpeaker}
               onSelect={setLineSpeaker}
-              downshiftProps={{ itemToString: (item) => item && item.name }}
-            >
-              <DropdownField>
-                <Select
-                  css={css`
-                    background-color: #012b30;
-                    border-color: transparent;
-                    color: #fff;
-                  `}
-                >
-                  { lineSpeaker?.name || 'Character' }
-                </Select>
-              </DropdownField>
-              <Menu>
-                {speakers?.map(item => <Item key={item.id} value={item}>{item.name}</Item>)}
-              </Menu>
-            </Dropdown>
+            />
           </div>
           <div
             css={css`
