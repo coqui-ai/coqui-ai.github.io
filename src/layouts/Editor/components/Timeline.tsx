@@ -17,12 +17,14 @@ import { Tooltip } from '@zendeskgarden/react-tooltips';
 
 const TimelineContainer = styled.div`
   background-color: #144543;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   color: ${p => p.theme.palette.white};
   font-size: ${p => p.theme.fontSizes.md};
   line-height: ${p => p.theme.lineHeights.md};
   margin: ${p => p.theme.space.lg} ${p => p.theme.space.base * 4}px;
-  padding-bottom: ${p => p.theme.space.lg};
+  padding-bottom: ${p => p.theme.space.base * 2}px;
+  position: sticky;
+  bottom: 0;
 `;
 
 const TrackRow = styled.div`
