@@ -196,6 +196,10 @@ const Timeline = ({ lines }) => {
       }
     }));
 
+    if (!durations.length) {
+      setDurations(Array(lines.length).fill(1000));
+    }
+
     audioPlayers.current = audioPlayers.current.slice(0, lines.length);
 
     lines.map((line, i) => {
@@ -471,7 +475,7 @@ const Timeline = ({ lines }) => {
                       key={line.id}
                       data-line-index={i}
                       style={{
-                        width: `${((durations[i] / 1000) || 1) * scale}px`,
+                        width: `${(durations[i] / 1000) * scale}px`,
                         transform: `translateX(${(positions[i] / 1000) * scale}px)`,
                       }}
                     >
