@@ -19,6 +19,8 @@ const TimelineContainer = styled.div`
   background-color: #144543;
   border-radius: 5px 5px 0 0;
   color: ${p => p.theme.palette.white};
+  display: flex;
+  flex-direction: column;
   font-size: ${p => p.theme.fontSizes.md};
   line-height: ${p => p.theme.lineHeights.md};
   margin: ${p => p.theme.space.lg} ${p => p.theme.space.base * 4}px;
@@ -46,6 +48,7 @@ const Character = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  user-select: none;
 `;
 
 const Box = styled.div`
@@ -168,9 +171,45 @@ const Measure = ({ parent, length, scale, offset }) => {
   );
 };
 
+const ResizeHandle = ({ onResize }) => {
+  const resizing = useRef(false);
+
+  useEffect(() => {
+    document.addEventListener("mouseup", () => {
+      resizing.current = false;
+      document.body.style.cursor = "unset";
+    });
+
+    document.addEventListener("mousemove", (event) => {
+      if (!resizing.current) {
+        return;
+      }
+      onResize(event.movementY);
+    });
+  }, []);
+
+  return (
+    <div
+      onMouseDown={() => {
+        resizing.current = true;
+        document.body.style.cursor = "row-resize";
+      }}
+      css={css`
+        background-color: #012b30;
+        border-radius: 5px;
+        cursor: row-resize;
+        width: 50px;
+        height: 5px;
+      `}
+    >
+    </div>
+  );
+};
+
 const Timeline = ({ lines }) => {
   const audioPlayers = useRef<Array<HTMLAudioElement>>([]);
   const measureParent = useRef();
+  const containerRef = useRef();
   const previousTime = useRef();
   const requestId = useRef();
 
@@ -183,6 +222,7 @@ const Timeline = ({ lines }) => {
   const [position, setPosition] = useState(0);
   const [length, setLength] = useState(0);
   const [scale, setScale] = useState(100);
+  const [height, setHeight] = useState(350);
 
   useEffect(() => {
     if (lines === undefined) {
@@ -239,6 +279,10 @@ const Timeline = ({ lines }) => {
       }
     });
   }, [isPlaying, position]);
+  
+  useEffect(() => {
+    containerRef.current.style.height = `${height}px`;
+  }, [height]);
 
   useEffect(() => {
     calculatePositions();
@@ -294,7 +338,12 @@ const Timeline = ({ lines }) => {
 
   const calculateLength = () => {
     setLength(Math.max(...positions.map((p, i) => p + durations[i])));
-  }
+  };
+
+  const onResize = (movementY) => {
+    const MIN_HEIGHT = 100;
+    setHeight(height => Math.max(height - movementY, MIN_HEIGHT));
+  };
 
   useEffect(() => {
     if (!isReady) {
@@ -329,7 +378,17 @@ const Timeline = ({ lines }) => {
   }, [isReady]);
 
   return (
-    <TimelineContainer>
+    <TimelineContainer ref={containerRef}>
+      <div
+        css={css`
+          display: flex;
+          justify-content: center;
+          padding-top: ${p => p.theme.space.sm};
+        `}
+      >
+        <ResizeHandle onResize={onResize} />
+      </div>
+
       <Grid
         css={css`
           padding-top: ${p => p.theme.space.md};
@@ -369,6 +428,7 @@ const Timeline = ({ lines }) => {
                 css={css`
                   font-size: ${p => p.theme.fontSizes.lg};
                   font-weight: ${p => p.theme.fontWeights.semibold};
+                  user-select: none;
                 `}
               >
                 {toTimeString(position / 1000)} - {toTimeString(length / 1000)}
@@ -406,6 +466,8 @@ const Timeline = ({ lines }) => {
         css={css`
           background-color: #012b30;
           display: flex;
+          flex-grow: 1;
+          overflow-y: scroll;
         `}
       >
         <div css={css`border-right: 2px solid #002226;`}>
@@ -414,6 +476,7 @@ const Timeline = ({ lines }) => {
               border-bottom: 5px solid #144543;
               font-size: ${p => p.theme.fontSizes.sm};
               padding: ${p => p.theme.space.base * 2}px;
+              user-select: none;
             `}
           >
             Characters
@@ -434,12 +497,14 @@ const Timeline = ({ lines }) => {
             flex-grow: 1;
             overflow-x: scroll;
             position: relative;
+            scrollbar-color: #ed8f1c transparent;
             &::-webkit-scrollbar {
               width: 6px;
               height: 6px;
             }
             &::-webkit-scrollbar-thumb {
               background: #ed8f1c;
+              border-radius: 6px;
             }
           `}
         >
