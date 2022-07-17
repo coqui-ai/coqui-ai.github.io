@@ -41,7 +41,7 @@ const CharacterDropdown = ({ items, selectedItem, onSelect }) => {
       `,
       'dropdowns.menu': css`
         scrollbar-color: #ed8f1c transparent;
-        width: 200px !important;
+        width: auto !important;
         &::-webkit-scrollbar {
           width: 6px;
           height: 6px;

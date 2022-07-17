@@ -88,8 +88,8 @@ const AudioManager = ({ projectId, sceneId }) => {
       />
       <div
         css={css`
-          border-top: 1px solid #eff7f4;
-          border-bottom: 1px solid #eff7f4;
+          border-top: 1px solid #dfefe9;
+          border-bottom: 1px solid #dfefe9;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -128,11 +128,12 @@ const AudioManager = ({ projectId, sceneId }) => {
             close={closeSceneModal}
           />
           <Button
+            disabled
             isBasic
             css={css`
               color: #012b30;
-              margin-left: ${p => p.theme.space.base * 4}px;`
-            }
+              margin-left: ${p => p.theme.space.base * 4}px;
+            `}
           >
             Add New Word to Dictionary
             <Button.EndIcon>

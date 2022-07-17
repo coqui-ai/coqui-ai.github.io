@@ -28,14 +28,18 @@ const EmotionDropdown = ({ items, selectedItem, onSelect }) => {
     ...parentTheme,
     components: {
       'forms.faux_input': css`
+        align-items: center;
         background-color: transparent;
-        ${p => p.emotionColor && `color: ${p.emotionColor};`};
+        font-size: ${p => p.theme.fontSizes.sm};
+        min-width: 0 !important;
       `,
       'forms.media_figure': css`
         color: #ed8f1c;
+        margin-bottom: 0;
       `,
       'dropdowns.menu': css`
         scrollbar-color: #ed8f1c transparent;
+        width: auto !important;
         &::-webkit-scrollbar {
           width: 6px;
           height: 6px;
@@ -64,8 +68,8 @@ const EmotionDropdown = ({ items, selectedItem, onSelect }) => {
       >
         <Field>
           <Label hidden>Select emotion</Label>
-          <Select emotionColor={getEmotionColor(selectedItem)}>
-            {selectedItem?.name || 'Emotion'}
+          <Select isCompact>
+            Emotion
           </Select>
         </Field>
         <Menu>

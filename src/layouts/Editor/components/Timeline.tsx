@@ -17,7 +17,8 @@ import { Tooltip } from '@zendeskgarden/react-tooltips';
 
 const TimelineContainer = styled.div`
   background-color: #144543;
-  border-radius: 5px 5px 0 0;
+  border: 1px solid #002226;
+  border-radius: ${p => p.theme.borderRadii.md} ${p => p.theme.borderRadii.md} 0 0;
   color: ${p => p.theme.palette.white};
   display: flex;
   flex-direction: column;
@@ -40,7 +41,7 @@ const TrackRow = styled.div`
 const Character = styled.div`
   background-color: #19352e;
   border: 1px solid #ed8f1c;
-  border-radius: 5px;
+  border-radius: ${p => p.theme.borderRadii.md};
   font-size: ${p => p.theme.fontSizes.sm};
   height: 100%;
   width: 100px;
@@ -54,7 +55,7 @@ const Character = styled.div`
 const Box = styled.div`
   background-color: #144543;
   border: 1px solid #5eae91;
-  border-radius: 5px;
+  border-radius: ${p => p.theme.borderRadii.md};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,7 +219,7 @@ const ResizeHandle = ({ onResize }) => {
       <div
         css={css`
           background-color: #012b30;
-          border-radius: 5px;
+          border-radius: ${p => p.theme.borderRadii.md};
           width: 50px;
           height: 5px;
         `}
@@ -425,7 +426,7 @@ const Timeline = ({ lines }) => {
             <div
               css={css`
                 background-color: #012b30;
-                border-radius: 5px;
+                border-radius: ${p => p.theme.borderRadii.md};
                 display: flex;
                 align-items: center;
                 flex-shrink: 0;

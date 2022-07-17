@@ -25,6 +25,12 @@ const StyledButton = styled(Button).attrs({
   isBasic: true,
 })`
   color: #012b30;
+  font-size: ${p => p.theme.fontSizes.sm};
+
+  &:hover:not(:disabled) {
+    background-color: #ed8f1c1a;
+    color: #000;
+  }
 
   &:disabled {
     background-color: transparent;
@@ -79,7 +85,8 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
         <div
           css={css`
             background-color: #012b30;
-            border-radius: 5px;
+            border: 1px solid #144543;
+            border-radius: ${p => p.theme.borderRadii.md};
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -99,7 +106,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
           </div>
           <div
             css={css`
-              border-top: 1px solid rgba(255,255,255,.1);
+              border-top: 1px solid #1a4045;
               display: flex;
               align-items: center;
               padding: ${p => p.theme.space.md};
@@ -114,7 +121,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
           css={css`
             background-color: #f2f4f4;
             border: 1px solid #c5d1d0;
-            border-radius: 5px;
+            border-radius: ${p => p.theme.borderRadii.md};
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -129,7 +136,12 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
               padding: ${p => p.theme.space.md};
             `}
           >
-            <div {...provided.dragHandleProps}>
+            <div
+              css={css`
+                display: flex;
+              `}
+              {...provided.dragHandleProps}
+            >
               <MenuIcon
                 size="24"
                 css={css`
@@ -148,6 +160,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
               border-top: 1px solid rgba(0,0,0,.1);
               display: flex;
               align-items: center;
+              font-size: ${p => p.theme.fontSizes.sm};
               padding: ${p => p.theme.space.sm} calc(${p => (p.theme.space.md)} * 2 + 24px);
             `}
           >
@@ -184,7 +197,8 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
         <div
           css={css`
             background-color: #012b30;
-            border-radius: 5px;
+            border: 1px solid #144543;
+            border-radius: ${p => p.theme.borderRadii.md};
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -194,7 +208,6 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
           {line.takes?.length > 0 &&
             <div
               css={css`
-                border-top: 1px solid rgba(255,255,255,.1);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -206,7 +219,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
           }
           <div
             css={css`
-              border-top: 1px solid rgba(255,255,255,.1);
+              border-top: 1px solid #1a4045;
               display: flex;
               align-items: center;
               justify-content: center;
@@ -218,7 +231,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
 
           <div
             css={css`
-              border-top: 1px solid rgba(255,255,255,.1);
+              border-top: 1px solid #1a4045;
               display: flex;
               align-items: center;
               justify-content: center;

@@ -43,7 +43,7 @@ const SpeedRange = ({ value, onChange }) => {
     >
       <div
         css={css`
-          margin-right: ${p => p.theme.space.sm};
+          margin-right: ${p => p.theme.space.base * 2}px;
           margin-bottom: ${p => p.theme.space.base}px;
         `}
       >
