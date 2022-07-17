@@ -71,6 +71,11 @@ const StyledPlayButton = styled(Button)`
   height: auto;
   margin-right: ${p => p.theme.space.base}px;
   padding: 0;
+
+  &:disabled {
+    background-color: transparent;
+    opacity: .5;
+  }
 `;
 
 const Head = styled.div`
@@ -488,11 +493,11 @@ const Timeline = ({ lines }) => {
             >
               <Tooltip content={!isPlaying.current ? "Play" : "Stop"}>
                 {!isPlaying.current ? (
-                  <StyledPlayButton isBasic onClick={play}>
+                  <StyledPlayButton disabled={!isReady} isBasic onClick={play}>
                     <PlayCircle size="24" color="#ed8f1c" variant="Bold" />
                   </StyledPlayButton>
                 ) : (
-                  <StyledPlayButton isBasic onClick={stop}>
+                  <StyledPlayButton disabled={!isReady} isBasic onClick={stop}>
                     <StopCircle size="24" color="#ed8f1c" variant="Bold" />
                   </StyledPlayButton>
                 )}
