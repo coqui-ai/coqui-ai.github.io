@@ -202,8 +202,9 @@ const Measure = ({ parent, length, region, scale, offset, setPosition, setRegion
       }}
       onMouseMove={event => {
         if (isMouseDown.current) {
+          const MIN_REGION_LENGTH = 100;
           const pos = getPositionFromCursor(event);
-          if (pos > region[0]) {
+          if (pos >= region[0] + MIN_REGION_LENGTH) {
             setRegion(r => [r[0], pos]);
           }
         }
