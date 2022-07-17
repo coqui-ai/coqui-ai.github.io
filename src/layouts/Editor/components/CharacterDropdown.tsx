@@ -33,7 +33,7 @@ const CharacterDropdown = ({ items, selectedItem, onSelect }) => {
       'forms.input': css`
         color: #fff;
         flex-grow: 1;
-        width: 70px;
+        width: 60px;
       `,
       'forms.media_figure': css`
         color: #ed8f1c;
