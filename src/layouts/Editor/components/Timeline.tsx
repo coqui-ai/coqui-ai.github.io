@@ -199,16 +199,21 @@ const ResizeHandle = ({ onResize }) => {
     <div
       onMouseDown={() => {
         resizing.current = true;
-        document.body.style.cursor = "row-resize";
+        document.body.style.cursor = "ns-resize";
       }}
       css={css`
-        background-color: #012b30;
-        border-radius: 5px;
-        cursor: row-resize;
-        width: 50px;
-        height: 5px;
+        cursor: ns-resize;
+        padding: ${p => p.theme.space.sm};
       `}
     >
+      <div
+        css={css`
+          background-color: #012b30;
+          border-radius: 5px;
+          width: 50px;
+          height: 5px;
+        `}
+      />
     </div>
   );
 };
@@ -390,7 +395,6 @@ const Timeline = ({ lines }) => {
         css={css`
           display: flex;
           justify-content: center;
-          padding-top: ${p => p.theme.space.sm};
         `}
       >
         <ResizeHandle onResize={onResize} />
@@ -398,7 +402,6 @@ const Timeline = ({ lines }) => {
 
       <Grid
         css={css`
-          padding-top: ${p => p.theme.space.md};
           padding-bottom: ${p => p.theme.space.md};
         `}
       >
