@@ -136,11 +136,18 @@ const StyledRange = styled(Range)`
   }
 `;
 
-const Measure = ({ parent, length, scale, offset, setPosition }) => {
+const Measure = ({ parent, length, region, scale, offset, setPosition, setRegion }) => {
   const canvas = useRef(null);
+  const isMouseDown = useRef(false);
 
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(36);
+
+  useEffect(() => {
+    document.addEventListener("mouseup", () => {
+      isMouseDown.current = false;
+    });
+  }, []);
 
   useEffect(() => {
     setWidth(parent.current?.clientWidth);
@@ -148,7 +155,7 @@ const Measure = ({ parent, length, scale, offset, setPosition }) => {
 
   useEffect(() => {
     draw();
-  }, [width, scale]);
+  }, [width, region, scale]);
 
   const draw = () => {
     if (!canvas.current) {
@@ -158,6 +165,15 @@ const Measure = ({ parent, length, scale, offset, setPosition }) => {
     const ctx = canvas.current.getContext("2d");
 
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    if (region?.every(p => p)) {
+      const r = region.map(p => (p / 1000) * scale + offset);
+      ctx.fillStyle = "#01272b";
+      ctx.fillRect(r[0], 0, r[1] - r[0], height);
+      ctx.fillStyle = "#ed8f1c";
+      ctx.fillRect(r[0], 0, 1, height);
+      ctx.fillRect(r[1], 0, 1, height);
+    }
 
     ctx.font = "14px sans-serif";
     ctx.fillStyle = "#5eae91";
@@ -169,11 +185,11 @@ const Measure = ({ parent, length, scale, offset, setPosition }) => {
     }
   };
 
-  const onClick = (event) => {
+  const getPositionFromCursor = (event) => {
     const rect = canvas.current.getBoundingClientRect();
     const x = event.clientX - rect.x;
     const pos = (x - offset) / scale * 1000;
-    setPosition(Math.min(Math.max(pos, 0), length));
+    return Math.min(Math.max(pos, 0), length);
   };
 
   return (
@@ -181,7 +197,23 @@ const Measure = ({ parent, length, scale, offset, setPosition }) => {
       ref={canvas}
       width={width}
       height={height}
-      onClick={onClick}
+      onMouseDown={event => {
+        isMouseDown.current = true;
+        const pos = getPositionFromCursor(event);
+        setPosition(pos);
+        setRegion([pos, null]);
+      }}
+      onMouseMove={event => {
+        if (isMouseDown.current) {
+          const pos = getPositionFromCursor(event);
+          if (pos > region[0]) {
+            setRegion(r => [r[0], pos]);
+          }
+        }
+      }}
+      onMouseUp={event => {
+        isMouseDown.current = false;
+      }}
       css={css`
         cursor: pointer;
       `}
@@ -243,6 +275,7 @@ const Timeline = ({ lines }) => {
   const [isReady, setIsReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [position, setPosition] = useState(0);
+  const [region, setRegion] = useState([null, null]);
   const [length, setLength] = useState(0);
   const [scale, setScale] = useState(100);
   const [height, setHeight] = useState(350);
@@ -285,7 +318,7 @@ const Timeline = ({ lines }) => {
   }, [lines]);
 
   useEffect(() => {
-    if (position && position >= length) {
+    if (position && position >= (region[1] || length)) {
       stop();
       return;
     }
@@ -335,7 +368,7 @@ const Timeline = ({ lines }) => {
 
   const stop = () => {
     setIsPlaying(false);
-    setPosition(0);
+    setPosition(region[0] || 0);
     cancelAnimationFrame(requestId.current);
     requestId.current = undefined;
     previousTime.current = undefined;
@@ -553,9 +586,11 @@ const Timeline = ({ lines }) => {
             <Measure
               parent={measureParent}
               length={length}
+              region={region}
               scale={scale}
               offset={8}
               setPosition={setPosition}
+              setRegion={setRegion}
             />
           </div>
           <ul
