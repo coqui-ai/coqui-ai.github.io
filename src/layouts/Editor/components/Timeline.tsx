@@ -168,11 +168,8 @@ const Measure = ({ parent, length, region, scale, offset, setPosition, setRegion
 
     if (region?.every(p => p)) {
       const r = region.map(p => (p / 1000) * scale + offset);
-      ctx.fillStyle = "#01272b";
+      ctx.fillStyle = "#002226";
       ctx.fillRect(r[0], 0, r[1] - r[0], height);
-      ctx.fillStyle = "#ed8f1c";
-      ctx.fillRect(r[0], 0, 1, height);
-      ctx.fillRect(r[1], 0, 1, height);
     }
 
     ctx.font = "14px sans-serif";
@@ -218,6 +215,14 @@ const Measure = ({ parent, length, region, scale, offset, setPosition, setRegion
         cursor: pointer;
       `}
     />
+  );
+};
+
+const RegionIcon = () => {
+  return (
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H2.5V3.75L6.25 3.75V1.7524L10 5L6.25 8.24759V6.25H2.5V10H0V6.25V3.75V0Z" fill="#ed8f1c"/>
+    </svg>
   );
 };
 
@@ -578,11 +583,40 @@ const Timeline = ({ lines }) => {
               border-bottom: 5px solid #144543;
               display: flex;
               overflow-x: hidden;
+              position: relative;
             `}
             style={{
               minWidth: `${(length / 1000) * scale}px`,
             }}
           >
+            <div
+              css={css`
+                display: flex;
+                pointer-events: none;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+              `}
+            >
+              <div 
+                style={{
+                  display: region[1] ? 'flex' : 'none',
+                  position: 'absolute',
+                  transform: `translateX(${(region[0] / 1000) * scale + 8}px)`,
+                }}
+              >
+                <RegionIcon />
+              </div>
+              <div 
+                style={{
+                  display: region[1] ? 'flex' : 'none',
+                  position: 'absolute',
+                  transform: `translateX(${(region[1] / 1000) * scale + 8 - 10}px) scaleX(-1)`,
+                }}
+              >
+                <RegionIcon />
+              </div>
+            </div>
             <Measure
               parent={measureParent}
               length={length}
