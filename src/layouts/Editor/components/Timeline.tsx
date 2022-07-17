@@ -73,6 +73,7 @@ const StyledPlayButton = styled(Button)`
 
 const Head = styled.div`
   background-color: #5eae91;
+  pointer-events: none;
   position: absolute;
   bottom: 0;
   width: 1px;
@@ -174,7 +175,15 @@ const Measure = ({ parent, length, scale, offset, setPosition }) => {
   };
 
   return (
-    <canvas ref={canvas} width={width} height={height} onClick={onClick} />
+    <canvas
+      ref={canvas}
+      width={width}
+      height={height}
+      onClick={onClick}
+      css={css`
+        cursor: pointer;
+      `}
+    />
   );
 };
 
