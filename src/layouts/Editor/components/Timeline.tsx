@@ -6,13 +6,14 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, DefaultTheme } from 'styled-components';
 
 import { Add, Minus, PlayCircle, Sound, StopCircle } from 'iconsax-react';
 import interact from 'interactjs';
 import { Button } from '@zendeskgarden/react-buttons';
 import { Range } from '@zendeskgarden/react-forms';
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
+import { getColor, ThemeProvider } from '@zendeskgarden/react-theming';
 import { Tooltip } from '@zendeskgarden/react-tooltips';
 
 const TimelineContainer = styled.div`
@@ -399,6 +400,14 @@ const Timeline = ({ lines }) => {
     });
   }, [isReady]);
 
+  const theme = (parentTheme: DefaultTheme) => ({
+    ...parentTheme,
+    space: {
+      ...parentTheme.space,
+      base: 3,
+    },
+  });
+
   return (
     <TimelineContainer ref={containerRef}>
       <div
@@ -468,14 +477,16 @@ const Timeline = ({ lines }) => {
               `}
             >
               <Minus size="24" color="#ed8f1c" />
-              <StyledRange
-                value={scale}
-                step={0.1}
-                min={50}
-                max={250}
-                onChange={e => setScale(e.target.value)}
-                css={css`margin: 0 ${p => p.theme.space.base}px;`}
-              />
+              <ThemeProvider focusVisibleRef={null} theme={theme as any}>
+                <StyledRange
+                  value={scale}
+                  step={0.1}
+                  min={50}
+                  max={250}
+                  onChange={e => setScale(e.target.value)}
+                  css={css`margin: 0 ${p => p.theme.space.base}px;`}
+                />
+              </ThemeProvider>
               <Add size="24" color="#ed8f1c" />
             </div>
           </Col>
