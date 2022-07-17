@@ -133,7 +133,7 @@ const StyledRange = styled(Range)`
   }
 `;
 
-const Measure = ({ parent, length, scale, offset }) => {
+const Measure = ({ parent, length, scale, offset, setPosition }) => {
   const canvas = useRef(null);
 
   const [width, setWidth] = useState(0);
@@ -166,8 +166,15 @@ const Measure = ({ parent, length, scale, offset }) => {
     }
   };
 
+  const onClick = (event) => {
+    const rect = canvas.current.getBoundingClientRect();
+    const x = event.clientX - rect.x;
+    const pos = (x - offset) / scale * 1000;
+    setPosition(Math.min(Math.max(pos, 0), length));
+  };
+
   return (
-    <canvas ref={canvas} width={width} height={height} />
+    <canvas ref={canvas} width={width} height={height} onClick={onClick} />
   );
 };
 
@@ -524,6 +531,7 @@ const Timeline = ({ lines }) => {
               length={length}
               scale={scale}
               offset={8}
+              setPosition={setPosition}
             />
           </div>
           <ul
