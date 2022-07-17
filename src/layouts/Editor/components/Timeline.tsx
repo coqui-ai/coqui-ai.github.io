@@ -166,7 +166,7 @@ const Measure = ({ parent, length, region, scale, offset, setPosition, setRegion
 
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-    if (region?.every(p => p)) {
+    if (region?.every(p => p !== null)) {
       const r = region.map(p => (p / 1000) * scale + offset);
       ctx.fillStyle = "#002226";
       ctx.fillRect(r[0], 0, r[1] - r[0], height);
