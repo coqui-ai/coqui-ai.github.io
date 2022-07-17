@@ -10,16 +10,23 @@ import styled, { css } from 'styled-components';
 
 import { useMutation } from '@apollo/client';
 import { Add as AddIcon, Copy, Menu as MenuIcon, Microphone2, Refresh, Sound, Translate, Transmit, Trash } from 'iconsax-react';
-
 import { Button, IconButton } from '@zendeskgarden/react-buttons';
 import { Field as DropdownField, Item, Dropdown, Menu, Select } from '@zendeskgarden/react-dropdowns';
-import { Tooltip } from '@zendeskgarden/react-tooltips';
+import { Tooltip, Title, Paragraph } from '@zendeskgarden/react-tooltips';
+
 import CharacterDropdown from './CharacterDropdown';
 import EmotionDropdown from './EmotionDropdown';
 import LineTextInput from './LineTextInput';
 import * as mutations from './Mutations';
 import PlayButton from './PlayButton';
 import SpeedRange from './SpeedRange';
+
+const LargeTooltip = styled(Tooltip).attrs({
+  type: "light",
+  size: "large",
+})`
+  font-size: ${p => p.theme.fontSizes.sm};
+`;
 
 const StyledButton = styled(Button).attrs({
   isBasic: true,
@@ -238,7 +245,15 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
               padding: ${p => p.theme.space.sm} ${p => p.theme.space.md};
             `}
           >
-            <Tooltip content="Duplicate Line">
+            <LargeTooltip
+              placement="auto"
+              content={
+                <>
+                  <Title>Duplicate Line</Title>
+                  <Paragraph>Use this button to create a duplicate copy of this line with all its properties.</Paragraph>
+                </>
+              }
+            >
               <Button
                 disabled={creating}
                 isBasic
@@ -249,7 +264,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
                   color="#5eae91"
                 />
               </Button>
-            </Tooltip>
+            </LargeTooltip>
             <Tooltip content="Delete Line">
               <StyledButton disabled>
                 <Trash
