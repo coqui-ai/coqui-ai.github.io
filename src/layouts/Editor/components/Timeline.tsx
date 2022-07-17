@@ -222,7 +222,7 @@ const Measure = ({ parent, length, region, scale, offset, setPosition, setRegion
 const RegionIcon = () => {
   return (
     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H2.5V3.75L6.25 3.75V1.7524L10 5L6.25 8.24759V6.25H2.5V10H0V6.25V3.75V0Z" fill="#ed8f1c"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M0 0H2.5V3.75L6.25 3.75V1.7524L10 5L6.25 8.24759V6.25H2.5V10H0V6.25V3.75V0Z" fill="#ed8f1c"/>
     </svg>
   );
 };
@@ -273,13 +273,13 @@ const Timeline = ({ lines }) => {
   const containerRef = useRef();
   const previousTime = useRef();
   const requestId = useRef();
+  const isPlaying = useRef(false);
 
   const [tracks, setTracks] = useState([]);
   const [durations, setDurations] = useState([]); // milliseconds
   const [positions, setPositions] = useState([]); // milliseconds
 
   const [isReady, setIsReady] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [position, setPosition] = useState(0);
   const [region, setRegion] = useState([null, null]);
   const [length, setLength] = useState(0);
@@ -324,12 +324,12 @@ const Timeline = ({ lines }) => {
   }, [lines]);
 
   useEffect(() => {
-    if (position && position >= (region[1] || length)) {
-      stop();
+    if (!isPlaying.current) {
       return;
     }
 
-    if (!isPlaying) {
+    if (position && position >= (region[1] || length)) {
+      stop();
       return;
     }
 
@@ -340,7 +340,7 @@ const Timeline = ({ lines }) => {
         }
       }
     });
-  }, [isPlaying, position]);
+  }, [position, region]);
   
   useEffect(() => {
     containerRef.current.style.height = `${height}px`;
@@ -363,21 +363,23 @@ const Timeline = ({ lines }) => {
       const delta = time - previousTime.current;
       setPosition(position => position + delta);
     }
-    previousTime.current = time;
-    requestId.current = requestAnimationFrame(animate);
+    if (isPlaying.current) {
+      previousTime.current = time;
+      requestId.current = requestAnimationFrame(animate);
+    }
   }
 
   const play = () => {
-    setIsPlaying(true);
+    isPlaying.current = true;
     requestId.current = requestAnimationFrame(animate);
   };
 
   const stop = () => {
-    setIsPlaying(false);
-    setPosition(region[0] || 0);
+    isPlaying.current = false;
     cancelAnimationFrame(requestId.current);
-    requestId.current = undefined;
     previousTime.current = undefined;
+    requestId.current = undefined;
+    setPosition(region[0] || 0);
     audioPlayers.current?.map(audio => {
       audio.pause();
       audio.currentTime = 0;
@@ -481,8 +483,8 @@ const Timeline = ({ lines }) => {
                 padding: ${p => p.theme.space.base * 2}px ${p => p.theme.space.sm};
               `}
             >
-              <Tooltip content={!isPlaying ? "Play" : "Stop"}>
-                {!isPlaying ? (
+              <Tooltip content={!isPlaying.current ? "Play" : "Stop"}>
+                {!isPlaying.current ? (
                   <StyledPlayButton isBasic onClick={play}>
                     <PlayCircle size="24" color="#ed8f1c" variant="Bold" />
                   </StyledPlayButton>
