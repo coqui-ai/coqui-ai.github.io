@@ -206,6 +206,9 @@ const Measure = ({ parent, length, region, scale, offset, setPosition, setRegion
           const pos = getPositionFromCursor(event);
           if (pos >= region[0] + MIN_REGION_LENGTH) {
             setRegion(r => [r[0], pos]);
+          } else if (!region[1] && pos < region[0]) {
+            setPosition(pos);
+            setRegion([pos, null]);
           }
         }
       }}
