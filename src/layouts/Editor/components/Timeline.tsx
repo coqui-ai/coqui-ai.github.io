@@ -284,8 +284,7 @@ const Timeline = ({ lines }) => {
   const isPlaying = useRef(false);
 
   const [tracks, setTracks] = useState([]);
-  const [durations, setDurations] = useState([]); // milliseconds
-  const [positions, setPositions] = useState([]); // milliseconds
+  const [boxes, setBoxes] = useState([]);
 
   const [isReady, setIsReady] = useState(false);
   const [position, setPosition] = useState(0);
@@ -306,8 +305,14 @@ const Timeline = ({ lines }) => {
       }
     }));
 
-    if (!durations.length) {
-      setDurations(Array(lines.length).fill(1000));
+    if (!boxes.length) {
+      setBoxes(Array(lines.length).fill({
+        position: 0,
+        duration: 1000,
+      }).map((box, i) => ({
+        ...box,
+        position: i * box.duration,
+      })));
     }
 
     audioPlayers.current = audioPlayers.current.slice(0, lines.length);
@@ -317,13 +322,21 @@ const Timeline = ({ lines }) => {
         audioPlayers.current[i] = new Audio(line.takes[0].audio_url);
         audioPlayers.current[i].preload = "metadata";
         audioPlayers.current[i].addEventListener("loadedmetadata", () => {
-          setDurations(durations => {
+          setBoxes(boxes => {
+            const newBox = {
+              ...boxes[i],
+              duration: audioPlayers.current[i].duration * 1000,
+            };
+            const delta = newBox.duration - boxes[i].duration;
             return [
-            ...durations.slice(0, i),
-            audioPlayers.current[i].duration * 1000,
-            ...durations.slice(i + 1)
-          ]});
-          setIsReady(positions.every(p => p));
+              ...boxes.slice(0, i),
+              newBox,
+              ...boxes.slice(i + 1).map(box => ({
+                ...box,
+                position: box.position + delta,
+              }))
+            ];
+          });
         });
       } else {
         audioPlayers.current[i].src = line.takes[0].audio_url;
@@ -341,8 +354,8 @@ const Timeline = ({ lines }) => {
       return;
     }
 
-    positions.forEach((pos, i) => {
-      if (pos <= position && position < (pos + durations[i])) {
+    boxes.forEach((box, i) => {
+      if (box.position <= position && position < (box.position + box.duration)) {
         if (audioPlayers.current?.[i].paused) {
           audioPlayers.current?.[i].play();
         }
@@ -355,12 +368,9 @@ const Timeline = ({ lines }) => {
   }, [height]);
 
   useEffect(() => {
-    calculatePositions();
-  }, [durations]);
-
-  useEffect(() => {
-    calculateLength();
-  }, [positions]);
+    setLength(Math.max(...boxes.map(box => box.position + box.duration)));
+    setIsReady(audioPlayers.current.every(audio => audio.readyState > 0));
+  }, [boxes]);
   
   useEffect(() => {
     return () => stop();
@@ -400,18 +410,6 @@ const Timeline = ({ lines }) => {
     return date.toISOString().substr(11, 8);
   };
 
-  const calculatePositions = () => {
-    let total = 0;
-    setPositions(durations.map(duration => {
-      total += duration;
-      return total - duration;
-    }));
-  };
-
-  const calculateLength = () => {
-    setLength(Math.max(...positions.map((p, i) => p + durations[i])));
-  };
-
   const onResize = (movementY) => {
     const MIN_HEIGHT = 100;
     setHeight(height => Math.max(height - movementY, MIN_HEIGHT));
@@ -430,17 +428,30 @@ const Timeline = ({ lines }) => {
       listeners: {
         move (event) {
           if (event.target.dataset.lineIndex !== undefined) {
-            const index = parseInt(event.target.dataset.lineIndex);
-            const delta = event.dx * 1000 / scale;
-            setPositions(p => {
-              const newPosition = p[index] + delta;
-              if (newPosition < 0) {
-                return p;
+            const i = parseInt(event.target.dataset.lineIndex);
+            let delta = event.dx * 1000 / scale;
+            setBoxes(boxes => {
+              if (delta < 0) {
+                const minPosition = i > 0 ? (boxes[i - 1].position + boxes[i - 1].duration) : 0;
+                const currentDistance = boxes[i].position - minPosition;
+                if (Math.abs(delta) > currentDistance) {
+                  delta = -currentDistance;
+                }
               }
+              if (!delta) {
+                return boxes;
+              }
+              const newBox = {
+                ...boxes[i],
+                position: boxes[i].position + delta,
+              };
               return [
-                ...p.slice(0, index),
-                newPosition,
-                ...p.slice(index + 1).map(p => p + delta)
+                ...boxes.slice(0, i),
+                newBox,
+                ...boxes.slice(i + 1).map(box => ({
+                  ...box,
+                  position: box.position + delta,
+                }))
               ];
             });
           }
@@ -652,8 +663,8 @@ const Timeline = ({ lines }) => {
                       key={line.id}
                       data-line-index={i}
                       style={{
-                        width: `${(durations[i] / 1000) * scale}px`,
-                        transform: `translateX(${(positions[i] / 1000) * scale}px)`,
+                        width: `${(boxes[i].duration / 1000) * scale}px`,
+                        transform: `translateX(${(boxes[i].position / 1000) * scale}px)`,
                       }}
                     >
                       <Sound size="32" color="#012b30" variant="Bold" />
