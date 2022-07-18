@@ -559,9 +559,23 @@ const Timeline = ({ lines }) => {
           display: flex;
           flex-grow: 1;
           overflow-y: scroll;
+          scrollbar-color: #ed8f1c transparent;
+          &::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: #ed8f1c;
+            border-radius: 6px;
+          }
         `}
       >
-        <div css={css`border-right: 2px solid #002226;`}>
+        <div
+          css={css`border-right: 2px solid #002226;`}
+          style={{
+            minHeight: `${tracks?.length * 64 + 41 + 10}px`,
+          }}
+        >
           <div
             css={css`
               border-bottom: 5px solid #144543;
@@ -598,6 +612,9 @@ const Timeline = ({ lines }) => {
               border-radius: 6px;
             }
           `}
+          style={{
+            minHeight: `${tracks?.length * 64 + 41 + 10}px`,
+          }}
         >
           <div
             ref={measureParent}
@@ -652,6 +669,7 @@ const Timeline = ({ lines }) => {
           <ul
             style={{
               minWidth: `${(length / 1000) * scale}px`,
+              minHeight: `${tracks?.length * 64}px`,
             }}
           >
             {tracks?.map(track =>
