@@ -119,6 +119,10 @@ exports.onCreateWebpackConfig = ({ stage, actions, loaders, getConfig }) => {
         test: /useAudioRecorder/,
         use: loaders.null()
       },
+      {
+        test: /wavesurfer\.js/,
+        use: loaders.null()
+      },
       ...config.module.rules
     ];
   }
