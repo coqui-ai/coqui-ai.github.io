@@ -384,7 +384,8 @@ const Timeline = ({ lines }) => {
     boxes.forEach((box, i) => {
       if (box.position <= position && position < (box.position + box.duration)) {
         if (audioPlayers.current?.[i].paused) {
-          audioPlayers.current?.[i].play();
+          audioPlayers.current[i].currentTime = (position - box.position) / 1000;
+          audioPlayers.current[i].play();
         }
       }
     });
@@ -693,7 +694,12 @@ const Timeline = ({ lines }) => {
               region={region}
               scale={scale}
               offset={8}
-              setPosition={setPosition}
+              setPosition={pos => {
+                if (isPlaying.current) {
+                  stop();
+                }
+                setPosition(pos);
+              }}
               setRegion={setRegion}
             />
           </div>
