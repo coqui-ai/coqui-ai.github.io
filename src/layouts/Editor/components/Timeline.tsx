@@ -299,21 +299,23 @@ const Timeline = ({ lines }) => {
     }
 
     const speakers = [...new Set(lines?.map(line => line.speaker))];
-    setTracks(speakers.map(speaker => {
-      return {
-        speaker,
-      }
-    }));
+    setTracks(speakers.map(speaker => ({ speaker })));
 
-    if (!boxes.length) {
-      setBoxes(Array(lines.length).fill({
+    setBoxes(boxes => {
+      let lastPosition = 0;
+      return lines.map((line, i) => ({
+        id: line.id,
         position: 0,
-        duration: 1000,
-      }).map((box, i) => ({
-        ...box,
-        position: i * box.duration,
-      })));
-    }
+        duration: boxes.find(b => b.id === line.id)?.duration || 1000,
+      })).map(box => {
+        const newBox = {
+          ...box,
+          position: lastPosition,
+        };
+        lastPosition += box.duration;
+        return newBox;
+      });
+    });
 
     audioPlayers.current = audioPlayers.current.slice(0, lines.length);
 
@@ -681,8 +683,8 @@ const Timeline = ({ lines }) => {
                       key={line.id}
                       data-line-index={i}
                       style={{
-                        width: `${(boxes[i].duration / 1000) * scale}px`,
-                        transform: `translateX(${(boxes[i].position / 1000) * scale}px)`,
+                        width: `${((boxes[i]?.duration || 1000) / 1000) * scale}px`,
+                        transform: `translateX(${((boxes[i]?.position ?? 1000) / 1000) * scale}px)`,
                       }}
                     >
                       <Sound size="32" color="#012b30" variant="Bold" />
