@@ -6,23 +6,29 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, DefaultTheme } from 'styled-components';
 
 import { Add, Minus, PlayCircle, Sound, StopCircle } from 'iconsax-react';
 import interact from 'interactjs';
 import { Button } from '@zendeskgarden/react-buttons';
 import { Range } from '@zendeskgarden/react-forms';
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
+import { getColor, ThemeProvider } from '@zendeskgarden/react-theming';
 import { Tooltip } from '@zendeskgarden/react-tooltips';
 
 const TimelineContainer = styled.div`
   background-color: #144543;
-  border-radius: 5px;
+  border: 1px solid #002226;
+  border-radius: ${p => p.theme.borderRadii.md} ${p => p.theme.borderRadii.md} 0 0;
   color: ${p => p.theme.palette.white};
+  display: flex;
+  flex-direction: column;
   font-size: ${p => p.theme.fontSizes.md};
   line-height: ${p => p.theme.lineHeights.md};
   margin: ${p => p.theme.space.lg} ${p => p.theme.space.base * 4}px;
-  padding-bottom: ${p => p.theme.space.lg};
+  padding-bottom: ${p => p.theme.space.base * 2}px;
+  position: sticky;
+  bottom: 0;
 `;
 
 const TrackRow = styled.div`
@@ -36,7 +42,7 @@ const TrackRow = styled.div`
 const Character = styled.div`
   background-color: #19352e;
   border: 1px solid #ed8f1c;
-  border-radius: 5px;
+  border-radius: ${p => p.theme.borderRadii.md};
   font-size: ${p => p.theme.fontSizes.sm};
   height: 100%;
   width: 100px;
@@ -44,12 +50,13 @@ const Character = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  user-select: none;
 `;
 
 const Box = styled.div`
   background-color: #144543;
   border: 1px solid #5eae91;
-  border-radius: 5px;
+  border-radius: ${p => p.theme.borderRadii.md};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,10 +71,16 @@ const StyledPlayButton = styled(Button)`
   height: auto;
   margin-right: ${p => p.theme.space.base}px;
   padding: 0;
+
+  &:disabled {
+    background-color: transparent;
+    opacity: .5;
+  }
 `;
 
 const Head = styled.div`
   background-color: #5eae91;
+  pointer-events: none;
   position: absolute;
   bottom: 0;
   width: 1px;
@@ -128,11 +141,18 @@ const StyledRange = styled(Range)`
   }
 `;
 
-const Measure = ({ parent, length, scale, offset }) => {
+const Measure = ({ parent, length, region, scale, offset, setPosition, setRegion }) => {
   const canvas = useRef(null);
+  const isMouseDown = useRef(false);
 
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(36);
+
+  useEffect(() => {
+    document.addEventListener("mouseup", () => {
+      isMouseDown.current = false;
+    });
+  }, []);
 
   useEffect(() => {
     setWidth(parent.current?.clientWidth);
@@ -140,7 +160,7 @@ const Measure = ({ parent, length, scale, offset }) => {
 
   useEffect(() => {
     draw();
-  }, [width, scale]);
+  }, [width, region, scale]);
 
   const draw = () => {
     if (!canvas.current) {
@@ -150,6 +170,12 @@ const Measure = ({ parent, length, scale, offset }) => {
     const ctx = canvas.current.getContext("2d");
 
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    if (region?.every(p => p !== null)) {
+      const r = region.map(p => (p / 1000) * scale + offset);
+      ctx.fillStyle = "#002226";
+      ctx.fillRect(r[0], 0, r[1] - r[0], height);
+    }
 
     ctx.font = "14px sans-serif";
     ctx.fillStyle = "#5eae91";
@@ -161,26 +187,111 @@ const Measure = ({ parent, length, scale, offset }) => {
     }
   };
 
+  const getPositionFromCursor = (event) => {
+    const rect = canvas.current.getBoundingClientRect();
+    const x = event.clientX - rect.x;
+    const pos = (x - offset) / scale * 1000;
+    return Math.min(Math.max(pos, 0), length);
+  };
+
   return (
-    <canvas ref={canvas} width={width} height={height} />
+    <canvas
+      ref={canvas}
+      width={width}
+      height={height}
+      onMouseDown={event => {
+        isMouseDown.current = true;
+        const pos = getPositionFromCursor(event);
+        setPosition(pos);
+        setRegion([pos, null]);
+      }}
+      onMouseMove={event => {
+        if (isMouseDown.current) {
+          const MIN_REGION_LENGTH = 100;
+          const pos = getPositionFromCursor(event);
+          if (pos >= region[0] + MIN_REGION_LENGTH) {
+            setRegion(r => [r[0], pos]);
+          } else if (!region[1] && pos < region[0]) {
+            setPosition(pos);
+            setRegion([pos, null]);
+          }
+        }
+      }}
+      onMouseUp={event => {
+        isMouseDown.current = false;
+      }}
+      css={css`
+        cursor: pointer;
+      `}
+    />
+  );
+};
+
+const RegionIcon = () => {
+  return (
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fillRule="evenodd" clipRule="evenodd" d="M0 0H2.5V3.75L6.25 3.75V1.7524L10 5L6.25 8.24759V6.25H2.5V10H0V6.25V3.75V0Z" fill="#ed8f1c"/>
+    </svg>
+  );
+};
+
+const ResizeHandle = ({ onResize }) => {
+  const resizing = useRef(false);
+
+  useEffect(() => {
+    document.addEventListener("mouseup", () => {
+      resizing.current = false;
+      document.body.style.cursor = "unset";
+    });
+
+    document.addEventListener("mousemove", (event) => {
+      if (!resizing.current) {
+        return;
+      }
+      onResize(event.movementY);
+    });
+  }, []);
+
+  return (
+    <div
+      onMouseDown={() => {
+        resizing.current = true;
+        document.body.style.cursor = "ns-resize";
+      }}
+      css={css`
+        cursor: ns-resize;
+        padding: ${p => p.theme.space.sm};
+      `}
+    >
+      <div
+        css={css`
+          background-color: #012b30;
+          border-radius: ${p => p.theme.borderRadii.md};
+          width: 50px;
+          height: 5px;
+        `}
+      />
+    </div>
   );
 };
 
 const Timeline = ({ lines }) => {
   const audioPlayers = useRef<Array<HTMLAudioElement>>([]);
   const measureParent = useRef();
+  const containerRef = useRef();
   const previousTime = useRef();
   const requestId = useRef();
+  const isPlaying = useRef(false);
 
   const [tracks, setTracks] = useState([]);
-  const [durations, setDurations] = useState([]); // milliseconds
-  const [positions, setPositions] = useState([]); // milliseconds
+  const [boxes, setBoxes] = useState([]);
 
   const [isReady, setIsReady] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [position, setPosition] = useState(0);
+  const [region, setRegion] = useState([null, null]);
   const [length, setLength] = useState(0);
   const [scale, setScale] = useState(100);
+  const [height, setHeight] = useState(350);
 
   useEffect(() => {
     if (lines === undefined) {
@@ -194,6 +305,16 @@ const Timeline = ({ lines }) => {
       }
     }));
 
+    if (!boxes.length) {
+      setBoxes(Array(lines.length).fill({
+        position: 0,
+        duration: 1000,
+      }).map((box, i) => ({
+        ...box,
+        position: i * box.duration,
+      })));
+    }
+
     audioPlayers.current = audioPlayers.current.slice(0, lines.length);
 
     lines.map((line, i) => {
@@ -201,13 +322,21 @@ const Timeline = ({ lines }) => {
         audioPlayers.current[i] = new Audio(line.takes[0].audio_url);
         audioPlayers.current[i].preload = "metadata";
         audioPlayers.current[i].addEventListener("loadedmetadata", () => {
-          setDurations(durations => {
+          setBoxes(boxes => {
+            const newBox = {
+              ...boxes[i],
+              duration: audioPlayers.current[i].duration * 1000,
+            };
+            const delta = newBox.duration - boxes[i].duration;
             return [
-            ...durations.slice(0, i),
-            audioPlayers.current[i].duration * 1000,
-            ...durations.slice(i + 1)
-          ]});
-          setIsReady(positions.every(p => p));
+              ...boxes.slice(0, i),
+              newBox,
+              ...boxes.slice(i + 1).map(box => ({
+                ...box,
+                position: box.position + delta,
+              }))
+            ];
+          });
         });
       } else {
         audioPlayers.current[i].src = line.takes[0].audio_url;
@@ -216,31 +345,32 @@ const Timeline = ({ lines }) => {
   }, [lines]);
 
   useEffect(() => {
-    if (position && position >= length) {
+    if (!isPlaying.current) {
+      return;
+    }
+
+    if (position && position >= (region[1] || length)) {
       stop();
       return;
     }
 
-    if (!isPlaying) {
-      return;
-    }
-
-    positions.forEach((pos, i) => {
-      if (pos <= position && position < (pos + durations[i])) {
+    boxes.forEach((box, i) => {
+      if (box.position <= position && position < (box.position + box.duration)) {
         if (audioPlayers.current?.[i].paused) {
           audioPlayers.current?.[i].play();
         }
       }
     });
-  }, [isPlaying, position]);
+  }, [position, region]);
+  
+  useEffect(() => {
+    containerRef.current.style.height = `${height}px`;
+  }, [height]);
 
   useEffect(() => {
-    calculatePositions();
-  }, [durations]);
-
-  useEffect(() => {
-    calculateLength();
-  }, [positions]);
+    setLength(Math.max(...boxes.map(box => box.position + box.duration)));
+    setIsReady(audioPlayers.current.every(audio => audio.readyState > 0));
+  }, [boxes]);
   
   useEffect(() => {
     return () => stop();
@@ -251,21 +381,23 @@ const Timeline = ({ lines }) => {
       const delta = time - previousTime.current;
       setPosition(position => position + delta);
     }
-    previousTime.current = time;
-    requestId.current = requestAnimationFrame(animate);
+    if (isPlaying.current) {
+      previousTime.current = time;
+      requestId.current = requestAnimationFrame(animate);
+    }
   }
 
   const play = () => {
-    setIsPlaying(true);
+    isPlaying.current = true;
     requestId.current = requestAnimationFrame(animate);
   };
 
   const stop = () => {
-    setIsPlaying(false);
-    setPosition(0);
+    isPlaying.current = false;
     cancelAnimationFrame(requestId.current);
-    requestId.current = undefined;
     previousTime.current = undefined;
+    requestId.current = undefined;
+    setPosition(region[0] || 0);
     audioPlayers.current?.map(audio => {
       audio.pause();
       audio.currentTime = 0;
@@ -278,17 +410,10 @@ const Timeline = ({ lines }) => {
     return date.toISOString().substr(11, 8);
   };
 
-  const calculatePositions = () => {
-    let total = 0;
-    setPositions(durations.map(duration => {
-      total += duration;
-      return total - duration;
-    }));
+  const onResize = (movementY) => {
+    const MIN_HEIGHT = 100;
+    setHeight(height => Math.max(height - movementY, MIN_HEIGHT));
   };
-
-  const calculateLength = () => {
-    setLength(Math.max(...positions.map((p, i) => p + durations[i])));
-  }
 
   useEffect(() => {
     if (!isReady) {
@@ -303,17 +428,30 @@ const Timeline = ({ lines }) => {
       listeners: {
         move (event) {
           if (event.target.dataset.lineIndex !== undefined) {
-            const index = parseInt(event.target.dataset.lineIndex);
-            const delta = event.dx * 1000 / scale;
-            setPositions(p => {
-              const newPosition = p[index] + delta;
-              if (newPosition < 0) {
-                return p;
+            const i = parseInt(event.target.dataset.lineIndex);
+            let delta = event.dx * 1000 / scale;
+            setBoxes(boxes => {
+              if (delta < 0) {
+                const minPosition = i > 0 ? (boxes[i - 1].position + boxes[i - 1].duration) : 0;
+                const currentDistance = boxes[i].position - minPosition;
+                if (Math.abs(delta) > currentDistance) {
+                  delta = -currentDistance;
+                }
               }
+              if (!delta) {
+                return boxes;
+              }
+              const newBox = {
+                ...boxes[i],
+                position: boxes[i].position + delta,
+              };
               return [
-                ...p.slice(0, index),
-                newPosition,
-                ...p.slice(index + 1).map(p => p + delta)
+                ...boxes.slice(0, i),
+                newBox,
+                ...boxes.slice(i + 1).map(box => ({
+                  ...box,
+                  position: box.position + delta,
+                }))
               ];
             });
           }
@@ -322,11 +460,27 @@ const Timeline = ({ lines }) => {
     });
   }, [isReady]);
 
+  const theme = (parentTheme: DefaultTheme) => ({
+    ...parentTheme,
+    space: {
+      ...parentTheme.space,
+      base: 3,
+    },
+  });
+
   return (
-    <TimelineContainer>
+    <TimelineContainer ref={containerRef}>
+      <div
+        css={css`
+          display: flex;
+          justify-content: center;
+        `}
+      >
+        <ResizeHandle onResize={onResize} />
+      </div>
+
       <Grid
         css={css`
-          padding-top: ${p => p.theme.space.md};
           padding-bottom: ${p => p.theme.space.md};
         `}
       >
@@ -341,20 +495,20 @@ const Timeline = ({ lines }) => {
             <div
               css={css`
                 background-color: #012b30;
-                border-radius: 5px;
+                border-radius: ${p => p.theme.borderRadii.md};
                 display: flex;
                 align-items: center;
                 flex-shrink: 0;
                 padding: ${p => p.theme.space.base * 2}px ${p => p.theme.space.sm};
               `}
             >
-              <Tooltip content={!isPlaying ? "Play" : "Stop"}>
-                {!isPlaying ? (
-                  <StyledPlayButton isBasic onClick={play}>
+              <Tooltip content={!isPlaying.current ? "Play" : "Stop"}>
+                {!isPlaying.current ? (
+                  <StyledPlayButton disabled={!isReady} isBasic onClick={play}>
                     <PlayCircle size="24" color="#ed8f1c" variant="Bold" />
                   </StyledPlayButton>
                 ) : (
-                  <StyledPlayButton isBasic onClick={stop}>
+                  <StyledPlayButton disabled={!isReady} isBasic onClick={stop}>
                     <StopCircle size="24" color="#ed8f1c" variant="Bold" />
                   </StyledPlayButton>
                 )}
@@ -363,6 +517,7 @@ const Timeline = ({ lines }) => {
                 css={css`
                   font-size: ${p => p.theme.fontSizes.lg};
                   font-weight: ${p => p.theme.fontWeights.semibold};
+                  user-select: none;
                 `}
               >
                 {toTimeString(position / 1000)} - {toTimeString(length / 1000)}
@@ -382,14 +537,16 @@ const Timeline = ({ lines }) => {
               `}
             >
               <Minus size="24" color="#ed8f1c" />
-              <StyledRange
-                value={scale}
-                step={0.1}
-                min={50}
-                max={250}
-                onChange={e => setScale(e.target.value)}
-                css={css`margin: 0 ${p => p.theme.space.base}px;`}
-              />
+              <ThemeProvider focusVisibleRef={null} theme={theme as any}>
+                <StyledRange
+                  value={scale}
+                  step={0.1}
+                  min={50}
+                  max={250}
+                  onChange={e => setScale(e.target.value)}
+                  css={css`margin: 0 ${p => p.theme.space.base}px;`}
+                />
+              </ThemeProvider>
               <Add size="24" color="#ed8f1c" />
             </div>
           </Col>
@@ -400,14 +557,31 @@ const Timeline = ({ lines }) => {
         css={css`
           background-color: #012b30;
           display: flex;
+          flex-grow: 1;
+          overflow-y: scroll;
+          scrollbar-color: #ed8f1c transparent;
+          &::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: #ed8f1c;
+            border-radius: 6px;
+          }
         `}
       >
-        <div css={css`border-right: 2px solid #002226;`}>
+        <div
+          css={css`border-right: 2px solid #002226;`}
+          style={{
+            minHeight: `${tracks?.length * 64 + 41 + 10}px`,
+          }}
+        >
           <div
             css={css`
               border-bottom: 5px solid #144543;
               font-size: ${p => p.theme.fontSizes.sm};
               padding: ${p => p.theme.space.base * 2}px;
+              user-select: none;
             `}
           >
             Characters
@@ -428,14 +602,19 @@ const Timeline = ({ lines }) => {
             flex-grow: 1;
             overflow-x: scroll;
             position: relative;
+            scrollbar-color: #ed8f1c transparent;
             &::-webkit-scrollbar {
               width: 6px;
               height: 6px;
             }
             &::-webkit-scrollbar-thumb {
               background: #ed8f1c;
+              border-radius: 6px;
             }
           `}
+          style={{
+            minHeight: `${tracks?.length * 64 + 41 + 10}px`,
+          }}
         >
           <div
             ref={measureParent}
@@ -443,21 +622,54 @@ const Timeline = ({ lines }) => {
               border-bottom: 5px solid #144543;
               display: flex;
               overflow-x: hidden;
+              position: relative;
             `}
             style={{
               minWidth: `${(length / 1000) * scale}px`,
             }}
           >
+            <div
+              css={css`
+                display: flex;
+                pointer-events: none;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+              `}
+            >
+              <div 
+                style={{
+                  display: region[1] ? 'flex' : 'none',
+                  position: 'absolute',
+                  transform: `translateX(${(region[0] / 1000) * scale + 8}px)`,
+                }}
+              >
+                <RegionIcon />
+              </div>
+              <div 
+                style={{
+                  display: region[1] ? 'flex' : 'none',
+                  position: 'absolute',
+                  transform: `translateX(${(region[1] / 1000) * scale + 8 - 10}px) scaleX(-1)`,
+                }}
+              >
+                <RegionIcon />
+              </div>
+            </div>
             <Measure
               parent={measureParent}
               length={length}
+              region={region}
               scale={scale}
               offset={8}
+              setPosition={setPosition}
+              setRegion={setRegion}
             />
           </div>
           <ul
             style={{
               minWidth: `${(length / 1000) * scale}px`,
+              minHeight: `${tracks?.length * 64}px`,
             }}
           >
             {tracks?.map(track =>
@@ -469,8 +681,8 @@ const Timeline = ({ lines }) => {
                       key={line.id}
                       data-line-index={i}
                       style={{
-                        width: `${((durations[i] / 1000) || 1) * scale}px`,
-                        transform: `translateX(${(positions[i] / 1000) * scale}px)`,
+                        width: `${(boxes[i].duration / 1000) * scale}px`,
+                        transform: `translateX(${(boxes[i].position / 1000) * scale}px)`,
                       }}
                     >
                       <Sound size="32" color="#012b30" variant="Bold" />

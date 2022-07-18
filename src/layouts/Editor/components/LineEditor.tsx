@@ -9,22 +9,35 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import { useMutation } from '@apollo/client';
-import { Add as AddIcon, Copy, Export, Menu as MenuIcon, Microphone2, Refresh, Sound, Translate, Trash } from 'iconsax-react';
-
+import { Add as AddIcon, Copy, Menu as MenuIcon, Microphone2, Refresh, Sound, Translate, Transmit, Trash } from 'iconsax-react';
 import { Button, IconButton } from '@zendeskgarden/react-buttons';
 import { Field as DropdownField, Item, Dropdown, Menu, Select } from '@zendeskgarden/react-dropdowns';
-import { Tooltip } from '@zendeskgarden/react-tooltips';
+import { Tooltip, Title, Paragraph } from '@zendeskgarden/react-tooltips';
 
+import CharacterDropdown from './CharacterDropdown';
 import EmotionDropdown from './EmotionDropdown';
 import LineTextInput from './LineTextInput';
 import * as mutations from './Mutations';
 import PlayButton from './PlayButton';
 import SpeedRange from './SpeedRange';
 
+const LargeTooltip = styled(Tooltip).attrs({
+  type: "light",
+  size: "large",
+})`
+  font-size: ${p => p.theme.fontSizes.sm};
+`;
+
 const StyledButton = styled(Button).attrs({
   isBasic: true,
 })`
   color: #012b30;
+  font-size: ${p => p.theme.fontSizes.sm};
+
+  &:hover:not(:disabled) {
+    background-color: #ed8f1c1a;
+    color: #000;
+  }
 
   &:disabled {
     background-color: transparent;
@@ -79,7 +92,8 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
         <div
           css={css`
             background-color: #012b30;
-            border-radius: 5px;
+            border: 1px solid #144543;
+            border-radius: ${p => p.theme.borderRadii.md};
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -91,30 +105,15 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
               padding: ${p => p.theme.space.md};
             `}
           >
-            <Dropdown
+            <CharacterDropdown
+              items={speakers}
               selectedItem={lineSpeaker}
               onSelect={setLineSpeaker}
-              downshiftProps={{ itemToString: (item) => item && item.name }}
-            >
-              <DropdownField>
-                <Select
-                  css={css`
-                    background-color: #012b30;
-                    border-color: transparent;
-                    color: #fff;
-                  `}
-                >
-                  { lineSpeaker?.name || 'Character' }
-                </Select>
-              </DropdownField>
-              <Menu>
-                {speakers?.map(item => <Item key={item.id} value={item}>{item.name}</Item>)}
-              </Menu>
-            </Dropdown>
+            />
           </div>
           <div
             css={css`
-              border-top: 1px solid rgba(255,255,255,.1);
+              border-top: 1px solid #1a4045;
               display: flex;
               align-items: center;
               padding: ${p => p.theme.space.md};
@@ -129,7 +128,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
           css={css`
             background-color: #f2f4f4;
             border: 1px solid #c5d1d0;
-            border-radius: 5px;
+            border-radius: ${p => p.theme.borderRadii.md};
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -144,7 +143,12 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
               padding: ${p => p.theme.space.md};
             `}
           >
-            <div {...provided.dragHandleProps}>
+            <div
+              css={css`
+                display: flex;
+              `}
+              {...provided.dragHandleProps}
+            >
               <MenuIcon
                 size="24"
                 css={css`
@@ -163,6 +167,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
               border-top: 1px solid rgba(0,0,0,.1);
               display: flex;
               align-items: center;
+              font-size: ${p => p.theme.fontSizes.sm};
               padding: ${p => p.theme.space.sm} calc(${p => (p.theme.space.md)} * 2 + 24px);
             `}
           >
@@ -177,25 +182,13 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
             />
             <StyledButton disabled>
               <Button.StartIcon>
-                <Translate color="#ed8f1c" variant="Bold" />
-              </Button.StartIcon>
-              English
-            </StyledButton>
-            <StyledButton disabled>
-              <Button.StartIcon>
-                <Sound color="#ed8f1c" />
-              </Button.StartIcon>
-              Edit Pitch
-            </StyledButton>
-            <StyledButton disabled>
-              <Button.StartIcon>
                 <Refresh color="#ed8f1c" />
               </Button.StartIcon>
               New Take
             </StyledButton>
             <StyledButton disabled>
               <Button.StartIcon>
-                <Export color="#ed8f1c" />
+                <Transmit color="#ed8f1c" css={css`transform: scaleX(-1);`} />
               </Button.StartIcon>
               Export
             </StyledButton>
@@ -211,7 +204,8 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
         <div
           css={css`
             background-color: #012b30;
-            border-radius: 5px;
+            border: 1px solid #144543;
+            border-radius: ${p => p.theme.borderRadii.md};
             color: #fff;
             display: flex;
             flex-direction: column;
@@ -221,7 +215,6 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
           {line.takes?.length > 0 &&
             <div
               css={css`
-                border-top: 1px solid rgba(255,255,255,.1);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -233,7 +226,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
           }
           <div
             css={css`
-              border-top: 1px solid rgba(255,255,255,.1);
+              border-top: 1px solid #1a4045;
               display: flex;
               align-items: center;
               justify-content: center;
@@ -245,14 +238,22 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
 
           <div
             css={css`
-              border-top: 1px solid rgba(255,255,255,.1);
+              border-top: 1px solid #1a4045;
               display: flex;
               align-items: center;
               justify-content: center;
               padding: ${p => p.theme.space.sm} ${p => p.theme.space.md};
             `}
           >
-            <Tooltip content="Duplicate Line">
+            <LargeTooltip
+              placement="auto"
+              content={
+                <>
+                  <Title>Duplicate Line</Title>
+                  <Paragraph>Use this button to create a duplicate copy of this line with all its properties.</Paragraph>
+                </>
+              }
+            >
               <Button
                 disabled={creating}
                 isBasic
@@ -263,7 +264,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
                   color="#5eae91"
                 />
               </Button>
-            </Tooltip>
+            </LargeTooltip>
             <Tooltip content="Delete Line">
               <StyledButton disabled>
                 <Trash

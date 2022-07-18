@@ -6,12 +6,54 @@
  */
 
 import React, { useEffect, useState } from 'react';
+import styled, { css, DefaultTheme } from 'styled-components';
 
 import { Range } from '@zendeskgarden/react-forms';
+import { getColor, ThemeProvider } from '@zendeskgarden/react-theming';
 import { Tooltip } from '@zendeskgarden/react-tooltips';
 
 const MIN_SPEED = 0.1;
 const MAX_SPEED = 2.0;
+
+const StyledRange = styled(Range)`
+  &::-moz-range-track {
+    background: #5eae91;
+  }
+  &::-webkit-slider-runnable-track {
+    background: #5eae91;
+  }
+
+  &::-moz-range-progress {
+    background: #5eae91;
+  }
+
+  &::-moz-range-thumb {
+    background: #144543;
+    border-color: #144543;
+  }
+  &::-webkit-slider-thumb {
+    background: #144543;
+    border-color: #144543;
+  }
+
+  &:hover::-moz-range-thumb {
+    background: #0d2b2a;
+    border-color: #0d2b2a;
+  }
+  &:hover::-webkit-slider-thumb {
+    background: #0d2b2a;
+    border-color: #0d2b2a;
+  }
+
+  &:active::-moz-range-thumb {
+    background: #0d2b2a;
+    border-color: #237875;
+  }
+  &:active::-webkit-slider-thumb {
+    background: #0d2b2a;
+    border-color: #237875;
+  }
+`;
 
 // `speed` in our API corresponds to `length_scale` in the TTS model, where
 // larger values result in slower speech. We need to clamp our value and
@@ -33,6 +75,14 @@ const SpeedRange = ({ value, onChange }) => {
     setInputValue(normalize(value));
   }, [value]);
 
+  const theme = (parentTheme: DefaultTheme) => ({
+    ...parentTheme,
+    space: {
+      ...parentTheme.space,
+      base: 3,
+    },
+  });
+
   return (
     <div
       css={css`
@@ -43,60 +93,23 @@ const SpeedRange = ({ value, onChange }) => {
     >
       <div
         css={css`
-          margin-right: ${p => p.theme.space.sm};
+          margin-right: ${p => p.theme.space.base * 2}px;
           margin-bottom: ${p => p.theme.space.base}px;
         `}
       >
         Speed:
       </div>
-      <Tooltip content={inputValue.toFixed(1)}>
-        <Range
-          value={inputValue}
-          step={0.1}
-          min={MIN_SPEED}
-          max={MAX_SPEED}
-          onChange={e => onChange(normalize(e.target.value))}
-          css={css`
-            &::-moz-range-track {
-              background: #5eae91;
-            }
-            &::-webkit-slider-runnable-track {
-              background: #5eae91;
-            }
-
-            &::-moz-range-progress {
-              background: #5eae91;
-            }
-
-            &::-moz-range-thumb {
-              background: #144543;
-              border-color: #144543;
-            }
-            &::-webkit-slider-thumb {
-              background: #144543;
-              border-color: #144543;
-            }
-
-            &:hover::-moz-range-thumb {
-              background: #0d2b2a;
-              border-color: #0d2b2a;
-            }
-            &:hover::-webkit-slider-thumb {
-              background: #0d2b2a;
-              border-color: #0d2b2a;
-            }
-
-            &:active::-moz-range-thumb {
-              background: #0d2b2a;
-              border-color: #237875;
-            }
-            &:active::-webkit-slider-thumb {
-              background: #0d2b2a;
-              border-color: #237875;
-            }
-          `}
-        />
-      </Tooltip>
+      <ThemeProvider focusVisibleRef={null} theme={theme as any}>
+        <Tooltip content={inputValue.toFixed(1)}>
+          <StyledRange
+            value={inputValue}
+            step={0.1}
+            min={MIN_SPEED}
+            max={MAX_SPEED}
+            onChange={e => onChange(normalize(e.target.value))}
+          />
+        </Tooltip>
+      </ThemeProvider>
     </div>
   );
 };

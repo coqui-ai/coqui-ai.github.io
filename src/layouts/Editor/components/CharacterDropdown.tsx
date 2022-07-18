@@ -8,11 +8,11 @@
 import React, { useEffect, useState } from 'react';
 import { css, DefaultTheme } from 'styled-components';
 
-import { DocumentText } from 'iconsax-react';
 import { Autocomplete, Dropdown, Field, Item, Label, Menu } from '@zendeskgarden/react-dropdowns';
 import { getColor, ThemeProvider } from '@zendeskgarden/react-theming';
+import { ReactComponent as CircleFill } from '@zendeskgarden/svg-icons/src/16/circle-fill.svg';
 
-const SceneDropdown = ({ items, selectedItem, onSelect }) => {
+const CharacterDropdown = ({ items, selectedItem, onSelect }) => {
   const [inputValue, setInputValue] = useState('');
   const [options, setOptions] = useState(items);
   const [matchingOptions, setMatchingOptions] = useState(items);
@@ -23,10 +23,12 @@ const SceneDropdown = ({ items, selectedItem, onSelect }) => {
       'forms.faux_input': css`
         align-items: center;
         background-color: #012b30;
-        border-color: #144543;
+        border-color: transparent;
         color: #fff;
-        padding-top: ${p => p.theme.space.base}px;
-        padding-bottom: ${p => p.theme.space.base}px;
+        padding: ${p => p.theme.space.base}px 0;
+        &:hover {
+          border-color: transparent;
+        }
       `,
       'forms.input': css`
         color: #fff;
@@ -87,9 +89,7 @@ const SceneDropdown = ({ items, selectedItem, onSelect }) => {
           <Label hidden>Select scene</Label>
           <Autocomplete
             start={
-              <DocumentText
-                color="#ed8f1c"
-                variant="Bold"
+              <CircleFill
                 css={css`
                   width: 24px;
                   height: 24px;
@@ -97,7 +97,7 @@ const SceneDropdown = ({ items, selectedItem, onSelect }) => {
               />
             }
           >
-            {selectedItem?.name || 'Scene'}
+            {selectedItem?.name || 'Character'}
           </Autocomplete>
         </Field>
         <Menu>
@@ -112,4 +112,4 @@ const SceneDropdown = ({ items, selectedItem, onSelect }) => {
   );
 };
 
-export default SceneDropdown;
+export default CharacterDropdown;

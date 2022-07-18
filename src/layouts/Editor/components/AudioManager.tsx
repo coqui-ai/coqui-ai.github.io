@@ -88,8 +88,8 @@ const AudioManager = ({ projectId, sceneId }) => {
       />
       <div
         css={css`
-          border-top: 1px solid #eff7f4;
-          border-bottom: 1px solid #eff7f4;
+          border-top: 1px solid #dfefe9;
+          border-bottom: 1px solid #dfefe9;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -117,10 +117,10 @@ const AudioManager = ({ projectId, sceneId }) => {
               margin-left: ${p => p.theme.space.base * 4}px;
             `}
           >
-            <Button.StartIcon>
-              <AddIcon size="64" color="#012b30" />
-            </Button.StartIcon>
             Add New Scene
+            <Button.EndIcon>
+              <AddIcon size="16" color="#012b30" />
+            </Button.EndIcon>
           </Button>
           <NewSceneModal
             projectId={projectId}
@@ -128,16 +128,17 @@ const AudioManager = ({ projectId, sceneId }) => {
             close={closeSceneModal}
           />
           <Button
+            disabled
             isBasic
             css={css`
               color: #012b30;
-              margin-left: ${p => p.theme.space.base * 4}px;`
-            }
+              margin-left: ${p => p.theme.space.base * 4}px;
+            `}
           >
-            <Button.StartIcon>
-              <AddIcon size="64" color="#ED8F1C" />
-            </Button.StartIcon>
             Add New Word to Dictionary
+            <Button.EndIcon>
+              <AddIcon size="16" color="#012b30" />
+            </Button.EndIcon>
           </Button>
           <div css={css`margin-left: ${p => p.theme.space.base * 4}px;`}>
             <b>Scene Description:</b> {scene?.scene.description}
@@ -219,7 +220,6 @@ const AudioManager = ({ projectId, sceneId }) => {
               )}
             </Droppable>
           </DragDropContext>
-          <Timeline lines={lines?.lines} />
         </>
       ) : (
         <div css={css`margin: ${p => p.theme.space.base * 4}px;`}>
@@ -234,6 +234,7 @@ const AudioManager = ({ projectId, sceneId }) => {
           </Button>
         </div>
       )}
+      <Timeline lines={lines?.lines} />
     </>
   );
 };
