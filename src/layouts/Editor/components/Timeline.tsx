@@ -10,6 +10,7 @@ import styled, { css, DefaultTheme } from 'styled-components';
 
 import { Add, Minus, PlayCircle, Sound, StopCircle } from 'iconsax-react';
 import interact from 'interactjs';
+import WaveSurfer from 'wavesurfer.js';
 import { Button } from '@zendeskgarden/react-buttons';
 import { Range } from '@zendeskgarden/react-forms';
 import { Grid, Row, Col } from '@zendeskgarden/react-grid';
@@ -63,7 +64,7 @@ const Box = styled.div`
   flex-shrink: 0;
   height: calc(100% - ${p => p.theme.space.base * 2}px);
   width: 100px;
-  padding: ${p => p.theme.space.base}px;
+  padding: ${p => p.theme.space.base}px 0;
   position: absolute;
 `;
 
@@ -139,6 +140,12 @@ const StyledRange = styled(Range)`
     background: #ddd;
     border-color: #237875;
   }
+`;
+
+const Waveform = styled.div`
+  pointer-events: none;
+  flex-grow: 1;
+  text-align: center;
 `;
 
 const Measure = ({ parent, length, region, scale, offset, setPosition, setRegion }) => {
@@ -277,6 +284,8 @@ const ResizeHandle = ({ onResize }) => {
 
 const Timeline = ({ lines }) => {
   const audioPlayers = useRef<Array<HTMLAudioElement>>([]);
+  const wavesurfers = useRef([]);
+  const wavesurferContainers = useRef([]);
   const measureParent = useRef();
   const containerRef = useRef();
   const previousTime = useRef();
@@ -319,11 +328,27 @@ const Timeline = ({ lines }) => {
 
     audioPlayers.current = audioPlayers.current.slice(0, lines.length);
 
+    wavesurfers.current?.forEach(wavesurfer => wavesurfer?.destroy());
+    wavesurfers.current = Array(lines.length);
+
     lines.map((line, i) => {
       if (!audioPlayers.current[i]) {
         audioPlayers.current[i] = new Audio(line.takes[0].audio_url);
         audioPlayers.current[i].preload = "metadata";
         audioPlayers.current[i].addEventListener("loadedmetadata", () => {
+          if (wavesurferContainers.current[i]) {
+            wavesurfers.current[i] = WaveSurfer.create({
+              container: wavesurferContainers.current[i],
+              height: 44,
+              hideScrollbar: true,
+              hideCursor: true,
+              interact: false,
+              cursorColor: "transparent",
+              waveColor: "#012b30",
+              progressColor: "#012b30",
+            });
+            wavesurfers.current[i].load(audioPlayers.current[i]);
+          }
           setBoxes(boxes => {
             const newBox = {
               ...boxes[i],
@@ -359,7 +384,8 @@ const Timeline = ({ lines }) => {
     boxes.forEach((box, i) => {
       if (box.position <= position && position < (box.position + box.duration)) {
         if (audioPlayers.current?.[i].paused) {
-          audioPlayers.current?.[i].play();
+          audioPlayers.current[i].currentTime = (position - box.position) / 1000;
+          audioPlayers.current[i].play();
         }
       }
     });
@@ -373,6 +399,10 @@ const Timeline = ({ lines }) => {
     setLength(Math.max(...boxes.map(box => box.position + box.duration)));
     setIsReady(audioPlayers.current.every(audio => audio.readyState > 0));
   }, [boxes]);
+
+  useEffect(() => {
+    wavesurfers.current?.forEach(wavesurfer => wavesurfer.drawBuffer());
+  }, [scale]);
   
   useEffect(() => {
     return () => stop();
@@ -664,7 +694,12 @@ const Timeline = ({ lines }) => {
               region={region}
               scale={scale}
               offset={8}
-              setPosition={setPosition}
+              setPosition={pos => {
+                if (isPlaying.current) {
+                  stop();
+                }
+                setPosition(pos);
+              }}
               setRegion={setRegion}
             />
           </div>
@@ -687,7 +722,11 @@ const Timeline = ({ lines }) => {
                         transform: `translateX(${((boxes[i]?.position ?? 1000) / 1000) * scale}px)`,
                       }}
                     >
-                      <Sound size="32" color="#012b30" variant="Bold" />
+                      <Waveform ref={el => wavesurferContainers.current[i] = el}>
+                        {!wavesurfers.current[i] &&
+                          <Sound size="32" color="#012b30" variant="Bold" />
+                        }
+                      </Waveform>
                     </Box>
                   </Tooltip>
                 )}
