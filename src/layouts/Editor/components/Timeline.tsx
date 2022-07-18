@@ -722,7 +722,7 @@ const Timeline = ({ lines }) => {
                         transform: `translateX(${((boxes[i]?.position ?? 1000) / 1000) * scale}px)`,
                       }}
                     >
-                      <Waveform id="waveform" ref={el => wavesurferContainers.current[i] = el}>
+                      <Waveform ref={el => wavesurferContainers.current[i] = el}>
                         {!wavesurfers.current[i] &&
                           <Sound size="32" color="#012b30" variant="Bold" />
                         }
