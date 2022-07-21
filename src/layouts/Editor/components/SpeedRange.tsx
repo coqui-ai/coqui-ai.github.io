@@ -68,7 +68,7 @@ const normalize = (value) => {
   return parseFloat(value.toFixed(1));
 };
 
-const SpeedRange = ({ value, onChange }) => {
+const SpeedRange = ({ value, onChange, onBlur }) => {
   const [inputValue, setInputValue] = useState(1.0);
 
   useEffect(() => {
@@ -107,6 +107,7 @@ const SpeedRange = ({ value, onChange }) => {
             min={MIN_SPEED}
             max={MAX_SPEED}
             onChange={e => onChange(normalize(e.target.value))}
+            onBlur={e => onBlur(normalize(e.target.value))}
           />
         </Tooltip>
       </ThemeProvider>

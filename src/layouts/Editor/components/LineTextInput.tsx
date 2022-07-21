@@ -11,7 +11,7 @@ import { Field, Label, Textarea } from '@zendeskgarden/react-forms';
 
 import { getEmotionColor } from './EmotionDropdown';
 
-const LineTextInput = ({ value, emotion, onChange }) => {
+const LineTextInput = ({ value, emotion, onChange, onBlur }) => {
   const [color, setColor] = useState(null);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const LineTextInput = ({ value, emotion, onChange }) => {
         isBare
         maxRows={4}
         onChange={e => onChange(e.target.value)}
-        onBlur={() => console.log(value)}
+        onBlur={(e) => onBlur(e.target.value)}
         emotionColor={color}
         css={css`
           ${p => p.emotionColor && `color: ${p.emotionColor};`}

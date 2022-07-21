@@ -307,15 +307,15 @@ const Timeline = ({ lines }) => {
       return;
     }
 
-    const speakers = [...new Set(lines?.map(line => line.speaker))];
+    const speakers = [...new Set(lines?.map(line => line.last_render.speaker))];
     setTracks(speakers.map(speaker => ({ speaker })));
 
     setBoxes(boxes => {
       let lastPosition = 0;
       return lines.map((line, i) => ({
-        id: line.id,
+        line: line,
         position: 0,
-        duration: boxes.find(b => b.id === line.id)?.duration || 1000,
+        duration: boxes.find(b => b.line.id === line.id)?.duration || 1000,
       })).map(box => {
         const newBox = {
           ...box,
@@ -333,7 +333,7 @@ const Timeline = ({ lines }) => {
 
     lines.map((line, i) => {
       if (!audioPlayers.current[i]) {
-        audioPlayers.current[i] = new Audio(line.takes[0].audio_url);
+        audioPlayers.current[i] = new Audio(line.last_render.audio_url);
         audioPlayers.current[i].preload = "metadata";
         audioPlayers.current[i].addEventListener("loadedmetadata", () => {
           if (wavesurferContainers.current[i]) {
@@ -366,7 +366,7 @@ const Timeline = ({ lines }) => {
           });
         });
       } else {
-        audioPlayers.current[i].src = line.takes[0].audio_url;
+        audioPlayers.current[i].src = line.last_render.audio_url;
       }
     });
   }, [lines]);
@@ -711,15 +711,15 @@ const Timeline = ({ lines }) => {
           >
             {tracks?.map(track =>
               <TrackRow key={track.speaker.id}>
-                {lines?.map((line, i) => line.speaker.id === track.speaker.id &&
-                  <Tooltip key={line.id} content={line.text}>
+                {boxes?.map((box, i) => box.line.last_render.speaker.id === track.speaker.id &&
+                  <Tooltip key={box.line.id} content={box.line.last_render.text}>
                     <Box
                       className="draggable"
-                      key={line.id}
+                      key={box.line.id}
                       data-line-index={i}
                       style={{
-                        width: `${((boxes[i]?.duration || 1000) / 1000) * scale}px`,
-                        transform: `translateX(${((boxes[i]?.position ?? 1000) / 1000) * scale}px)`,
+                        width: `${(box.duration / 1000) * scale}px`,
+                        transform: `translateX(${(box.position / 1000) * scale}px)`,
                       }}
                     >
                       <Waveform ref={el => wavesurferContainers.current[i] = el}>
