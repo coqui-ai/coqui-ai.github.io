@@ -284,7 +284,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
             justify-content: space-between;
           `}
         >
-          {line.last_render.audio_url &&
+          {line.last_render?.audio_url &&
             <div
               css={css`
                 display: flex;
@@ -293,7 +293,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
                 padding: ${p => p.theme.space.sm} ${p => p.theme.space.md};
               `}
             >
-              <PlayButton src={line.last_render.audio_url} />
+              <PlayButton src={line.last_render?.audio_url} />
             </div>
           }
           <div
