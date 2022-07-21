@@ -307,7 +307,7 @@ const Timeline = ({ lines }) => {
       return;
     }
 
-    const speakers = [...new Set(lines?.map(line => line.last_render.speaker))];
+    const speakers = [...new Set(lines?.map(line => line.last_render?.speaker))];
     setTracks(speakers.map(speaker => ({ speaker })));
 
     setBoxes(boxes => {
@@ -333,7 +333,7 @@ const Timeline = ({ lines }) => {
 
     lines.map((line, i) => {
       if (!audioPlayers.current[i]) {
-        audioPlayers.current[i] = new Audio(line.last_render.audio_url);
+        audioPlayers.current[i] = new Audio(line.last_render?.audio_url);
         audioPlayers.current[i].preload = "metadata";
         audioPlayers.current[i].addEventListener("loadedmetadata", () => {
           if (wavesurferContainers.current[i]) {
@@ -366,7 +366,7 @@ const Timeline = ({ lines }) => {
           });
         });
       } else {
-        audioPlayers.current[i].src = line.last_render.audio_url;
+        audioPlayers.current[i].src = line.last_render?.audio_url;
       }
     });
   }, [lines]);
@@ -711,8 +711,8 @@ const Timeline = ({ lines }) => {
           >
             {tracks?.map(track =>
               <TrackRow key={track.speaker.id}>
-                {boxes?.map((box, i) => box.line.last_render.speaker.id === track.speaker.id &&
-                  <Tooltip key={box.line.id} content={box.line.last_render.text}>
+                {boxes?.map((box, i) => box.line.last_render?.speaker.id === track.speaker.id &&
+                  <Tooltip key={box.line.id} content={box.line.last_render?.text}>
                     <Box
                       className="draggable"
                       key={box.line.id}
