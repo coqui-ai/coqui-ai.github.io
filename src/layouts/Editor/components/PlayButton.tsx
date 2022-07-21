@@ -5,7 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 import { PlayCircle, StopCircle } from 'iconsax-react';
 import { Button } from '@zendeskgarden/react-buttons';
@@ -15,6 +15,10 @@ const PlayButton = ({ src }) => {
   const audioPlayer = useRef<HTMLAudioElement>(new Audio(src));
 
   const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    audioPlayer.current.src = src;
+  }, [src]);
 
   const play = () => {
     audioPlayer.current.currentTime = 0;

@@ -53,17 +53,20 @@ export const LINES = gql`
   query lines($scene_id: String!) {
     lines(scene_id: $scene_id) {
       id
-      text
-      speaker {
-        id
-        name
+      last_render {
+        text
+        speaker {
+          id
+          name
+        }
+        emotion {
+          id
+          name
+        }
+        emotion_intensity
+        speed
+        audio_url
       }
-      emotion {
-        id
-        name
-      }
-      emotion_intensity
-      speed
       takes {
         id
         audio_url

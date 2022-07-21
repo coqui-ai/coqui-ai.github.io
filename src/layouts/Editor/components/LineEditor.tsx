@@ -53,12 +53,32 @@ export const getDefaultSpeaker = (speakers) => {
 };
 
 const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
-  const [lineText, setLineText] = useState(line?.text || '');
-  const [lineSpeed, setLineSpeed] = useState(line?.speed || 1.0);
-  const [lineEmotion, setLineEmotion] = useState(line?.emotion || getDefaultEmotion(emotions));
-  const [lineSpeaker, setLineSpeaker] = useState(line?.speaker || getDefaultSpeaker(speakers));
+  const [lineText, setLineText] = useState(line?.last_render?.text || '');
+  const [lineSpeed, setLineSpeed] = useState(line?.last_render?.speed || 1.0);
+  const [lineEmotion, setLineEmotion] = useState(line?.last_render?.emotion || getDefaultEmotion(emotions));
+  const [lineSpeaker, setLineSpeaker] = useState(line?.last_render?.speaker || getDefaultSpeaker(speakers));
 
-  const [createLine, { createdLine, creating, error }] = useMutation(mutations.CREATE_LINE, {
+  const [createLine, createLineResult] = useMutation(mutations.CREATE_LINE, {
+    update: cache => {
+      cache.evict({
+        id: 'ROOT_QUERY',
+        fieldName: 'lines',
+        args: { scene_id: scene.id }
+      });
+    }
+  });
+
+  const [deleteLine, deleteLineResult] = useMutation(mutations.DELETE_LINE, {
+    update: cache => {
+      cache.evict({
+        id: 'ROOT_QUERY',
+        fieldName: 'lines',
+        args: { scene_id: scene.id }
+      });
+    }
+  });
+
+  const [createTake, createTakeResult] = useMutation(mutations.CREATE_TAKE, {
     update: cache => {
       cache.evict({
         id: 'ROOT_QUERY',
@@ -80,6 +100,28 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
       }
     });
   };
+
+  const handleDeleteLine = () => {
+    deleteLine({
+      variables: {
+        line_id: line.id
+      }
+    });
+  }
+
+  const createNewTake = (overrides) => {
+    createTake({
+      variables: {
+        line_id: line.id,
+        text: lineText,
+        speed: lineSpeed,
+        emotion_id: lineEmotion.id,
+        speaker_id: lineSpeaker.id,
+        emotion_intensity: 1.0,
+        ...overrides,
+      }
+    });
+  }
 
   return (
     <li key={line.id}>
@@ -108,7 +150,14 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
             <CharacterDropdown
               items={speakers}
               selectedItem={lineSpeaker}
-              onSelect={setLineSpeaker}
+              onSelect={(val) => {
+                setLineSpeaker(val);
+                if (line.last_render?.speaker.id !== val.id) {
+                  createNewTake({
+                    speaker_id: val.id
+                  });
+                }
+              }}
             />
           </div>
           <div
@@ -160,6 +209,14 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
               value={lineText}
               emotion={lineEmotion}
               onChange={setLineText}
+              onBlur={(val) => {
+                setLineText(val);
+                if (line.last_render?.text !== val) {
+                  createNewTake({
+                    text: val
+                  });
+                }
+              }}
             />
           </div>
           <div
@@ -174,11 +231,26 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
             <EmotionDropdown
               items={emotions}
               selectedItem={lineEmotion}
-              onSelect={setLineEmotion}
+              onSelect={(val) => {
+                setLineEmotion(val);
+                if (line.last_render?.emotion.id !== val.id) {
+                  createNewTake({
+                    emotion_id: val.id
+                  });
+                }
+              }}
             />
             <SpeedRange
               value={lineSpeed}
               onChange={setLineSpeed}
+              onBlur={(val) => {
+                setLineSpeed(val);
+                if (line.last_render?.speed !== val) {
+                  createNewTake({
+                    speed: val
+                  });
+                }
+              }}
             />
             <StyledButton disabled>
               <Button.StartIcon>
@@ -192,7 +264,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
               </Button.StartIcon>
               Export
             </StyledButton>
-            <StyledButton disabled={creating} onClick={duplicateLine}>
+            <StyledButton disabled={createLineResult.creating} onClick={duplicateLine}>
               <Button.StartIcon>
                 <AddIcon color="#ed8f1c" />
               </Button.StartIcon>
@@ -212,7 +284,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
             justify-content: space-between;
           `}
         >
-          {line.takes?.length > 0 &&
+          {line.last_render.audio_url &&
             <div
               css={css`
                 display: flex;
@@ -221,7 +293,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
                 padding: ${p => p.theme.space.sm} ${p => p.theme.space.md};
               `}
             >
-              <PlayButton src={line.takes[0].audio_url} />
+              <PlayButton src={line.last_render.audio_url} />
             </div>
           }
           <div
@@ -255,7 +327,7 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
               }
             >
               <Button
-                disabled={creating}
+                disabled={createLineResult.creating}
                 isBasic
                 onClick={duplicateLine}
               >
@@ -266,13 +338,16 @@ const LineEditor = ({ scene, line, speakers, emotions, provided }) => {
               </Button>
             </LargeTooltip>
             <Tooltip content="Delete Line">
-              <StyledButton disabled>
+              <Button
+                isBasic
+                onClick={handleDeleteLine}
+              >
                 <Trash
                   size="24"
                   color="#cc3340"
                   variant="Bold"
                 />
-              </StyledButton>
+              </Button>
             </Tooltip>
           </div>
         </div>

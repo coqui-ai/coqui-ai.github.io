@@ -41,7 +41,7 @@ const AudioManager = ({ projectId, sceneId }) => {
   const { data: emotions } = useQuery(queries.EMOTIONS);
   const { data: speakers } = useQuery(queries.SPEAKERS);
 
-  const [createLine, { createdLine, creating, error }] = useMutation(mutations.CREATE_LINE, {
+  const [createLine, createLineResult] = useMutation(mutations.CREATE_LINE, {
     update: cache => {
       cache.evict({
         id: 'ROOT_QUERY',
@@ -224,7 +224,7 @@ const AudioManager = ({ projectId, sceneId }) => {
       ) : (
         <div css={css`margin: ${p => p.theme.space.base * 4}px;`}>
           <Button
-            disabled={creating}
+            disabled={createLineResult?.creating}
             onClick={newLine}
           >
             <Button.StartIcon>
