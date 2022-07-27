@@ -10,7 +10,7 @@ https://garden.zendesk.com/css-components/* https://zendeskgarden.github.io/css-
 
 ## Created with gatsby-plugin-netlify
 /email/:token  /email/[token]  200
-/editor/project/:project_id  /editor/project/[project_id]  200
 /voices/:id/samples  /voices/[id]/samples  200
 /voices/:id/synthesize  /voices/[id]/synthesize  200
+/editor/project/:project_id  /editor/project/[project_id]  200
 /editor/project/:project_id/scene/:scene_id  /editor/project/[project_id]/scene/[scene_id]  200
