@@ -11,7 +11,7 @@ import { useRedirectToNewDomain } from 'utils/auth';
 const SignUpPage: React.FC = () => {
   useRedirectToNewDomain();
 
-  return null;
+  return <>...</>;
 };
 
 export default SignUpPage;
