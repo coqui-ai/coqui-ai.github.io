@@ -14,8 +14,11 @@ import { SignInForm } from 'layouts/Auth/components/SignInForm';
 // import { graphql, useStaticQuery } from 'gatsby';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
+import { useRedirectToNewDomain } from 'utils/auth';
 
 const AuthPage: React.FC = () => {
+  useRedirectToNewDomain();
+
   useEffect(() => {
     consentedToGoogleAnalytics();
   });

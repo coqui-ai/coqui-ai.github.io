@@ -15,8 +15,6 @@ const useProfileState = createPersistedState('profile');
 
 export function useRedirectToNewDomain() {
   useEffect(() => {
-    if (!/redirectme/.test(window.location.search)) return;
-
     const subPath = window.location.pathname + window.location.search;
 
     // eslint-disable-next-line no-negated-condition
@@ -44,7 +42,7 @@ export function useRedirectToNewDomain() {
       form.appendChild(data);
 
       form.submit();
-      // localStorage.removeItem('auth');
+      localStorage.removeItem('auth');
     }
   });
 }
