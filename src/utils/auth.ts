@@ -13,16 +13,22 @@ import createPersistedState from 'use-persisted-state';
 const useAuthState = createPersistedState('auth');
 const useProfileState = createPersistedState('profile');
 
+let redirectStarted = false;
+
 export function useRedirectToNewDomain() {
   useEffect(() => {
+    if (redirectStarted) return;
+
     const subPath = window.location.pathname + window.location.search;
 
     localStorage.removeItem('profile');
 
     // eslint-disable-next-line no-negated-condition
     if (!localStorage.getItem('auth')) {
+      redirectStarted = true;
       window.location.replace(process.env.GATSBY_BACKEND_URL + subPath);
     } else {
+      redirectStarted = true;
       const form = document.createElement('form');
 
       document.body.appendChild(form);
