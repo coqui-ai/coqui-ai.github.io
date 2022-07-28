@@ -18,6 +18,8 @@ export function useRedirectToNewDomain() {
     const subPath = window.location.pathname + window.location.search;
 
     // eslint-disable-next-line no-negated-condition
+    localStorage.removeItem('profile');
+
     if (!localStorage.getItem('auth')) {
       window.location.replace(process.env.GATSBY_BACKEND_URL + subPath);
     } else {
