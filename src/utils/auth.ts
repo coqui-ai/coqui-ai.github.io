@@ -17,9 +17,9 @@ export function useRedirectToNewDomain() {
   useEffect(() => {
     const subPath = window.location.pathname + window.location.search;
 
-    // eslint-disable-next-line no-negated-condition
     localStorage.removeItem('profile');
 
+    // eslint-disable-next-line no-negated-condition
     if (!localStorage.getItem('auth')) {
       window.location.replace(process.env.GATSBY_BACKEND_URL + subPath);
     } else {
