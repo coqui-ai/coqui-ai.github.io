@@ -80,7 +80,7 @@ const RootLayout: React.FC<IRootLayoutProps> = ({
   const profile = useCachedProfile();
 
   return (
-    <ProfileContext.Provider value={profile}>
+    <ProfileContext.Provider value={null}>
       <div
         css={`
           display: flex;
