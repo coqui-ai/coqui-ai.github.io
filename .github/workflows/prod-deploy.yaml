@@ -14,7 +14,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - name: Build website
         env:
-          GATSBY_BACKEND_URL: https://creator-app.prod-coqui.com
+          GATSBY_BACKEND_URL: https://app.coqui.ai
           GATSBY_SOURCE_VERSION: prod
           SOURCE_VERSION: prod
           REACT_APP_GITHUB_KEY: ${{ secrets.GITHUB_TOKEN }}
