@@ -6,24 +6,12 @@
  */
 
 import React, { useEffect } from 'react';
-import SEO from 'components/SEO';
-import RootLayout from 'layouts/Root';
-import SignUpLayout from 'layouts/SignUp';
-import GogleAnalyticsCookieConsent from 'components/Cookies';
-import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
+import { useRedirectToNewDomain } from 'utils/auth';
 
 const SignUpPage: React.FC = () => {
-  useEffect(() => {
-    consentedToGoogleAnalytics();
-  });
+  useRedirectToNewDomain();
 
-  return (
-    <RootLayout>
-      <SEO title="SignUp " />
-      <SignUpLayout />
-      <GogleAnalyticsCookieConsent />
-    </RootLayout>
-  );
+  return <>...</>;
 };
 
 export default SignUpPage;

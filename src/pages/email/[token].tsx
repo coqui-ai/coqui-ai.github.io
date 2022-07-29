@@ -12,7 +12,7 @@ import GogleAnalyticsCookieConsent from 'components/Cookies';
 import { gql, useMutation } from '@apollo/client';
 import { navigate } from 'gatsby';
 import { CenterWell } from 'layouts/Root/components/Styled';
-import { useProfile } from 'utils/auth';
+import { useProfile, useRedirectToNewDomain } from 'utils/auth';
 
 const VERIFY_EMAIL = gql`
   mutation verifyEmail($token: String!) {
@@ -27,56 +27,9 @@ const VERIFY_EMAIL = gql`
 `;
 
 const TokenPage: React.FC = ({ token }) => {
-  const [verifyStatus, setVerifyStatus] = useState('verifying');
-  const [errorInfo, setErrorInfo] = useState('');
-  const [verifyEmail, { verifying }] = useMutation(VERIFY_EMAIL);
-  const { refetch } = useProfile();
+  useRedirectToNewDomain();
 
-  useEffect(() => {
-    verifyEmail({
-      variables: {
-        token
-      }
-    })
-      .then(({ data }) => {
-        if (data.verifyEmail.errors) {
-          setVerifyStatus('error');
-          setErrorInfo(data.verifyEmail.errors[0].errors[0]);
-        } else {
-          refetch();
-          setVerifyStatus('verified');
-          navigate('/voices');
-        }
-      })
-      .catch(() => {
-        setVerifyStatus('error');
-        setErrorInfo('');
-      });
-    /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, [token]);
-
-  return (
-    <RootLayout hasSkipNav={false}>
-      <SEO />
-
-      <CenterWell title="Email address verification">
-        {verifying || (verifyStatus === 'verifying' && <p>Verifying your email address...</p>)}
-        {verifyStatus === 'verified' && <p>Your email address has been verified!</p>}
-        {verifyStatus === 'error' && (
-          <>
-            <p>Error verifying your email address: {errorInfo}</p>
-            <p>
-              Please{' '}
-              <a href="mailto:info@coqui.ai?subject=I can't verify my email address">contact us</a>{' '}
-              to solve this.
-            </p>
-          </>
-        )}
-      </CenterWell>
-
-      <GogleAnalyticsCookieConsent />
-    </RootLayout>
-  );
+  return null;
 };
 
 export default TokenPage;

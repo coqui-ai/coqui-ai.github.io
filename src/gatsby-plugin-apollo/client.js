@@ -30,6 +30,9 @@ const client = new ApolloClient({
   link: authLink.concat(
     createUploadLink({
       uri: `${process.env.GATSBY_BACKEND_URL}/graphql/`,
+      fetchOptions: {
+        referrerPolicy: 'unsafe-url'
+      },
       fetch
     })
   )

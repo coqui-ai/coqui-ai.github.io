@@ -6,7 +6,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { useProfile } from 'utils/auth';
+import { useProfile, useRedirectToNewDomain } from 'utils/auth';
 import { AcceptTerms } from 'layouts/Auth/components/registration/AcceptTerms';
 import { CompleteProfile } from 'layouts/Auth/components/registration/CompleteProfile';
 import { VerifyEmail } from 'layouts/Auth/components/registration/VerifyEmail';
@@ -27,6 +27,8 @@ const ClientOnly = ({ children }) => {
 };
 
 const RequireAuth = ({ children }) => {
+  useRedirectToNewDomain();
+
   const { data: profile, loading, error } = useProfile();
 
   // fixme

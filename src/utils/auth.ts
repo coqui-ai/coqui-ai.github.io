@@ -13,6 +13,48 @@ import createPersistedState from 'use-persisted-state';
 const useAuthState = createPersistedState('auth');
 const useProfileState = createPersistedState('profile');
 
+let redirectStarted = false;
+
+export function useRedirectToNewDomain() {
+  useEffect(() => {
+    if (redirectStarted) return;
+
+    const subPath = window.location.pathname + window.location.search;
+
+    localStorage.removeItem('profile');
+
+    // eslint-disable-next-line no-negated-condition
+    if (!localStorage.getItem('auth')) {
+      redirectStarted = true;
+      window.location.replace(process.env.GATSBY_BACKEND_URL + subPath);
+    } else {
+      redirectStarted = true;
+      const form = document.createElement('form');
+
+      document.body.appendChild(form);
+      form.method = 'post';
+      form.action = `${process.env.GATSBY_BACKEND_URL}/reauth/`;
+
+      const page = document.createElement('input');
+
+      page.type = 'hidden';
+      page.name = 'location';
+      page.value = subPath;
+      form.appendChild(page);
+
+      const data = document.createElement('input');
+
+      data.type = 'hidden';
+      data.name = 'authdata';
+      data.value = localStorage.getItem('auth');
+      form.appendChild(data);
+
+      form.submit();
+      localStorage.removeItem('auth');
+    }
+  });
+}
+
 export function useAuth() {
   const [state] = useAuthState();
 
