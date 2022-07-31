@@ -5,13 +5,12 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useEffect } from 'react';
 import { useRedirectToNewDomain } from 'utils/auth';
 
-const SignUpPage: React.FC = () => {
+const SignUpPage = () => {
   useRedirectToNewDomain();
 
-  return <>...</>;
+  return null;
 };
 
 export default SignUpPage;
