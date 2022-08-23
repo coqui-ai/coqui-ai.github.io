@@ -197,6 +197,9 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
     >
       {!isSubscribing && (
         <>
+          <StyledMobileNavItem>
+            <StyledMobileNavLink to="/saw">Product</StyledMobileNavLink>
+          </StyledMobileNavItem>
           <Dropdown
             onSelect={item => {
               window.location.href = item;
@@ -299,6 +302,9 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
     >
       {!isSubscribing && (
         <>
+          <StyledDesktopNavItem>
+            <StyledDesktopNavLink to="/saw">Product</StyledDesktopNavLink>
+          </StyledDesktopNavItem>
           <Dropdown
             onSelect={item => {
               window.location.href = item;
