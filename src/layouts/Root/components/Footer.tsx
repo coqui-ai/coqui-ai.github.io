@@ -268,7 +268,7 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
               `}
             >
               <p css="font-weight: 700">Product</p>
-              <StyledLinksItem to="/models">Models</StyledLinksItem>
+              <StyledLinksItem to="/saw">Workstation</StyledLinksItem>
             </div>
             <div
               css={css`
