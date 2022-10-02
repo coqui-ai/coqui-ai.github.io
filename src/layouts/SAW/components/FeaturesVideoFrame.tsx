@@ -93,7 +93,6 @@ export const FeaturesVideoFrame: React.FC<{
           {...mutedAttribute}
           playsInline
           css={css`
-            border-radius: 20px;
             max-width: 100%;
             height: auto;
           `}
