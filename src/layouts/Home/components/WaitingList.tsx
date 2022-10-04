@@ -21,7 +21,6 @@ export const WaitingList = () => {
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 800px;
       "
     >
       <form-widget ucid="DCEXiNZKeRKwCdGXgpwGdgMavPk" />

@@ -6,10 +6,10 @@
  */
 
 import React from 'react';
-import { WaitingList } from './components/WaitingList';
+import { WaitingListCtA } from './components/WaitingListCtA';
 
 const HomeLayout: React.FC = () => {
-  return <WaitingList />;
+  return <WaitingListCtA />;
 };
 
 export default HomeLayout;
