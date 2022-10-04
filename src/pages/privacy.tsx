@@ -496,23 +496,28 @@ const PrivacyPage: React.FC = () => {
                   <LG>
                     For sending the emails, we use the third-party provider{' '}
                     <Span isBold>MailChimp</Span>, a newsletter platform of the US provider Rocket
-                    Science Group, LLC, 675 Ponce De Leon Ave NE #5000, Atlanta, GA 30308, USA.
-                    Email addresses of our newsletter recipients are stored on MailChimp&apos;s
-                    servers in the USA. MailChimp uses this information to send and evaluate the
-                    newsletters on our behalf. For this reason, we have concluded a data processing
-                    agreement with MailChimp.
+                    Science Group, LLC, 675 Ponce De Leon Ave NE #5000, Atlanta, GA 30308, USA, and{' '}
+                    <Span isBold>Viral Loops</Span> , a newsletter platform located at 422 Richards
+                    St, Suite 170, Vancouver, BC V6B 2Z4. Email addresses of our newsletter
+                    recipients are stored on MailChimp&apos;s servers in the USA. MailChimp uses
+                    this information to send and evaluate the newsletters on our behalf. For this
+                    reason, we have concluded a data processing agreement with MailChimp. Also,
+                    email addresses of our waiting lists are stored on Viral Loops&apos; servers.
+                    Viral Loops uses this information to send and evaluate the waiting lists on our
+                    behalf. For this reason, we have concluded a data processing agreement with
+                    Viral Loops.
                   </LG>
                 </Paragraph>
                 <Paragraph>
                   <LG>
-                    The data processing agreement contains a reference to the European Standard
+                    The data processing agreements contain reference to the European Standard
                     Contractual Clauses, which provide a guarantee for the transfer of your personal
-                    data to the USA. Furthermore, according to its own information, MailChimp may
-                    use the data to optimize or improve its own services, e.g. for the technical
-                    optimization of the dispatch and presentation of the newsletters or for
-                    commercial purposes to determine from which countries the recipients come.
-                    However, MailChimp does not use the data of our newsletter recipients to contact
-                    them or to pass the data on to third parties.
+                    data to the USA. Furthermore, according to its own information, MailChimp and/or
+                    Viral Loops may use the data to optimize or improve its own services, e.g. for
+                    the technical optimization of the dispatch and presentation of the newsletters
+                    or for commercial purposes to determine from which countries the recipients
+                    come. However, MailChimp and/or Viral Loops does not use the data of our
+                    newsletter recipients to contact them or to pass the data on to third parties.
                   </LG>
                 </Paragraph>
                 <Paragraph>
@@ -520,6 +525,15 @@ const PrivacyPage: React.FC = () => {
                     You can read the privacy statement of MailChimp at{' '}
                     <Anchor href="https://mailchimp.com/legal/privacy/">
                       https://mailchimp.com/legal/privacy/
+                    </Anchor>
+                    .
+                  </LG>
+                </Paragraph>
+                <Paragraph>
+                  <LG>
+                    You can read the privacy statement of Viral Loops at{' '}
+                    <Anchor href="https://viral-loops.com/privacy">
+                      https://viral-loops.com/privacy
                     </Anchor>
                     .
                   </LG>
