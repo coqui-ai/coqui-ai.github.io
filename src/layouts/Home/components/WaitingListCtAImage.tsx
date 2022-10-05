@@ -56,6 +56,7 @@ export const WaitingListCtAImage: React.FC = () => {
         }
 
         ${p => mediaQuery('down', 'md', p.theme)} {
+          border: 1px solid #012b30;
           border-radius: 10px;
           max-width: 2976px;
         }
