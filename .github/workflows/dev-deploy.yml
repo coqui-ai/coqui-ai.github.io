@@ -38,6 +38,8 @@ env:
   ECR_REPO_URL: "646105116760.dkr.ecr.us-east-1.amazonaws.com/website-frontend-images"
   # GHCR repository to mirror to
   GHCR_REPO_URL: "ghcr.io/coqui-ai/website-frontend"
+  # Public URL this container will be hosted under
+  FRONTEND_URL: "https://www.dev-coqui.com"
 jobs:
   build_and_deploy:
     runs-on: ubuntu-20.04
@@ -80,22 +82,19 @@ jobs:
         run: |
           set -xe
 
+          # Log in to ECR
+          aws ecr get-login-password --region "${AWS_ENVIRONMENT}" | docker login --username AWS --password-stdin "${ECR_REPO_URL}"
+
           # Pull latest version to speed up build
-          docker pull "${GHCR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest" || true
+          docker pull "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest" || true
 
           # Build and push to ECR
-          docker build -f docker/static-serve.dockerfile . --build-arg REACT_APP_GITHUB_KEY=${{ secrets.GITHUB_TOKEN }} --build-arg CONFIG_APP_RELEASE=${{ github.sha }} -t "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
-          aws ecr get-login-password --region "${AWS_ENVIRONMENT}" | docker login --username AWS --password-stdin "${ECR_REPO_URL}"
+          docker build -f docker/static-serve.dockerfile . --build-arg REACT_APP_GITHUB_KEY=${{ secrets.GITHUB_TOKEN }} --build-arg CONFIG_APP_RELEASE=${{ github.sha }} --build-arg GATSBY_FRONTEND_URL=$FRONTEND_URL -t "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
           docker push "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
 
-          # Mirror image to GHCR for convenience
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login --username ${{ github.actor }} --password-stdin ghcr.io
-          docker tag "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}" "${GHCR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
-          docker push "${GHCR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
-
           # Tag and push as {env}-latest
-          docker tag "${GHCR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}" "${GHCR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest"
-          docker push "${GHCR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest"
+          docker tag "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}" "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest"
+          docker push "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest"
       # this simply changes docker container tag for K8S service
       - name: Deploy pushed docker tag to infrastructure
         id: deploy-docker

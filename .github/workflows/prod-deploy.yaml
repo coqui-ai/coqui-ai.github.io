@@ -1,0 +1,35 @@
+name: Deploy frontend to prod
+on:
+  push:
+    branches: ["prod"]
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - name: Build website
+        env:
+          GATSBY_BACKEND_URL: https://app.coqui.ai
+          GATSBY_FRONTEND_URL: https://coqui.ai
+          GATSBY_SOURCE_VERSION: prod
+          SOURCE_VERSION: prod
+          REACT_APP_GITHUB_KEY: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn build
+      - name: Upload built site artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: prod-built
+          path: ${{ github.workspace }}/public
+      - name: Push to master
+        run: |
+          yarn run gh-pages \
+            -d public \
+            -b master \
+            -r https://coqui-machine-user:${{ secrets.INFRA_DEPLOYER_GITHUB_TOKEN }}@github.com/coqui-ai/coqui-ai.github.io.git \
+            -u "coqui-machine-user <reference-architecture-machine-user@coqui.ai>"
