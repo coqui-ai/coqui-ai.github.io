@@ -22,7 +22,7 @@ const capitalize = s => {
 module.exports = {
   siteMetadata: {
     title: 'Coqui',
-    siteUrl: 'https://coqui.ai',
+    siteUrl: process.env.GATSBY_FRONTEND_URL || 'https://coqui.ai',
     description: `Coqui, Freeing Speech.`
   },
   plugins: [
