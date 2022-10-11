@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import { Link } from 'gatsby';
 import styled, { css } from 'styled-components';
 import MinWidthLayout from 'layouts/MinWidth';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
@@ -21,16 +20,10 @@ interface IRow {
 
 const rowData: IRow[] = [
   {
-    title: 'Senior UI/UX Engineer',
-    url: '../job/senior-ui+ux-engineer',
-    location: 'Berlin, Germany OR Remote',
-    group: 'Product'
-  },
-  {
-    title: 'Senior Full Stack Engineer',
-    url: '../job/senior-full-stack-engineer',
-    location: 'Berlin, Germany OR Remote',
-    group: 'Engineering'
+    title: 'N/A',
+    url: 'jobs',
+    location: 'N/A',
+    group: 'N/A'
   }
 ];
 
@@ -51,7 +44,7 @@ export const Jobs: React.FC = () => {
           margin-bottom: ${p => p.theme.space.xl};
         `}
       >
-        Open Positions
+        Currently No Open Positions
       </StyledJobsHeader>
       <Table
         size="large"
@@ -76,9 +69,7 @@ export const Jobs: React.FC = () => {
         <Body>
           {rowData.map((data, index) => (
             <Row key={index + 1} isStriped={(index + 1) % 2 === 0}>
-              <Cell>
-                <Link to={data.url}>{data.title}</Link>
-              </Cell>
+              <Cell>{data.title}</Cell>
               <Cell>{data.location}</Cell>
               <Cell>{data.group}</Cell>
             </Row>

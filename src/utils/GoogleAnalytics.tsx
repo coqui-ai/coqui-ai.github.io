@@ -12,5 +12,22 @@ export const consentedToGoogleAnalytics = () => {
   if (getCookieConsentValue()) {
     ReactGA.initialize('UA-191579390-2');
     ReactGA.pageview(window.location.pathname + window.location.search);
+
+    const redditScript = document.createElement('script');
+
+    redditScript.innerHTML = `
+      !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','t2_gfvxpqe7', {"optOut":false,"useDecimalCurrencyValues":true,"aaid":"<AAID-HERE>","email":"<EMAIL-HERE>","externalId":"<EXTERNAL-ID-HERE>","idfa":"<IDFA-HERE>"});rdt('track', 'PageVisit');
+    `;
+    document.head.appendChild(redditScript);
+
+    const twitterScript = document.createElement('script');
+
+    twitterScript.innerHTML = `
+      !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+      },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
+      a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+      twq('config','ocbev');
+    `;
+    document.head.appendChild(twitterScript);
   }
 };

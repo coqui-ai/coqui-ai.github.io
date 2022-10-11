@@ -6,22 +6,10 @@
  */
 
 import React from 'react';
-import { CtA } from './components/CtA';
-import { Video } from './components/Video';
-import { Users } from './components/Users';
-import { WhyCoqui } from './components/WhyCoqui';
-import { TTSModels } from './components/TTSModels';
+import { WaitingListCtA } from './components/WaitingListCtA';
 
 const HomeLayout: React.FC = () => {
-  return (
-    <>
-      <CtA />
-      <Users />
-      <Video />
-      <TTSModels />
-      <WhyCoqui />
-    </>
-  );
+  return <WaitingListCtA />;
 };
 
 export default HomeLayout;

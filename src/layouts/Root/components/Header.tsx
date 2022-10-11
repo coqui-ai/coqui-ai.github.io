@@ -248,22 +248,9 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
               <HomeNavUserMenu profile={profile} />
             </StyledMobileNavItem>
           ) : (
-            <>
-              <StyledMobileNavItem>
-                <StyledMobileNavLink to="/auth/signin">Sign In</StyledMobileNavLink>
-              </StyledMobileNavItem>
-              <StyledMobileNavItem>
-                <StyledMobileNavLink
-                  to="/auth/signup"
-                  css={css`
-                    background-color: ${p => getColor('kale', 800, p.theme)};
-                    color: #fff;
-                  `}
-                >
-                  Try now for free
-                </StyledMobileNavLink>
-              </StyledMobileNavItem>
-            </>
+            <StyledMobileNavItem>
+              <StyledMobileNavLink to="/auth/signin">Sign In</StyledMobileNavLink>
+            </StyledMobileNavItem>
           )}
         </>
       )}
@@ -350,22 +337,9 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
               <HomeNavUserMenu profile={profile} />
             </StyledDesktopNavItem>
           ) : (
-            <>
-              <StyledDesktopNavItem>
-                <StyledDesktopNavLink to="/auth/signin">Sign In</StyledDesktopNavLink>
-              </StyledDesktopNavItem>
-              <StyledDesktopNavItem>
-                <StyledDesktopNavLink
-                  to="/auth/signup"
-                  css={css`
-                    background-color: ${p => getColor('kale', 800, p.theme)};
-                    color: #fff;
-                  `}
-                >
-                  Try now for free
-                </StyledDesktopNavLink>
-              </StyledDesktopNavItem>
-            </>
+            <StyledDesktopNavItem>
+              <StyledDesktopNavLink to="/auth/signin">Sign In</StyledDesktopNavLink>
+            </StyledDesktopNavItem>
           )}
         </>
       )}

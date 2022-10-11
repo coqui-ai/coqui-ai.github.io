@@ -15,6 +15,7 @@ jobs:
       - name: Build website
         env:
           GATSBY_BACKEND_URL: https://app.coqui.ai
+          GATSBY_FRONTEND_URL: https://coqui.ai
           GATSBY_SOURCE_VERSION: prod
           SOURCE_VERSION: prod
           REACT_APP_GITHUB_KEY: ${{ secrets.GITHUB_TOKEN }}
