@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[24],{"/yBf":function(n,t,e){"use strict";e.r(t);var c=e("q1tI"),u=e.n(c),i=e("Wbzz"),a=e("asXk");t.default=function(){var n=Object(a.e)()[0];return Object(c.useEffect)((function(){n(),Object(i.d)("/auth/signin")})),u.a.createElement("div",null,"Logging out...")}}}]);
-//# sourceMappingURL=component---src-pages-auth-signout-tsx-2d0ab301444c050ee9e8.js.map

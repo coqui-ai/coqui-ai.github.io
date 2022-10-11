@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[40],{"qcy/":function(n,t,e){"use strict";e.r(t);var r,o=e("MUpH"),i=e("UYTu"),a=e("asXk");Object(i.d)(r||(r=Object(o.a)(["\n  mutation verifyEmail($token: String!) {\n    verifyEmail(token: $token) {\n      errors {\n        field\n        errors\n      }\n      status\n    }\n  }\n"])));t.default=function(n){n.token;return Object(a.h)(),null}}}]);
-//# sourceMappingURL=component---src-pages-email-[token]-tsx-10967c192178aba83300.js.map
