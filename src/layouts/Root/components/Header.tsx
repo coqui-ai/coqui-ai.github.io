@@ -246,17 +246,6 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
               Sign In
             </StyledMobileNavLink>
           </StyledMobileNavItem>
-          <StyledMobileNavItem>
-            <StyledMobileNavLink
-              to={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
-              css={css`
-                background-color: ${p => getColor('kale', 800, p.theme)};
-                color: #fff;
-              `}
-            >
-              Try now for free
-            </StyledMobileNavLink>
-          </StyledMobileNavItem>
         </>
       )}
     </div>
