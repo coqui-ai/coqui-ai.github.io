@@ -5,31 +5,10 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useEffect } from 'react';
-// import navs from '../nav/blog';
-import SEO from 'components/SEO';
-import RootLayout from 'layouts/Root';
-// import { graphql, useStaticQuery } from 'gatsby';
-import GogleAnalyticsCookieConsent from 'components/Cookies';
-import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
-import RequireAuth from 'layouts/Auth/components/RequireAuth';
-import { Synthesize } from 'layouts/Voices/components/Synthesize';
+import { useRedirectToNewDomain } from 'utils/auth';
 
-const SynthesizePage: React.FC = ({ location, id }) => {
-  useEffect(() => {
-    consentedToGoogleAnalytics();
-  });
+export default () => {
+  useRedirectToNewDomain();
 
-  return (
-    <RootLayout hasSkipNav={false} showVoiceSearch={true}>
-      <SEO />
-      <RequireAuth>
-        <Synthesize locationState={location.state} id={id} />
-      </RequireAuth>
-
-      <GogleAnalyticsCookieConsent />
-    </RootLayout>
-  );
+  return '';
 };
-
-export default SynthesizePage;

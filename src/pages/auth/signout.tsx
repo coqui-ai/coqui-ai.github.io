@@ -5,19 +5,10 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useEffect } from 'react';
-import { navigate } from 'gatsby';
-import { useLogoutEffect } from 'utils/auth';
+import { useRedirectToNewDomain } from 'utils/auth';
 
-const SignOutPage: React.FC = () => {
-  const [logout] = useLogoutEffect();
+export default () => {
+  useRedirectToNewDomain();
 
-  useEffect(() => {
-    logout();
-    navigate('/auth/signin');
-  });
-
-  return <div>Logging out...</div>;
+  return '';
 };
-
-export default SignOutPage;
