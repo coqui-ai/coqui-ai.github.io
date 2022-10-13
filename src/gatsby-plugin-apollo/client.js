@@ -10,11 +10,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 
 const client = new ApolloClient({
-  cache: new InMemoryCache({
-    typePolicies: {
-      Profile: { keyFields: [] }
-    }
-  }),
+  cache: new InMemoryCache(),
   link: createUploadLink({
     uri: `${process.env.GATSBY_BACKEND_URL}/graphql/`,
     fetchOptions: {

@@ -5,18 +5,10 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useEffect, useState } from 'react';
-import RootLayout from 'layouts/Root';
-import ProjectLayout from 'layouts/Editor/ProjectLayout';
-import GogleAnalyticsCookieConsent from 'components/Cookies';
+import { useRedirectToNewDomain } from 'utils/auth';
 
-const ProjectPage = ({project_id}) => {
-  return (
-    <RootLayout hasSkipNav={false}>
-      <ProjectLayout projectId={project_id}/>
-      <GogleAnalyticsCookieConsent/>
-    </RootLayout>
-  );
+export default () => {
+  useRedirectToNewDomain();
+
+  return '';
 };
-
-export default ProjectPage;
