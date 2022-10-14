@@ -44,6 +44,3 @@ $ yarn start --https
 
 This will then open the website on [https://localhost:8000](https://localhost:8000).
 
-## Editor pages
-
-Editor pages are present but not linked to from anywhere: [https://localhost:8000/editor/](https://localhost:8000/editor/)

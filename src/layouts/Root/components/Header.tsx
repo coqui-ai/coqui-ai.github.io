@@ -19,8 +19,6 @@ import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { Dropdown, Menu, Item, Trigger } from '@zendeskgarden/react-dropdowns';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
-import { ProfileContext, useProfileIsComplete } from 'utils/auth';
-import { HomeNavUserMenu, VoiceSearchHeader } from './VoiceSearchHeader';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
   theme.shadows.lg(
@@ -172,7 +170,6 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
   const modelPageLink = parsedParameters.callback_url
     ? `/models?callback_url=${parsedParameters.callback_url}`
     : `/models`;
-  const profile = useContext(ProfileContext);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -243,15 +240,12 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
           <StyledMobileNavItem>
             <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
           </StyledMobileNavItem>
-          {profile ? (
-            <StyledMobileNavItem>
-              <HomeNavUserMenu profile={profile} />
-            </StyledMobileNavItem>
-          ) : (
-            <StyledMobileNavItem>
-              <StyledMobileNavLink to="/auth/signin">Sign In</StyledMobileNavLink>
-            </StyledMobileNavItem>
-          )}
+
+          <StyledMobileNavItem>
+            <StyledMobileNavLink to={`${process.env.GATSBY_BACKEND_URL}/auth/signin`}>
+              Sign In
+            </StyledMobileNavLink>
+          </StyledMobileNavItem>
         </>
       )}
     </div>
@@ -268,7 +262,6 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
   const modelPageLink = parsedParameters.callback_url
     ? `/models?callback_url=${parsedParameters.callback_url}`
     : `/models`;
-  const profile = useContext(ProfileContext);
 
   return (
     <nav
@@ -332,15 +325,12 @@ const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
           <StyledDesktopNavItem>
             <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
           </StyledDesktopNavItem>
-          {profile ? (
-            <StyledDesktopNavItem>
-              <HomeNavUserMenu profile={profile} />
-            </StyledDesktopNavItem>
-          ) : (
-            <StyledDesktopNavItem>
-              <StyledDesktopNavLink to="/auth/signin">Sign In</StyledDesktopNavLink>
-            </StyledDesktopNavItem>
-          )}
+
+          <StyledDesktopNavItem>
+            <StyledDesktopNavLink to={`${process.env.GATSBY_BACKEND_URL}/auth/signin`}>
+              Sign In
+            </StyledDesktopNavLink>
+          </StyledDesktopNavItem>
         </>
       )}
     </nav>
@@ -352,17 +342,13 @@ interface IHeaderLayoutProps {
   showVoiceSearch: boolean;
 }
 
-const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing, showVoiceSearch }) => {
+const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing }) => {
   const [isNavigationVisible, setIsNavigationVisible] = useState(false);
-  const profile = useContext(ProfileContext);
-  const profileComplete = useProfileIsComplete();
   const [isClient, setIsClient] = useState<boolean>(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  if (showVoiceSearch && profile && profileComplete) return <VoiceSearchHeader />;
 
   return (
     <>

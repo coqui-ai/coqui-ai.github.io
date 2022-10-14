@@ -13,7 +13,7 @@ import { StyledNavigationLink } from './StyledNavigationLink';
 
 export const TryNowButton: React.FC = () => {
   return (
-    <StyledNavigationLink to="/auth/signup">
+    <StyledNavigationLink to={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}>
       <Button
         css={css`
           border-width: 0;
