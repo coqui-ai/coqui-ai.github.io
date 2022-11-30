@@ -5,13 +5,13 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+import { Col, Grid, Row } from '@zendeskgarden/react-grid';
+import { getColor } from '@zendeskgarden/react-theming';
+import { LG } from '@zendeskgarden/react-typography';
+import StandardWidthLayout from 'layouts/StandardWidth';
 import React from 'react';
 import { headerStyling } from './Styles';
 import { WhyCoquiInset } from './WhyCoquiInset';
-import { LG } from '@zendeskgarden/react-typography';
-import { getColor } from '@zendeskgarden/react-theming';
-import StandardWidthLayout from 'layouts/StandardWidth';
-import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 
 export const WhyCoqui: React.FC = () => {
   return (

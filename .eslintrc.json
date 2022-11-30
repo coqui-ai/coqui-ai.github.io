@@ -1,33 +1,77 @@
 {
   "extends": [
     "@zendeskgarden",
-    "./notice.js",
     "@zendeskgarden/eslint-config/plugins/react",
-    "prettier",
-    "prettier/react"
+    "prettier"
   ],
+  "parser": "@babel/eslint-parser",
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
   "rules": {
     "sort-imports": "off",
+    "react/jsx-child-element-spacing": "off",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
     "react/display-name": "off",
     "react/no-array-index-key": "off",
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-duplicate-imports": "off",
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": true }],
+    "camelcase": "off",
+    "@typescript-eslint/naming-convention": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/alt-text": "off",
+    "consistent-return": "off",
+    "no-nested-ternary": "off",
+    "react/no-danger": "off",
+    "no-negated-condition": "off",
+    "prefer-named-capture-group": "off",
+    "node/no-missing-require": "off",
+    "no-param-reassign": "off",
+    "react/function-component-definition": "off",
+    "react/jsx-handler-names": "off",
+    "no-useless-return": "off",
+    "padding-line-between-statements": "off",
+    "no-empty-pattern": "off",
+    "no-invalid-void-type": "off",
+    "no-console": "off",
+    "new-cap": "off"
   },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["@zendeskgarden/eslint-config/plugins/typescript", "prettier/@typescript-eslint"],
+      "extends": ["@zendeskgarden/eslint-config/plugins/typescript", "prettier"],
       "rules": {
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "react/prop-types": "off"
-      }
-    },
-    {
-      "files": ["src/examples/**"],
-      "rules": {
-        "no-alert": "off",
-        "jsx-a11y/img-redundant-alt": "off"
+        "react/prop-types": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "@typescript-eslint/no-duplicate-imports": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-shadow": "off",
+        "@typescript-eslint/consistent-indexed-object-style": "off",
+        "react/jsx-handler-names": "off",
+        "lines-between-class-members": "off",
+        "@typescript-eslint/lines-between-class-members": "off",
+        "@typescript-eslint/no-invalid-void-type": "off",
+        "@typescript-eslint/prefer-namespace-keyword": "off",
+        "@typescript-eslint/no-namespace": "off"
       }
     }
   ]

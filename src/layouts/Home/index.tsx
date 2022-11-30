@@ -6,10 +6,20 @@
  */
 
 import React from 'react';
-import { WaitingListCtA } from './components/WaitingListCtA';
+import { CtA } from './components/CtA';
+import { Features } from './components/Features';
+import { GetStartedCtA } from './components/GetStartedCta';
+import { WhyCoqui } from './components/WhyCoqui';
 
-const HomeLayout: React.FC = () => {
-  return <WaitingListCtA />;
+const HomeLayout = () => {
+  return (
+    <>
+      <CtA />
+      <Features />
+      <WhyCoqui />
+      <GetStartedCtA />
+    </>
+  );
 };
 
 export default HomeLayout;

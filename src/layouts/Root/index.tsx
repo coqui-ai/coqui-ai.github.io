@@ -5,10 +5,10 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React from 'react';
 import * as Sentry from '@sentry/browser';
-import styled, { createGlobalStyle, css } from 'styled-components';
 import { SkipNav } from '@zendeskgarden/react-chrome';
+import React from 'react';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import Footer from './components/Footer';
 import Header, { headerBoxShadow, headerHeight } from './components/Header';
 
@@ -45,6 +45,10 @@ const GlobalStyling = createGlobalStyle`
     -ms-overflow-style: -ms-autohiding-scrollbar;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body a { color: #313940; }
 
   body a:focus, body a:hover {
@@ -65,13 +69,11 @@ interface IRootLayoutProps {
   hasSkipNav?: boolean;
   showVoiceSearch?: boolean;
   grayedBackground?: boolean;
-  isSubscribing: boolean;
 }
 
 const RootLayout: React.FC<IRootLayoutProps> = ({
   children,
   hasSkipNav,
-  isSubscribing,
   showVoiceSearch,
   grayedBackground
 }) => {
@@ -98,10 +100,10 @@ const RootLayout: React.FC<IRootLayoutProps> = ({
           Skip to main content
         </SkipNav>
       )}
-      <Header isSubscribing={isSubscribing} showVoiceSearch={showVoiceSearch} />
+      <Header showVoiceSearch={showVoiceSearch} />
 
       <MainType>{children}</MainType>
-      <Footer isSubscribing={isSubscribing} />
+      <Footer />
     </div>
   );
 };
