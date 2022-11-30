@@ -5,8 +5,8 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import 'styled-components';
 import { IGardenTheme } from '@zendeskgarden/react-theming';
+import 'styled-components';
 
 declare module 'styled-components' {
   export type Hue = Record<number | string, string> | string;
