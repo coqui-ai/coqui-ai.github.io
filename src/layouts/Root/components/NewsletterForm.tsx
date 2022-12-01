@@ -5,8 +5,8 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useState, useEffect } from 'react';
 import jsonp from 'jsonp';
+import React, { useEffect, useState } from 'react';
 import toQueryString from 'to-querystring';
 import NewsletterMediaInput from './NewsletterMediaInput';
 
@@ -16,7 +16,7 @@ const initialState = {
   ajaxURL: null
 };
 
-export const NewsletterForm = (url: string) => {
+export const NewsletterForm = ({ url }: { url: string }) => {
   const [state, setState] = useState(initialState);
 
   const getAjaxUrl = (localURL: string) => {
@@ -25,7 +25,7 @@ export const NewsletterForm = (url: string) => {
 
   const subscribe = (formData: Record<string, string>) => {
     const params = toQueryString(formData);
-    const ajaxURL = `${getAjaxUrl(url.url)}&${params}`;
+    const ajaxURL = `${getAjaxUrl(url)}&${params}`;
 
     setState({ status: 'sending', message: null, ajaxURL });
   };
@@ -44,7 +44,6 @@ export const NewsletterForm = (url: string) => {
               message: err
             });
           } else if (data.result !== 'success') {
-            // eslint-disable-line no-negated-condition
             setState({
               status: 'error',
               message: data.msg

@@ -103,3 +103,28 @@ export const Users = () => {
     </div>
   );
 };
+
+export const UsersSection = () => {
+  return (
+    <div
+      css={css`
+        background: #eae0d1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 39px 0;
+      `}
+    >
+      <div
+        css={css`
+          border: 1.5px solid #fff;
+          border-radius: 7px;
+          background: #d8ccbb;
+          height: 120px;
+        `}
+      >
+        <Users />
+      </div>
+    </div>
+  );
+};

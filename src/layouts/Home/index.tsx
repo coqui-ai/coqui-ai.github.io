@@ -9,15 +9,27 @@ import React from 'react';
 import { CtA } from './components/CtA';
 import { Features } from './components/Features';
 import { GetStartedCtA } from './components/GetStartedCta';
+import { PricingTable } from './components/PricingTable';
+import { UsersSection } from './components/Users';
 import { WhyCoqui } from './components/WhyCoqui';
 
-const HomeLayout = () => {
+export const HomeLayout = () => {
   return (
     <>
       <CtA />
       <Features />
       <WhyCoqui />
       <GetStartedCtA />
+    </>
+  );
+};
+
+export const PricingLayout = () => {
+  return (
+    <>
+      <PricingTable />
+      <UsersSection />
+      <WhyCoqui />
     </>
   );
 };
