@@ -5,13 +5,13 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+import { Col, Grid, Row } from '@zendeskgarden/react-grid';
+import { getColor } from '@zendeskgarden/react-theming';
+import { LG } from '@zendeskgarden/react-typography';
+import StandardWidthLayout from 'layouts/StandardWidth';
 import React from 'react';
 import { headerStyling } from './Styles';
 import { WhyCoquiInset } from './WhyCoquiInset';
-import { LG } from '@zendeskgarden/react-typography';
-import { getColor } from '@zendeskgarden/react-theming';
-import StandardWidthLayout from 'layouts/StandardWidth';
-import { Grid, Row, Col } from '@zendeskgarden/react-grid';
 
 export const WhyCoqui: React.FC = () => {
   return (
@@ -55,7 +55,7 @@ export const WhyCoqui: React.FC = () => {
                   color: #fff;
                 `}
               >
-                Make the impossible possible and the painful painless with Coqui
+                Discover how Coqui Studio can help you streamline your workflow
               </LG>
             </Col>
           </Row>
@@ -63,25 +63,25 @@ export const WhyCoqui: React.FC = () => {
             <Col lg={1} md={1} sm={0} />
             <Col lg={3} md={3} sm={13}>
               <WhyCoquiInset
-                title="Video Games"
-                text="Experience the immediacy of script-to-performance. With Coqui text-to-speech production times go from months to minutes."
-                to="/video-games"
+                title="Pay for what you use"
+                text="Get started with 30 free minutes, top up when you need to."
+                to="/pricing"
               />
             </Col>
             <Col lg={1} md={1} sm={0} />
             <Col lg={3} md={3} sm={13}>
               <WhyCoquiInset
-                title="Post Production"
-                text="With Coqui, post is a pleasure. Effortlessly clone the voices of your talent and have the clone handle the problems in post."
-                to="/post-production"
+                title="Instant Voice Cloning"
+                text="Clone any voice with 3 seconds of audio and start directing them."
+                to="/pricing"
               />
             </Col>
             <Col lg={1} md={1} sm={0} />
             <Col lg={3} md={3} sm={13}>
               <WhyCoquiInset
                 title="Dubbing"
-                text="With Coqui, dubbing is a delight. Effortlessly clone the voice of your talent into another language and let the clone do the dub."
-                to="/dubbing"
+                text="Take full control of your AI voices. Adjust pitch, loudness and more, for each sentence, word or character."
+                to="/pricing"
               />
             </Col>
             <Col lg={1} md={1} sm={0} />

@@ -5,20 +5,20 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useState, HTMLAttributes, useEffect, useContext } from 'react';
-import Img from 'gatsby-image';
-import queryString from 'query-string';
 import { useLocation } from '@reach/router';
-import MaxWidthLayout from 'layouts/MaxWidth';
-import { Link, useStaticQuery, graphql } from 'gatsby';
 import { IconButton } from '@zendeskgarden/react-buttons';
-import { StyledNavigationLink } from './StyledNavigationLink';
-import { StyledNavigationItem } from './StyledNavigationItem';
-import styled, { css, DefaultTheme } from 'styled-components';
+import { Dropdown, Item, Menu, Trigger } from '@zendeskgarden/react-dropdowns';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
-import { Dropdown, Menu, Item, Trigger } from '@zendeskgarden/react-dropdowns';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
+import { graphql, Link, useStaticQuery } from 'gatsby';
+import Img from 'gatsby-image';
+import { TryNowButton } from 'layouts/Home/components/Buttons';
+import queryString from 'query-string';
+import React, { HTMLAttributes, useEffect, useState } from 'react';
+import styled, { css, DefaultTheme } from 'styled-components';
+import { StyledNavigationItem } from './StyledNavigationItem';
+import { StyledNavigationLink } from './StyledNavigationLink';
 
 export const headerBoxShadow = (theme: DefaultTheme) =>
   theme.shadows.lg(
@@ -27,7 +27,7 @@ export const headerBoxShadow = (theme: DefaultTheme) =>
     getColor('neutralHue', 800, theme, 0.05)!
   );
 
-export const headerHeight = (theme: DefaultTheme) => theme.space.base * 20;
+export const headerHeight = (theme: DefaultTheme) => 77;
 
 const StyledDesktopNavItem = styled.div`
   display: flex;
@@ -50,7 +50,7 @@ const StyledDesktopNavMenu = styled(StyledNavigationItem).attrs({ partiallyActiv
 const StyledHeader = styled.header.attrs({ role: 'banner' })`
   z-index: 301;
   box-shadow: ${p => headerBoxShadow(p.theme)};
-  padding: 0 ${p => p.theme.space.base * 4}px;
+  padding: 0 42px;
   height: ${p => headerHeight(p.theme)}px;
 
   &[data-show-navigation='true'] {
@@ -115,16 +115,22 @@ const Logo: React.FC = () => {
   );
 };
 
-const MobileNavButton: React.FC<
-  {
-    isExpanded: boolean;
-    label: string;
-    icon: React.ReactNode;
-  } & HTMLAttributes<HTMLButtonElement>
-> = ({ isExpanded, label, icon, ...other }) => {
+const MobileNavButton = ({
+  isExpanded,
+  label,
+  icon,
+  ...other
+}: {
+  isExpanded: boolean;
+  label: string;
+  icon: React.ReactNode;
+} & HTMLAttributes<HTMLButtonElement>) => {
   return (
     <div
       css={css`
+        grid-area: c;
+        display: flex;
+        justify-content: end;
         padding: ${p => p.theme.space.base * 1.5}px; /* (header - button) x .5 */
 
         ${p => mediaQuery('up', 'md', p.theme)} {
@@ -160,16 +166,16 @@ const StyledMobileNavMenu = styled(StyledNavigationItem).attrs({ partiallyActive
   margin-top: ${p => p.theme.space.base * 2}px;
 `;
 
-interface IMobileNavLayoutProps {
-  isSubscribing: boolean;
-}
-
-const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
+const MobileNav = ({
+  setIsNavigationVisible
+}: {
+  setIsNavigationVisible: (v: boolean) => void;
+}) => {
   const location = useLocation();
   const parsedParameters = queryString.parse(location.search);
   const modelPageLink = parsedParameters.callback_url
     ? `/models?callback_url=${parsedParameters.callback_url}`
-    : `/models`;
+    : '/models';
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -180,7 +186,7 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
   }, []);
 
   return (
-    <div
+    <nav
       css={css`
         position: fixed;
         top: ${p => p.theme.space.base * 15}px;
@@ -192,193 +198,122 @@ const MobileNav: React.FC<IMobileNavLayoutProps> = ({ isSubscribing }) => {
         padding: ${p => p.theme.space.lg} ${p => p.theme.space.xxl};
       `}
     >
-      {!isSubscribing && (
-        <>
-          <Dropdown
-            onSelect={item => {
-              window.location.href = item;
-            }}
-          >
-            <Trigger>
-              <StyledMobileNavItem>
-                <StyledMobileNavMenu
-                  css={css`
-                    background-color: ${p => p.theme.palette.tofu};
-                  `}
-                >
-                  Use Cases
-                </StyledMobileNavMenu>
-              </StyledMobileNavItem>
-            </Trigger>
-            <Menu hasArrow>
-              <Item value="/video-games">Video Games</Item>
-              <Item value="/post-production">Post Production</Item>
-              <Item value="/dubbing">Dubbing</Item>
-            </Menu>
-          </Dropdown>
-          <Dropdown
-            onSelect={item => {
-              window.location.href = item;
-            }}
-          >
-            <Trigger>
-              <StyledMobileNavItem>
-                <StyledMobileNavMenu
-                  css={css`
-                    background-color: ${p => p.theme.palette.tofu};
-                  `}
-                >
-                  Open Source
-                </StyledMobileNavMenu>
-              </StyledMobileNavItem>
-            </Trigger>
-            <Menu hasArrow>
-              <Item value="https://github.com/coqui-ai">Code</Item>
-              <Item value={modelPageLink}>Models</Item>
-            </Menu>
-          </Dropdown>
+      <StyledMobileNavItem>
+        <StyledMobileNavLink to="/#features" onClick={() => setIsNavigationVisible(false)}>
+          Features
+        </StyledMobileNavLink>
+      </StyledMobileNavItem>
+      <StyledMobileNavItem>
+        <StyledMobileNavLink to="/pricing">Pricing</StyledMobileNavLink>
+      </StyledMobileNavItem>
+      <Dropdown
+        onSelect={item => {
+          window.location.href = item;
+        }}
+      >
+        <Trigger>
           <StyledMobileNavItem>
-            <StyledMobileNavLink to="/blog">Blog</StyledMobileNavLink>
+            <StyledMobileNavMenu
+              css={css`
+                background-color: ${p => p.theme.palette.tofu};
+              `}
+            >
+              Use Cases
+            </StyledMobileNavMenu>
           </StyledMobileNavItem>
-
-          <StyledMobileNavItem>
-            <StyledMobileNavLink to={`${process.env.GATSBY_BACKEND_URL}/auth/signin`}>
-              Sign In
-            </StyledMobileNavLink>
-          </StyledMobileNavItem>
-        </>
-      )}
-    </div>
-  );
-};
-
-interface IDesktopNavLayoutProps {
-  isSubscribing: boolean;
-}
-
-const DesktopNav: React.FC<IDesktopNavLayoutProps> = ({ isSubscribing }) => {
-  const location = useLocation();
-  const parsedParameters = queryString.parse(location.search);
-  const modelPageLink = parsedParameters.callback_url
-    ? `/models?callback_url=${parsedParameters.callback_url}`
-    : `/models`;
-
-  return (
-    <nav
-      role="navigation"
-      aria-label="Global"
-      css={css`
-        display: flex;
-        flex-grow: 1;
-        justify-content: flex-end;
-
-        ${p => mediaQuery('down', 'sm', p.theme)} {
-          display: none;
-        }
-      `}
-    >
-      {!isSubscribing && (
-        <>
-          <Dropdown
-            onSelect={item => {
-              window.location.href = item;
-            }}
-          >
-            <Trigger type="div">
-              <StyledDesktopNavItem
-                css={`
-                  &:hover {
-                    cursor: pointer;
-                  }
-                `}
-              >
-                <StyledDesktopNavMenu>Use Cases</StyledDesktopNavMenu>
-              </StyledDesktopNavItem>
-            </Trigger>
-            <Menu hasArrow>
-              <Item value="/video-games">Video Games</Item>
-              <Item value="/post-production">Post Production</Item>
-              <Item value="/dubbing">Dubbing</Item>
-            </Menu>
-          </Dropdown>
-          <Dropdown
-            onSelect={item => {
-              window.location.href = item;
-            }}
-          >
-            <Trigger type="div">
-              <StyledDesktopNavItem
-                css={`
-                  &:hover {
-                    cursor: pointer;
-                  }
-                `}
-              >
-                <StyledDesktopNavMenu>Open Source</StyledDesktopNavMenu>
-              </StyledDesktopNavItem>
-            </Trigger>
-            <Menu hasArrow>
-              <Item value="https://github.com/coqui-ai">Code</Item>
-              <Item value={modelPageLink}>Models</Item>
-            </Menu>
-          </Dropdown>
-          <StyledDesktopNavItem>
-            <StyledDesktopNavLink to="/blog">Blog</StyledDesktopNavLink>
-          </StyledDesktopNavItem>
-
-          <StyledDesktopNavItem>
-            <StyledDesktopNavLink to={`${process.env.GATSBY_BACKEND_URL}/auth/signin`}>
-              Sign In
-            </StyledDesktopNavLink>
-          </StyledDesktopNavItem>
-        </>
-      )}
+        </Trigger>
+        <Menu hasArrow>
+          <Item value="/video-games">Video Games</Item>
+          <Item value="/post-production">Post Production</Item>
+          <Item value="/dubbing">Dubbing</Item>
+        </Menu>
+      </Dropdown>
+      <StyledMobileNavItem>
+        <TryNowButton />
+      </StyledMobileNavItem>
     </nav>
   );
 };
 
-interface IHeaderLayoutProps {
-  isSubscribing: boolean;
-  showVoiceSearch: boolean;
-}
-
-const Header: React.FC<IHeaderLayoutProps> = ({ isSubscribing }) => {
+const Header = ({}) => {
   const [isNavigationVisible, setIsNavigationVisible] = useState(false);
-  const [isClient, setIsClient] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   return (
-    <>
-      <StyledHeader>
-        <MaxWidthLayout
+    <StyledHeader>
+      <div
+        css={css`
+          height: 100%;
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-areas: 'a b c';
+          align-items: center;
+        `}
+      >
+        <Logo css="justify-content: start;" />
+        <nav
+          aria-label="Global"
           css={css`
             display: flex;
-            transition: opacity 100ms;
-            opacity: ${isClient ? '1.0' : '0.0'};
-            height: 100%;
-            min-height: 100%;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              display: none;
+            }
           `}
         >
-          <Logo />
-          {!isSubscribing && (
-            <MobileNavButton
-              icon={<OverflowVerticalStroke />}
-              label="Global navigation"
-              isExpanded={isNavigationVisible}
-              onClick={() => {
-                setIsNavigationVisible(!isNavigationVisible);
-              }}
-            />
-          )}
-          <DesktopNav isSubscribing={isSubscribing} />
-        </MaxWidthLayout>
-      </StyledHeader>
+          <a href="/#features">Features</a>
+          <a href="/pricing">Pricing</a>
+          <Dropdown
+            onSelect={item => {
+              window.location.href = item;
+            }}
+          >
+            <Trigger type="div">
+              <StyledDesktopNavItem
+                css={`
+                  margin: 0 !important;
+                  &:hover {
+                    cursor: pointer;
+                  }
+                `}
+              >
+                <StyledDesktopNavMenu css="margin-left: -8px;">Use Cases</StyledDesktopNavMenu>
+              </StyledDesktopNavItem>
+            </Trigger>
+            <Menu hasArrow>
+              <Item value="/video-games">Video Games</Item>
+              <Item value="/post-production">Post Production</Item>
+              <Item value="/dubbing">Dubbing</Item>
+            </Menu>
+          </Dropdown>
+        </nav>
+        <div
+          css={css`
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            gap: 30px;
 
-      {isNavigationVisible && <MobileNav isSubscribing={isSubscribing} />}
-    </>
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              display: none;
+            }
+          `}
+        >
+          <TryNowButton />
+        </div>
+        <MobileNavButton
+          icon={<OverflowVerticalStroke />}
+          label="Global navigation"
+          isExpanded={isNavigationVisible}
+          onClick={() => {
+            setIsNavigationVisible(!isNavigationVisible);
+          }}
+        />
+        {isNavigationVisible && <MobileNav setIsNavigationVisible={setIsNavigationVisible} />}
+      </div>
+    </StyledHeader>
   );
 };
 
