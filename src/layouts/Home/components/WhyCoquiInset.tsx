@@ -5,14 +5,14 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React from 'react';
+import { Col, Grid, Row } from '@zendeskgarden/react-grid';
+import { getColor } from '@zendeskgarden/react-theming';
+import { LG, MD } from '@zendeskgarden/react-typography';
+import { ReactComponent as ArrowStroke } from '@zendeskgarden/svg-icons/src/16/arrow-left-stroke.svg';
 import { Link } from 'gatsby';
+import React from 'react';
 import { css } from 'styled-components';
 import { HorizontalRule } from './HorizontalRule';
-import { getColor } from '@zendeskgarden/react-theming';
-import { XL, MD } from '@zendeskgarden/react-typography';
-import { Grid, Row, Col } from '@zendeskgarden/react-grid';
-import { ReactComponent as ArrowStroke } from '@zendeskgarden/svg-icons/src/16/arrow-left-stroke.svg';
 
 export const WhyCoquiInset: React.FC<{
   title: string;
@@ -25,6 +25,7 @@ export const WhyCoquiInset: React.FC<{
       css={css`
         margin-bottom: ${p => p.theme.space.xxl};
         background-color: ${p => getColor('yellow', 100, p.theme)};
+        border-radius: 4px;
       `}
     >
       <div
@@ -35,17 +36,18 @@ export const WhyCoquiInset: React.FC<{
         <Row
           alignItems="center"
           css={css`
-            margin-bottom: ${p => p.theme.space.lg};
+            margin-bottom: 24px;
           `}
         >
           <Col>
-            <XL isBold>{title}</XL>
+            <LG isBold>{title}</LG>
           </Col>
         </Row>
         <Row
           alignItems="center"
           css={css`
             margin-bottom: ${p => p.theme.space.xl};
+            max-height: 60px;
           `}
         >
           <Col>
