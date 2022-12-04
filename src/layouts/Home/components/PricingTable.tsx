@@ -364,7 +364,7 @@ const PriceSelector = ({
                 line-height: 100%;
               `}
             >
-              $5
+              $20
             </div>
             <div
               css={`
@@ -376,13 +376,9 @@ const PriceSelector = ({
                 justify-content: end;
               `}
             >
-              <div css="margin-bottom: -8px;">per hour</div>
+              <div css="margin-bottom: -8px;">4 hours</div>
               <div>of synthesized audio</div>
             </div>
-          </div>
-
-          <div css="color: rgba(255, 255, 255, 0.8); font-size: 14px; margin-top: 8px;">
-            $20 billed for 4 hours
           </div>
         </div>
       ) : (
@@ -412,7 +408,7 @@ const PriceSelector = ({
                 line-height: 100%;
               `}
             >
-              $3.5
+              $175
             </div>
             <div
               css={`
@@ -424,13 +420,22 @@ const PriceSelector = ({
                 justify-content: end;
               `}
             >
-              <div css="margin-bottom: -8px;">per hour</div>
+              <div css="margin-bottom: -8px;">50 hours</div>
               <div>of synthesized audio</div>
             </div>
           </div>
 
-          <div css="color: rgba(255, 255, 255, 0.8); font-size: 14px; margin-top: 8px;">
-            $175 billed for 50 hours
+          <div
+            css={`
+              background-color: #5eae91;
+              color: #fff;
+              border-radius: 4px;
+              padding: 2px 4px;
+              margin-top: 12px;
+              font-size: 12px;
+            `}
+          >
+            Save 30%
           </div>
         </div>
       )}
@@ -439,7 +444,7 @@ const PriceSelector = ({
 };
 
 const StarterPlanContainer = () => {
-  const [selectedTab, setSelectedTab] = useState<PriceTab>('discount');
+  const [selectedTab, setSelectedTab] = useState<PriceTab>('standard');
 
   return (
     <PlanContainer inverse tall>
