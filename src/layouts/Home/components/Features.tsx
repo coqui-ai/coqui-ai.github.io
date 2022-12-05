@@ -229,21 +229,21 @@ export const Features = ({}) => {
       query {
         group1: file(relativePath: { eq: "images/home/group1-screenshot.png" }) {
           childImageSharp {
-            fixed(width: 422) {
+            fixed(quality: 100, width: 844) {
               ...GatsbyImageSharpFixed_noBase64
             }
           }
         }
         group2: file(relativePath: { eq: "images/home/group2-screenshot.png" }) {
           childImageSharp {
-            fixed(width: 655) {
+            fixed(quality: 100, width: 1310) {
               ...GatsbyImageSharpFixed_noBase64
             }
           }
         }
         group3: file(relativePath: { eq: "images/home/group3-screenshot.png" }) {
           childImageSharp {
-            fixed(width: 556) {
+            fixed(quality: 100, width: 1112) {
               ...GatsbyImageSharpFixed_noBase64
             }
           }
