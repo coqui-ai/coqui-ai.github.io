@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
+    "lib": ["es2021", "es5", "es6", "dom", "dom.iterable"],
     "target": "esnext",
     "module": "esnext",
-    "jsx": "preserve",
+    "jsx": "react",
     "sourceMap": true,
     "strict": true,
     "moduleResolution": "node",
@@ -16,6 +17,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "noEmit": true,
+    "incremental": true,
     "typeRoots": ["./utils/typings", "./node_modules/@types"]
   },
 }

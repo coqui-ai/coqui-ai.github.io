@@ -5,4 +5,10 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import {} from 'styled-components/cssprop';
+import { CSSProp, DefaultTheme } from 'styled-components';
+
+declare module 'react' {
+  interface Attributes {
+    css?: CSSProp<DefaultTheme>;
+  }
+}

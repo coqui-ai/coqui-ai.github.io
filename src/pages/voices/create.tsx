@@ -5,31 +5,10 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React, { useEffect } from 'react';
-// import navs from '../nav/blog';
-import SEO from 'components/SEO';
-import RootLayout from 'layouts/Root';
-// import { graphql, useStaticQuery } from 'gatsby';
-import GogleAnalyticsCookieConsent from 'components/Cookies';
-import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
-import RequireAuth from 'layouts/Auth/components/RequireAuth';
-import { CreateVoice } from 'layouts/Voices/components/CreateVoice';
+import { useRedirectToNewDomain } from 'utils/auth';
 
-const CreateVoicePage: React.FC = () => {
-  useEffect(() => {
-    consentedToGoogleAnalytics();
-  });
+export default () => {
+  useRedirectToNewDomain();
 
-  return (
-    <RootLayout hasSkipNav={false} showVoiceSearch={true}>
-      <SEO />
-      <RequireAuth>
-        <CreateVoice />
-      </RequireAuth>
-
-      <GogleAnalyticsCookieConsent />
-    </RootLayout>
-  );
+  return '';
 };
-
-export default CreateVoicePage;

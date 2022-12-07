@@ -5,14 +5,11 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React from 'react';
+import { mediaQuery } from '@zendeskgarden/react-theming';
+import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
+import React from 'react';
 import { css } from 'styled-components';
-import { useStaticQuery, graphql } from 'gatsby';
-import { MD } from '@zendeskgarden/react-typography';
-import StandardWidthLayout from 'layouts/StandardWidth';
-import { Grid, Row, Col } from '@zendeskgarden/react-grid';
-import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 
 const User: React.FC<{
   user: string;
@@ -28,20 +25,17 @@ const User: React.FC<{
         display: block;
         margin-right: auto;
         margin-left: auto;
-
-        ${p => mediaQuery('up', 'md', p.theme)} {
-          width: 100px;
-        }
+        width: 100px;
 
         ${p => mediaQuery('down', 'md', p.theme)} {
-          width: 80px;
+          width: 60px;
         }
       `}
     />
   );
 };
 
-export const Users: React.FC = () => {
+export const Users = () => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -49,7 +43,7 @@ export const Users: React.FC = () => {
           edges {
             node {
               id
-              fluid(maxWidth: 300) {
+              fluid(maxWidth: 300, duotone: { shadow: "#6f6f6f", highlight: "#888176" }) {
                 ...GatsbyImageSharpFluid_noBase64
               }
             }
@@ -60,90 +54,77 @@ export const Users: React.FC = () => {
   );
 
   return (
-    <StandardWidthLayout>
-      <Grid>
-        <Row
-          css={css`
-            margin-bottom: ${p => p.theme.space.lg};
-          `}
-        >
-          <Col>
-            <MD
-              css={css`
-                text-align: center;
-              `}
-            >
-              Coqui’s code used by
-            </MD>
-          </Col>
-        </Row>
-        <Row
-          css={css`
-            margin-bottom: ${p => p.theme.space.lg};
-          `}
-        >
-          <Col
-            orderLg={2}
-            orderMd={4}
-            orderSm={6}
-            css={css`
-              ${p => mediaQuery('down', 'sm', p.theme)} {
-                margin-bottom: ${p => p.theme.space.lg};
-              }
-            `}
-          >
-            <User user="spotify" images={data.allImageSharp.edges} />
-          </Col>
-          <Col
-            orderLg={2}
-            orderMd={4}
-            orderSm={6}
-            css={css`
-              ${p => mediaQuery('down', 'sm', p.theme)} {
-                margin-bottom: ${p => p.theme.space.lg};
-              }
-            `}
-          >
-            <User user="t2" images={data.allImageSharp.edges} />
-          </Col>
-          <Col
-            orderLg={2}
-            orderMd={4}
-            orderSm={6}
-            css={css`
-              ${p => mediaQuery('down', 'sm', p.theme)} {
-                margin-bottom: ${p => p.theme.space.lg};
-              }
-            `}
-          >
-            <User user="microsoft" images={data.allImageSharp.edges} />
-          </Col>
-          <Col orderLg={2} orderMd={4} orderSm={6}>
-            <User user="google" images={data.allImageSharp.edges} />
-          </Col>
-          <Col orderLg={2} orderMd={4} orderSm={6}>
-            <User user="apple" images={data.allImageSharp.edges} />
-          </Col>
-          <Col orderLg={2} orderMd={4} orderSm={6}>
-            <User user="facebook" images={data.allImageSharp.edges} />
-          </Col>
-        </Row>
-        <Row
-          css={css`
-            margin-bottom: ${p => p.theme.space.xxl};
-          `}
-        >
-          <Col size={1} />
-          <Col size={10}>
-            <hr
-              css={css`
-                color: ${p => getColor('grey', 400, p.theme)};
-              `}
-            />
-          </Col>
-          <Col size={1} />
-        </Row>
-      </Grid>
-    </StandardWidthLayout>
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 0 30px;
+        height: 100%;
+      `}
+    >
+      <h1
+        css={css`
+          font-size: 21px;
+          line-height: 25px;
+          font-weight: 700;
+
+          ${p => mediaQuery('down', 'sm', p.theme)} {
+            font-size: 16px;
+          }
+        `}
+      >
+        Coqui&apos;s <span css="color: #468D6A;">code</span> used by
+      </h1>
+      <div
+        css={css`
+          display: grid;
+          grid-template-areas: 'a a a b b b';
+          gap: 50px;
+
+          ${p => mediaQuery('down', 'sm', p.theme)} {
+            grid-template-areas:
+              'a a a'
+              'b b b';
+            row-gap: 15px;
+            column-gap: 30px;
+          }
+        `}
+      >
+        <User user="spotify" images={data.allImageSharp.edges} />
+        <User user="t2" images={data.allImageSharp.edges} />
+        <User user="microsoft" images={data.allImageSharp.edges} />
+        <User user="google" images={data.allImageSharp.edges} />
+        <User user="apple" images={data.allImageSharp.edges} />
+        <User user="facebook" images={data.allImageSharp.edges} />
+      </div>
+    </div>
+  );
+};
+
+export const UsersSection = () => {
+  return (
+    <div
+      css={css`
+        background: #eae0d1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 39px 0;
+      `}
+    >
+      <div
+        css={css`
+          border: 1.5px solid #fff;
+          border-radius: 7px;
+          background: #d8ccbb;
+          height: 120px;
+        `}
+      >
+        <Users />
+      </div>
+    </div>
   );
 };
