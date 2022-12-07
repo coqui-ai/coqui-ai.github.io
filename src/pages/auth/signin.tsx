@@ -7,10 +7,8 @@
 
 import { useRedirectToNewDomain } from 'utils/auth';
 
-const SignInPage = () => {
+export default () => {
   useRedirectToNewDomain();
 
-  return null;
+  return '';
 };
-
-export default SignInPage;

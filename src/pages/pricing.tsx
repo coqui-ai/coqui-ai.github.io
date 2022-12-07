@@ -7,13 +7,12 @@
 
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import SEO from 'components/SEO';
-import { graphql } from 'gatsby';
-import HomeLayout from 'layouts/Home';
+import { PricingLayout } from 'layouts/Home';
 import RootLayout from 'layouts/Root';
 import React, { useEffect } from 'react';
 import { consentedToGoogleAnalytics } from 'utils/GoogleAnalytics';
 
-const IndexPage: React.FC = () => {
+const PricingPage = () => {
   useEffect(() => {
     consentedToGoogleAnalytics();
   });
@@ -21,24 +20,10 @@ const IndexPage: React.FC = () => {
   return (
     <RootLayout hasSkipNav={false}>
       <SEO />
-      <HomeLayout />
+      <PricingLayout />
       <GogleAnalyticsCookieConsent />
     </RootLayout>
   );
 };
 
-export default IndexPage;
-
-/**
- * Global GraphQL Fragments
- */
-export const SidebarPageFragment = graphql`
-  fragment SidebarPageFragment on Query {
-    mdx(fileAbsolutePath: { eq: $fileAbsolutePath }) {
-      id
-      excerpt
-      body
-      tableOfContents(maxDepth: 3)
-    }
-  }
-`;
+export default PricingPage;

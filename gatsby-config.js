@@ -37,12 +37,6 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-apollo',
-      options: {
-        uri: `${process.env.GATSBY_BACKEND_URL}/graphql/`
-      }
-    },
-    {
       resolve: `gatsby-source-github-api`,
       options: {
         token: process.env.REACT_APP_GITHUB_KEY,
