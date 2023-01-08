@@ -10,6 +10,7 @@
     "baseUrl": "./",
     "paths": {
       "components/*": ["src/components/*"],
+      "data/*": ["src/data/*"],
       "layouts/*": ["src/layouts/*"],
       "utils/*": ["src/utils/*"]
     },

@@ -11,6 +11,7 @@ import { Features } from './components/Features';
 import { GetStartedCtA } from './components/GetStartedCta';
 import { PricingTable } from './components/PricingTable';
 import { UsersSection } from './components/Users';
+import { Voices } from './components/Voices';
 import { WhyCoqui } from './components/WhyCoqui';
 
 export const HomeLayout = () => {
@@ -18,6 +19,7 @@ export const HomeLayout = () => {
     <>
       <CtA />
       <Features />
+      <Voices />
       <WhyCoqui />
       <GetStartedCtA />
     </>
