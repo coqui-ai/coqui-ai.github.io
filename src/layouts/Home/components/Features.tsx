@@ -262,7 +262,7 @@ export const Features = ({}) => {
         flex-direction: column;
         align-items: center;
         gap: 85px;
-        padding: 120px 188px 73px 188px;
+        padding: 120px 88px 73px 88px;
 
         & > div {
           width: 100%;
@@ -352,7 +352,7 @@ export const Features = ({}) => {
             src={featureImages.group3.childImageSharp.fixed.src}
             css={css`
               overflow: visible;
-              margin-left: -80px;
+              margin-left: -213px;
               max-width: 556px;
 
               ${p => mediaQuery('down', 'md', p.theme)} {
