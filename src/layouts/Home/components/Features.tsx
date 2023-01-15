@@ -122,6 +122,9 @@ const ImageContainer = ({ children }: { children: ReactNode }) => {
 
         ${p => mediaQuery('down', 'md', p.theme)} {
           max-height: unset;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       `}
     >
