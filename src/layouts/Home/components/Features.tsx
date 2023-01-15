@@ -156,6 +156,7 @@ const FeatureSection = ({
           );
         background-origin: border-box;
         background-clip: content-box, border-box;
+        max-width: 1400px;
       `}
     >
       <div
