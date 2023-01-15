@@ -127,8 +127,6 @@ export const CtA: React.FC = () => {
             position: absolute;
             bottom: -60px;
             height: 120px;
-            min-width: 65%;
-            max-width: 80%;
             background: #d8ccbb;
             border: 1.5px solid #fff;
             border-radius: 7px;
