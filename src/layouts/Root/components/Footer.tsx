@@ -15,6 +15,7 @@ import { math } from 'polished';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { ReactComponent as DiscordIcon } from '../../../data/images/general/discord-logo.svg';
+import { ReactComponent as YouTubeIcon } from '../../../data/images/general/youtube.svg';
 import { NewsletterForm } from './NewsletterForm';
 import { Link } from './StyledNavigationLink';
 
@@ -232,8 +233,25 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
                     >
                       <DiscordIcon
                         css={css`
+                          margin-right: ${p => p.theme.space.lg};
                           width: ${p => p.theme.iconSizes.lg};
                           height: ${p => p.theme.iconSizes.lg};
+                          color: ${p => p.theme.palette.moss};
+                        `}
+                      />
+                    </div>
+                  </Link>
+                  <Link aria-label="Coqui on YouTube" to="https://www.youtube.com/@coqui1027">
+                    <div
+                      css={`
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      `}
+                    >
+                      <YouTubeIcon
+                        css={css`
+                          margin-top: -5px;
                           color: ${p => p.theme.palette.moss};
                         `}
                       />
