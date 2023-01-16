@@ -10,6 +10,7 @@ import { ReactComponent as FacebookIcon } from '@zendeskgarden/svg-icons/src/12/
 import { ReactComponent as GitHubIcon } from '@zendeskgarden/svg-icons/src/12/github-fill.svg';
 import { ReactComponent as LinkedInIcon } from '@zendeskgarden/svg-icons/src/12/linkedin-fill.svg';
 import { ReactComponent as TwitterIcon } from '@zendeskgarden/svg-icons/src/12/twitter-fill.svg';
+import { ReactComponent as YouTubeIcon } from '@zendeskgarden/svg-icons/src/12/play-circle-fill.svg';
 import MaxWidthLayout from 'layouts/MaxWidth';
 import { math } from 'polished';
 import React from 'react';
@@ -231,6 +232,24 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
                       `}
                     >
                       <DiscordIcon
+                        css={css`
+                          margin-right: ${p => p.theme.space.lg};
+                          width: ${p => p.theme.iconSizes.lg};
+                          height: ${p => p.theme.iconSizes.lg};
+                          color: ${p => p.theme.palette.moss};
+                        `}
+                      />
+                    </div>
+                  </Link>
+                  <Link aria-label="Coqui on YouTube" to="https://www.youtube.com/@coqui1027">
+                    <div
+                      css={`
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      `}
+                    >
+                      <YouTubeIcon
                         css={css`
                           width: ${p => p.theme.iconSizes.lg};
                           height: ${p => p.theme.iconSizes.lg};
