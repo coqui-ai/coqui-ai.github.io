@@ -10,12 +10,12 @@ import { ReactComponent as FacebookIcon } from '@zendeskgarden/svg-icons/src/12/
 import { ReactComponent as GitHubIcon } from '@zendeskgarden/svg-icons/src/12/github-fill.svg';
 import { ReactComponent as LinkedInIcon } from '@zendeskgarden/svg-icons/src/12/linkedin-fill.svg';
 import { ReactComponent as TwitterIcon } from '@zendeskgarden/svg-icons/src/12/twitter-fill.svg';
-import { ReactComponent as YouTubeIcon } from '@zendeskgarden/svg-icons/src/12/play-circle-fill.svg';
 import MaxWidthLayout from 'layouts/MaxWidth';
 import { math } from 'polished';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { ReactComponent as DiscordIcon } from '../../../data/images/general/discord-logo.svg';
+import { ReactComponent as YouTubeIcon } from '../../../data/images/general/youtube.svg';
 import { NewsletterForm } from './NewsletterForm';
 import { Link } from './StyledNavigationLink';
 
@@ -251,8 +251,7 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
                     >
                       <YouTubeIcon
                         css={css`
-                          width: ${p => p.theme.iconSizes.lg};
-                          height: ${p => p.theme.iconSizes.lg};
+                          margin-top: -5px;
                           color: ${p => p.theme.palette.moss};
                         `}
                       />
