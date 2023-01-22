@@ -5,18 +5,19 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
+import { ReactComponent as FacebookIcon } from '@zendeskgarden/svg-icons/src/12/facebook-fill.svg';
+import { ReactComponent as GitHubIcon } from '@zendeskgarden/svg-icons/src/12/github-fill.svg';
+import { ReactComponent as LinkedInIcon } from '@zendeskgarden/svg-icons/src/12/linkedin-fill.svg';
+import { ReactComponent as TwitterIcon } from '@zendeskgarden/svg-icons/src/12/twitter-fill.svg';
+import MaxWidthLayout from 'layouts/MaxWidth';
+import { math } from 'polished';
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { math } from 'polished';
-import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
-import { ReactComponent as GitterIcon } from '../../../data/images/general/gitter-logo.svg';
-import { ReactComponent as GitHubIcon } from '@zendeskgarden/svg-icons/src/12/github-fill.svg';
-import { ReactComponent as TwitterIcon } from '@zendeskgarden/svg-icons/src/12/twitter-fill.svg';
-import { ReactComponent as FacebookIcon } from '@zendeskgarden/svg-icons/src/12/facebook-fill.svg';
-import { ReactComponent as LinkedInIcon } from '@zendeskgarden/svg-icons/src/12/linkedin-fill.svg';
-import { Link } from './StyledNavigationLink';
-import MaxWidthLayout from 'layouts/MaxWidth';
+import { ReactComponent as DiscordIcon } from '../../../data/images/general/discord-logo.svg';
+import { ReactComponent as YouTubeIcon } from '../../../data/images/general/youtube.svg';
 import { NewsletterForm } from './NewsletterForm';
+import { Link } from './StyledNavigationLink';
 
 const StyledFooterItem = styled(Link)`
   margin-right: ${p => p.theme.space.md};
@@ -222,7 +223,7 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
                       />
                     </div>
                   </Link>
-                  <Link aria-label="Coqui on Gitter" to="https://gitter.im/coqui-ai/community">
+                  <Link aria-label="Coqui on Discord" to="https://discord.gg/CzxHHp8mtZ">
                     <div
                       css={`
                         display: flex;
@@ -230,10 +231,27 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
                         align-items: center;
                       `}
                     >
-                      <GitterIcon
+                      <DiscordIcon
                         css={css`
+                          margin-right: ${p => p.theme.space.lg};
                           width: ${p => p.theme.iconSizes.lg};
                           height: ${p => p.theme.iconSizes.lg};
+                          color: ${p => p.theme.palette.moss};
+                        `}
+                      />
+                    </div>
+                  </Link>
+                  <Link aria-label="Coqui on YouTube" to="https://www.youtube.com/@coqui1027">
+                    <div
+                      css={`
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      `}
+                    >
+                      <YouTubeIcon
+                        css={css`
+                          margin-top: -5px;
                           color: ${p => p.theme.palette.moss};
                         `}
                       />
@@ -298,7 +316,7 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
               `}
             >
               <p css="font-weight: 700">Support</p>
-              <StyledLinksItem to="https://gitter.im/coqui-ai/community">Community</StyledLinksItem>
+              <StyledLinksItem to="https://discord.gg/CzxHHp8mtZ">Community</StyledLinksItem>
               <StyledLinksItem to="mailto:info@coqui.ai">Contact us</StyledLinksItem>
             </div>
           </div>
