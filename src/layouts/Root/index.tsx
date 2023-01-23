@@ -20,7 +20,7 @@ import Header, { headerBoxShadow, headerHeight } from './components/Header';
     Sentry.init({
       enabled: true,
       release: process.env.GATSBY_SOURCE_VERSION,
-      dsn: 'https://2d4b56fdd9f447ccae309eb3d7dcad42@o1314061.ingest.sentry.io/6564921',
+      dsn: 'https://3c21c89714b94f3e829c94aa54df95a2@o1314061.ingest.sentry.io/4504553731325952',
       environment
     });
   };
