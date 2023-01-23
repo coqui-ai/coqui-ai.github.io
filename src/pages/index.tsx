@@ -5,6 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+import { track } from '@amplitude/analytics-browser';
 import GogleAnalyticsCookieConsent from 'components/Cookies';
 import SEO from 'components/SEO';
 import { graphql } from 'gatsby';
@@ -17,6 +18,10 @@ const IndexPage: React.FC = () => {
   useEffect(() => {
     consentedToGoogleAnalytics();
   });
+
+  useEffect(() => {
+    track('landing__index__open');
+  }, []);
 
   return (
     <RootLayout hasSkipNav={false}>

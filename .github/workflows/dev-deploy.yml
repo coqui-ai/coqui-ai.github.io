@@ -12,7 +12,7 @@
 name: Deploy frontend to dev
 on:
   push:
-    branches: ["development"]
+    branches: ['development']
   pull_request:
 env:
   GRUNTWORK_INSTALLER_VERSION: v0.0.38
@@ -24,22 +24,22 @@ env:
   AWS_ENVIRONMENT: us-east-1
 
   # AWS Account ID of the account that owns the ECR repo (infra shared account).
-  SHARED_SERVICES_ACCOUNT_ID: "646105116760"
+  SHARED_SERVICES_ACCOUNT_ID: '646105116760'
   # Following Used by deploying to infrastructure
   # The branch to use when committing to infrastructure-live.
-  DEFAULT_INFRA_LIVE_BRANCH: "main"
+  DEFAULT_INFRA_LIVE_BRANCH: 'main'
   # Infra git repo must be in ssh form.
-  INFRASTRUCTURE_REPO_SSH: "git@github.com:coqui-ai/MLOpsInfrastructure.git"
+  INFRASTRUCTURE_REPO_SSH: 'git@github.com:coqui-ai/MLOpsInfrastructure.git'
   # On infrastructure live specific location of service  (it must exist as deployment simply changes tag name)
-  APP_DEPLOY_PATH: "dev/us-east-1/dev/services/website-frontend"
+  APP_DEPLOY_PATH: 'dev/us-east-1/dev/services/website-frontend'
   # value of this variable will be changed with TAG of this docker image  built (usually git branch name)
-  IMAGE_TAG_VARNAME: "tag"
+  IMAGE_TAG_VARNAME: 'tag'
   # ECR repository must exist
-  ECR_REPO_URL: "646105116760.dkr.ecr.us-east-1.amazonaws.com/website-frontend-images"
+  ECR_REPO_URL: '646105116760.dkr.ecr.us-east-1.amazonaws.com/website-frontend-images'
   # GHCR repository to mirror to
-  GHCR_REPO_URL: "ghcr.io/coqui-ai/website-frontend"
+  GHCR_REPO_URL: 'ghcr.io/coqui-ai/website-frontend'
   # Public URL this container will be hosted under
-  FRONTEND_URL: "https://www.dev-coqui.com"
+  FRONTEND_URL: 'https://www.dev-coqui.com'
 jobs:
   build_and_deploy:
     runs-on: ubuntu-20.04
@@ -89,7 +89,13 @@ jobs:
           docker pull "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest" || true
 
           # Build and push to ECR
-          docker build -f docker/static-serve.dockerfile . --build-arg REACT_APP_GITHUB_KEY=${{ secrets.GITHUB_TOKEN }} --build-arg CONFIG_APP_RELEASE=${{ github.sha }} --build-arg GATSBY_FRONTEND_URL=$FRONTEND_URL -t "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
+          docker build . \
+            -f docker/static-serve.dockerfile \
+            --build-arg REACT_APP_GITHUB_KEY=${{ secrets.GITHUB_TOKEN }} \
+            --build-arg CONFIG_APP_RELEASE=${{ github.sha }} \
+            --build-arg GATSBY_FRONTEND_URL=$FRONTEND_URL \
+            --build-arg GATSBY_AMPLITUDE_PROJECT_KEY=${{ secrets.AMPLITUDE_DEV_KEY }} \
+            -t "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
           docker push "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
 
           # Tag and push as {env}-latest
@@ -105,4 +111,3 @@ jobs:
           GITHUB_OAUTH_TOKEN: ${{ secrets.INFRA_DEPLOYER_GITHUB_TOKEN }}
           AWS_ACCESS_KEY_ID: ${{ secrets.INFRA_DEPLOYER_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.INFRA_DEPLOYER_AWS_SECRET_ACCESS_KEY }}
-
