@@ -1,7 +1,7 @@
 name: Deploy frontend to prod
 on:
   push:
-    branches: ["prod"]
+    branches: ['prod']
 jobs:
   build_and_deploy:
     runs-on: ubuntu-20.04
@@ -19,6 +19,7 @@ jobs:
           GATSBY_SOURCE_VERSION: prod
           SOURCE_VERSION: prod
           REACT_APP_GITHUB_KEY: ${{ secrets.GITHUB_TOKEN }}
+          GATSBY_AMPLITUDE_PROJECT_KEY: ${{ secrets.AMPLITUDE_PROD_KEY }}
         run: |
           yarn build
       - name: Upload built site artifact
