@@ -262,6 +262,22 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
                       />
                     </div>
                   </Link>
+                  <Link aria-label="Coqui on YouTube" to="https://www.youtube.com/@coqui1027">
+                    <div
+                      css={`
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      `}
+                    >
+                      <YouTubeIcon
+                        css={css`
+                          margin-top: -5px;
+                          color: ${p => p.theme.palette.moss};
+                        `}
+                      />
+                    </div>
+                  </Link>
                 </>
               )}
             </div>

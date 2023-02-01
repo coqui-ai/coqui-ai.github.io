@@ -26,7 +26,7 @@ const PlanContainer = ({
   return (
     <div
       css={css`
-        width: 285px;
+        width: 315px;
         height: ${tall ? '603px' : '553px'};
         min-height: ${tall ? '603px' : '553px'};
         max-height: ${tall ? '603px' : '553px'};
@@ -367,18 +367,38 @@ const PriceSelector = ({
               $20
             </div>
             <div
+              css={css`
+                border: 1px solid #e5e5e5;
+                margin: 10px;
+                width: 15.95px;
+                height: 0px;
+                border: 1.00256px solid rgb(27, 65, 69);
+                transform: rotate(90deg);
+              `}
+            />
+            <div
               css={`
-                font-size: 12px;
-                font-weight: 400;
-                align-self: end;
+                font-size: 42px;
+                font-weight: 700;
+                line-height: 100%;
                 display: flex;
                 flex-direction: column;
-                justify-content: end;
               `}
             >
-              <div css="margin-bottom: -8px;">4 hours</div>
-              <div>of synthesized audio</div>
+              <div css="margin-bottom: -8px;">
+                4 <span css="font-size: 28px;">hours</span>
+              </div>
             </div>
+          </div>
+          <div
+            css={css`
+              font-weight: 700;
+              font-size: 17px;
+              color: rgb(179, 191, 193);
+              margin-top: 4px;
+            `}
+          >
+            of synthesized audio
           </div>
         </div>
       ) : (

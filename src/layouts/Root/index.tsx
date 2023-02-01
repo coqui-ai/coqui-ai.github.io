@@ -5,6 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+import { init } from '@amplitude/analytics-browser';
 import * as Sentry from '@sentry/browser';
 import { SkipNav } from '@zendeskgarden/react-chrome';
 import React from 'react';
@@ -20,7 +21,7 @@ import Header, { headerBoxShadow, headerHeight } from './components/Header';
     Sentry.init({
       enabled: true,
       release: process.env.GATSBY_SOURCE_VERSION,
-      dsn: 'https://2d4b56fdd9f447ccae309eb3d7dcad42@o1314061.ingest.sentry.io/6564921',
+      dsn: 'https://3c21c89714b94f3e829c94aa54df95a2@o1314061.ingest.sentry.io/4504553731325952',
       environment
     });
   };
@@ -30,6 +31,11 @@ import Header, { headerBoxShadow, headerHeight } from './components/Header';
   script.src = '/configureEnv.js';
 
   document.head.appendChild(script);
+})();
+
+(function _configureAmplitude() {
+  if (!process.env.GATSBY_AMPLITUDE_PROJECT_KEY) return;
+  init(process.env.GATSBY_AMPLITUDE_PROJECT_KEY);
 })();
 
 /**
