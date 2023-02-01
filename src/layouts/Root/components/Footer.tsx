@@ -15,6 +15,7 @@ import { math } from 'polished';
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { ReactComponent as DiscordIcon } from '../../../data/images/general/discord-logo.svg';
+import { ReactComponent as YouTubeIcon } from '../../../data/images/general/youtube.svg';
 import { NewsletterForm } from './NewsletterForm';
 import { Link } from './StyledNavigationLink';
 
@@ -176,9 +177,10 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
                       <TwitterIcon
                         css={css`
                           margin-right: ${p => p.theme.space.lg};
-                          width: ${p => p.theme.iconSizes.lg};
-                          height: ${p => p.theme.iconSizes.lg};
+                          width: 30px;
+                          height: 30px;
                           color: ${p => p.theme.palette.moss};
+                          margin-top: -2px;
                         `}
                       />
                     </div>
@@ -232,9 +234,30 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
                     >
                       <DiscordIcon
                         css={css`
-                          width: ${p => p.theme.iconSizes.lg};
-                          height: ${p => p.theme.iconSizes.lg};
+                          margin-right: ${p => p.theme.space.lg};
+                          width: 32px;
+                          height: 32px;
                           color: ${p => p.theme.palette.moss};
+                          margin-top: -4px;
+                        `}
+                      />
+                    </div>
+                  </Link>
+                  <Link aria-label="Coqui on YouTube" to="https://www.youtube.com/@coqui1027">
+                    <div
+                      css={`
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      `}
+                    >
+                      <YouTubeIcon
+                        css={css`
+                          margin-right: ${p => p.theme.space.lg};
+                          width: 45px;
+                          height: 45px;
+                          color: ${p => p.theme.palette.moss};
+                          margin-top: -10px;
                         `}
                       />
                     </div>
