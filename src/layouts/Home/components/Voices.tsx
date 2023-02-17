@@ -7,11 +7,11 @@
 
 import { Button } from '@zendeskgarden/react-buttons';
 import { LG } from '@zendeskgarden/react-typography';
-import BrendaSternSample from 'data/audios/ai-voices/BrendaStern.wav';
-import CraigGutsySample from 'data/audios/ai-voices/CraigGutsy.wav';
-import EthanHeedfulSample from 'data/audios/ai-voices/EthanHeedful.wav';
-import GracieWiseSample from 'data/audios/ai-voices/GracieWise.wav';
+import AsyaAnaraSample from 'data/audios/ai-voices/AsyaAnara.wav';
+import DamienBlackSample from 'data/audios/ai-voices/DamienBlack.wav';
+import KazuhikoAtallahSample from 'data/audios/ai-voices/KazuhikoAtallah.wav';
 import TammyGritSample from 'data/audios/ai-voices/TammyGrit.wav';
+import VjollcaJohnnieSample from 'data/audios/ai-voices/VjollcaJohnnie.wav';
 import { graphql, useStaticQuery } from 'gatsby';
 import { PlayCircle, StopCircle } from 'iconsax-react';
 import React, { useRef, useState } from 'react';
@@ -239,7 +239,7 @@ export const Voices = () => {
         >
           <VoiceCard>
             <Avatar src={homeImages.BrendaStern.childImageSharp.fixed.src} />
-            <Name>Brenda Stern</Name>
+            <Name>Asya Anara</Name>
             <Age>Middle Aged</Age>
             <Characteristics>
               <p>Confident</p>
@@ -250,7 +250,7 @@ export const Voices = () => {
               <p>Bossy</p>
               <p>Charismatic</p>
             </Characteristics>
-            <Sample src={BrendaSternSample} />
+            <Sample src={AsyaAnaraSample} />
           </VoiceCard>
           <VoiceCard>
             <Avatar src={homeImages.CraigGutsy.childImageSharp.fixed.src} />
@@ -265,11 +265,11 @@ export const Voices = () => {
               <p>Heroic</p>
               <p>Tough</p>
             </Characteristics>
-            <Sample src={CraigGutsySample} />
+            <Sample src={DamienBlackSample} />
           </VoiceCard>
           <VoiceCard>
             <Avatar src={homeImages.EthanHeedful.childImageSharp.fixed.src} />
-            <Name>Ethan Heedful</Name>
+            <Name>Kazuhiko Atallah</Name>
             <Age>Middle Aged</Age>
             <Characteristics>
               <p>Reassuring</p>
@@ -280,11 +280,11 @@ export const Voices = () => {
               <p>Attentive</p>
               <p>Believable</p>
             </Characteristics>
-            <Sample src={EthanHeedfulSample} />
+            <Sample src={KazuhikoAtallahSample} />
           </VoiceCard>
           <VoiceCard>
             <Avatar src={homeImages.GracieWise.childImageSharp.fixed.src} />
-            <Name>Gracie Wise</Name>
+            <Name>Vjollca Johnnie</Name>
             <Age>Middle Aged</Age>
             <Characteristics>
               <p>Authoritative</p>
@@ -295,7 +295,7 @@ export const Voices = () => {
               <p>Corporate</p>
               <p>Serious</p>
             </Characteristics>
-            <Sample src={GracieWiseSample} />
+            <Sample src={VjollcaJohnnieSample} />
           </VoiceCard>
           <VoiceCard>
             <Avatar src={homeImages.TammyGrit.childImageSharp.fixed.src} />
