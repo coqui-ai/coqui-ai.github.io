@@ -254,7 +254,7 @@ export const Voices = () => {
           </VoiceCard>
           <VoiceCard>
             <Avatar src={homeImages.CraigGutsy.childImageSharp.fixed.src} />
-            <Name>Craig Gutsy</Name>
+            <Name>Damien Black</Name>
             <Age>Middle Aged</Age>
             <Characteristics>
               <p>Bold</p>
