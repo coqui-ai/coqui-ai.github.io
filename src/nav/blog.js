@@ -7,6 +7,14 @@
 
 export default [
   {
+    group: 'General',
+    title: 'Ex-Mozillians Raise $3.3M for Coqui',
+    url: '/blog/general/investment-march',
+    splash: 'images/blog/splash-screens/blog-splash-screen-investment-march.jpg',
+    description: 'Info on the Coqui $3.3M Raise',
+    height: 500
+  },
+  {
     group: 'TTS',
     title: 'Introducing Voice Fusion',
     url: '/blog/tts/voice-fusion',
