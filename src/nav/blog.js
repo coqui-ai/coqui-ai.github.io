@@ -8,6 +8,14 @@
 export default [
   {
     group: 'TTS',
+    title: 'Coqui Studio February 2023 Release',
+    url: '/blog/tts/coqui-studio-feb-2023-release',
+    splash: 'images/blog/splash-screens/blog-splash-screen-release-feb-2023.jpg',
+    description: 'Info on Coqui Studio February 2023 Release ',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'Data and models for African langauges',
     url: '/blog/tts/african-languages-dataset-collaboration',
     splash:
