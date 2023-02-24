@@ -156,7 +156,7 @@ const FeatureSection = ({
           );
         background-origin: border-box;
         background-clip: content-box, border-box;
-        max-width: 1400px;
+        max-width: 1220px;
       `}
     >
       <div
@@ -167,7 +167,7 @@ const FeatureSection = ({
           display: flex;
           justify-content: space-around;
           padding: 84px 36px;
-          gap: 60px;
+          gap: 10px;
 
           ${reverse && 'flex-direction: row-reverse;'}
 
@@ -324,7 +324,6 @@ export const Features = ({}) => {
               overflow: visible;
               object-fit: cover;
               object-positin: left center;
-              margin-left: -40px;
               max-width: 654px;
 
               ${p => mediaQuery('down', 'md', p.theme)} {
@@ -356,8 +355,8 @@ export const Features = ({}) => {
             src={featureImages.group3.childImageSharp.fixed.src}
             css={css`
               overflow: visible;
-              margin-left: -213px;
-              max-width: 556px;
+              margin-left: -124px;
+              max-width: 507px;
 
               ${p => mediaQuery('down', 'md', p.theme)} {
                 margin-top: -60px;
