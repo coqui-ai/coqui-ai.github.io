@@ -8,9 +8,9 @@ export const Content: FC = () => {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 585px;
+        height: 530px;
         position: relative;
-        padding: 1rem 10rem;
+        padding: 0 10rem;
       `}
     >
       <div

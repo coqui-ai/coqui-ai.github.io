@@ -47,6 +47,7 @@ import '@zendeskgarden/css-bedrock/dist/index.css';
  * Ensure Gatsby wrapping nodes are full height
  */
 const GlobalStyling = createGlobalStyle`
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
     @font-face {
       font-family: 'SF Pro Display';
       src: url('SFProDisplay-Regular.woff2') format('woff2'),

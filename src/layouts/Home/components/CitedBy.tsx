@@ -58,8 +58,8 @@ export const CitedBy = () => {
         align-items: center;
         gap: 5rem;
         padding: 0 30px;
-        height: 140px;
-        padding: 1rem 10rem;
+        height: 100px;
+        padding: 1rem 10rem 0 10rem;
         max-width: 90%;
       `}
     >

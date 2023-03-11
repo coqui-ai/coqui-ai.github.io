@@ -10,6 +10,7 @@ import { CitedBy } from './components/CitedBy';
 import { Content } from './components/Content';
 import { CtA } from './components/CtA';
 import { Features } from './components/Features';
+import { FeaturesAndApps } from './components/FeaturesAndApps';
 import { GetStartedCtA } from './components/GetStartedCta';
 import { Hero } from './components/Hero';
 import { PricingTable } from './components/PricingTable';
@@ -23,6 +24,7 @@ export const HomeLayout = () => {
       <Hero />
       <CitedBy />
       <Content />
+      <FeaturesAndApps />
       {/* <CtA />
       <Features />
       <Voices />

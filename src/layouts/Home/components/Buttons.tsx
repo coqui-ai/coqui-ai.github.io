@@ -20,7 +20,7 @@ export const TryNowButton = ({ ...rest }) => {
           background-color: ${p => getColor('yellow', 600, p.theme)};
           color: #fff;
           border-radius: 30px;
-          font-weight: 600;
+          font-weight: 400;
           padding: 18px 24px;
         `}
       >
