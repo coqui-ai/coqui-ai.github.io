@@ -37,7 +37,7 @@ export const FeaturesAndApps: FC = () => {
             gap: 20px;
           `}
         >
-          <h5
+          <p
             css={css`
               font-family: 'Manrope', sans-serif;
               color: #468d6a;
@@ -45,7 +45,7 @@ export const FeaturesAndApps: FC = () => {
             `}
           >
             FEATURES AND APPLICATIONS
-          </h5>
+          </p>
           <h2
             css={css`
               font-size: 48px;

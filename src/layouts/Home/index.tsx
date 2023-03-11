@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import { AIVoices } from './components/AIVoices/AIVoices';
 import { CitedBy } from './components/CitedBy';
 import { Content } from './components/Content';
 import { CtA } from './components/CtA';
@@ -27,6 +28,7 @@ export const HomeLayout = () => {
       <Content />
       <FeaturesAndApps />
       <Why />
+      <AIVoices />
       {/* <CtA />
       <Features />
       <Voices />

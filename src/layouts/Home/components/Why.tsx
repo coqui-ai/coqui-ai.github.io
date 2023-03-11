@@ -16,7 +16,7 @@ export const Why: FC = () => {
         gap: 40px;
       `}
     >
-      <h5
+      <p
         css={css`
           font-family: 'Manrope', sans-serif;
           color: #468d6a;
@@ -24,7 +24,7 @@ export const Why: FC = () => {
         `}
       >
         WHAT MAKES US UNIQUE
-      </h5>
+      </p>
       <h2
         css={css`
           font-size: 48px;
