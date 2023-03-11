@@ -16,9 +16,8 @@ export const FeaturesAndApps: FC = () => {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 900px;
         position: relative;
-        padding: 0 10rem;
+        padding: 10rem;
       `}
     >
       <div
