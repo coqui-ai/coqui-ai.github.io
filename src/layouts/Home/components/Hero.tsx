@@ -41,7 +41,19 @@ export const Hero: FC = () => {
               line-height: 88px;
             `}
           >
-            Helping professionals and developers save <span>hours</span>.
+            Helping professionals and developers save{' '}
+            <span
+              css={css`
+                background: linear-gradient(89.27deg, #ed8f1c -1.56%, #468d6a 102.75%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-fill-color: transparent;
+              `}
+            >
+              hours
+            </span>
+            .
           </h1>
           <p
             css={css`

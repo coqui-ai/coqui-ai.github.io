@@ -7,6 +7,7 @@
 
 import React from 'react';
 import { CitedBy } from './components/CitedBy';
+import { Content } from './components/Content';
 import { CtA } from './components/CtA';
 import { Features } from './components/Features';
 import { GetStartedCtA } from './components/GetStartedCta';
@@ -21,6 +22,7 @@ export const HomeLayout = () => {
     <>
       <Hero />
       <CitedBy />
+      <Content />
       {/* <CtA />
       <Features />
       <Voices />
