@@ -19,8 +19,9 @@ export const TryNowButton = ({ ...rest }) => {
           border-width: 0;
           background-color: ${p => getColor('yellow', 600, p.theme)};
           color: #fff;
-          border-radius: 7.2px;
-          font-weight: 700;
+          border-radius: 30px;
+          font-weight: 600;
+          padding: 18px 24px;
         `}
       >
         Try now for free

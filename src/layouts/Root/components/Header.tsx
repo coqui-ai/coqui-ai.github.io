@@ -27,7 +27,7 @@ export const headerBoxShadow = (theme: DefaultTheme) =>
     getColor('neutralHue', 800, theme, 0.05)!
   );
 
-export const headerHeight = (theme: DefaultTheme) => 77;
+export const headerHeight = (theme: DefaultTheme) => 100;
 
 const StyledDesktopNavItem = styled.div`
   display: flex;
@@ -190,6 +190,7 @@ const MobileNav = ({
       css={css`
         position: fixed;
         top: ${p => p.theme.space.base * 15}px;
+        font-weight: 600;
         right: 0;
         bottom: 0;
         left: 0;
@@ -199,8 +200,8 @@ const MobileNav = ({
       `}
     >
       <StyledMobileNavItem>
-        <StyledMobileNavLink to="/#features" onClick={() => setIsNavigationVisible(false)}>
-          Features
+        <StyledMobileNavLink to="/" onClick={() => setIsNavigationVisible(false)}>
+          Home
         </StyledMobileNavLink>
       </StyledMobileNavItem>
       <StyledMobileNavItem>
@@ -257,15 +258,16 @@ const Header = ({}) => {
             justify-content: center;
             align-items: center;
             gap: 40px;
+            font-weight: 600;
 
             ${p => mediaQuery('down', 'sm', p.theme)} {
               display: none;
             }
           `}
         >
-          <a href="/#features">Features</a>
-          <a href="/pricing">Pricing</a>
-          <Dropdown
+          <a href="/">Home</a>
+          <a href="/pricing">How it works</a>
+          {/* <Dropdown
             onSelect={item => {
               window.location.href = item;
             }}
@@ -287,7 +289,7 @@ const Header = ({}) => {
               <Item value="/post-production">Post Production</Item>
               <Item value="/dubbing">Dubbing</Item>
             </Menu>
-          </Dropdown>
+          </Dropdown> */}
         </nav>
         <div
           css={css`
@@ -295,12 +297,14 @@ const Header = ({}) => {
             justify-content: end;
             align-items: center;
             gap: 30px;
+            font-weight: 600;
 
             ${p => mediaQuery('down', 'sm', p.theme)} {
               display: none;
             }
           `}
         >
+          <a href="/">Sign In</a>
           <TryNowButton />
         </div>
         <MobileNavButton
