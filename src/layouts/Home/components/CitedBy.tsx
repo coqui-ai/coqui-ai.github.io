@@ -20,8 +20,12 @@ const User: React.FC<{
         margin-left: auto;
         width: 100px;
         min-width: 80px;
+        height: auto;
         ${p => mediaQuery('down', 'md', p.theme)} {
           width: 60px;
+        }
+        img {
+          height: auto !important;
         }
       `}
     />
