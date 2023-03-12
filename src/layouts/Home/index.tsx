@@ -11,6 +11,7 @@ import { AIVoices } from './components/AIVoices/AIVoices';
 import { CitedBy } from './components/CitedBy';
 import { Content } from './components/Content';
 import { CtA } from './components/CtA';
+import { FAQ } from './components/FAQ/FAQ';
 import { Features } from './components/Features';
 import { FeaturesAndApps } from './components/FeaturesAndApps';
 import { GetStartedCtA } from './components/GetStartedCta';
@@ -35,6 +36,7 @@ export const HomeLayout = () => {
       <Pricing />
       <SyntheticVoices />
       <AboutUs />
+      <FAQ />
       {/* <CtA />
       <Features />
       <Voices />
