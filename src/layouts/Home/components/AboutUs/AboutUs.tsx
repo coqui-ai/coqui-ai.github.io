@@ -1,8 +1,11 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import React, { FC } from 'react';
+import { css } from 'styled-components';
 import { PrimaryButton, SecondaryButton } from '../Buttons';
 import { AboutUsTimeline } from './AboutUsTimeline/AboutUsTimeline';
 import {
   AboutUsButtonContainer,
+  AboutUsButtonContainerMobile,
   AboutUsContainer,
   AboutUsDetailsContainer,
   AboutUsDetailsDescription,
@@ -27,9 +30,59 @@ export const AboutUs: FC = () => {
         </AboutUsDetailsDescription>
         <AboutUsDetailsDescription>The best is yet to come.</AboutUsDetailsDescription>
         <AboutUsButtonContainer>
-          <PrimaryButton text="Discover Coqui Studio" path="/" />
-          <SecondaryButton text="Talk to our team" path="/" />
+          <PrimaryButton
+            text="Discover Coqui Studio"
+            path="/"
+            css={css`
+              ${p => mediaQuery('up', 'sm', p.theme)} {
+                display: flex;
+              }
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                display: none;
+              }
+            `}
+          />
+          <SecondaryButton
+            text="Talk to our team"
+            path="/"
+            css={css`
+              ${p => mediaQuery('up', 'sm', p.theme)} {
+                display: flex;
+              }
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                display: none;
+              }
+            `}
+          />
         </AboutUsButtonContainer>
+        <AboutUsButtonContainerMobile>
+          <PrimaryButton
+            text="Discover Coqui Studio"
+            path="/"
+            fullWidth
+            css={css`
+              ${p => mediaQuery('up', 'sm', p.theme)} {
+                display: none;
+              }
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                display: flex;
+              }
+            `}
+          />
+          <SecondaryButton
+            text="Talk to our team"
+            path="/"
+            fullWidth
+            css={css`
+              ${p => mediaQuery('up', 'sm', p.theme)} {
+                display: none;
+              }
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                display: flex;
+              }
+            `}
+          />
+        </AboutUsButtonContainerMobile>
       </AboutUsDetailsContainer>
       <AboutUsTimeline />
     </AboutUsContainer>

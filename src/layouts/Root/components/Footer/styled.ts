@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
@@ -33,6 +34,9 @@ export const FooterRow = styled.div`
   gap: 32px;
   padding-bottom: 64px;
   border-bottom: 1px solid #f9f9f9;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    padding-bottom: 48px;
+  }
 `;
 
 export const FooterSectionColumn = styled.div`
@@ -40,6 +44,9 @@ export const FooterSectionColumn = styled.div`
   flex-direction: column;
   flex: 1;
   justify-content: center;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    align-items: center;
+  }
 `;
 
 export const FooterSectionColumnLeft = styled(FooterSectionColumn)`
@@ -62,6 +69,10 @@ export const FooterLinksRow = styled.div`
   gap: 50px;
   align-items: center;
   justify-content: center;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    gap: 30px;
+    justify-content: space-between;
+  }
 `;
 
 export const FooterSocialsRow = styled.div`
@@ -100,6 +111,10 @@ export const FooterSignatureRow = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const FooterSignatureText = styled.p`

@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import styled from 'styled-components';
 
 export const BlogsContainer = styled.div`
@@ -7,6 +8,10 @@ export const BlogsContainer = styled.div`
   position: relative;
   padding: 10rem 10rem 15rem 10rem;
   gap: 30px;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    padding: 2rem;
+    align-items: center;
+  }
 `;
 
 export const BlogsTitle = styled.p`
@@ -23,6 +28,9 @@ export const BlogsTitleRow = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    gap: 32px;
+  }
 `;
 
 export const BlogsTitleDescription = styled.h2`
@@ -35,6 +43,9 @@ export const BlogsTitleDescription = styled.h2`
     background-clip: text;
     text-fill-color: transparent;
   }
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    text-align: center;
+  }
 `;
 
 export const BlogItemsContainer = styled.div`
@@ -43,4 +54,29 @@ export const BlogItemsContainer = styled.div`
   flex-wrap: wrap;
   gap: 24px;
   justify-content: space-between;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    gap: 5rem;
+  }
+`;
+
+export const BlogButtonContainer = styled.div`
+  flex-direction: column;
+  ${p => mediaQuery('up', 'sm', p.theme)} {
+    display: flex;
+  }
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    display: none;
+  }
+`;
+
+export const BlogButtonContainerMobile = styled.div`
+  flex-direction: column;
+  width: 100%;
+  margin-top: 32px;
+  ${p => mediaQuery('up', 'sm', p.theme)} {
+    display: none;
+  }
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    display: flex;
+  }
 `;

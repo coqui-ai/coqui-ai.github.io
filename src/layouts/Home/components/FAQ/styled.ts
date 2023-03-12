@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import styled from 'styled-components';
 
 export const FAQContainer = styled.div`
@@ -8,6 +9,9 @@ export const FAQContainer = styled.div`
   position: relative;
   padding: 10rem;
   gap: 30px;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    padding: 2rem;
+  }
 `;
 
 export const FAQSection = styled.p`
@@ -25,6 +29,9 @@ export const FAQSectionTitle = styled.h2`
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
+  }
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    text-align: center;
   }
 `;
 
@@ -47,11 +54,17 @@ export const FAQColumn = styled.div`
   }
   [data-garden-id='accordions.step_inner_panel'] {
     font-size: 16px;
+    ${p => mediaQuery('down', 'sm', p.theme)} {
+      font-size: 14px;
+    }
   }
   button {
     line-height: 140%;
     font-size: 32px;
     font-weight: 400;
+    ${p => mediaQuery('down', 'sm', p.theme)} {
+      font-size: 24px;
+    }
   }
   button:hover {
     color: #5293c7;

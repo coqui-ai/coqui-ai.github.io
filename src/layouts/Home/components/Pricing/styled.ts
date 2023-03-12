@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import styled from 'styled-components';
 
 type PricingCardPriceType = {
@@ -13,6 +14,9 @@ export const PricingContainer = styled.div`
   padding: 10rem;
   gap: 30px;
   background-color: #03363d;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    padding: 2rem;
+  }
 `;
 
 export const PricingTitle = styled.h2`
@@ -23,6 +27,11 @@ export const PricingTitle = styled.h2`
   text-fill-color: transparent;
   font-size: 48px;
   line-height: 67.2px;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    font-size: 24px;
+    line-height: 32.2px;
+    text-align: center;
+  }
 `;
 
 export const PricingSubtitle = styled.p`

@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import styled from 'styled-components';
 
 export const SyntheticVoicesContainer = styled.div`
@@ -9,6 +10,9 @@ export const SyntheticVoicesContainer = styled.div`
   gap: 5rem;
   padding: 5rem 10rem;
   background-color: #f9fafc;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    padding: 2rem;
+  }
 `;
 
 export const SyntheticVoicesDetailsContainer = styled.div`
@@ -16,6 +20,9 @@ export const SyntheticVoicesDetailsContainer = styled.div`
   flex-direction: column;
   flex: 1;
   gap: 40px;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    align-items: center;
+  }
 `;
 
 export const SyntheticVoicesDetailsTitle = styled.p`
@@ -34,11 +41,17 @@ export const SyntheticVoicesDetailsTitleDescription = styled.h2`
     background-clip: text;
     text-fill-color: transparent;
   }
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    text-align: center;
+  }
 `;
 
 export const SyntheticVoicesDetailsDescription = styled.p`
   font-size: 18px;
   line-height: 32.4px;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    text-align: center;
+  }
 `;
 
 export const SyntheticVoicesButtonContainer = styled.div`

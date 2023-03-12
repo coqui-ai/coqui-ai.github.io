@@ -11,7 +11,7 @@ export const Content: FC = () => {
         align-items: center;
         padding: 0 10rem;
         ${p => mediaQuery('down', 'sm', p.theme)} {
-          padding: 1rem;
+          padding: 2rem;
           margin-top: 16px;
         }
       `}
@@ -41,8 +41,9 @@ export const Content: FC = () => {
             background-clip: text;
             text-fill-color: transparent;
             ${p => mediaQuery('down', 'sm', p.theme)} {
-              font-size: 24px;
+              font-size: 32px;
               line-height: 37.2px;
+              text-align: center;
             }
           `}
         >

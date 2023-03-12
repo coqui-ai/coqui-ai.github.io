@@ -135,12 +135,17 @@ const SignUp = () => {
               background: '#F9F9F9',
               borderRadius: '50px',
               padding: '8px 8px 8px 24px',
-              width: '380px',
+              width: '350px',
               height: '65px',
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'center'
-            }
+            },
+            ...css`
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                width: auto;
+              }
+            `
           }}
           css={css`
             color: #000;
@@ -153,6 +158,7 @@ const SignUp = () => {
             ${p => mediaQuery('down', 'sm', p.theme)} {
               padding-top: 10px;
               padding-bottom: 10px;
+              width: auto;
             }
           `}
         />
@@ -183,6 +189,9 @@ const Logo: React.FC = () => {
         ${p => mediaQuery('down', 'sm', p.theme)} {
           flex-grow: 1;
           padding-left: ${p => p.theme.space.md};
+          justify-content: center;
+          align-items: center;
+          margin-left: 6rem;
         }
       `}
     >
@@ -221,7 +230,7 @@ export const Footer: FC<FooterPropsType> = ({ hasSaveTimeBanner }) => {
     <FooterContainer
       css={css`
         ${p => mediaQuery('down', 'sm', p.theme)} {
-          padding: 1rem;
+          padding: 2rem 1rem;
         }
       `}
       hasBanner={!!hasSaveTimeBanner}

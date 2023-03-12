@@ -4,6 +4,8 @@ import React, { FC, useEffect, useState } from 'react';
 import { SecondaryButton } from '../Buttons';
 import { BlogCard } from './BlogCard/BlogCard';
 import {
+  BlogButtonContainer,
+  BlogButtonContainerMobile,
   BlogItemsContainer,
   BlogsContainer,
   BlogsTitle,
@@ -39,7 +41,6 @@ export const Blogs: FC = () => {
       const image = data.allImageSharp.edges.find((edge: any) =>
         edge.node.fluid.src.includes(splashFile)
       );
-      console.log(image);
       return {
         tag: n.group,
         fluidImg: image || {},
@@ -67,13 +68,18 @@ export const Blogs: FC = () => {
         <BlogsTitleDescription>
           Learn about the <span>latest in voice AI</span> from trusted experts.
         </BlogsTitleDescription>
-        <SecondaryButton text="See all" path="/" />
+        <BlogButtonContainer>
+          <SecondaryButton text="See all" path="/" />
+        </BlogButtonContainer>
       </BlogsTitleRow>
       <BlogItemsContainer>
         {blogData.map(b => (
           <BlogCard key={b.title.split(' ').join('-')} {...b} />
         ))}
       </BlogItemsContainer>
+      <BlogButtonContainerMobile>
+        <SecondaryButton text="See all" path="/" fullWidth />
+      </BlogButtonContainerMobile>
     </BlogsContainer>
   );
 };

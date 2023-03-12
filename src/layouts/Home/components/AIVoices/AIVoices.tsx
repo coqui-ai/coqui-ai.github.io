@@ -107,7 +107,7 @@ export const AIVoices: FC = () => {
         padding: 10rem;
         gap: 30px;
         ${p => mediaQuery('down', 'sm', p.theme)} {
-          padding: 1rem;
+          padding: 2rem;
         }
       `}
     >
@@ -125,8 +125,9 @@ export const AIVoices: FC = () => {
           font-size: 48px;
           line-height: 67.2px;
           ${p => mediaQuery('down', 'sm', p.theme)} {
-            font-size: 24px;
+            font-size: 48px;
             line-height: 67.2px;
+            text-align: center;
           }
         `}
       >

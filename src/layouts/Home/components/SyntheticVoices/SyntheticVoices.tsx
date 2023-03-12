@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
 import { TryNowButton, SecondaryButton } from '../Buttons';
@@ -36,6 +37,11 @@ export const SyntheticVoices: FC = () => {
           alt="placeholder"
           css={css`
             border-radius: 20px;
+            max-width: none;
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              width: 300px;
+              height: 300px;
+            }
           `}
         />
       </SyntheticVoicesVideoContainer>

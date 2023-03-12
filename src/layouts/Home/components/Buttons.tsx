@@ -40,7 +40,12 @@ export const TryNowButton = ({ ...rest }) => {
 
 export const PrimaryButton: FC<ButtonType> = ({ text, path, fullWidth }) => {
   return (
-    <StyledNavigationLink to={path}>
+    <StyledNavigationLink
+      to={path}
+      css={css`
+        width: ${fullWidth ? '100%' : ''};
+      `}
+    >
       <Button
         css={css`
           border-width: 0;
@@ -60,7 +65,12 @@ export const PrimaryButton: FC<ButtonType> = ({ text, path, fullWidth }) => {
 
 export const SecondaryButton: FC<ButtonType> = ({ text, textColor, path, fullWidth }) => {
   return (
-    <StyledNavigationLink to={path}>
+    <StyledNavigationLink
+      to={path}
+      css={css`
+        width: ${fullWidth ? '100%' : ''};
+      `}
+    >
       <Button
         css={css`
           border: 2px solid ${p => getColor('yellow', 600, p.theme)};

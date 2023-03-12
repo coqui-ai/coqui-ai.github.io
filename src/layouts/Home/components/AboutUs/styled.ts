@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import styled from 'styled-components';
 
 export const AboutUsContainer = styled.div`
@@ -8,6 +9,10 @@ export const AboutUsContainer = styled.div`
   align-items: center;
   gap: 5rem;
   padding: 5rem 10rem;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    padding: 2rem;
+    flex-wrap: wrap;
+  }
 `;
 
 export const AboutUsDetailsContainer = styled.div`
@@ -15,6 +20,9 @@ export const AboutUsDetailsContainer = styled.div`
   flex-direction: column;
   flex: 1;
   gap: 40px;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    align-items: center;
+  }
 `;
 
 export const AboutUsDetailsTitle = styled.p`
@@ -33,11 +41,17 @@ export const AboutUsDetailsTitleDescription = styled.h2`
     background-clip: text;
     text-fill-color: transparent;
   }
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    text-align: center;
+  }
 `;
 
 export const AboutUsDetailsDescription = styled.p`
   font-size: 18px;
   line-height: 32.4px;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    text-align: center;
+  }
 `;
 
 export const AboutUsButtonContainer = styled.div`
@@ -47,4 +61,25 @@ export const AboutUsButtonContainer = styled.div`
   gap: 16px;
   align-items: center;
   padding-top: 20px;
+  ${p => mediaQuery('up', 'sm', p.theme)} {
+    display: flex;
+  }
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    display: none;
+  }
+`;
+
+export const AboutUsButtonContainerMobile = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  padding-top: 20px;
+  ${p => mediaQuery('up', 'sm', p.theme)} {
+    display: none;
+  }
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    display: flex;
+  }
 `;

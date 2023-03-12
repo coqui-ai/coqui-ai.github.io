@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import styled from 'styled-components';
 
 export const ContactContainer = styled.div`
@@ -9,6 +10,9 @@ export const ContactContainer = styled.div`
   gap: 5rem;
   padding: 5rem 10rem;
   background-color: #f9fafc;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    padding: 2rem;
+  }
 `;
 
 export const ContactDetailsContainer = styled.div`
@@ -16,6 +20,7 @@ export const ContactDetailsContainer = styled.div`
   flex-direction: column;
   flex: 1;
   gap: 40px;
+  align-items: center;
 `;
 
 export const ContactDetailsTitle = styled.p`
@@ -33,6 +38,9 @@ export const ContactDetailsTitleDescription = styled.h2`
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
+  }
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    text-align: center;
   }
 `;
 

@@ -16,7 +16,7 @@ export const Why: FC = () => {
         background-color: #f9fafc;
         gap: 40px;
         ${p => mediaQuery('down', 'sm', p.theme)} {
-          padding: 2rem 1rem;
+          padding: 2rem;
         }
       `}
     >
@@ -34,8 +34,9 @@ export const Why: FC = () => {
           font-size: 48px;
           line-height: 67.2px;
           ${p => mediaQuery('down', 'sm', p.theme)} {
-            font-size: 24px;
+            font-size: 48px;
             line-height: 32.2px;
+            text-align: center;
           }
         `}
       >

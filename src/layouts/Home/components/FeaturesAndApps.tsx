@@ -19,7 +19,7 @@ export const FeaturesAndApps: FC = () => {
         position: relative;
         padding: 10rem;
         ${p => mediaQuery('down', 'sm', p.theme)} {
-          padding: 2rem 1rem 1rem 1rem;
+          padding: 2rem 1rem 1rem;
         }
       `}
     >
@@ -46,6 +46,9 @@ export const FeaturesAndApps: FC = () => {
               font-family: 'Manrope', sans-serif;
               color: #468d6a;
               font-size: 16px;
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                text-align: center;
+              }
             `}
           >
             FEATURES AND APPLICATIONS
@@ -55,8 +58,9 @@ export const FeaturesAndApps: FC = () => {
               font-size: 48px;
               line-height: 67.2px;
               ${p => mediaQuery('down', 'sm', p.theme)} {
-                font-size: 24px;
-                line-height: 33.2px;
+                font-size: 48px;
+                line-height: 67.2px;
+                text-align: center;
               }
             `}
           >
@@ -93,9 +97,20 @@ export const FeaturesAndApps: FC = () => {
               gap: 16px;
               align-items: center;
               padding-top: 20px;
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                justify-content: center;
+                width: 100%;
+              }
             `}
           >
-            <StyledNavigationLink to="/">
+            <StyledNavigationLink
+              to="/"
+              css={css`
+                ${p => mediaQuery('down', 'sm', p.theme)} {
+                  width: 100%;
+                }
+              `}
+            >
               <Button
                 css={css`
                   border-width: 0;
@@ -104,6 +119,9 @@ export const FeaturesAndApps: FC = () => {
                   border-radius: 30px;
                   font-weight: 600;
                   padding: 18px 24px;
+                  ${p => mediaQuery('down', 'sm', p.theme)} {
+                    width: 100%;
+                  }
                 `}
               >
                 Discover every feature
