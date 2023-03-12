@@ -50,8 +50,6 @@ export const PricingCard: FC<PricingCardType> = ({
     }
   };
 
-  console.log(cardBorderColor);
-
   return (
     <PricingCardContainer
       bgColor={bgColor}
