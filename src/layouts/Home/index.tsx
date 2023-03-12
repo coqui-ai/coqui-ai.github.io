@@ -8,6 +8,7 @@
 import React from 'react';
 import { AboutUs } from './components/AboutUs/AboutUs';
 import { AIVoices } from './components/AIVoices/AIVoices';
+import { Blogs } from './components/Blogs/Blogs';
 import { CitedBy } from './components/CitedBy';
 import { Contact } from './components/Contact/Contact';
 import { Content } from './components/Content';
@@ -39,6 +40,7 @@ export const HomeLayout = () => {
       <AboutUs />
       <FAQ />
       <Contact />
+      <Blogs />
       {/* <CtA />
       <Features />
       <Voices />

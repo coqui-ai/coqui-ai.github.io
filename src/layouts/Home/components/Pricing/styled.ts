@@ -40,6 +40,7 @@ export const PricingRow = styled.div`
   gap: 32px;
   flex-wrap: wrap;
   margin-top: 32px;
+  z-index: 2;
 `;
 
 export const PricingCardTopRow = styled.div`

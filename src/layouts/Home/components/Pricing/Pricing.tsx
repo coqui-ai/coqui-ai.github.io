@@ -1,6 +1,6 @@
-import { getColor } from '@zendeskgarden/react-theming';
 import React, { FC } from 'react';
 import { PricingCard } from './PricingCard/PricingCard';
+import voiceImg from './voice.png';
 import {
   PricingCardPriceSummary,
   PricingCardPriceTitle,
@@ -10,6 +10,7 @@ import {
   PricingSubtitle,
   PricingTitle
 } from './styled';
+import { css } from 'styled-components';
 
 export const Pricing: FC = () => {
   const freeTrialJsx: JSX.Element = (
@@ -40,6 +41,14 @@ export const Pricing: FC = () => {
 
   return (
     <PricingContainer>
+      <img
+        src={voiceImg}
+        alt="voice wave"
+        css={css`
+          position: absolute;
+          top: 25%;
+        `}
+      />
       <PricingTitle>Pricing that delivers value to match your needs.</PricingTitle>
       <PricingSubtitle>Pick a plan that suits your requirements.</PricingSubtitle>
       <PricingRow>
