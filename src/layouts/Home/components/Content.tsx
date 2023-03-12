@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
 
@@ -8,9 +9,11 @@ export const Content: FC = () => {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 530px;
-        position: relative;
         padding: 0 10rem;
+        ${p => mediaQuery('down', 'sm', p.theme)} {
+          padding: 1rem;
+          margin-top: 16px;
+        }
       `}
     >
       <div
@@ -22,6 +25,9 @@ export const Content: FC = () => {
           background-color: #03363d;
           border-radius: 20px;
           padding: 5rem 10rem;
+          ${p => mediaQuery('down', 'sm', p.theme)} {
+            padding: 1rem;
+          }
         `}
       >
         <h2
@@ -34,6 +40,10 @@ export const Content: FC = () => {
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-fill-color: transparent;
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              font-size: 24px;
+              line-height: 37.2px;
+            }
           `}
         >
           Instead of paying and waiting for expensive voice actors or narrators, we give creatives

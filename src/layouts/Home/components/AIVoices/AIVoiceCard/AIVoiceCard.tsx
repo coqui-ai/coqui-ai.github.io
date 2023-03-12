@@ -5,6 +5,7 @@ import { PlayCircle, StopCircle } from 'iconsax-react';
 import React, { FC, useState } from 'react';
 import {
   AIVoiceCardContainer,
+  AIVoiceCardContainerMobile,
   AvatarCharacteristics,
   AvatarImage,
   AvatarMetaDataContainer,
@@ -62,14 +63,23 @@ export const AIVoiceCard: FC<IAIVoiceCardProps> = ({
   voiceSample
 }) => {
   return (
-    <AIVoiceCardContainer>
-      <AvatarImage src={imageSrc} />
-      <AvatarMetaDataContainer>
+    <div>
+      <AIVoiceCardContainer>
+        <AvatarImage src={imageSrc} />
+        <AvatarMetaDataContainer>
+          <AvatarName>{name}</AvatarName>
+          <AvatarTag>{tag}</AvatarTag>
+          <AvatarCharacteristics>{characteristics?.join(', ')}</AvatarCharacteristics>
+        </AvatarMetaDataContainer>
+        <PlayButton src={voiceSample} />
+      </AIVoiceCardContainer>
+      <AIVoiceCardContainerMobile>
+        <AvatarImage src={imageSrc} />
         <AvatarName>{name}</AvatarName>
         <AvatarTag>{tag}</AvatarTag>
         <AvatarCharacteristics>{characteristics?.join(', ')}</AvatarCharacteristics>
-      </AvatarMetaDataContainer>
-      <PlayButton src={voiceSample} />
-    </AIVoiceCardContainer>
+        <PlayButton src={voiceSample} />
+      </AIVoiceCardContainerMobile>
+    </div>
   );
 };

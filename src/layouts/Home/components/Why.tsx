@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import { SummaryCard } from 'components/cards/SummaryCard';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
@@ -14,6 +15,9 @@ export const Why: FC = () => {
         padding: 10rem;
         background-color: #f9fafc;
         gap: 40px;
+        ${p => mediaQuery('down', 'sm', p.theme)} {
+          padding: 2rem 1rem;
+        }
       `}
     >
       <p
@@ -29,6 +33,10 @@ export const Why: FC = () => {
         css={css`
           font-size: 48px;
           line-height: 67.2px;
+          ${p => mediaQuery('down', 'sm', p.theme)} {
+            font-size: 24px;
+            line-height: 32.2px;
+          }
         `}
       >
         <span
@@ -61,6 +69,7 @@ export const Why: FC = () => {
         css={css`
           display: flex;
           flex-direction: row;
+          flex-wrap: wrap;
           gap: 32px;
           align-self: flex-start;
         `}
@@ -85,6 +94,7 @@ export const Why: FC = () => {
         css={css`
           display: flex;
           flex-direction: row;
+          flex-wrap: wrap;
           gap: 32px;
           align-self: flex-end;
         `}

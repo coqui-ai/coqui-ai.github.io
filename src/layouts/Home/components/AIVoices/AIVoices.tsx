@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import { useStaticQuery, graphql } from 'gatsby';
 import { AvatarType } from 'layouts/Home/types/avatar';
 import React, { FC, useEffect, useState } from 'react';
@@ -105,6 +106,9 @@ export const AIVoices: FC = () => {
         position: relative;
         padding: 10rem;
         gap: 30px;
+        ${p => mediaQuery('down', 'sm', p.theme)} {
+          padding: 1rem;
+        }
       `}
     >
       <p
@@ -120,6 +124,10 @@ export const AIVoices: FC = () => {
         css={css`
           font-size: 48px;
           line-height: 67.2px;
+          ${p => mediaQuery('down', 'sm', p.theme)} {
+            font-size: 24px;
+            line-height: 67.2px;
+          }
         `}
       >
         Your{' '}
@@ -153,7 +161,13 @@ export const AIVoices: FC = () => {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
+          justify-content: center;
           gap: 22px;
+          ${p => mediaQuery('down', 'sm', p.theme)} {
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+          }
         `}
       >
         {avatars.map(a => (
@@ -167,9 +181,11 @@ export const AIVoices: FC = () => {
             gap: 35px;
             border-radius: 20px;
             width: 510px;
-            height: 215px;
             padding: 33px 25px;
             background-color: #e9ebed;
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              width: 250px;
+            }
           `}
         >
           <p

@@ -55,11 +55,14 @@ export const CitedBy = () => {
       css={css`
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
         gap: 5rem;
         padding: 0 30px;
-        height: 100px;
-        padding: 1rem 10rem 0 10rem;
+        padding: 5rem 10rem 5rem 10rem;
+        ${p => mediaQuery('down', 'sm', p.theme)} {
+          padding: 1rem;
+        }
         max-width: 90%;
       `}
     >

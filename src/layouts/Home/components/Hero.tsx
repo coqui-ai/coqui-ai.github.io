@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
 import { SecondaryButton, TryNowButton } from './Buttons';
@@ -17,6 +18,7 @@ export const Hero: FC = () => {
         css={css`
           display: flex;
           flex-direction: row;
+          flex-wrap: wrap-reverse;
           justify-content: space-between;
           align-items: center;
           gap: 5rem;
@@ -35,6 +37,10 @@ export const Hero: FC = () => {
               font-size: 80px;
               font-weight: 600px;
               line-height: 88px;
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                font-size: 40px;
+                line-height: 48px;
+              }
             `}
           >
             Helping professionals and developers save{' '}
@@ -82,7 +88,19 @@ export const Hero: FC = () => {
             flex: 1;
           `}
         >
-          <img height="640" src="https://dummyimage.com/640x640/fff/aaa" alt="placeholder" />
+          <img
+            height={640}
+            width={640}
+            src="https://dummyimage.com/640x640/fff/aaa"
+            alt="placeholder"
+            css={css`
+              max-width: none;
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                height: 200px;
+                width: 200px;
+              }
+            `}
+          />
         </div>
       </div>
     </div>

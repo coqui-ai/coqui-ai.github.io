@@ -1,5 +1,5 @@
 import { Button } from '@zendeskgarden/react-buttons';
-import { getColor } from '@zendeskgarden/react-theming';
+import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { SummaryCard } from 'components/cards/SummaryCard';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
@@ -18,12 +18,16 @@ export const FeaturesAndApps: FC = () => {
         align-items: center;
         position: relative;
         padding: 10rem;
+        ${p => mediaQuery('down', 'sm', p.theme)} {
+          padding: 2rem 1rem 1rem 1rem;
+        }
       `}
     >
       <div
         css={css`
           display: flex;
           flex-direction: row;
+          flex-wrap: wrap;
           justify-content: space-between;
           align-items: center;
           gap: 5rem;
@@ -50,6 +54,10 @@ export const FeaturesAndApps: FC = () => {
             css={css`
               font-size: 48px;
               line-height: 67.2px;
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                font-size: 24px;
+                line-height: 33.2px;
+              }
             `}
           >
             Coqui Studio will{' '}
@@ -81,6 +89,7 @@ export const FeaturesAndApps: FC = () => {
             css={css`
               display: flex;
               flex-direction: row;
+              flex-wrap: wrap;
               gap: 16px;
               align-items: center;
               padding-top: 20px;
@@ -107,10 +116,14 @@ export const FeaturesAndApps: FC = () => {
             display: flex;
             flex-direction: row;
             justify-content: center;
+            flex-wrap: wrap;
             align-items: center;
             flex: 1;
             gap: 32px;
             height: 100%;
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              padding-bottom: 1rem;
+            }
           `}
         >
           <div
@@ -123,6 +136,9 @@ export const FeaturesAndApps: FC = () => {
               gap: 40px;
               align-self: flex-start;
               transform: translateY(-30px);
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                transform: translateY(0);
+              }
             `}
           >
             <SummaryCard
@@ -148,6 +164,9 @@ export const FeaturesAndApps: FC = () => {
               gap: 40px;
               align-self: flex-end;
               transform: translateY(30px);
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                transform: translateY(0);
+              }
             `}
           >
             <SummaryCard
