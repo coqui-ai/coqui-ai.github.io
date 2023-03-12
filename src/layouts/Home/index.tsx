@@ -5,6 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+import { Footer } from 'layouts/Root/components/Footer/Footer';
 import React from 'react';
 import { AboutUs } from './components/AboutUs/AboutUs';
 import { AIVoices } from './components/AIVoices/AIVoices';
@@ -41,6 +42,7 @@ export const HomeLayout = () => {
       <FAQ />
       <Contact />
       <Blogs />
+      <Footer />
       {/* <CtA />
       <Features />
       <Voices />
