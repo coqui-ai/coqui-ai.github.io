@@ -1,9 +1,6 @@
-import { Button } from '@zendeskgarden/react-buttons';
-import { getColor } from '@zendeskgarden/react-theming';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
 import { SecondaryButton, TryNowButton } from './Buttons';
-import { StyledNavigationLink } from './StyledNavigationLink';
 
 export const Hero: FC = () => {
   return (
@@ -11,10 +8,9 @@ export const Hero: FC = () => {
       css={css`
         display: flex;
         justify-content: center;
-        height: 780px;
         position: relative;
         background: linear-gradient(207.81deg, #f5faff 54.98%, #fefffe 92.7%);
-        padding: 1rem 10rem;
+        padding: 5rem 10rem;
       `}
     >
       <div
@@ -58,6 +54,7 @@ export const Hero: FC = () => {
           <p
             css={css`
               font-size: 18px;
+              line-height: 32.4px;
             `}
           >
             Say hello to Coqui Studio. A web application that provides realistic, emotive

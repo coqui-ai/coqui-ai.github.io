@@ -1,30 +1,29 @@
 import styled from 'styled-components';
 
-export const SyntheticVoicesContainer = styled.div`
+export const AboutUsContainer = styled.div`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   flex-wrap: wrap-reverse;
   justify-content: space-between;
   align-items: center;
   gap: 5rem;
   padding: 5rem 10rem;
-  background-color: #f9fafc;
 `;
 
-export const SyntheticVoicesDetailsContainer = styled.div`
+export const AboutUsDetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
   gap: 40px;
 `;
 
-export const SyntheticVoicesDetailsTitle = styled.p`
+export const AboutUsDetailsTitle = styled.p`
   font-family: 'Manrope', sans-serif;
   color: #468d6a;
   font-size: 16px;
 `;
 
-export const SyntheticVoicesDetailsTitleDescription = styled.h2`
+export const AboutUsDetailsTitleDescription = styled.h2`
   font-size: 48px;
   line-height: 67.2px;
   span {
@@ -36,24 +35,16 @@ export const SyntheticVoicesDetailsTitleDescription = styled.h2`
   }
 `;
 
-export const SyntheticVoicesDetailsDescription = styled.p`
+export const AboutUsDetailsDescription = styled.p`
   font-size: 18px;
   line-height: 32.4px;
 `;
 
-export const SyntheticVoicesButtonContainer = styled.div`
+export const AboutUsButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 16px;
   align-items: center;
   padding-top: 20px;
-`;
-
-export const SyntheticVoicesVideoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
 `;

@@ -6,6 +6,7 @@
  */
 
 import React from 'react';
+import { AboutUs } from './components/AboutUs/AboutUs';
 import { AIVoices } from './components/AIVoices/AIVoices';
 import { CitedBy } from './components/CitedBy';
 import { Content } from './components/Content';
@@ -33,6 +34,7 @@ export const HomeLayout = () => {
       <AIVoices />
       <Pricing />
       <SyntheticVoices />
+      <AboutUs />
       {/* <CtA />
       <Features />
       <Voices />

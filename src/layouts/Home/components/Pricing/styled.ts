@@ -36,7 +36,7 @@ export const PricingSubtitle = styled.p`
 export const PricingRow = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   gap: 32px;
   flex-wrap: wrap;
   margin-top: 32px;
