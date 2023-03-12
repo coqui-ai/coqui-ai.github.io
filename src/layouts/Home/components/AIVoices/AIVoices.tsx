@@ -104,7 +104,6 @@ export const AIVoices: FC = () => {
         align-items: center;
         position: relative;
         padding: 10rem;
-        background-color: #f9fafc;
         gap: 30px;
       `}
     >
@@ -183,7 +182,10 @@ export const AIVoices: FC = () => {
             Clone your voice in seconds or use our wide (and always growing) collection of AI
             voices.
           </p>
-          <PrimaryButton text="Try Coqui Studio for free" />
+          <PrimaryButton
+            text="Try Coqui Studio for free"
+            path={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
+          />
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { Button } from '@zendeskgarden/react-buttons';
 import { getColor } from '@zendeskgarden/react-theming';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
-import { TryNowButton } from './Buttons';
+import { SecondaryButton, TryNowButton } from './Buttons';
 import { StyledNavigationLink } from './StyledNavigationLink';
 
 export const Hero: FC = () => {
@@ -73,20 +73,7 @@ export const Hero: FC = () => {
             `}
           >
             <TryNowButton />
-            <StyledNavigationLink to="/">
-              <Button
-                css={css`
-                  border: 2px solid ${p => getColor('yellow', 600, p.theme)};
-                  background-color: transparent;
-                  color: #000;
-                  border-radius: 30px;
-                  font-weight: 400;
-                  padding: 18px 24px;
-                `}
-              >
-                See what we can do
-              </Button>
-            </StyledNavigationLink>
+            <SecondaryButton text="See what we can do" path="/" />
           </div>
         </div>
         <div

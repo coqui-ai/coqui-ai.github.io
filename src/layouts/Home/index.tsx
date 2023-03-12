@@ -14,6 +14,7 @@ import { Features } from './components/Features';
 import { FeaturesAndApps } from './components/FeaturesAndApps';
 import { GetStartedCtA } from './components/GetStartedCta';
 import { Hero } from './components/Hero';
+import { Pricing } from './components/Pricing/Pricing';
 import { PricingTable } from './components/PricingTable';
 import { UsersSection } from './components/Users';
 import { Voices } from './components/Voices';
@@ -29,6 +30,7 @@ export const HomeLayout = () => {
       <FeaturesAndApps />
       <Why />
       <AIVoices />
+      <Pricing />
       {/* <CtA />
       <Features />
       <Voices />

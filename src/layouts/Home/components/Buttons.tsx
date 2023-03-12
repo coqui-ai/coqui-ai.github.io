@@ -14,6 +14,9 @@ import { StyledNavigationLink } from './StyledNavigationLink';
 
 type ButtonType = {
   text: string;
+  textColor?: string;
+  path: string;
+  fullWidth?: boolean;
 };
 
 export const TryNowButton = ({ ...rest }) => {
@@ -35,9 +38,9 @@ export const TryNowButton = ({ ...rest }) => {
   );
 };
 
-export const PrimaryButton: FC<ButtonType> = ({ text }) => {
+export const PrimaryButton: FC<ButtonType> = ({ text, path, fullWidth }) => {
   return (
-    <StyledNavigationLink to={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}>
+    <StyledNavigationLink to={path}>
       <Button
         css={css`
           border-width: 0;
@@ -46,6 +49,27 @@ export const PrimaryButton: FC<ButtonType> = ({ text }) => {
           border-radius: 30px;
           font-weight: 400;
           padding: 18px 24px;
+          width: ${fullWidth ? '100%' : ''};
+        `}
+      >
+        {text}
+      </Button>
+    </StyledNavigationLink>
+  );
+};
+
+export const SecondaryButton: FC<ButtonType> = ({ text, textColor, path, fullWidth }) => {
+  return (
+    <StyledNavigationLink to={path}>
+      <Button
+        css={css`
+          border: 2px solid ${p => getColor('yellow', 600, p.theme)};
+          background-color: transparent;
+          color: ${textColor || '#000'};
+          border-radius: 30px;
+          font-weight: 400;
+          padding: 18px 24px;
+          width: ${fullWidth ? '100%' : ''};
         `}
       >
         {text}
