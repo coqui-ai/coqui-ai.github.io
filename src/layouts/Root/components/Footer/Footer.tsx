@@ -19,10 +19,13 @@ import {
   FooterSectionColumnLeft,
   FooterSectionColumnMiddle,
   FooterSectionColumnRight,
+  FooterSignatureRow,
+  FooterSignatureText,
   FooterSignUpTitle,
   FooterSocialsImg,
   FooterSocialsRow,
-  FooterStyledLinksItem
+  FooterStyledLinksItem,
+  SaveTimeContainer
 } from './styled';
 import twitter from './twitter_logo.png';
 import yt from './youtube_logo.png';
@@ -115,6 +118,9 @@ const SignUp = () => {
                 font-weight: 400;
                 padding: 18px 24px;
                 width: fit-content;
+                ${p => mediaQuery('down', 'sm', p.theme)} {
+                  padding: 4px 12px;
+                }
               `}
             >
               Subscribe
@@ -196,6 +202,7 @@ const Logo: React.FC = () => {
               ${p => mediaQuery('down', 'xs', p.theme)} {
                 height: ${p => p.theme.iconSizes.lg}px;
               }
+              min-width: 250px;
             `}
             width={300}
           />
@@ -205,10 +212,22 @@ const Logo: React.FC = () => {
   );
 };
 
+// const SaveTime: FC = () => {
+//   return <SaveTimeContainer>Hi</SaveTimeContainer>;
+// };
+
 export const Footer: FC<FooterPropsType> = ({ hasSaveTimeBanner }) => {
   return (
-    <FooterContainer>
+    <FooterContainer
+      css={css`
+        ${p => mediaQuery('down', 'sm', p.theme)} {
+          padding: 1rem;
+        }
+      `}
+      hasBanner={!!hasSaveTimeBanner}
+    >
       <FooterRow>
+        {/* <SaveTime /> */}
         <FooterSectionColumnLeft>
           <Logo />
         </FooterSectionColumnLeft>
@@ -247,6 +266,10 @@ export const Footer: FC<FooterPropsType> = ({ hasSaveTimeBanner }) => {
           </FooterSectionColumnLeft>
         </FooterSectionColumnRight>
       </FooterRow>
+      <FooterSignatureRow>
+        <FooterSignatureText>Made by Atomic Digital Marketing.</FooterSignatureText>
+        <FooterSignatureText>© Coqui 2023. All Rights Reserved</FooterSignatureText>
+      </FooterSignatureRow>
     </FooterContainer>
   );
 };

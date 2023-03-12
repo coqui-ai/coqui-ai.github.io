@@ -1,14 +1,27 @@
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 
-export const FooterContainer = styled.div`
+type FooterContainerProps = {
+  hasBanner: boolean;
+};
+
+export const FooterContainer = styled.div<FooterContainerProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-  padding: 10rem;
+  padding: ${({ hasBanner }) => (hasBanner ? '15rem 10rem 10rem 10rem' : '10rem 10rem 5rem 10rem')};
   gap: 30px;
   background-color: #03363d;
+`;
+
+export const SaveTimeContainer = styled(FooterContainer)`
+  background-color: #1f73b7;
+  position: absolute;
+  width: 80%;
+  left: 0;
+  top: 0;
+  transform: translate(10rem, -21rem);
 `;
 
 export const FooterRow = styled.div`
@@ -16,7 +29,10 @@ export const FooterRow = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  position: relative;
   gap: 32px;
+  padding-bottom: 64px;
+  border-bottom: 1px solid #f9f9f9;
 `;
 
 export const FooterSectionColumn = styled.div`
@@ -43,7 +59,6 @@ export const FooterSectionColumnRight = styled(FooterSectionColumn)`
 export const FooterLinksRow = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   gap: 50px;
   align-items: center;
   justify-content: center;
@@ -52,7 +67,6 @@ export const FooterLinksRow = styled.div`
 export const FooterSocialsRow = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   gap: 16px;
   align-items: center;
   justify-content: center;
@@ -79,4 +93,17 @@ export const FooterSignUpTitle = styled.p`
   letter-spacing: 1px;
   color: #ffffff;
   font-weight: 600;
+`;
+
+export const FooterSignatureRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
+export const FooterSignatureText = styled.p`
+  line-height: 28px;
+  font-size: 14px;
+  color: #ffffff;
 `;
