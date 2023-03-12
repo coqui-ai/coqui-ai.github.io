@@ -9,6 +9,7 @@ import React from 'react';
 import { AboutUs } from './components/AboutUs/AboutUs';
 import { AIVoices } from './components/AIVoices/AIVoices';
 import { CitedBy } from './components/CitedBy';
+import { Contact } from './components/Contact/Contact';
 import { Content } from './components/Content';
 import { CtA } from './components/CtA';
 import { FAQ } from './components/FAQ/FAQ';
@@ -37,6 +38,7 @@ export const HomeLayout = () => {
       <SyntheticVoices />
       <AboutUs />
       <FAQ />
+      <Contact />
       {/* <CtA />
       <Features />
       <Voices />
