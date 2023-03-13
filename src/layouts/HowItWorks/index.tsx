@@ -12,12 +12,17 @@ import { Pricing } from 'layouts/Home/components/Pricing/Pricing';
 import React from 'react';
 import { FAQ } from './components/FAQ/FAQ';
 import { Hero } from './components/Hero/Hero';
+import { Solution } from './components/Solution/Solution';
+import { solutionData } from './data/solutionsData';
 
 export const HowItWorksLayout = () => {
   return (
     <>
       <Hero />
       <CitedBy />
+      {solutionData.map((s, i) => (
+        <Solution key={i} index={i} {...s} />
+      ))}
       <FAQ />
       <Pricing />
       <Contact />
