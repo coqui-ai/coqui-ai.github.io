@@ -7,7 +7,6 @@
 
 import { useLocation } from '@reach/router';
 import { IconButton } from '@zendeskgarden/react-buttons';
-import { Dropdown, Item, Menu, Trigger } from '@zendeskgarden/react-dropdowns';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
@@ -52,6 +51,10 @@ const StyledHeader = styled.header.attrs({ role: 'banner' })`
   box-shadow: ${p => headerBoxShadow(p.theme)};
   padding: 0 10rem;
   height: ${p => headerHeight(p.theme)}px;
+  ${p => mediaQuery('down', 'md', p.theme)} {
+    padding: 0 2rem;
+    height: ${p => p.theme.space.base * 15}px;
+  }
 
   &[data-show-navigation='true'] {
     border-bottom-color: ${p => p.theme.palette.white};
@@ -205,30 +208,8 @@ const MobileNav = ({
         </StyledMobileNavLink>
       </StyledMobileNavItem>
       <StyledMobileNavItem>
-        <StyledMobileNavLink to="/pricing">Pricing</StyledMobileNavLink>
+        <StyledMobileNavLink to="/how-it-works">How it works</StyledMobileNavLink>
       </StyledMobileNavItem>
-      <Dropdown
-        onSelect={item => {
-          window.location.href = item;
-        }}
-      >
-        <Trigger>
-          <StyledMobileNavItem>
-            <StyledMobileNavMenu
-              css={css`
-                background-color: ${p => p.theme.palette.tofu};
-              `}
-            >
-              Use Cases
-            </StyledMobileNavMenu>
-          </StyledMobileNavItem>
-        </Trigger>
-        <Menu hasArrow>
-          <Item value="/video-games">Video Games</Item>
-          <Item value="/post-production">Post Production</Item>
-          <Item value="/dubbing">Dubbing</Item>
-        </Menu>
-      </Dropdown>
       <StyledMobileNavItem>
         <TryNowButton />
       </StyledMobileNavItem>
@@ -266,7 +247,7 @@ const Header = ({}) => {
           `}
         >
           <a href="/">Home</a>
-          <a href="/pricing">How it works</a>
+          <a href="/how-it-works">How it works</a>
           {/* <Dropdown
             onSelect={item => {
               window.location.href = item;

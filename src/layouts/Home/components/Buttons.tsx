@@ -87,3 +87,28 @@ export const SecondaryButton: FC<ButtonType> = ({ text, textColor, path, fullWid
     </StyledNavigationLink>
   );
 };
+
+export const TertiaryButton: FC<ButtonType> = ({ text, path, fullWidth }) => {
+  return (
+    <StyledNavigationLink
+      to={path}
+      css={css`
+        width: ${fullWidth ? '100%' : ''};
+      `}
+    >
+      <Button
+        css={css`
+          border-width: 0;
+          background-color: #000000;
+          color: #fff;
+          border-radius: 30px;
+          font-weight: 400;
+          padding: 18px 24px;
+          width: ${fullWidth ? '100%' : ''};
+        `}
+      >
+        {text}
+      </Button>
+    </StyledNavigationLink>
+  );
+};

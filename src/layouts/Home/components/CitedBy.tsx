@@ -7,6 +7,8 @@ import { css } from 'styled-components';
 const User: React.FC<{
   user: string;
   images: any;
+  minWidth?: string;
+  maxWidth?: string;
 }> = ({ user, images }) => {
   const image = images.find((edge: any) => edge.node.fluid.src.includes(user));
 
@@ -19,7 +21,7 @@ const User: React.FC<{
         margin-right: auto;
         margin-left: auto;
         width: 100px;
-        min-width: 80px;
+        min-width: 50px;
         height: auto;
         ${p => mediaQuery('down', 'md', p.theme)} {
           width: 60px;
@@ -54,36 +56,95 @@ export const CitedBy = () => {
     <div
       css={css`
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
+        padding-bottom: 3rem;
         align-items: center;
-        gap: 5rem;
-        padding: 0 30px;
-        padding: 5rem 10rem 5rem 10rem;
-        ${p => mediaQuery('down', 'sm', p.theme)} {
-          padding: 1rem;
-        }
-        max-width: 90%;
       `}
     >
-      <p
+      <div
         css={css`
-          font-size: 22px;
-          color: #468d6a ${p => mediaQuery('down', 'sm', p.theme)} {
-            font-size: 16px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          ${p => mediaQuery('down', 'lg', p.theme)} {
+            display: flex;
           }
-          color: #468d6a;
-          min-width: fit-content;
+          ${p => mediaQuery('up', 'lg', p.theme)} {
+            display: none;
+          }
         `}
       >
-        Our code is cited by
-      </p>
-      <User user="google" images={data.allImageSharp.edges} />
-      <User user="facebook" images={data.allImageSharp.edges} />
-      <User user="spotify" images={data.allImageSharp.edges} />
-      <User user="t2" images={data.allImageSharp.edges} />
-      <User user="microsoft" images={data.allImageSharp.edges} />
-      <User user="apple" images={data.allImageSharp.edges} />
+        <p
+          css={css`
+            font-size: 22px;
+            color: #468d6a ${p => mediaQuery('down', 'sm', p.theme)} {
+              font-size: 16px;
+            }
+            color: #468d6a;
+            min-width: fit-content;
+          `}
+        >
+          Our code is cited by small
+        </p>
+        <div
+          css={css`
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            padding: 0 30px;
+            padding: 2rem 1rem;
+            width: 100%;
+          `}
+        >
+          <User user="google" images={data.allImageSharp.edges} />
+          <User user="facebook" images={data.allImageSharp.edges} />
+          <User user="spotify" images={data.allImageSharp.edges} />
+          <User user="t2" images={data.allImageSharp.edges} />
+          <User user="microsoft" images={data.allImageSharp.edges} />
+          <User user="apple" images={data.allImageSharp.edges} />
+        </div>
+      </div>
+      <div
+        css={css`
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 5rem;
+          padding: 0 30px;
+          padding: 5rem 10rem 5rem 10rem;
+          ${p => mediaQuery('down', 'lg', p.theme)} {
+            display: none;
+          }
+          ${p => mediaQuery('down', 'xl', p.theme)} {
+            gap: 3rem;
+          }
+          max-width: 90%;
+          ${p => mediaQuery('up', 'lg', p.theme)} {
+            display: flex;
+          }
+        `}
+      >
+        <p
+          css={css`
+            font-size: 22px;
+            color: #468d6a ${p => mediaQuery('down', 'sm', p.theme)} {
+              font-size: 16px;
+            }
+            color: #468d6a;
+            min-width: fit-content;
+          `}
+        >
+          Our code is cited by large
+        </p>
+        <User user="google" images={data.allImageSharp.edges} />
+        <User user="facebook" images={data.allImageSharp.edges} />
+        <User user="spotify" images={data.allImageSharp.edges} />
+        <User user="t2" images={data.allImageSharp.edges} />
+        <User user="microsoft" images={data.allImageSharp.edges} />
+        <User user="apple" images={data.allImageSharp.edges} />
+      </div>
       {/* <div
         css={css`
           display: grid;
