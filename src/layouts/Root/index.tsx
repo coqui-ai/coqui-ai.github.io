@@ -119,7 +119,9 @@ const RootLayout: React.FC<IRootLayoutProps> = ({
       <Header showVoiceSearch={showVoiceSearch} />
 
       <MainType>{children}</MainType>
-      {window.location.pathname !== '/' && <Footer />}
+      {window.location.pathname !== '/' && window.location.pathname !== '/how-it-works' && (
+        <Footer />
+      )}
     </div>
   );
 };

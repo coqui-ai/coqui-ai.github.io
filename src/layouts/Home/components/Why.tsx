@@ -73,6 +73,12 @@ export const Why: FC = () => {
           flex-wrap: wrap;
           gap: 32px;
           align-self: flex-start;
+          ${p => mediaQuery('up', 'lg', p.theme)} {
+            padding-left: 10rem;
+          }
+          ${p => mediaQuery('down', 'lg', p.theme)} {
+            align-self: center;
+          }
         `}
       >
         <SummaryCard
@@ -98,6 +104,12 @@ export const Why: FC = () => {
           flex-wrap: wrap;
           gap: 32px;
           align-self: flex-end;
+          ${p => mediaQuery('up', 'lg', p.theme)} {
+            padding-right: 10rem;
+          }
+          ${p => mediaQuery('down', 'lg', p.theme)} {
+            align-self: center;
+          }
         `}
       >
         <SummaryCard
@@ -113,7 +125,7 @@ export const Why: FC = () => {
         <SummaryCard
           fill="#FFF0F1"
           phrase="All-in-one workstation"
-          description="Direct your masterpiece, creating conversations with  multiple AI Voices in one easy-to-use tool."
+          description="Direct your masterpiece, creating conversations with multiple AI Voices in one easy-to-use tool."
         />
       </div>
     </div>

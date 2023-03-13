@@ -26,7 +26,7 @@ export const Content: FC = () => {
           border-radius: 20px;
           padding: 5rem 10rem;
           ${p => mediaQuery('down', 'sm', p.theme)} {
-            padding: 1rem;
+            padding: 2rem;
           }
         `}
       >

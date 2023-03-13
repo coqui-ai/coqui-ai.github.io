@@ -15,8 +15,9 @@ export const SolutionContainer = styled.div<SolutionContainerProps>`
   position: relative;
   padding: 5rem 10rem;
   gap: 30px;
-  ${p => mediaQuery('down', 'sm', p.theme)} {
+  ${p => mediaQuery('down', 'md', p.theme)} {
     padding: 2rem;
+    flex-direction: column-reverse;
   }
 `;
 

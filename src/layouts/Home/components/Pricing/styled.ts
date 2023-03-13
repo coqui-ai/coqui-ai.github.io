@@ -14,7 +14,7 @@ export const PricingContainer = styled.div`
   padding: 10rem;
   gap: 30px;
   background-color: #03363d;
-  ${p => mediaQuery('down', 'sm', p.theme)} {
+  ${p => mediaQuery('down', 'md', p.theme)} {
     padding: 2rem;
   }
 `;
@@ -27,9 +27,12 @@ export const PricingTitle = styled.h2`
   text-fill-color: transparent;
   font-size: 48px;
   line-height: 67.2px;
+  ${p => mediaQuery('down', 'md', p.theme)} {
+    text-align: center;
+  }
   ${p => mediaQuery('down', 'sm', p.theme)} {
-    font-size: 24px;
-    line-height: 32.2px;
+    font-size: 32px;
+    line-height: 52.2px;
     text-align: center;
   }
 `;

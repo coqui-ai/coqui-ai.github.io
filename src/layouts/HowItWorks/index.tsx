@@ -9,6 +9,7 @@ import { Blogs } from 'layouts/Home/components/Blogs/Blogs';
 import { CitedBy } from 'layouts/Home/components/CitedBy';
 import { Contact } from 'layouts/Home/components/Contact/Contact';
 import { Pricing } from 'layouts/Home/components/Pricing/Pricing';
+import { Footer } from 'layouts/Root/components/Footer/Footer';
 import React from 'react';
 import { FAQ } from './components/FAQ/FAQ';
 import { Hero } from './components/Hero/Hero';
@@ -27,6 +28,7 @@ export const HowItWorksLayout = () => {
       <Pricing />
       <Contact />
       <Blogs />
+      <Footer />
     </>
   );
 };

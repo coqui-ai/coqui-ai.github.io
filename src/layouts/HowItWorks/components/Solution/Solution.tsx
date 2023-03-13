@@ -1,4 +1,5 @@
 import { Accordion } from '@zendeskgarden/react-accordions';
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
 import {
@@ -58,6 +59,9 @@ export const Solution: FC<SolutionType> = ({
           css={css`
             width: 710px;
             height: 470px;
+            ${p => mediaQuery('down', 'md', p.theme)} {
+              height: auto;
+            }
           `}
         />
       </SolutionSegmentRight>

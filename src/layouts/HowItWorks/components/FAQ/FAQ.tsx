@@ -20,7 +20,7 @@ const faqLeftSectionData: FAQAccordionType[] = [
 ];
 
 const faqRightSectionData: FAQAccordionType[] = [
-  { id: 4, title: 'What makes your company different from others in the industry?', detail: '' },
+  { id: 4, title: 'Why makes your company different from others in the industry?', detail: '' },
   { id: 5, title: 'How can I get started with your company?', detail: '' },
   { id: 6, title: 'How can I contact your company if I have questions or concerns?', detail: '' }
 ];
@@ -34,7 +34,7 @@ export const FAQ: FC = () => {
       </FAQSectionTitle>
       <FAQRowContainer>
         <FAQColumn>
-          <Accordion level={4} isBare>
+          <Accordion level={4} isBare expandedSections={[]}>
             {faqLeftSectionData.map(d => (
               <Accordion.Section key={d.id}>
                 <Accordion.Header>
@@ -46,8 +46,8 @@ export const FAQ: FC = () => {
           </Accordion>
         </FAQColumn>
         <FAQColumn>
-          <Accordion level={4} isBare>
-            {faqLeftSectionData.map(d => (
+          <Accordion level={4} isBare expandedSections={[]}>
+            {faqRightSectionData.map(d => (
               <Accordion.Section key={d.id}>
                 <Accordion.Header>
                   <Accordion.Label>{d.title}</Accordion.Label>

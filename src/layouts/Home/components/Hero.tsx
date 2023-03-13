@@ -1,9 +1,19 @@
-import { mediaQuery } from '@zendeskgarden/react-theming';
-import React, { FC } from 'react';
+import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
+import React, { FC, useState } from 'react';
 import { css } from 'styled-components';
 import { SecondaryButton, TryNowButton } from './Buttons';
+import { StyledButton } from './StyledButtons';
+import { ReactComponent as UnmutedSpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-unmuted-fill.svg';
+import { ReactComponent as MutedSpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-muted-fill.svg';
+import VideoGameMp4 from '../../../data/videos/use-cases/video-games/video-games.mp4';
+import VideoGameWebM from '../../../data/videos/use-cases/video-games/video-games.webm';
 
 export const Hero: FC = () => {
+  const [mutedAttribute, setMutedAttribute] = useState({ muted: true });
+
+  const toggleMuted = () => {
+    setMutedAttribute(mutedAttribute.muted ? { muted: false } : { muted: true });
+  };
   return (
     <div
       css={css`
@@ -88,19 +98,63 @@ export const Hero: FC = () => {
             flex: 1;
           `}
         >
-          <img
-            height={640}
-            width={640}
-            src="https://dummyimage.com/640x640/fff/aaa"
-            alt="placeholder"
+          <div
             css={css`
-              max-width: none;
-              ${p => mediaQuery('down', 'sm', p.theme)} {
-                height: 200px;
-                width: 200px;
-              }
+              width: 100%;
+              height: 100%;
             `}
-          />
+          >
+            <div
+              css={css`
+                display: inline-block;
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+              `}
+            >
+              <div
+                css={css`
+                  position: absolute;
+                  bottom: 0;
+                  right: 0;
+                  transform: translate(-50%, -50%);
+                  z-index: 10;
+                `}
+              >
+                <StyledButton
+                  onClick={() => toggleMuted()}
+                  css={css`
+                    border-width: 0;
+                    background-color: ${p => getColor('yellow', 600, p.theme)};
+                    color: #fff;
+                  `}
+                >
+                  {!mutedAttribute.muted && <UnmutedSpeakerIcon size={1.5} />}
+                  {mutedAttribute.muted && <MutedSpeakerIcon size={1.5} />}
+                </StyledButton>
+              </div>
+              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+              <video
+                autoPlay
+                loop
+                {...mutedAttribute}
+                playsInline
+                css={css`
+                  max-width: 640px;
+                  height: auto;
+                  border-radius: 20px;
+                  object-fit: cover;
+                  ${p => mediaQuery('down', 'sm', p.theme)} {
+                    height: 200px;
+                    width: 100%;
+                  }
+                `}
+              >
+                <source src={VideoGameMp4} type="video/mp4" />
+                <source src={VideoGameWebM} type="video/webm" />
+              </video>
+            </div>
+          </div>
         </div>
       </div>
     </div>

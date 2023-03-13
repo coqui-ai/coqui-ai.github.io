@@ -84,7 +84,7 @@ export const CitedBy = () => {
             min-width: fit-content;
           `}
         >
-          Our code is cited by small
+          Our code is cited by
         </p>
         <div
           css={css`
@@ -136,7 +136,7 @@ export const CitedBy = () => {
             min-width: fit-content;
           `}
         >
-          Our code is cited by large
+          Our code is cited by
         </p>
         <User user="google" images={data.allImageSharp.edges} />
         <User user="facebook" images={data.allImageSharp.edges} />

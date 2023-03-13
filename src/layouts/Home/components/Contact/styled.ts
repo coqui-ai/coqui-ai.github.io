@@ -13,6 +13,9 @@ export const ContactContainer = styled.div`
   ${p => mediaQuery('down', 'sm', p.theme)} {
     padding: 2rem;
   }
+  ${p => mediaQuery('down', 'md', p.theme)} {
+    flex-direction: column;
+  }
 `;
 
 export const ContactDetailsContainer = styled.div`
@@ -39,7 +42,7 @@ export const ContactDetailsTitleDescription = styled.h2`
     background-clip: text;
     text-fill-color: transparent;
   }
-  ${p => mediaQuery('down', 'sm', p.theme)} {
+  ${p => mediaQuery('down', 'md', p.theme)} {
     text-align: center;
   }
 `;

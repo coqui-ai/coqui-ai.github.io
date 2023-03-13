@@ -9,7 +9,7 @@ export const FAQContainer = styled.div`
   position: relative;
   padding: 10rem;
   gap: 30px;
-  ${p => mediaQuery('down', 'sm', p.theme)} {
+  ${p => mediaQuery('down', 'md', p.theme)} {
     padding: 2rem;
   }
 `;
@@ -40,6 +40,9 @@ export const FAQRowContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 16px;
+  ${p => mediaQuery('down', 'lg', p.theme)} {
+    flex-direction: column;
+  }
 `;
 
 export const FAQColumn = styled.div`

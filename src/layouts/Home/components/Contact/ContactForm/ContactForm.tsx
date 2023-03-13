@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-curly-newline */
 import { Button } from '@zendeskgarden/react-buttons';
 import { Field, Label, Message, Textarea } from '@zendeskgarden/react-forms';
-import { getColor } from '@zendeskgarden/react-theming';
+import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import { css } from 'styled-components';
@@ -165,6 +165,10 @@ export const ContactForm = () => {
           font-weight: 400;
           padding: 18px 24px;
           width: fit-content;
+          ${p => mediaQuery('down', 'md', p.theme)} {
+            margin-top: 2rem;
+            width: 100%;
+          }
         `}
       >
         Send a message

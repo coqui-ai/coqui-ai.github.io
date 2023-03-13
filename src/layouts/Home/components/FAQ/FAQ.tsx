@@ -34,7 +34,7 @@ export const FAQ: FC = () => {
       </FAQSectionTitle>
       <FAQRowContainer>
         <FAQColumn>
-          <Accordion level={4} isBare>
+          <Accordion level={4} isBare expandedSections={[]}>
             {faqLeftSectionData.map(d => (
               <Accordion.Section key={d.id}>
                 <Accordion.Header>
@@ -46,8 +46,8 @@ export const FAQ: FC = () => {
           </Accordion>
         </FAQColumn>
         <FAQColumn>
-          <Accordion level={4} isBare>
-            {faqLeftSectionData.map(d => (
+          <Accordion level={4} isBare expandedSections={[]}>
+            {faqRightSectionData.map(d => (
               <Accordion.Section key={d.id}>
                 <Accordion.Header>
                   <Accordion.Label>{d.title}</Accordion.Label>

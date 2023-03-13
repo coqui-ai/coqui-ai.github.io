@@ -54,17 +54,18 @@ export const BlogItemsContainer = styled.div`
   flex-wrap: wrap;
   gap: 24px;
   justify-content: space-between;
-  ${p => mediaQuery('down', 'sm', p.theme)} {
+  ${p => mediaQuery('down', 'md', p.theme)} {
     gap: 5rem;
+    justify-content: center;
   }
 `;
 
 export const BlogButtonContainer = styled.div`
   flex-direction: column;
-  ${p => mediaQuery('up', 'sm', p.theme)} {
+  ${p => mediaQuery('up', 'md', p.theme)} {
     display: flex;
   }
-  ${p => mediaQuery('down', 'sm', p.theme)} {
+  ${p => mediaQuery('down', 'md', p.theme)} {
     display: none;
   }
 `;
@@ -73,10 +74,10 @@ export const BlogButtonContainerMobile = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 32px;
-  ${p => mediaQuery('up', 'sm', p.theme)} {
+  ${p => mediaQuery('up', 'md', p.theme)} {
     display: none;
   }
-  ${p => mediaQuery('down', 'sm', p.theme)} {
+  ${p => mediaQuery('down', 'md', p.theme)} {
     display: flex;
   }
 `;

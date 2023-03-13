@@ -134,13 +134,15 @@ export const FeaturesAndApps: FC = () => {
             display: flex;
             flex-direction: row;
             justify-content: center;
-            flex-wrap: wrap;
             align-items: center;
             flex: 1;
             gap: 32px;
             height: 100%;
             ${p => mediaQuery('down', 'sm', p.theme)} {
               padding-bottom: 1rem;
+            }
+            ${p => mediaQuery('down', 'lg', p.theme)} {
+              flex-wrap: wrap;
             }
           `}
         >

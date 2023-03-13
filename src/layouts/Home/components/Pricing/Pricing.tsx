@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { PricingCard } from './PricingCard/PricingCard';
 import voiceImg from './voice.png';
 import {
@@ -11,8 +11,11 @@ import {
   PricingTitle
 } from './styled';
 import { css } from 'styled-components';
+import { Toggle, Label, Field } from '@zendeskgarden/react-forms';
 
 export const Pricing: FC = () => {
+  const [isMonthly, setIsMonthly] = useState<boolean>(false);
+
   const freeTrialJsx: JSX.Element = (
     <PricingCardTopRow>
       <PricingCardPriceTitle textColor="#FFFFFF">$0</PricingCardPriceTitle>
@@ -22,8 +25,10 @@ export const Pricing: FC = () => {
 
   const starterJsx: JSX.Element = (
     <PricingCardTopRow>
-      <PricingCardPriceTitle textColor="#000000">$20</PricingCardPriceTitle>
-      <PricingCardPriceSummary textColor="#000000">/ 4 hours</PricingCardPriceSummary>
+      <PricingCardPriceTitle textColor="#000000">${isMonthly ? '20' : '20'}</PricingCardPriceTitle>
+      <PricingCardPriceSummary textColor="#000000">
+        {isMonthly ? '/ 4 hours' : '/ 4 hours'}
+      </PricingCardPriceSummary>
     </PricingCardTopRow>
   );
 
@@ -51,6 +56,43 @@ export const Pricing: FC = () => {
       />
       <PricingTitle>Pricing that delivers value to match your needs.</PricingTitle>
       <PricingSubtitle>Pick a plan that suits your requirements.</PricingSubtitle>
+      <div
+        css={css`
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 8px;
+        `}
+      >
+        <PricingSubtitle>Annually save up to 25% </PricingSubtitle>
+        <Field>
+          <Toggle
+            css={css`
+              [data-garden-id='forms.toggle_svg'] {
+                color: #468d6a !important;
+              }
+            `}
+            onChange={e => setIsMonthly(e.target.checked)}
+          >
+            <Label
+              css={css`
+                color: #ffffff;
+                font-weight: 400;
+                font-size: 16px;
+                [data-garden-id='forms.toggle_svg'] {
+                  color: #468d6a !important;
+                }
+                ::before {
+                  background-color: #ffffff !important;
+                  border: 1px solid #468d6a !important;
+                }
+              `}
+            >
+              Monthly
+            </Label>
+          </Toggle>
+        </Field>
+      </div>
       <PricingRow>
         <PricingCard
           top={freeTrialJsx}
