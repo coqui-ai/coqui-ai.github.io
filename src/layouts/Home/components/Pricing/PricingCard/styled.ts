@@ -18,9 +18,10 @@ type PricingCardSummaryTextColorType = {
 export const PricingCardContainer = styled.div<PricingCardContainerType>`
   display: flex;
   flex-direction: column;
+  position: relative;
   justify-content: flex-start;
   gap: 24px;
-  padding: 70px 33px 33px;
+  padding: 33px 33px 33px;
   background-color: ${({ bgColor }) => bgColor || 'transparent'};
   border: ${({ cardBorderColor }) => `3px solid ${cardBorderColor}` || 'none'};
   /* border: 2px solid orange; */
@@ -40,7 +41,8 @@ export const PricingCardSummaryContainer = styled.div<PricingCardPrimaryColorTyp
   gap: 10px;
   border-bottom: 1px solid ${({ primaryColor }) => primaryColor || '#000000'};
   width: 100%;
-  position: relative;
+  height: 200px;
+  align-items: ${({ primaryColor }) => (primaryColor === '#000000' ? 'center' : 'flex-start')};
   ${p => mediaQuery('down', 'sm', p.theme)} {
     height: auto;
     padding-bottom: 1rem;
@@ -87,11 +89,14 @@ export const PricingCardChip = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #468d6a;
+  background-color: #e35b66;
   color: #ffffff;
-  border-radius: 5px;
-  width: 110px;
+  width: 100%;
   padding: 5px 20px;
   position: absolute;
-  top: -40px;
+  top: 0;
+  left: 0;
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+  text-transform: uppercase;
 `;

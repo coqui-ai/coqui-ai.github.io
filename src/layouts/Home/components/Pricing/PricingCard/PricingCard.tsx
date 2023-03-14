@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { PrimaryButton, SecondaryButton } from '../../Buttons';
 import {
   PricingCardButtonContainer,
@@ -11,6 +11,7 @@ import {
 } from './styled';
 import CheckCircle from './check_circle.png';
 import { css } from 'styled-components';
+import { PricingCardPriceSummary, PricingCardPriceTitle, PricingCardTopRow } from '../styled';
 
 type PricingCardType = {
   top: JSX.Element;
@@ -24,6 +25,116 @@ type PricingCardType = {
   cardBorderColor?: string;
   featureList: string[];
   chipText?: string;
+  hasToggle?: boolean;
+};
+
+type PriceTab = 'standard' | 'discount';
+
+const PriceSelector = ({
+  selectedTab,
+  setSelectedTab
+}: {
+  selectedTab: PriceTab;
+  setSelectedTab: (v: PriceTab) => void;
+}) => {
+  return (
+    <div
+      css={`
+        width: 100%;
+        margin-top: 16px;
+      `}
+    >
+      <div
+        css={css`
+          display: flex;
+          flex-direction: row;
+          gap: 16px;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 10px;
+        `}
+      >
+        <PricingCardPriceTitle textColor="#000000">
+          ${selectedTab === 'standard' ? '20' : '175'}
+        </PricingCardPriceTitle>
+        <PricingCardPriceSummary textColor="#000000">
+          {selectedTab === 'standard' ? '/ 4 hours' : '/ 50 hours'}
+        </PricingCardPriceSummary>
+        {selectedTab !== 'standard' && (
+          <div
+            css={`
+              background-color: #186146;
+              color: #fff;
+              border-radius: 4px;
+              padding: 2px 4px;
+              font-size: 12px;
+            `}
+          >
+            Save 30%
+          </div>
+        )}
+      </div>
+      <div
+        css={`
+          border-radius: 23px;
+          background-color: #e9ebed;
+          display: flex;
+          width: 100%;
+          height: 26px;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 10px;
+        `}
+      >
+        <div
+          onClick={() => setSelectedTab('standard')}
+          css={`
+            flex-grow: 1;
+            padding: 8px 8px;
+            border-radius: 23px;
+            cursor: pointer;
+            font-size: 12px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            ${selectedTab === 'standard' &&
+            `
+              font-size: 14px;
+              background-color: #186146;
+              color: #FFFFFF;
+            `}
+          `}
+        >
+          Standard
+        </div>
+        <div
+          onClick={() => setSelectedTab('discount')}
+          css={`
+            flex-grow: 1;
+            padding: 8px 8px;
+            border-radius: 23px;
+            cursor: pointer;
+            font-size: 12px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            ${selectedTab === 'discount' &&
+            `
+              font-size: 14px;
+              background-color: #186146;
+              color: #FFFFFF;
+            `}
+          `}
+        >
+          Discount
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export const PricingCard: FC<PricingCardType> = ({
@@ -37,8 +148,10 @@ export const PricingCard: FC<PricingCardType> = ({
   cardBorderColor,
   featureList,
   summaryTextColor,
-  chipText
+  chipText,
+  hasToggle
 }) => {
+  const [selectedTab, setSelectedTab] = useState<PriceTab>('standard');
   const renderButton: () => JSX.Element = () => {
     switch (buttonType) {
       case 'primary':
@@ -56,9 +169,10 @@ export const PricingCard: FC<PricingCardType> = ({
       cardBorderColor={cardBorderColor}
       primaryColor={textColor}
     >
+      {chipText && <PricingCardChip>{chipText}</PricingCardChip>}
       <PricingCardSummaryContainer primaryColor={textColor}>
-        {chipText && <PricingCardChip>{chipText}</PricingCardChip>}
-        {top}
+        {!hasToggle && top}
+        {hasToggle && <PriceSelector selectedTab={selectedTab} setSelectedTab={setSelectedTab} />}
         <PricingCardSummary summaryTextColor={summaryTextColor}>{summary}</PricingCardSummary>
       </PricingCardSummaryContainer>
       <PricingCardButtonContainer>{renderButton()}</PricingCardButtonContainer>
