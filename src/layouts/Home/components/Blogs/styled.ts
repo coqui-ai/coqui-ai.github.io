@@ -51,6 +51,7 @@ export const BlogsTitleDescription = styled.h2`
 export const BlogItemsContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 24px;
   justify-content: space-between;

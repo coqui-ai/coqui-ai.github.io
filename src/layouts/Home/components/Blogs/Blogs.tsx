@@ -69,7 +69,7 @@ export const Blogs: FC = () => {
           Learn about the <span>latest in voice AI</span> from trusted experts.
         </BlogsTitleDescription>
         <BlogButtonContainer>
-          <SecondaryButton text="See all" path="/" />
+          <SecondaryButton text="See all" path="/blog" />
         </BlogButtonContainer>
       </BlogsTitleRow>
       <BlogItemsContainer>
@@ -78,7 +78,7 @@ export const Blogs: FC = () => {
         ))}
       </BlogItemsContainer>
       <BlogButtonContainerMobile>
-        <SecondaryButton text="See all" path="/" fullWidth />
+        <SecondaryButton text="See all" path="/blog" fullWidth />
       </BlogButtonContainerMobile>
     </BlogsContainer>
   );

@@ -5,6 +5,7 @@ export const BlogCardContainer = styled.div`
   flex-direction: column;
   gap: 24px;
   height: 470px;
+  max-width: 380px;
 `;
 
 export const BlogCardMetaRow = styled.div`

@@ -13,6 +13,7 @@ import { Footer } from 'layouts/Root/components/Footer/Footer';
 import React from 'react';
 import { FAQ } from './components/FAQ/FAQ';
 import { Hero } from './components/Hero/Hero';
+import { Socials } from './components/Socials/Socials';
 import { Solution } from './components/Solution/Solution';
 import { solutionData } from './data/solutionsData';
 
@@ -25,6 +26,7 @@ export const HowItWorksLayout = () => {
         <Solution key={i} index={i} {...s} />
       ))}
       <FAQ />
+      <Socials />
       <Pricing />
       <Contact />
       <Blogs />

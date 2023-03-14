@@ -9,9 +9,9 @@ export const AboutUsContainer = styled.div`
   align-items: center;
   gap: 5rem;
   padding: 5rem 10rem;
-  ${p => mediaQuery('down', 'sm', p.theme)} {
+  ${p => mediaQuery('down', 'md', p.theme)} {
     padding: 2rem;
-    flex-wrap: wrap;
+    flex-direction: column;
   }
 `;
 

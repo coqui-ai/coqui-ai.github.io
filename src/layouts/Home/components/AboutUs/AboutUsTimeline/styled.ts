@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import styled from 'styled-components';
 
 type CardColourType = {
@@ -9,6 +10,9 @@ export const AboutUsTimelineContainer = styled.div`
   flex-direction: column;
   flex: 1;
   gap: 50px;
+  ${p => mediaQuery('down', 'md', p.theme)} {
+    text-align: center;
+  }
 `;
 
 export const AboutUsTimelineWrapper = styled.div`

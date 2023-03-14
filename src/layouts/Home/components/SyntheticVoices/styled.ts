@@ -13,6 +13,9 @@ export const SyntheticVoicesContainer = styled.div`
   ${p => mediaQuery('down', 'sm', p.theme)} {
     padding: 2rem;
   }
+  ${p => mediaQuery('down', 'md', p.theme)} {
+    flex-direction: column;
+  }
 `;
 
 export const SyntheticVoicesDetailsContainer = styled.div`
@@ -57,7 +60,6 @@ export const SyntheticVoicesDetailsDescription = styled.p`
 export const SyntheticVoicesButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   gap: 16px;
   align-items: center;
   padding-top: 20px;

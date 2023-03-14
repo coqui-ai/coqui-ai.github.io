@@ -1,6 +1,6 @@
 import { Link } from 'gatsby';
-import Img from 'gatsby-image';
 import React, { FC } from 'react';
+import no_img from './no_img.png';
 import { css } from 'styled-components';
 import {
   BlogCardContainer,
@@ -10,6 +10,7 @@ import {
   BlogCardTag,
   BlogCardTitle
 } from './styled';
+import { mediaQuery } from '@zendeskgarden/react-theming';
 
 type BlogCardPropsType = {
   fluidImg: any;
@@ -28,19 +29,22 @@ export const BlogCard: FC<BlogCardPropsType> = ({
   summary,
   url
 }) => {
-  console.log(title);
-  console.log(fluidImg);
   return (
     <BlogCardContainer>
       <Link to={url}>
         <img
           height={240}
-          src={fluidImg.node.fluid.src}
+          src={fluidImg?.node?.fluid?.src || no_img}
           alt="check"
           css={css`
             border-radius: 20px;
             width: 35rem;
             object-fit: cover;
+            max-width: 380px;
+            ${p => mediaQuery('down', 'lg', p.theme)} {
+              height: auto;
+              max-width: 400px;
+            }
           `}
         />
       </Link>
