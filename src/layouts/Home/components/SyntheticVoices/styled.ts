@@ -8,7 +8,7 @@ export const SyntheticVoicesContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 5rem;
-  padding: 5rem 10rem;
+  padding: 10rem;
   background-color: #f9fafc;
   ${p => mediaQuery('down', 'sm', p.theme)} {
     padding: 2rem;

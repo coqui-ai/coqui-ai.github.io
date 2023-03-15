@@ -48,21 +48,21 @@ const timelineItems: TimelineItem[] = [
     date: 'NOVEMBER 2022',
     title: '',
     summary: 'November 2022 we opened up Coqui Studio to our waiting list members',
-    color: '#F5FCFC'
+    color: '#EDF7FF'
   },
   {
     date: 'FEBRUARY 2023',
     title: '',
     summary:
       'On Feb 2023 we officially launched Coqui Studio with multiple market leading features',
-    color: '#F5FCFC'
+    color: '#FFF7ED'
   },
   {
     date: 'MARCH 2023',
     title: '',
     summary:
       'March 2023 we will showcase Coqui Studio capabilities to video game developers in GDC',
-    color: '#F5FCFC',
+    color: '#FFF0F1',
     link: '/blog/general/investment-march',
     isLastItem: true
   }

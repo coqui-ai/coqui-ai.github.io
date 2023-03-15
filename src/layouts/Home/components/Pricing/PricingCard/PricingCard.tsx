@@ -12,13 +12,15 @@ import {
 import CheckCircle from './check_circle.png';
 import { css } from 'styled-components';
 import { PricingCardPriceSummary, PricingCardPriceTitle, PricingCardTopRow } from '../styled';
+import { Button } from '@zendeskgarden/react-buttons';
+import { getColor } from '@zendeskgarden/react-theming';
 
 type PricingCardType = {
   top: JSX.Element;
   summary: string;
-  buttonType: 'primary' | 'secondary';
+  buttonType: 'primary' | 'secondary' | 'modal';
   buttonText: string;
-  buttonPath: string;
+  buttonPath?: string;
   bgColor: string;
   textColor: string;
   summaryTextColor?: string;
@@ -26,6 +28,7 @@ type PricingCardType = {
   featureList: string[];
   chipText?: string;
   hasToggle?: boolean;
+  buttonClickHandler?: () => void;
 };
 
 type PriceTab = 'standard' | 'discount';
@@ -149,16 +152,44 @@ export const PricingCard: FC<PricingCardType> = ({
   featureList,
   summaryTextColor,
   chipText,
-  hasToggle
+  hasToggle,
+  buttonClickHandler
 }) => {
   const [selectedTab, setSelectedTab] = useState<PriceTab>('standard');
   const renderButton: () => JSX.Element = () => {
     switch (buttonType) {
       case 'primary':
-        return <PrimaryButton text={buttonText} path={buttonPath} fullWidth />;
+        return <PrimaryButton text={buttonText} path={buttonPath || '/'} fullWidth />;
+      case 'modal':
+        return (
+          <Button
+            onClick={e => {
+              if (!buttonClickHandler) {
+                e.preventDefault();
+                return;
+              }
+              buttonClickHandler();
+            }}
+            css={css`
+              border: 2px solid ${p => getColor('yellow', 600, p.theme)};
+              background-color: transparent;
+              color: #fff;
+              border-radius: 30px;
+              font-weight: 400;
+              padding: 18px 24px;
+            `}
+          >
+            {buttonText}
+          </Button>
+        );
       default:
         return (
-          <SecondaryButton text={buttonText} path={buttonPath} textColor={textColor} fullWidth />
+          <SecondaryButton
+            text={buttonText}
+            path={buttonPath || ''}
+            textColor={textColor}
+            fullWidth
+          />
         );
     }
   };

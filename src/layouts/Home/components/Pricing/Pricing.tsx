@@ -10,9 +10,108 @@ import {
   PricingSubtitle,
   PricingTitle
 } from './styled';
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
+import { ThemeProvider } from '@zendeskgarden/react-theming';
+import { Modal, Header } from '@zendeskgarden/react-modals';
+import { Body } from '@zendeskgarden/react-tables';
+import NewsletterForm from 'layouts/Root/components/NewsletterForm';
+
+const ModalBox = styled(Modal)`
+  width: 623px;
+  height: fit-content;
+  padding: 12px 59px;
+`;
+
+export const Close = ({ closeModal }: { closeModal: () => void }) => {
+  return (
+    <div
+      onClick={closeModal}
+      css={css`
+        position: absolute;
+        top: 26px;
+        right: 36.31px;
+        cursor: pointer;
+      `}
+    >
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M8.84397 17C13.1582 17 16.6879 13.4 16.6879 9C16.6879 4.6 13.1582 1 8.84397 1C4.52979 1 1 4.6 1 9C1 13.4 4.52979 17 8.84397 17Z"
+          stroke="#ED8F1C"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M6.62402 11.2663L11.0637 6.73828"
+          stroke="#ED8F1C"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M11.0637 11.2663L6.62402 6.73828"
+          stroke="#ED8F1C"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
+  );
+};
+
+const WaitingListModal = ({ closeModal }: { closeModal: () => void }) => {
+  const theme = (parentTheme: any) => ({
+    ...parentTheme,
+    components: {
+      'forms.faux_input': css`
+        background-color: white !important;
+      `,
+      'forms.media_input': css`
+        color: #000 !important;
+        &::placeholder {
+          color: #000 !important;
+        }
+      `
+    }
+  });
+
+  return (
+    <ModalBox onClose={closeModal}>
+      <Header
+        css={css`
+          height: fit-content;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 31px 0 19px 0;
+        `}
+      >
+        Get early access to Coqui Studio Pro
+      </Header>
+      <Body
+        css={`
+          display: flex;
+          flex-direction: column;
+        `}
+      >
+        <ThemeProvider focusVisibleRef={null} theme={theme as any}>
+          <NewsletterForm url="https://coqui.us1.list-manage.com/subscribe/post?u=6faea2f1f19c814566173ffb0&amp;id=f9b303df7f&amp;tags=5204107" />
+        </ThemeProvider>
+      </Body>
+
+      <Close closeModal={closeModal} />
+    </ModalBox>
+  );
+};
 
 export const Pricing: FC = () => {
+  const [showWaitingListModal, setShowWaitingListModal] = useState<boolean>(false);
+
   const freeTrialJsx: JSX.Element = (
     <PricingCardTopRow>
       <PricingCardPriceTitle textColor="#FFFFFF">$0</PricingCardPriceTitle>
@@ -94,10 +193,14 @@ export const Pricing: FC = () => {
         />
         <PricingCard
           top={proJsx}
-          buttonPath="/"
+          buttonPath=""
           summary="For larger businesses and creative teams"
-          buttonType="secondary"
+          buttonType="modal"
           buttonText="Join the waiting list"
+          buttonClickHandler={() => {
+            console.log('IN here');
+            setShowWaitingListModal(true);
+          }}
           textColor="#F9F9F9"
           bgColor="#073D3E"
           featureList={[
@@ -131,6 +234,13 @@ export const Pricing: FC = () => {
             'API access'
           ]}
         />
+        {showWaitingListModal && (
+          <WaitingListModal
+            closeModal={() => {
+              setShowWaitingListModal(false);
+            }}
+          />
+        )}
       </PricingRow>
     </PricingContainer>
   );

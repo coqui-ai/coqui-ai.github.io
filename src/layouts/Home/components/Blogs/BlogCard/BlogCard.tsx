@@ -45,6 +45,10 @@ export const BlogCard: FC<BlogCardPropsType> = ({
               height: auto;
               max-width: 400px;
             }
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              height: auto;
+              max-width: 100%;
+            }
           `}
         />
       </Link>

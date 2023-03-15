@@ -7,7 +7,7 @@ export const FAQContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 10rem;
+  padding: 5rem 10rem 10rem 10rem;
   gap: 30px;
   ${p => mediaQuery('down', 'md', p.theme)} {
     padding: 2rem;

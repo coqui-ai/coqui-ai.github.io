@@ -74,7 +74,6 @@ export const Why: FC = () => {
           gap: 32px;
           align-self: flex-start;
           ${p => mediaQuery('up', 'lg', p.theme)} {
-            padding-left: 10rem;
           }
           ${p => mediaQuery('down', 'lg', p.theme)} {
             align-self: center;
@@ -85,16 +84,22 @@ export const Why: FC = () => {
           fill="#FED6A8"
           phrase="Pay for what you use"
           description="Only pay for the service you need. Save money and still get access to the best AI technology."
+          height="300px"
+          width="300px"
         />
         <SummaryCard
           fill="#EDF7FF"
           phrase="Speed up your production"
           description="Emulate your voice in just seconds and let AI do the hard work for you."
+          height="300px"
+          width="300px"
         />
         <SummaryCard
           fill="#FFFFFF"
           phrase="Realistic, directable AI voices"
           description="Easily tune the style of any voice, adjust pace and emotions - with any voice."
+          height="300px"
+          width="300px"
         />
       </div>
       <div
@@ -104,8 +109,8 @@ export const Why: FC = () => {
           flex-wrap: wrap;
           gap: 32px;
           align-self: flex-end;
+          /* padding-right: 10rem; */
           ${p => mediaQuery('up', 'lg', p.theme)} {
-            padding-right: 10rem;
           }
           ${p => mediaQuery('down', 'lg', p.theme)} {
             align-self: center;
@@ -116,16 +121,22 @@ export const Why: FC = () => {
           fill="#BDD9D7"
           phrase="Our inbuilt audio editor"
           description="Tinker and tailor as much as you need. Adjust pitch, loudness and more with ease."
+          height="300px"
+          width="300px"
         />
         <SummaryCard
           fill="#FFF7ED"
           phrase="As many takes as required"
           description="Use takes to experiment and save different performances, and choose your favourite."
+          height="300px"
+          width="300px"
         />
         <SummaryCard
           fill="#FFF0F1"
           phrase="All-in-one workstation"
           description="Direct your masterpiece, creating conversations with multiple AI Voices in one easy-to-use tool."
+          height="300px"
+          width="300px"
         />
       </div>
     </div>

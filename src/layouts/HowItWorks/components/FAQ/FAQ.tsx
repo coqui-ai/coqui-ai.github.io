@@ -134,26 +134,146 @@ const faqLeftSectionData: FAQAccordionType[] = [
     id: 3,
     title: 'Voice Cloning Tips and Tricks',
     detail: (
-      <ul
-        css={css`
-          font-size: 16px;
-          line-height: 180%;
-          padding-left: 20px;
-          list-style: disc;
-        `}
-      >
-        <li>
-          <span
-            css={css`
-              font-weight: 600;
-            `}
-          >
-            Higher Quality Voice Clones
-          </span>{' '}
-          will provide access to higher precision cloning that can deliver any voice a user can
-          think of.
-        </li>
-      </ul>
+      <>
+        <p
+          css={css`
+            font-weight: 600;
+            margin: 8px;
+          `}
+        >
+          Prepare your environment
+        </p>
+        <ul
+          css={css`
+            font-size: 16px;
+            line-height: 180%;
+            padding-left: 20px;
+            list-style: disc;
+          `}
+        >
+          <li>
+            Keep down background noise to a minimum whilst recording. You should choose a silent
+            room to record your training material.
+          </li>
+          <li>You can cover the head and microphone with a cloth to filter ambient noise.</li>
+          <li>
+            Covering the sides of your room will avoid sound waves reflecting and creating audio
+            artifacts. Thick curtains or drapes may do the trick. You can also speak into your
+            curtains if you don&apos;t want to move the room around.
+          </li>
+          <li>
+            If possible, ceiling isolation is also handy. It makes sure the sound does not echo from
+            above. Our users have tried placing panels or cardboard egg boxes in their recording
+            space.
+          </li>
+        </ul>
+        <p
+          css={css`
+            font-weight: 600;
+            margin: 8px;
+          `}
+        >
+          Gear up for a good quality audio
+        </p>
+        <ul
+          css={css`
+            font-size: 16px;
+            line-height: 180%;
+            padding-left: 20px;
+            list-style: disc;
+          `}
+        >
+          <li>
+            Not got recording gear? All is not lost. You can record audio using your mobile device.
+            Generally, phones have better microphones than webcams for laptops.
+          </li>
+          <li>
+            If you want to invest in recording gear, it is possible to buy an optimal microphone for
+            less than 100 USD.
+          </li>
+          <li>
+            Keep a distance from your microphone. One foot (30 cms) is ideal for a better audio
+            recording.
+          </li>
+          <li>
+            Cover your mics with a puff or pop filter (available cheap online). This will
+            significantly reduce most of the plosives on your recording.
+          </li>
+        </ul>
+        <p
+          css={css`
+            font-weight: 600;
+            margin: 8px;
+          `}
+        >
+          Speak clearly
+        </p>
+        <ul
+          css={css`
+            font-size: 16px;
+            line-height: 180%;
+            padding-left: 20px;
+            list-style: disc;
+          `}
+        >
+          <li>Avoid long pauses.</li>
+          <li>
+            Stuttering or stammered? Try again! You only need a couple of seconds to train your
+            clone. Take as much time as you need to keep the speech clear and smooth.
+          </li>
+        </ul>
+        <p
+          css={css`
+            font-weight: 600;
+            margin: 8px;
+          `}
+        >
+          Clones may sound differently
+        </p>
+        <ul
+          css={css`
+            font-size: 16px;
+            line-height: 180%;
+            padding-left: 20px;
+            list-style: disc;
+          `}
+        >
+          <li>
+            Cloned voices will have an American English accent. Voice cloning copies only the timbre
+            of your voice, not the speaking style, language, or dialect.
+          </li>
+          <li>
+            Many of us are not familiar with how their own voice sounds to other people. You can
+            download your input voice using the Voice Cloning sidebar.
+          </li>
+        </ul>
+        <p
+          css={css`
+            font-weight: 600;
+            margin: 8px;
+          `}
+        >
+          Check out for more tips
+        </p>
+        <ul
+          css={css`
+            font-size: 16px;
+            line-height: 180%;
+            padding-left: 20px;
+            list-style: disc;
+          `}
+        >
+          <li>
+            We encourage you to subscribe to our{' '}
+            <a href="https://www.youtube.com/@coqui1027/videos">YouTube Channel</a> for guided use
+            of Coqui Studio features and best practices.
+          </li>
+          <li>
+            Why not join our <a href="https://discord.gg/dUW6Hf9R">Discord channels</a>? You can
+            reach out to us and many other fellow users of Coqui.
+          </li>
+        </ul>
+      </>
     )
   }
 ];

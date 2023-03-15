@@ -1,3 +1,4 @@
+import { mediaQuery } from '@zendeskgarden/react-theming';
 import { borderRadius } from 'polished';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
@@ -8,6 +9,8 @@ type SummaryCardPropsType = {
   imageSrc?: string;
   phrase?: string;
   description?: string;
+  height?: string;
+  width?: string;
 };
 
 export const SummaryCard: FC<SummaryCardPropsType> = ({
@@ -15,7 +18,9 @@ export const SummaryCard: FC<SummaryCardPropsType> = ({
   fill,
   imageSrc,
   phrase,
-  description
+  description,
+  height,
+  width
 }) => {
   return (
     <div
@@ -23,12 +28,17 @@ export const SummaryCard: FC<SummaryCardPropsType> = ({
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 338px;
-        width: 349px;
+        height: ${height || ''};
+        width: ${width || ''};
+        max-height: 338px;
+        min-width: 250px;
         border-radius: 20px;
         border: ${`1px solid ${border}` || 'none'};
         background-color: ${fill || 'transparent'};
-        padding: 45px 35px;
+        flex: 1;
+        ${p => mediaQuery('down', 'xl', p.theme)} {
+          padding: 2rem;
+        }
       `}
     >
       {imageSrc && (
@@ -45,9 +55,10 @@ export const SummaryCard: FC<SummaryCardPropsType> = ({
       {phrase && (
         <p
           css={css`
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 600;
             line-height: 1.5;
+            margin-bottom: 20px;
           `}
         >
           {phrase}

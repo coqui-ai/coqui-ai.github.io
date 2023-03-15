@@ -27,10 +27,12 @@ export const FeaturesAndApps: FC = () => {
         css={css`
           display: flex;
           flex-direction: row;
-          flex-wrap: wrap;
           justify-content: space-between;
           align-items: center;
           gap: 5rem;
+          ${p => mediaQuery('down', 'lg', p.theme)} {
+            flex-wrap: wrap;
+          }
         `}
       >
         <div

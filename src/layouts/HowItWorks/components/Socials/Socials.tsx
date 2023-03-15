@@ -188,7 +188,7 @@ export const Socials: FC = () => {
               text-align: center;
             `}
           >
-            Are you interested in keeping up to date? Follow us on Twitter
+            Are you interested in keeping up to date? Follow us on Twitter, LinkedIn and Facebook
           </p>
           <div
             css={css`
