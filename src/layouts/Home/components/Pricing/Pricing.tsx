@@ -80,7 +80,13 @@ const WaitingListModal = ({ closeModal }: { closeModal: () => void }) => {
   });
 
   return (
-    <ModalBox onClose={closeModal}>
+    <ModalBox
+      css={css`
+        padding: 24px;
+        border-radius: 20px;
+      `}
+      onClose={closeModal}
+    >
       <Header
         css={css`
           height: fit-content;
@@ -88,7 +94,7 @@ const WaitingListModal = ({ closeModal }: { closeModal: () => void }) => {
           display: flex;
           justify-content: center;
           align-items: center;
-          padding: 31px 0 19px 0;
+          padding-bottom: 24px;
         `}
       >
         Get early access to Coqui Studio Pro
@@ -122,7 +128,7 @@ export const Pricing: FC = () => {
   const starterJsx: JSX.Element = (
     <PricingCardTopRow>
       <PricingCardPriceTitle textColor="#000000">20</PricingCardPriceTitle>
-      <PricingCardPriceSummary textColor="#000000">/ 4 hours</PricingCardPriceSummary>
+      <PricingCardPriceTitle textColor="#000000">/ 4 hours</PricingCardPriceTitle>
     </PricingCardTopRow>
   );
 
@@ -198,7 +204,6 @@ export const Pricing: FC = () => {
           buttonType="modal"
           buttonText="Join the waiting list"
           buttonClickHandler={() => {
-            console.log('IN here');
             setShowWaitingListModal(true);
           }}
           textColor="#F9F9F9"
@@ -214,7 +219,7 @@ export const Pricing: FC = () => {
         />
         <PricingCard
           top={enterpriseJsx}
-          buttonPath="/"
+          buttonPath="mailto:info@coqui.ai"
           summary="Bespoke solutions built for large organisations"
           buttonType="secondary"
           buttonText="Contact us"

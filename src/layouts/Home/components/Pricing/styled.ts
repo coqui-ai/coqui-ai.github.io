@@ -60,6 +60,7 @@ export const PricingCardTopRow = styled.div`
   flex-direction: row;
   gap: 16px;
   align-items: center;
+  margin-top: 16px;
 `;
 
 export const PricingCardPriceTitle = styled.h3<PricingCardPriceType>`

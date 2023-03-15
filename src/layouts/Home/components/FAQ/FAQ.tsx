@@ -50,7 +50,7 @@ export const FAQ: FC = () => {
   const [rightSection, setRightSection] = useState<number[]>([]);
 
   return (
-    <FAQContainer>
+    <FAQContainer id="faq">
       <FAQSection>ASK US</FAQSection>
       <FAQSectionTitle>
         Frequently asked <span>questions</span>

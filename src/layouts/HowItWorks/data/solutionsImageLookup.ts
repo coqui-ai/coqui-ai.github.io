@@ -12,6 +12,7 @@ import cloneYourVoiceSrc from './assets/clone_your_voice.png';
 import audioManagerLgSrc from './assets/audio_manager_large.png';
 import timelineSrc from './assets/timeline_editor.png';
 import emotionLgSrc from './assets/emotion_large.png';
+import voiceClonePerson from './assets/voice_clone_person.png';
 
 export type SolutionsPhraseType =
   | 'Audio Manager'
@@ -29,11 +30,17 @@ export type SolutionsPhraseType =
   | 'Clone Your Voice Large'
   | 'Phenome'
   | 'AI Voice'
-  | 'Emotion';
+  | 'Emotion'
+  | 'Voice Clone Person';
 
 export const solutionsImagesLookup = {
   'Audio Manager': {
     imageSrc: audioManagerSrc,
+    caption:
+      'Audio Manager is the core component of Coqui Studio where the users pick AI voices to perform their text lines.'
+  },
+  'Voice Clone Person': {
+    imageSrc: voiceClonePerson,
     caption:
       'Audio Manager is the core component of Coqui Studio where the users pick AI voices to perform their text lines.'
   },

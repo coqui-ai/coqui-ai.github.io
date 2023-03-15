@@ -60,9 +60,9 @@ const PriceSelector = ({
         <PricingCardPriceTitle textColor="#000000">
           ${selectedTab === 'standard' ? '20' : '175'}
         </PricingCardPriceTitle>
-        <PricingCardPriceSummary textColor="#000000">
+        <PricingCardPriceTitle textColor="#000000">
           {selectedTab === 'standard' ? '/ 4 hours' : '/ 50 hours'}
-        </PricingCardPriceSummary>
+        </PricingCardPriceTitle>
         {selectedTab !== 'standard' && (
           <div
             css={`

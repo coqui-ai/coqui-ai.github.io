@@ -27,9 +27,11 @@ export type SolutionType = {
   title: string;
   problem: AccordionProblemType;
   solution: AccordionSolutionType;
-  imageSrc: string;
-  test?: string;
-  imgCH?: (val: string) => void;
+  image?: {
+    imageSrc: any;
+    caption: string;
+  };
+  imgCH?: (val: { imageSrc: any; caption: string }) => void;
 };
 
 export type AccordionProblemType = {
@@ -46,28 +48,30 @@ export const Solution: FC<SolutionType> = ({
   index,
   problem,
   solution,
-  imageSrc,
   sectionTitle,
   title,
-  test,
+  image,
   imgCH
 }) => {
   const [img, setImg] = useState<string>('');
   const [caption, setCaption] = useState<string>('');
 
   useEffect(() => {
-    setImg(test || '');
+    console.log(image);
+    setImg(image?.imageSrc || '');
+    setCaption(image?.caption || '');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    setImg(test || '');
-  }, [test]);
+    setImg(image?.imageSrc || '');
+    setCaption(image?.caption || '');
+  }, [image]);
 
   const phraseClickHandler: (phrase: SolutionsPhraseType) => void = phrase => {
     const matchedImage = solutionsImagesLookup[phrase];
     if (!matchedImage || !imgCH) return;
-    imgCH(matchedImage.imageSrc);
+    imgCH(matchedImage);
     setImg(matchedImage.imageSrc);
     setCaption(matchedImage.caption);
   };
@@ -98,9 +102,10 @@ export const Solution: FC<SolutionType> = ({
           alt={sectionTitle}
           css={css`
             min-width: 300px;
-            -webkit-animation: ${keyframe} 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-            animation: ${keyframe} 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-            transition: background 0.2s linear;
+            -webkit-transition: opacity 1s ease-in-out;
+            -moz-transition: opacity 1s ease-in-out;
+            -o-transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out;
             ${p => mediaQuery('down', 'md', p.theme)} {
               height: auto;
             }

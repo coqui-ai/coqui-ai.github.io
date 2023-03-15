@@ -25,7 +25,7 @@ export const SyntheticVoices: FC = () => {
   };
 
   return (
-    <SyntheticVoicesContainer>
+    <SyntheticVoicesContainer id="synthetic-voices">
       <SyntheticVoicesDetailsContainer>
         <SyntheticVoicesDetailsTitle>SYNTHETIC VOICES</SyntheticVoicesDetailsTitle>
         <SyntheticVoicesDetailsTitleDescription>
@@ -38,7 +38,7 @@ export const SyntheticVoices: FC = () => {
         </SyntheticVoicesDetailsDescription>
         <SyntheticVoicesButtonContainer>
           <TryNowButton />
-          <SecondaryButton text="Got a question?" path="/" />
+          <SecondaryButton text="Got a question?" path="#faq" />
         </SyntheticVoicesButtonContainer>
       </SyntheticVoicesDetailsContainer>
       <SyntheticVoicesVideoContainer>

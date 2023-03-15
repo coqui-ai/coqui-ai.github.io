@@ -3,6 +3,7 @@ import { SolutionType } from '../components/Solution/Solution';
 import postProdImg from './post_production.png';
 import postProdImg2 from './post_production_2.png';
 import postProdImg3 from './post_production_3.png';
+import { solutionsImagesLookup } from './solutionsImageLookup';
 
 export const solutionData: Omit<SolutionType, 'index'>[] = [
   {
@@ -43,7 +44,7 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
         </p>
       )
     },
-    imageSrc: postProdImg
+    image: solutionsImagesLookup['Audio Manager']
   },
   {
     sectionTitle: 'POST-PRODUCTION',
@@ -76,7 +77,7 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
         </p>
       )
     },
-    imageSrc: postProdImg2
+    image: solutionsImagesLookup['Voice Clone Person']
   },
   {
     sectionTitle: 'VOICEOVER',
@@ -111,6 +112,6 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
         </p>
       )
     },
-    imageSrc: postProdImg3
+    image: solutionsImagesLookup['AI Voice']
   }
 ];

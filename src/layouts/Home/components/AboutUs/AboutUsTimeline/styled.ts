@@ -9,7 +9,7 @@ export const AboutUsTimelineContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 50px;
+  gap: 30px;
   ${p => mediaQuery('down', 'md', p.theme)} {
     text-align: center;
   }
@@ -25,14 +25,14 @@ export const AboutUsTimelineCard = styled.div<CardColourType>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 50px;
+  padding: 20px 50px;
   gap: 20px;
   border-radius: 20px;
   background-color: ${({ bgColor }) => bgColor};
 `;
 
 export const AboutUsTimelineYear = styled.p`
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22.4px;
   color: #468d6a;
 `;
@@ -43,18 +43,17 @@ export const AboutUsTimelineTitle = styled.h3`
 `;
 
 export const AboutUsTimelineSummary = styled.p`
-  font-size: 18px;
   line-height: 140%;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 180%;
   letter-spacing: 0.02em;
 `;
 
 export const AboutUsTimelineJoiner = styled.div`
-  height: 50px;
+  height: 30px;
   width: 4px;
   background-color: #000000;
   position: absolute;
-  bottom: -50px;
+  bottom: -30px;
   left: 50%;
 `;

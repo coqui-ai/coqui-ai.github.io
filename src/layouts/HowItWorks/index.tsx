@@ -19,28 +19,31 @@ import { solutionData } from './data/solutionsData';
 import { solutionsImagesLookup } from './data/solutionsImageLookup';
 
 export const HowItWorksLayout = () => {
-  const [sectImageOne, setSectImageOne] = useState<string>(
-    solutionsImagesLookup['Audio Manager'].imageSrc
-  );
-  const [sectImageTwo, setSectImageTwo] = useState<string>(
-    solutionsImagesLookup['Audio Manager'].imageSrc
-  );
-  const [sectImageThree, setSectImageThree] = useState<string>(
-    solutionsImagesLookup['Audio Manager'].imageSrc
-  );
+  const [sectImageOne, setSectImageOne] = useState<{
+    imageSrc: any;
+    caption: string;
+  }>(solutionsImagesLookup['Audio Manager']);
+  const [sectImageTwo, setSectImageTwo] = useState<{
+    imageSrc: any;
+    caption: string;
+  }>(solutionsImagesLookup['Voice Clone Person']);
+  const [sectImageThree, setSectImageThree] = useState<{
+    imageSrc: any;
+    caption: string;
+  }>(solutionsImagesLookup['AI Voice']);
 
-  const s1cb = (src: string) => setSectImageOne(src);
-  const s2cb = (src: string) => setSectImageTwo(src);
-  const s3cb = (src: string) => setSectImageThree(src);
+  const s1cb = (src: { imageSrc: any; caption: string }) => setSectImageOne(src);
+  const s2cb = (src: { imageSrc: any; caption: string }) => setSectImageTwo(src);
+  const s3cb = (src: { imageSrc: any; caption: string }) => setSectImageThree(src);
 
   return (
     <>
       <Hero />
       <CitedBy />
       {solutionData.map((s, i) => {
-        if (i === 0) return <Solution key={i} index={i} {...s} test={sectImageOne} imgCH={s1cb} />;
-        if (i === 1) return <Solution key={i} index={i} {...s} test={sectImageTwo} imgCH={s2cb} />;
-        return <Solution key={i} index={i} {...s} test={sectImageThree} imgCH={s3cb} />;
+        if (i === 0) return <Solution key={i} index={i} {...s} image={sectImageOne} imgCH={s1cb} />;
+        if (i === 1) return <Solution key={i} index={i} {...s} image={sectImageTwo} imgCH={s2cb} />;
+        return <Solution key={i} index={i} {...s} image={sectImageThree} imgCH={s3cb} />;
       })}
       <FAQ />
       <Socials />

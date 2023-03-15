@@ -15,7 +15,7 @@ import {
 
 export const AboutUs: FC = () => {
   return (
-    <AboutUsContainer>
+    <AboutUsContainer id="about-us">
       <AboutUsDetailsContainer>
         <AboutUsDetailsTitle>ABOUT US</AboutUsDetailsTitle>
         <AboutUsDetailsTitleDescription>
@@ -32,7 +32,7 @@ export const AboutUs: FC = () => {
         <AboutUsButtonContainer>
           <PrimaryButton
             text="Discover Coqui Studio"
-            path="/"
+            path="/how-it-works"
             css={css`
               ${p => mediaQuery('up', 'sm', p.theme)} {
                 display: flex;
@@ -44,7 +44,7 @@ export const AboutUs: FC = () => {
           />
           <SecondaryButton
             text="Talk to our team"
-            path="/"
+            path="mailto:info@coqui.ai"
             css={css`
               ${p => mediaQuery('up', 'sm', p.theme)} {
                 display: flex;
