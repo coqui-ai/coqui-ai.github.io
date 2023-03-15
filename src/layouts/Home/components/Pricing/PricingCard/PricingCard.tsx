@@ -51,7 +51,7 @@ const PriceSelector = ({
         css={css`
           display: flex;
           flex-direction: row;
-          gap: 16px;
+          gap: 8px;
           align-items: center;
           justify-content: center;
           margin-bottom: 10px;
@@ -70,6 +70,7 @@ const PriceSelector = ({
               color: #fff;
               border-radius: 4px;
               padding: 2px 4px;
+              margin-left: 8px;
               font-size: 12px;
             `}
           >

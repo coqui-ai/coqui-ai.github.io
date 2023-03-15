@@ -65,7 +65,7 @@ export const PricingCardTopRow = styled.div`
 
 export const PricingCardPriceTitle = styled.h3<PricingCardPriceType>`
   font-weight: 700;
-  font-size: 32px;
+  font-size: 24px;
   line-height: 44.8px;
   color: ${({ textColor }) => textColor || '#FFFFFF'};
 `;
