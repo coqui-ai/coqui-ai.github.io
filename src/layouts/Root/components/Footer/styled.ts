@@ -11,9 +11,13 @@ export const FooterContainer = styled.div<FooterContainerProps>`
   flex-direction: column;
   justify-content: center;
   position: relative;
-  padding: ${({ hasBanner }) => (hasBanner ? '15rem 10rem 10rem 10rem' : '10rem 10rem 5rem 10rem')};
+  padding: ${({ hasBanner }) => (hasBanner ? '15rem 10rem 10rem 10rem' : '2rem 1rem')};
   gap: 30px;
   background-color: #03363d;
+  ${p => mediaQuery('up', 'lg', p.theme)} {
+    padding: ${({ hasBanner }) =>
+      hasBanner ? '15rem 10rem 10rem 10rem' : '10rem 10rem 5rem 10rem'};
+  }
 `;
 
 export const SaveTimeContainer = styled(FooterContainer)`
@@ -32,10 +36,13 @@ export const FooterRow = styled.div`
   justify-content: space-between;
   position: relative;
   gap: 32px;
-  padding-bottom: 64px;
+  padding-bottom: 40px;
   border-bottom: 1px solid #f9f9f9;
   ${p => mediaQuery('down', 'sm', p.theme)} {
     padding-bottom: 48px;
+  }
+  ${p => mediaQuery('down', 'md', p.theme)} {
+    flex-direction: column;
   }
 `;
 
@@ -50,23 +57,29 @@ export const FooterSectionColumn = styled.div`
 `;
 
 export const FooterSectionColumnLeft = styled(FooterSectionColumn)`
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
 `;
 
 export const FooterSectionColumnMiddle = styled(FooterSectionColumn)`
   align-items: center;
-  gap: 32px;
+  gap: 40px;
 `;
 
 export const FooterSectionColumnRight = styled(FooterSectionColumn)`
-  align-items: flex-end;
+  align-items: center;
+  ${p => mediaQuery('up', 'lg', p.theme)} {
+    align-items: flex-end;
+  }
+  ${p => mediaQuery('up', 'xl', p.theme)} {
+    align-items: flex-end;
+  }
 `;
 
 export const FooterLinksRow = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 50px;
+  gap: 40px;
   align-items: center;
   justify-content: center;
   ${p => mediaQuery('down', 'sm', p.theme)} {
@@ -104,6 +117,12 @@ export const FooterSignUpTitle = styled.p`
   letter-spacing: 1px;
   color: #ffffff;
   font-weight: 600;
+  ${p => mediaQuery('up', 'lg', p.theme)} {
+    align-self: flex-end;
+  }
+  ${p => mediaQuery('up', 'xl', p.theme)} {
+    align-self: center;
+  }
 `;
 
 export const FooterSignatureRow = styled.div`

@@ -7,7 +7,7 @@ import jsonp from 'jsonp';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { css } from 'styled-components';
 import toQueryString from 'to-querystring';
-import logoLight from './coqui_logo_light.png';
+import logoLight from './coqui_logo_light_cropped.png';
 import discord from './discord_logo.png';
 import fb from './facebook_logo.png';
 import github from './github_logo.png';
@@ -118,9 +118,6 @@ const SignUp = () => {
                 font-weight: 400;
                 padding: 18px 24px;
                 width: fit-content;
-                ${p => mediaQuery('down', 'sm', p.theme)} {
-                  padding: 4px 12px;
-                }
               `}
             >
               Subscribe
@@ -134,7 +131,7 @@ const SignUp = () => {
             style: {
               background: '#F9F9F9',
               borderRadius: '50px',
-              padding: '8px 8px 8px 24px',
+              padding: '8px 12px 8px 24px',
               width: '350px',
               height: '65px',
               display: 'flex',
@@ -186,12 +183,10 @@ const Logo: React.FC = () => {
         align-items: center;
         justify-content: left;
 
-        ${p => mediaQuery('down', 'sm', p.theme)} {
+        ${p => mediaQuery('down', 'md', p.theme)} {
           flex-grow: 1;
-          padding-left: ${p => p.theme.space.md};
           justify-content: center;
           align-items: center;
-          margin-left: 6rem;
         }
       `}
     >
@@ -201,20 +196,10 @@ const Logo: React.FC = () => {
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 125px;
           `}
         >
-          <img
-            src={logoLight}
-            alt="coqui logo light"
-            css={css`
-              transform: translateY(15px);
-              ${p => mediaQuery('down', 'xs', p.theme)} {
-                height: ${p => p.theme.iconSizes.lg}px;
-              }
-              min-width: 250px;
-            `}
-            width={300}
-          />
+          <img src={logoLight} alt="coqui logo light" />
         </div>
       </Link>
     </div>
@@ -237,10 +222,26 @@ export const Footer: FC<FooterPropsType> = ({ hasSaveTimeBanner }) => {
     >
       <FooterRow>
         {/* <SaveTime /> */}
-        <FooterSectionColumnLeft>
+        <FooterSectionColumnLeft
+          css={css`
+            ${p => mediaQuery('up', 'lg', p.theme)} {
+              align-items: flex-start;
+              justify-content: flex-start;
+            }
+          `}
+        >
           <Logo />
         </FooterSectionColumnLeft>
-        <FooterSectionColumnMiddle>
+        <FooterSectionColumnMiddle
+          css={css`
+            ${p => mediaQuery('up', 'lg', p.theme)} {
+              align-items: flex-end;
+            }
+            ${p => mediaQuery('up', 'xl', p.theme)} {
+              align-items: center;
+            }
+          `}
+        >
           <FooterLinksRow>
             <FooterStyledLinksItem to="/">How it works</FooterStyledLinksItem>
             <FooterStyledLinksItem to="/jobs">Jobs</FooterStyledLinksItem>
@@ -268,7 +269,13 @@ export const Footer: FC<FooterPropsType> = ({ hasSaveTimeBanner }) => {
             </Link>
           </FooterSocialsRow>
         </FooterSectionColumnMiddle>
-        <FooterSectionColumnRight>
+        <FooterSectionColumnRight
+          css={css`
+            ${p => mediaQuery('up', 'lg', p.theme)} {
+              align-items: flex-end;
+            }
+          `}
+        >
           <FooterSectionColumnLeft>
             <FooterSignUpTitle>Subscribe to our Newsletter</FooterSignUpTitle>
             <SignUp />
