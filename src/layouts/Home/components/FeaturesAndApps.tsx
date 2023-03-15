@@ -106,7 +106,7 @@ export const FeaturesAndApps: FC = () => {
             `}
           >
             <StyledNavigationLink
-              to="/"
+              to="/how-it-works"
               css={css`
                 ${p => mediaQuery('down', 'sm', p.theme)} {
                   width: 100%;

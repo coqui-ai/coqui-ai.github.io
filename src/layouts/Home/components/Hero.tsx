@@ -86,7 +86,7 @@ export const Hero: FC = () => {
             `}
           >
             <TryNowButton />
-            <SecondaryButton text="See what we can do" path="/" />
+            <SecondaryButton text="See what we can do" path="/how-it-works" />
           </div>
         </div>
         <div

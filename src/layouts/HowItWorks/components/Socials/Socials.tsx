@@ -5,7 +5,7 @@ import github from './github.png';
 import discord from './discord.png';
 import youtube from './youtube.png';
 import twitter from './twitter.png';
-import instagram from './instagram.png';
+import linkedin from './linkedin.png';
 import facebook from './facebook.png';
 import arrow from './arrow-up-right.png';
 
@@ -211,9 +211,9 @@ export const Socials: FC = () => {
               css={css`
                 cursor: pointer;
               `}
-              onClick={() => window.open('', '_BLANK')}
+              onClick={() => window.open('https://www.linkedin.com/company/coqui-ai/', '_BLANK')}
             >
-              <img width="50" src={instagram} alt="instagram" />
+              <img width="50" src={linkedin} alt="linkedin" />
             </span>
             <span
               css={css`

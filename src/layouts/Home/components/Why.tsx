@@ -86,6 +86,8 @@ export const Why: FC = () => {
           description="Only pay for the service you need. Save money and still get access to the best AI technology."
           height="300px"
           width="300px"
+          hasHover
+          hoverColor="#6E2C00"
         />
         <SummaryCard
           fill="#EDF7FF"
@@ -93,6 +95,8 @@ export const Why: FC = () => {
           description="Emulate your voice in just seconds and let AI do the hard work for you."
           height="300px"
           width="300px"
+          hasHover
+          hoverColor="#3B719B"
         />
         <SummaryCard
           fill="#FFFFFF"
@@ -100,6 +104,8 @@ export const Why: FC = () => {
           description="Easily tune the style of any voice, adjust pace and emotions - with any voice."
           height="300px"
           width="300px"
+          hasHover
+          hoverColor="#9B9B9B"
         />
       </div>
       <div
@@ -123,6 +129,8 @@ export const Why: FC = () => {
           description="Tinker and tailor as much as you need. Adjust pitch, loudness and more with ease."
           height="300px"
           width="300px"
+          hasHover
+          hoverColor="#03363D"
         />
         <SummaryCard
           fill="#FFF7ED"
@@ -130,6 +138,8 @@ export const Why: FC = () => {
           description="Use takes to experiment and save different performances, and choose your favourite."
           height="300px"
           width="300px"
+          hasHover
+          hoverColor="#AFA79D"
         />
         <SummaryCard
           fill="#FFF0F1"
@@ -137,6 +147,8 @@ export const Why: FC = () => {
           description="Direct your masterpiece, creating conversations with multiple AI Voices in one easy-to-use tool."
           height="300px"
           width="300px"
+          hasHover
+          hoverColor="#B9AAAB"
         />
       </div>
     </div>

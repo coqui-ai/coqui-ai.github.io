@@ -11,6 +11,8 @@ type SummaryCardPropsType = {
   description?: string;
   height?: string;
   width?: string;
+  hasHover?: boolean;
+  hoverColor?: string;
 };
 
 export const SummaryCard: FC<SummaryCardPropsType> = ({
@@ -20,7 +22,9 @@ export const SummaryCard: FC<SummaryCardPropsType> = ({
   phrase,
   description,
   height,
-  width
+  width,
+  hasHover,
+  hoverColor
 }) => {
   return (
     <div
@@ -39,6 +43,19 @@ export const SummaryCard: FC<SummaryCardPropsType> = ({
         ${p => mediaQuery('down', 'xl', p.theme)} {
           padding: 2rem;
         }
+        :hover {
+          background-color: ${hasHover && hoverColor ? hoverColor : ''};
+          .sc-card-title {
+            background: linear-gradient(89.27deg, #ed8f1c -1.56%, #468d6a 102.75%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+          }
+          .sc-card-description {
+            color: #ffffff;
+          }
+        }
       `}
     >
       {imageSrc && (
@@ -54,6 +71,7 @@ export const SummaryCard: FC<SummaryCardPropsType> = ({
       )}
       {phrase && (
         <p
+          className="sc-card-title"
           css={css`
             font-size: 18px;
             font-weight: 600;
@@ -66,6 +84,7 @@ export const SummaryCard: FC<SummaryCardPropsType> = ({
       )}
       {description && (
         <p
+          className="sc-card-description"
           css={css`
             font-size: 16px;
             line-height: 180%;
