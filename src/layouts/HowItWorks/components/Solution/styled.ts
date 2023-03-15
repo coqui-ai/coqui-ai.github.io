@@ -39,6 +39,11 @@ export const SolutionSegmentLeft = styled.div`
     ${p => mediaQuery('down', 'sm', p.theme)} {
       font-size: 14px;
     }
+    span {
+      color: #2f3941;
+      font-weight: 600;
+      cursor: pointer;
+    }
   }
   button {
     color: #68737d;
@@ -62,7 +67,7 @@ export const SolutionSegmentRight = styled.div`
   flex-direction: column;
   justify-content: center;
   flex: 1;
-  align-items: flex-end;
+  align-items: center;
 `;
 
 export const SolutionSection = styled.p`
@@ -76,5 +81,23 @@ export const SolutionSectionTitle = styled.h2`
   line-height: 67.2px;
   ${p => mediaQuery('down', 'sm', p.theme)} {
     text-align: center;
+  }
+`;
+
+export const SolutionsCaptionContainer = styled.div`
+  display: flex;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #fff7ed;
+  max-width: 75%;
+  ${p => mediaQuery('down', 'lg', p.theme)} {
+    max-width: 100%;
+  }
+`;
+
+export const SolutionsCaptionText = styled.p`
+  font-size: 16px;
+  ${p => mediaQuery('down', 'sm', p.theme)} {
+    font-size: 14px;
   }
 `;

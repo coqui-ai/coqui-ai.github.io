@@ -12,11 +12,6 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
       title: 'Your problem',
       description: (
         <p>
-          Use Coqui Studio&apos;s intuitive Audio Manager to easily create game scripts read by your
-          choice of fully directable AI voices. Clone Your Voice in seconds to bring your own voice
-          into the game, or fuse your voice with AI using our Voice Fusion technology.
-          <br />
-          <br />
           Your game needs to be engaging, and you&apos;ve got a huge number of characters to voice.
           Your deadline is approaching, and it&apos;s far too expensive to hire voice actors.
           Instead of changing your plans, give your characters the voices they deserve.
@@ -25,17 +20,26 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
     },
     solution: {
       title: 'Our Solution',
-      description: (
+      description: phraseClickHandler => (
         <p>
-          Use Coqui Studio&apos;s intuitive Audio Manager to easily create game scripts read by your
-          choice of fully directable AI voices. Clone Your Voice in seconds to bring your own voice
-          into the game, or fuse your voice with AI using our Voice Fusion technology.
+          Use Coqui Studio&apos;s intuitive{' '}
+          <span onClick={() => phraseClickHandler('Audio Manager')}>Audio Manager</span> to easily
+          create game scripts read by your choice of fully directable AI voices.{' '}
+          <span onClick={() => phraseClickHandler('Clone Your Voice')}>Clone Your Voice</span> in
+          seconds to bring your own voice into the game, or fuse your voice with AI using our{' '}
+          <span onClick={() => phraseClickHandler('Voice Fusion')}>Voice Fusion</span> technology.
           <br />
-          Not sure what voice to go for? Let us help. With Prompt-to-Voice, type in what you&apos;d
-          like your character to sound like, and we will recommend voices to choose from. With
-          Emotive Presets and Speech Rate adjustment tools get your expressive outputs fast and
-          effectively. Our Advanced Editor offers emotive fine tuning to create the exact voice you
-          need. Direct entire Scenes and Export Your Audio for use - all in one place.
+          Not sure what voice to go for? Let us help. With{' '}
+          <span onClick={() => phraseClickHandler('Prompt-to-Voice')}>Prompt-to-Voice</span>, type
+          in what you&apos;d like your character to sound like, and we will recommend voices to
+          choose from. With{' '}
+          <span onClick={() => phraseClickHandler('Emotive Presets')}>Emotive Presets</span> and{' '}
+          <span onClick={() => phraseClickHandler('Speech Rate')}>Speech Rate</span> adjustment
+          tools get your expressive outputs fast and effectively. Our{' '}
+          <span onClick={() => phraseClickHandler('Advanced Editor')}>Advanced Editor</span> offers
+          emotive fine tuning to create the exact voice you need. Direct entire Scenes and{' '}
+          <span onClick={() => phraseClickHandler('Export Your Audio')}>Export Your Audio</span> for
+          use - all in one place.
         </p>
       )
     },
@@ -57,13 +61,18 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
     },
     solution: {
       title: 'Our Solution',
-      description: (
+      description: phraseClickHandler => (
         <p>
-          Coqui Studio allows you to Clone Your Voice and will replicate it accurately in just 3
-          seconds. It can replace missing words, and be matched perfectly with the existing
-          recording thanks to the Speech Rate Editor. Utilise the Advanced Editor to tweak Pitch and
-          Energy, or delve even deeper with the Phoneme Editor. You can edit singular syllables and
-          create the perfect end result from an imperfect recording.
+          Coqui Studio allows you to{' '}
+          <span onClick={() => phraseClickHandler('Clone Your Voice')}>Clone Your Voice</span> and
+          will replicate it accurately in just 3 seconds. It can replace missing words, and be
+          matched perfectly with the existing recording thanks to the{' '}
+          <span onClick={() => phraseClickHandler('Speech Rate')}>Speech Rate</span>. Utilise the{' '}
+          <span onClick={() => phraseClickHandler('Advanced Editor')}>Advanced Editor</span> to
+          tweak <span onClick={() => phraseClickHandler('Pitch')}>Pitch</span> and{' '}
+          <span onClick={() => phraseClickHandler('Pitch')}>Energy</span>, or delve even deeper with
+          the <span onClick={() => phraseClickHandler('Pitch')}>Phoneme Editor</span>. You can edit
+          singular syllables and create the perfect end result from an imperfect recording.
         </p>
       )
     },
@@ -86,14 +95,19 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
     },
     solution: {
       title: 'Our Solution',
-      description: (
+      description: phraseClickHandler => (
         <p>
-          Managers? We&apos;ve got you covered. Coqui Studio has a large selection of AI Voice
-          characters that are waiting to be chosen by you, or you can use Clone Voice to use your
-          own voice. Pick your preference, paste your text into our Audio Manager and you&apos;ll
-          have your audio drafts ready in seconds. Choose emotion presets and use the Timeline
-          Editor to add multiple voices and generate entire conversations. That&apos;s it - hours of
-          audio created in minutes.
+          Managers? We&apos;ve got you covered. Coqui Studio has a large selection of{' '}
+          <span onClick={() => phraseClickHandler('AI Voice')}>AI Voice</span> characters that are
+          waiting to be chosen by you, or you can use{' '}
+          <span onClick={() => phraseClickHandler('Clone Your Voice Large')}>Clone Voice</span> to
+          use your own voice. Pick your preference, paste your text into our{' '}
+          <span onClick={() => phraseClickHandler('Audio Manager Large')}>Audio Manager</span> and
+          you&apos;ll have your audio drafts ready in seconds. Choose{' '}
+          <span onClick={() => phraseClickHandler('Emotion')}>emotion</span> presets and use the
+          <span onClick={() => phraseClickHandler('Timeline Editor')}>Timeline Editor</span> to add
+          multiple voices and generate entire conversations. That&apos;s it - hours of audio created
+          in minutes.
         </p>
       )
     },
