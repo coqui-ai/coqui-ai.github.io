@@ -9,7 +9,7 @@ export const avatarData: AvatarType[] = [
   {
     id: 'BrendaStern',
     name: 'Asya Anara',
-    tag: 'Middle Aged',
+    tag: ['Middle Aged', 'English', 'F'],
     characteristics: ['Confident', 'Bold', 'Authoritative', 'Bossy', 'Charismatic'],
     imageSrc: '',
     voiceSample: AsyaAnaraSample
@@ -17,7 +17,7 @@ export const avatarData: AvatarType[] = [
   {
     id: 'CraigGutsy',
     name: 'Damien Black',
-    tag: 'Middle Aged',
+    tag: ['Middle Aged', 'English', 'M'],
     characteristics: ['Bold', 'Brave', 'Commanding', 'Heroic', 'Tough'],
     imageSrc: '',
     voiceSample: DamienBlackSample
@@ -25,7 +25,7 @@ export const avatarData: AvatarType[] = [
   {
     id: 'EthanHeedful',
     name: 'Kazuhiko Atallah',
-    tag: 'Middle Aged',
+    tag: ['Middle Aged', 'English', 'M'],
     characteristics: ['Reassuring', 'Approachable', 'Helpful', 'Attentive', 'Believable'],
     imageSrc: '',
     voiceSample: KazuhikoAtallahSample
@@ -33,7 +33,7 @@ export const avatarData: AvatarType[] = [
   {
     id: 'GracieWise',
     name: 'Vjollca Johnnie',
-    tag: 'Middle Aged',
+    tag: ['Middle Aged', 'English', 'F'],
     characteristics: ['Authoritative', 'Confident', 'Grizzled', 'Corporate', 'Serious'],
     imageSrc: '',
     voiceSample: VjollcaJohnnieSample
@@ -41,7 +41,7 @@ export const avatarData: AvatarType[] = [
   {
     id: 'TammyGrit',
     name: 'Tammy Grit',
-    tag: 'Senior',
+    tag: ['Senior', 'English', 'M'],
     characteristics: ['Aggressive', 'Angry', 'Creepy', 'Dangerous', 'Ominous'],
     imageSrc: '',
     voiceSample: TammyGritSample

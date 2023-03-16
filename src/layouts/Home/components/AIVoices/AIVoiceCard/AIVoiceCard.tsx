@@ -13,6 +13,7 @@ import {
   AvatarTag
 } from './styled';
 import { useRef } from 'react';
+import { css } from 'styled-components';
 
 interface IAIVoiceCardProps extends Omit<AvatarType, 'id'> {}
 
@@ -68,7 +69,19 @@ export const AIVoiceCard: FC<IAIVoiceCardProps> = ({
         <AvatarImage src={imageSrc} />
         <AvatarMetaDataContainer>
           <AvatarName>{name}</AvatarName>
-          <AvatarTag>{tag}</AvatarTag>
+          <div
+            css={css`
+              display: flex;
+              flex-direction: row;
+              gap: 4px;
+              flex-wrap: wrap;
+            `}
+          >
+            {tag.map(t => (
+              <AvatarTag key={t}>{t}</AvatarTag>
+            ))}
+          </div>
+
           <AvatarCharacteristics>{characteristics?.join(', ')}</AvatarCharacteristics>
         </AvatarMetaDataContainer>
         <PlayButton src={voiceSample} />
