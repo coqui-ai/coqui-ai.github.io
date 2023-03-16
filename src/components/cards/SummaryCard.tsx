@@ -53,7 +53,7 @@ export const SummaryCard: FC<SummaryCardPropsType> = ({
             text-fill-color: transparent;
           }
           .sc-card-description {
-            color: #ffffff;
+            color: ${hasHover ? '#ffffff' : '#000000'};
           }
         }
       `}

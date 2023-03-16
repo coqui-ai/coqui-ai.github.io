@@ -11,7 +11,7 @@ import {
 
 export const Contact: FC = () => {
   return (
-    <ContactContainer>
+    <ContactContainer id="contact">
       <ContactDetailsContainer>
         <ContactDetailsTitle>CONTACT OUR TEAM</ContactDetailsTitle>
         <ContactDetailsTitleDescription>

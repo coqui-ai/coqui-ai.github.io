@@ -155,7 +155,11 @@ export const Pricing: FC = () => {
         `}
       />
       <PricingTitle>Pricing that delivers value to match your needs.</PricingTitle>
-      <PricingSubtitle>Pick a plan that suits your requirements.</PricingSubtitle>
+      <PricingSubtitle>
+        Do you need AI voices on a project basis? Our starter package lets you only pay for what you
+        use. Or, if you&apos;re always in need of AI voice, talk to us to discuss our Pro and
+        Enterprise offers
+      </PricingSubtitle>
       <PricingRow>
         <PricingCard
           top={freeTrialJsx}

@@ -57,7 +57,6 @@ export const Solution: FC<SolutionType> = ({
   const [caption, setCaption] = useState<string>('');
 
   useEffect(() => {
-    console.log(image);
     setImg(image?.imageSrc || '');
     setCaption(image?.caption || '');
     // eslint-disable-next-line react-hooks/exhaustive-deps

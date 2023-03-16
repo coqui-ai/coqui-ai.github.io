@@ -63,8 +63,11 @@ export const Why: FC = () => {
           max-width: 50rem;
         `}
       >
-        Coqui Studio is feature-rich and has a user base that is growing every day. Here&apos;s why
-        creatives and business owners all over the world are choosing our solution.
+        Generative AI is already changing our lives. Coqui has long been one of the top cited
+        organizations in the research of Generative AI for voice. Our ambition toward technology and
+        obsession to identify and solve user problems are our main drivers, which helped us develop
+        the pioneering features of Coqui Studio. That&apos;s how we grow every day. Here&apos;s why
+        creatives and content owners all over the world are choosing our solution.
       </p>
       <div
         css={css`

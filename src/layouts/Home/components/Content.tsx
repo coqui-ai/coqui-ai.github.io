@@ -47,8 +47,9 @@ export const Content: FC = () => {
             }
           `}
         >
-          Instead of paying and waiting for expensive voice actors or narrators, we give creatives
-          and business owners back their time and money.
+          Instead of paying and waiting for expensive voice actors or narrators, we give audio /
+          sound professionals, narrative directors, game producers, and content owners back their
+          time and money.
         </h2>
         <p
           css={css`
@@ -59,9 +60,10 @@ export const Content: FC = () => {
             line-height: 32.4px;
           `}
         >
-          Coqui Studio can be used for storytelling, podcasting, AI Voice for games, audio books,
-          dubbing and just about anything you can think of. Either instantly clone your own voice or
-          choose from our selection of emotive, fully directable AI voices.
+          Powered by generative AI for voice, Coqui Studio can be used for storytelling, podcasting,
+          AI Voice for games, audio books, dubbing and just about anything you can think of. Either
+          instantly clone your own voice or choose from our selection of emotive, fully directable
+          AI voices.
         </p>
       </div>
     </div>

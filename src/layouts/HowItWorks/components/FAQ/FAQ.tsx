@@ -113,8 +113,8 @@ const faqLeftSectionData: FAQAccordionType[] = [
           >
             Pro-Level Support
           </span>{' '}
-          offers dedicated customer support that ensures you’re not held up by any problems, big or
-          small. Our team are ready to help.
+          offers dedicated customer support that ensures you&apos;re not held up by any problems,
+          big or small. Our team are ready to help.
         </li>
         <li>
           <span
@@ -265,12 +265,28 @@ const faqLeftSectionData: FAQAccordionType[] = [
         >
           <li>
             We encourage you to subscribe to our{' '}
-            <a href="https://www.youtube.com/@coqui1027/videos">YouTube Channel</a> for guided use
-            of Coqui Studio features and best practices.
+            <span
+              css={css`
+                text-decoration: underline;
+                cursor: pointer;
+              `}
+              onClick={() => window.open('https://www.youtube.com/@coqui1027/videos', '_BLANK')}
+            >
+              YouTube Channel
+            </span>
           </li>
           <li>
-            Why not join our <a href="https://discord.gg/dUW6Hf9R">Discord channels</a>? You can
-            reach out to us and many other fellow users of Coqui.
+            Why not join our{' '}
+            <span
+              css={css`
+                text-decoration: underline;
+                cursor: pointer;
+              `}
+              onClick={() => window.open('https://discord.gg/dUW6Hf9R', '_BLANK')}
+            >
+              Discord channels
+            </span>
+            ? You can reach out to us and many other fellow users of Coqui.
           </li>
         </ul>
       </>
@@ -384,7 +400,7 @@ const faqRightSectionData: FAQAccordionType[] = [
               font-weight: 600;
             `}
           >
-            Scene Manager
+            Scene Editing
           </span>{' '}
           allows the user to manage their scripts, divided by Scenes with Scene Names and Scene
           Descriptions identifying them.
@@ -440,8 +456,7 @@ const faqRightSectionData: FAQAccordionType[] = [
           >
             Voice Fusion
           </span>{' '}
-          merges two distinct AI voices together to alter the user’s voice or create something
-          totally unique.
+          merges two distinct AI voices together to create something totally unique.
         </li>
       </ul>
     )
@@ -575,7 +590,7 @@ export const FAQ: FC = () => {
   const [leftSection, setLeftSection] = useState<number[]>([0]);
   const [rightSection, setRightSection] = useState<number[]>([]);
   return (
-    <FAQContainer>
+    <FAQContainer id="resources">
       <FAQSection>ASK US</FAQSection>
       <FAQSectionTitle>
         Frequently asked <span>questions</span>

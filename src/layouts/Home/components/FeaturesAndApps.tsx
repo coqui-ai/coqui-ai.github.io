@@ -166,14 +166,14 @@ export const FeaturesAndApps: FC = () => {
             <SummaryCard
               border="#03363D"
               imageSrc={voiceoverImage}
-              phrase="Video voiceovers"
-              description="Professional sounding voiceover without the need to hire costly actors."
+              phrase="Audio Post-production"
+              description="Direct AI voices with emotion, pitch and prose, or fix your live audio and convert to AI - you're in control."
             />
             <SummaryCard
               border="#D93F4C"
               imageSrc={audioImage}
-              phrase="Audio descriptions for movies/TV"
-              description="Making your content more accessible with audio descriptions and grow your audience."
+              phrase="Localization"
+              description="Expanding to English speaking markets? Grow your audience with audio performed by any voice, including your own."
             />
           </div>
           <div
@@ -194,14 +194,14 @@ export const FeaturesAndApps: FC = () => {
             <SummaryCard
               border="#337FBD"
               imageSrc={gamingImage}
-              phrase="Gaming"
-              description="Providing spoken instructions, dialogue, and other audio content for video games."
+              phrase="Video Games"
+              description="Providing in-game dialogue, and giving non-speaking characters a voice, without heavy investment."
             />
             <SummaryCard
               border="#ED8F1C"
               imageSrc={podcastImage}
-              phrase="Podcast advertisements"
-              description="Create AI speech ads for your podcast, increasing revenue and saving time."
+              phrase="Prototyping"
+              description="Hear entire scripts within minutes and save hours. Use a wide variety of AI voices and create an entire cast of characters."
             />
           </div>
         </div>

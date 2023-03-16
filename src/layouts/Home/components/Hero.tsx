@@ -63,7 +63,7 @@ export const Hero: FC = () => {
                 text-fill-color: transparent;
               `}
             >
-              hours
+              weeks
             </span>
             .
           </h1>
@@ -73,8 +73,8 @@ export const Hero: FC = () => {
               line-height: 32.4px;
             `}
           >
-            Say hello to Coqui Studio. A web application that provides realistic, emotive
-            text-to-speech thanks to advanced AI technologies.
+            Say hello to Coqui Studio. The web application that provides realistic, emotive
+            text-to-speech thanks to advanced Generative AI technologies.
           </p>
           <div
             css={css`

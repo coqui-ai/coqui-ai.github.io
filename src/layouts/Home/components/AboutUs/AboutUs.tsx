@@ -22,13 +22,26 @@ export const AboutUs: FC = () => {
           Over <span>10 years of experience</span> in AI voices.
         </AboutUsDetailsTitleDescription>
         <AboutUsDetailsDescription>
-          Started in 2016, our team wanted to bring AI voice technology to the market, with the
-          support of a huge online, open-source community.We built open-sourced STT and TTS engines
-          that have since been used by hundreds of thousands of people, as well as open-sourcing
-          thousands of hours of speech training data. We&amp;re an organisation dedicated to the
-          continued support of these open-source efforts and the community gathered around them.
+          Formerly from Mozilla, our founders are established leaders and researchers on speech
+          technology and machine learning. Based in Berlin and founded in 2021, we started out
+          investing resources in STT (speech-to-text) and TTS (text-to-speech) engines that have
+          been used by hundreds of thousands across the world.
+          <br />
+          <br />
+          Now, we&apos;ve expanded our mission to help out audio, animation, post-production and
+          video game professionals in the creative space. We wanted to make “Generative AI for
+          Speech” accessible without the need for code. That&apos;s Coqui Studio.
+          <br />
+          <br />
+          Our team continues to grow, based across 5 continents with a rich background of experience
+          and advanced skill sets in machine learning and deep learning, as well as product, UX/UI
+          and software development.
+          <br />
+          <br />
+          In case you&apos;re wondering, the name Coqui came from the Puerto Rican frog. We drew
+          inspiration from the coquí because the frog is well-known for being small but having a
+          loud, clear voice.
         </AboutUsDetailsDescription>
-        <AboutUsDetailsDescription>The best is yet to come.</AboutUsDetailsDescription>
         <AboutUsButtonContainer>
           <PrimaryButton
             text="Discover Coqui Studio"
