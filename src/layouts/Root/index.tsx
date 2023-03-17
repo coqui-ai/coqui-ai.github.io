@@ -8,7 +8,7 @@
 import { init } from '@amplitude/analytics-browser';
 import * as Sentry from '@sentry/browser';
 import { SkipNav } from '@zendeskgarden/react-chrome';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import Footer from './components/Footer';
 import Header, { headerBoxShadow, headerHeight } from './components/Header';
@@ -81,17 +81,18 @@ const GrayedMain = styled(Main)`
   background-color: #e9ebed;
 `;
 
-interface IRootLayoutProps {
-  hasSkipNav?: boolean;
-  showVoiceSearch?: boolean;
-  grayedBackground?: boolean;
-}
-
-const RootLayout: React.FC<IRootLayoutProps> = ({
+const RootLayout = ({
   children,
   hasSkipNav,
   showVoiceSearch,
+  showFooter,
   grayedBackground
+}: {
+  children: ReactNode;
+  hasSkipNav: boolean;
+  showVoiceSearch: boolean;
+  showFooter: boolean;
+  grayedBackground: boolean;
 }) => {
   const MainType = grayedBackground ? GrayedMain : Main;
 
@@ -119,9 +120,7 @@ const RootLayout: React.FC<IRootLayoutProps> = ({
       <Header showVoiceSearch={showVoiceSearch} />
 
       <MainType>{children}</MainType>
-      {window.location.pathname !== '/' && window.location.pathname !== '/how-it-works' && (
-        <Footer />
-      )}
+      {showFooter && <Footer />}
     </div>
   );
 };

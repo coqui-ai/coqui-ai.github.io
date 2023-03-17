@@ -14,7 +14,7 @@ import React from 'react';
 
 const IndexPage: React.FC = () => {
   return (
-    <RootLayout hasSkipNav={false}>
+    <RootLayout hasSkipNav={false} showFooter={false}>
       <SEO />
       <HowItWorksLayout />
       <GogleAnalyticsCookieConsent />
