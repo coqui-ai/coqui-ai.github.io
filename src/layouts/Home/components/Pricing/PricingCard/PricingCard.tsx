@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 import React, { FC, useState } from 'react';
 import { PrimaryButton, SecondaryButton } from '../../Buttons';
 import {
@@ -220,7 +221,12 @@ export const PricingCard: FC<PricingCardType> = ({
                 transform: translateY(6px);
               `}
             />
-            {f}
+            {f?.toLowerCase().includes('everything from the starter package') ||
+            f?.toLowerCase().includes('everything from the pro package') ? (
+              <span>{f}</span>
+            ) : (
+              f
+            )}
           </PricingCartFeatureRow>
         ))}
       </PricingCardListContainer>

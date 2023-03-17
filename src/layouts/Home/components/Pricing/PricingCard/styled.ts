@@ -82,6 +82,14 @@ export const PricingCartFeatureRow = styled.div`
   ${p => mediaQuery('down', 'sm', p.theme)} {
     font-size: 12px;
   }
+  span {
+    background: linear-gradient(89.27deg, #ed8f1c -1.56%, #468d6a 102.75%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-weight: 700;
+  }
 `;
 
 export const PricingCardChip = styled.div`
