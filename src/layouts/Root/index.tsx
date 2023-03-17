@@ -85,7 +85,7 @@ const RootLayout = ({
   children,
   hasSkipNav,
   showVoiceSearch,
-  showFooter,
+  showFooter = true,
   grayedBackground
 }: {
   children: ReactNode;
