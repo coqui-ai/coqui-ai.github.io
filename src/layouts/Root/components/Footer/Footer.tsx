@@ -243,7 +243,7 @@ export const Footer: FC<FooterPropsType> = ({ hasSaveTimeBanner }) => {
           `}
         >
           <FooterLinksRow>
-            <FooterStyledLinksItem to="/">How it works</FooterStyledLinksItem>
+            <FooterStyledLinksItem to="/how-it-works">How it works</FooterStyledLinksItem>
             <FooterStyledLinksItem to="/jobs">Jobs</FooterStyledLinksItem>
             <FooterStyledLinksItem to="/privacy">Privacy</FooterStyledLinksItem>
             <FooterStyledLinksItem to="/tos">Terms</FooterStyledLinksItem>
