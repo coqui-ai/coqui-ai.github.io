@@ -1,5 +1,6 @@
 import React from 'react';
 import { SolutionType } from '../components/Solution/Solution';
+import { SolutionSectionTitle } from '../components/Solution/styled';
 import postProdImg from './post_production.png';
 import postProdImg2 from './post_production_2.png';
 import postProdImg3 from './post_production_3.png';
@@ -8,7 +9,11 @@ import { solutionsImagesLookup } from './solutionsImageLookup';
 export const solutionData: Omit<SolutionType, 'index'>[] = [
   {
     sectionTitle: 'VIDEO GAME DEVELOPERS',
-    title: 'Solve voice casting problems',
+    title: (
+      <SolutionSectionTitle>
+        Solve <span>voice casting</span> problems
+      </SolutionSectionTitle>
+    ),
     problem: {
       title: 'Your problem',
       description: (
@@ -48,7 +53,11 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
   },
   {
     sectionTitle: 'POST-PRODUCTION',
-    title: 'Turn a bad recording into the perfect finished product',
+    title: (
+      <SolutionSectionTitle>
+        Turn a bad recording into the <span>perfect finished product</span>
+      </SolutionSectionTitle>
+    ),
     problem: {
       title: 'Your problem',
       description: (
@@ -81,7 +90,11 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
   },
   {
     sectionTitle: 'VOICEOVER',
-    title: 'Instant audio creation',
+    title: (
+      <SolutionSectionTitle>
+        <span>Instant</span> audio creation
+      </SolutionSectionTitle>
+    ),
     problem: {
       title: 'Your problem',
       description: (

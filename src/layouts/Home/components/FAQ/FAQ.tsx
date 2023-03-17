@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-curly-newline */
 import { Accordion } from '@zendeskgarden/react-accordions';
+import { getColor } from '@zendeskgarden/react-theming';
 import { Link } from 'gatsby';
 import React, { FC, useState } from 'react';
 import { css } from 'styled-components';
@@ -118,6 +119,7 @@ const faqRightSectionData: FAQAccordionType[] = [
           css={css`
             text-decoration: underline;
             cursor: pointer;
+            color: ${p => getColor('yellow', 600, p.theme)};
           `}
         >
           Resources section
@@ -128,6 +130,7 @@ const faqRightSectionData: FAQAccordionType[] = [
           css={css`
             text-decoration: underline;
             cursor: pointer;
+            color: ${p => getColor('yellow', 600, p.theme)};
           `}
         >
           Drop us a line. Let&apos;s talk!

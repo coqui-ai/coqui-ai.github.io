@@ -82,6 +82,13 @@ export const SolutionSectionTitle = styled.h2`
   ${p => mediaQuery('down', 'sm', p.theme)} {
     text-align: center;
   }
+  span {
+    background: linear-gradient(89.27deg, #ed8f1c -1.56%, #468d6a 102.75%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
 `;
 
 export const SolutionsCaptionContainer = styled.div`

@@ -1,7 +1,7 @@
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import React, { FC, useState } from 'react';
 import { css } from 'styled-components';
-import { TryNowButton, SecondaryButton } from '../Buttons';
+import { TryNowButton, SecondaryButton, PrimaryButton } from '../Buttons';
 import { ReactComponent as UnmutedSpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-unmuted-fill.svg';
 import { ReactComponent as MutedSpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-muted-fill.svg';
 import VideoGameMp4 from '../../../../data/videos/use-cases/video-games/video-games.mp4';
@@ -37,7 +37,10 @@ export const SyntheticVoices: FC = () => {
           for lengthy recording sessions.
         </SyntheticVoicesDetailsDescription>
         <SyntheticVoicesButtonContainer>
-          <TryNowButton />
+          <PrimaryButton
+            text="Try Coqui Studio for free"
+            path={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
+          />
           <SecondaryButton text="Got a question?" path="#faq" />
         </SyntheticVoicesButtonContainer>
       </SyntheticVoicesDetailsContainer>

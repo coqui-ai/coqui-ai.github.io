@@ -66,7 +66,7 @@ export const FeaturesAndApps: FC = () => {
               }
             `}
           >
-            Coqui Studio will{' '}
+            Using generative AI for voice, we will{' '}
             <span
               css={css`
                 background: linear-gradient(89.27deg, #ed8f1c -1.56%, #468d6a 102.75%);
@@ -78,7 +78,7 @@ export const FeaturesAndApps: FC = () => {
             >
               transform
             </span>{' '}
-            the way you work, entertain and communicate.
+            the way creatives work, create, and communicate
           </h2>
           <p
             css={css`

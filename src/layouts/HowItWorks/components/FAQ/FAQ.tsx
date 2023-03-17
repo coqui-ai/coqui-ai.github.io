@@ -593,7 +593,7 @@ export const FAQ: FC = () => {
     <FAQContainer id="resources">
       <FAQSection>ASK US</FAQSection>
       <FAQSectionTitle>
-        Frequently asked <span>questions</span>
+        <span>Resources</span>
       </FAQSectionTitle>
       <FAQRowContainer>
         <FAQColumn>

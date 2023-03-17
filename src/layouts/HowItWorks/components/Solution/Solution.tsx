@@ -24,7 +24,7 @@ const keyframe = keyframes`
 export type SolutionType = {
   index: number;
   sectionTitle: string;
-  title: string;
+  title: JSX.Element;
   problem: AccordionProblemType;
   solution: AccordionSolutionType;
   image?: {
@@ -55,6 +55,7 @@ export const Solution: FC<SolutionType> = ({
 }) => {
   const [img, setImg] = useState<string>('');
   const [caption, setCaption] = useState<string>('');
+  const [sections, setSections] = useState<number[]>([0, 1]);
 
   useEffect(() => {
     setImg(image?.imageSrc || '');
@@ -80,7 +81,17 @@ export const Solution: FC<SolutionType> = ({
       <SolutionSegmentLeft>
         <SolutionSection>{sectionTitle}</SolutionSection>
         <SolutionSectionTitle>{title}</SolutionSectionTitle>
-        <Accordion level={4} expandedSections={[0, 1]}>
+        <Accordion
+          level={4}
+          expandedSections={sections}
+          onChange={(index: number) => {
+            const matchedIndex = sections.indexOf(index);
+            if (matchedIndex === -1) return setSections([...sections, index]);
+            const removed = [...sections];
+            removed.splice(matchedIndex, 1);
+            setSections(removed);
+          }}
+        >
           <Accordion.Section>
             <Accordion.Header>
               <Accordion.Label>{problem?.title || ''}</Accordion.Label>

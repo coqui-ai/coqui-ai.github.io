@@ -21,6 +21,7 @@ import { GetStartedCtA } from './components/GetStartedCta';
 import { Hero } from './components/Hero';
 import { Pricing } from './components/Pricing/Pricing';
 import { PricingTable } from './components/PricingTable';
+import { SavingTime } from './components/SavingTime/SavingTime';
 import { SyntheticVoices } from './components/SyntheticVoices/SyntheticVoices';
 import { UsersSection } from './components/Users';
 import { Voices } from './components/Voices';
@@ -42,6 +43,7 @@ export const HomeLayout = () => {
       <FAQ />
       <Contact />
       <Blogs />
+      <SavingTime />
       <Footer />
       {/* <CtA />
       <Features />
