@@ -13,7 +13,8 @@ export const Socials: FC = () => {
   return (
     <SocialsContainer>
       <SocialsSectionTitle>
-        Learn more about the <span>latest in AI voice</span> across our social media
+        Learn more about the <span>latest in Generative AI</span> for voice, from Coqui across our
+        social media
       </SocialsSectionTitle>
       <SocialsDescription>
         Explore our videos and stories that break down the latest in AI advances, and how they can

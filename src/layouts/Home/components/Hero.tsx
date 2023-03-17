@@ -1,7 +1,7 @@
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import React, { FC, useState } from 'react';
 import { css } from 'styled-components';
-import { SecondaryButton, TryNowButton } from './Buttons';
+import { PrimaryButton, SecondaryButton, TryNowButton } from './Buttons';
 import { StyledButton } from './StyledButtons';
 import { ReactComponent as UnmutedSpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-unmuted-fill.svg';
 import { ReactComponent as MutedSpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-muted-fill.svg';
@@ -53,7 +53,7 @@ export const Hero: FC = () => {
               }
             `}
           >
-            Helping professionals and developers save{' '}
+            Helping creatives and game developers save{' '}
             <span
               css={css`
                 background: linear-gradient(89.27deg, #ed8f1c -1.56%, #468d6a 102.75%);
@@ -85,7 +85,10 @@ export const Hero: FC = () => {
               padding-top: 20px;
             `}
           >
-            <TryNowButton />
+            <PrimaryButton
+              text="Start now for free"
+              path={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
+            />
             <SecondaryButton text="See what we can do" path="/how-it-works" />
           </div>
         </div>

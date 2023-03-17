@@ -24,7 +24,7 @@ const keyframe = keyframes`
 export type SolutionType = {
   index: number;
   sectionTitle: string;
-  title: string;
+  title: JSX.Element;
   problem: AccordionProblemType;
   solution: AccordionSolutionType;
   image?: {

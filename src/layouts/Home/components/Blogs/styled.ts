@@ -6,7 +6,7 @@ export const BlogsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   position: relative;
-  padding: 10rem 10rem 15rem 10rem;
+  padding: 10rem 10rem 5rem 10rem;
   gap: 30px;
   ${p => mediaQuery('down', 'sm', p.theme)} {
     padding: 2rem;

@@ -17,6 +17,7 @@ type ButtonType = {
   textColor?: string;
   path: string;
   fullWidth?: boolean;
+  iconSrc?: string;
 };
 
 export const TryNowButton = ({ ...rest }) => {
@@ -38,12 +39,13 @@ export const TryNowButton = ({ ...rest }) => {
   );
 };
 
-export const PrimaryButton: FC<ButtonType> = ({ text, path, fullWidth }) => {
+export const PrimaryButton: FC<ButtonType> = ({ text, path, fullWidth, iconSrc }) => {
   return (
     <StyledNavigationLink
       to={path}
       css={css`
         width: ${fullWidth ? '100%' : ''};
+        z-index: 2;
       `}
     >
       <Button
@@ -55,9 +57,26 @@ export const PrimaryButton: FC<ButtonType> = ({ text, path, fullWidth }) => {
           font-weight: 400;
           padding: 18px 24px;
           width: ${fullWidth ? '100%' : ''};
+          :hover {
+            border-color: ${p => getColor('yellow', 600, p.theme)};
+            background-color: ${p => getColor('yellow', 600, p.theme)};
+            color: white;
+            opacity: 0.7;
+          }
         `}
       >
-        {text}
+        {text}{' '}
+        {iconSrc && (
+          <img
+            css={css`
+              margin-left: 4px;
+              height: 12px;
+              width: 12px;
+            `}
+            src={iconSrc}
+            alt="button icon"
+          />
+        )}
       </Button>
     </StyledNavigationLink>
   );
