@@ -310,7 +310,7 @@ const Header = ({}) => {
             }
           `}
         >
-          <a href="/">Sign In</a>
+          <a href="https://app.coqui.ai/auth/signin">Sign In</a>
           <TryNowButton />
         </div>
         <MobileNavButton
