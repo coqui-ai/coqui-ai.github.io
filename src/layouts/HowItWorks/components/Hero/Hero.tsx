@@ -2,7 +2,12 @@ import { mediaQuery } from '@zendeskgarden/react-theming';
 import { MAX_WIDTH } from 'data/constants/constants';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
-import { SecondaryButton, TertiaryButton, TryNowButton } from '../../../Home/components/Buttons';
+import {
+  PrimaryButton,
+  SecondaryButton,
+  TertiaryButton,
+  TryNowButton
+} from '../../../Home/components/Buttons';
 import heroImg from './hero.png';
 
 export const Hero: FC = () => {
@@ -86,7 +91,7 @@ export const Hero: FC = () => {
                 padding-top: 20px;
               `}
             >
-              <TertiaryButton
+              <PrimaryButton
                 text="Try Coqui Studio for free"
                 path={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
               />
