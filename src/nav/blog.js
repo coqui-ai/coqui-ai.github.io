@@ -40,6 +40,14 @@ export default [
   },
   {
     group: 'TTS',
+    title: 'Introducing Voice Fusion',
+    url: '/blog/tts/voice-fusion',
+    splash: 'images/blog/splash-screens/blog-splash-screen-voice-fusion.jpg',
+    description: 'Voice Fusion - A Revolutionary New Feature in Coqui Studio',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'Coqui Studio February 2023 Release',
     url: '/blog/tts/coqui-studio-feb-2023-release',
     splash: 'images/blog/splash-screens/blog-splash-screen-release-feb-2023.jpg',
