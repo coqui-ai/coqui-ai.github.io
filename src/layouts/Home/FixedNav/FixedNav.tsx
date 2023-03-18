@@ -4,6 +4,7 @@ import React, { FC, useRef, useState } from 'react';
 import { css } from 'styled-components';
 import tab from './tab.png';
 import { ReactComponent as RightChevron } from '@zendeskgarden/svg-icons/src/16/chevron-right-fill.svg';
+import { mediaQuery } from '@zendeskgarden/react-theming';
 
 type FixedNavType = {
   links: JSX.Element;
@@ -77,7 +78,15 @@ export const FixedNav: FC<FixedNavType> = ({ links }) => {
         `}
         onClick={() => setIsOpen(true)}
       >
-        <img src={tab} alt="menu" />
+        <img
+          css={css`
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              height: 60px;
+            }
+          `}
+          src={tab}
+          alt="menu"
+        />
       </span>
     );
 
