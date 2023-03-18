@@ -10,7 +10,7 @@ export default [
     group: 'TTS',
     title: 'Introducing Prompt-to-Voice',
     url: '/blog/tts/prompt-to-voice',
-    splash: 'images/blog/splash-screens/blog-splash-screen-voice-fusion.jpg',
+    splash: 'images/blog/splash-screens/blog-splash-screen-prompt-to-voice.jpg',
     description: 'Prompt-to-Voice - Describe It to Hear It',
     height: 500
   },
