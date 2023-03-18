@@ -77,7 +77,7 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
         <p>
           Coqui Studio allows you to{' '}
           <span onClick={() => phraseClickHandler('Clone Your Voice')}>Clone Your Voice</span> and
-          will replicate it accurately in just 3 seconds. It can replace missing words, and be
+          will replicate it with only 3 seconds of audio. It can replace missing words, and be
           matched perfectly with the existing recording thanks to the{' '}
           <span onClick={() => phraseClickHandler('Speech Rate')}>Speech Rate</span>. Utilise the{' '}
           <span onClick={() => phraseClickHandler('Advanced Editor')}>Advanced Editor</span> to
