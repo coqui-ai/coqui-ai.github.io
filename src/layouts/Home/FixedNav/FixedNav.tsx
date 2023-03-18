@@ -75,6 +75,9 @@ export const FixedNav: FC<FixedNavType> = ({ links }) => {
           right: 0;
           top: 30%;
           z-index: 1000;
+          ${p => mediaQuery('down', 'sm', p.theme)} {
+            top: 15%;
+          }
         `}
         onClick={() => setIsOpen(true)}
       >
