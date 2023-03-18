@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-curly-newline */
 import { Accordion } from '@zendeskgarden/react-accordions';
+import { getColor } from '@zendeskgarden/react-theming';
 import React, { FC, useState } from 'react';
 import { css } from 'styled-components';
 import { FAQColumn, FAQContainer, FAQRowContainer, FAQSection, FAQSectionTitle } from './styled';
@@ -269,6 +270,7 @@ const faqLeftSectionData: FAQAccordionType[] = [
               css={css`
                 text-decoration: underline;
                 cursor: pointer;
+                color: ${p => getColor('yellow', 600, p.theme)};
               `}
               onClick={() => window.open('https://www.youtube.com/@coqui1027/videos', '_BLANK')}
             >
@@ -281,6 +283,7 @@ const faqLeftSectionData: FAQAccordionType[] = [
               css={css`
                 text-decoration: underline;
                 cursor: pointer;
+                color: ${p => getColor('yellow', 600, p.theme)};
               `}
               onClick={() => window.open('https://discord.gg/dUW6Hf9R', '_BLANK')}
             >

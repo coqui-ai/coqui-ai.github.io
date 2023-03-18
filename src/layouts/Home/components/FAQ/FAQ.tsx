@@ -50,6 +50,7 @@ const faqLeftSectionData: FAQAccordionType[] = [
           css={css`
             text-decoration: underline;
             cursor: pointer;
+            color: ${p => getColor('yellow', 600, p.theme)};
           `}
           onClick={() => window.open('https://github.com/coqui-ai', '_BLANK')}
         >
@@ -72,6 +73,7 @@ const faqLeftSectionData: FAQAccordionType[] = [
           css={css`
             text-decoration: underline;
             cursor: pointer;
+            color: ${p => getColor('yellow', 600, p.theme)};
           `}
         >
           So drop us a line.
@@ -81,6 +83,7 @@ const faqLeftSectionData: FAQAccordionType[] = [
           css={css`
             text-decoration: underline;
             cursor: pointer;
+            color: ${p => getColor('yellow', 600, p.theme)};
           `}
           onClick={() => window.open('https://discord.gg/CzxHHp8mtZ', '_BLANK')}
         >
