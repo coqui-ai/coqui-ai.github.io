@@ -1,4 +1,5 @@
 import { mediaQuery } from '@zendeskgarden/react-theming';
+import { MAX_WIDTH } from 'data/constants/constants';
 import styled from 'styled-components';
 
 type PricingCardPriceType = {
@@ -17,6 +18,15 @@ export const PricingContainer = styled.div`
   ${p => mediaQuery('down', 'md', p.theme)} {
     padding: 2rem;
   }
+`;
+
+export const PricingMaxWidthWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  max-width: ${MAX_WIDTH};
 `;
 
 export const PricingTitle = styled.h2`

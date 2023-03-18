@@ -1,4 +1,5 @@
 import { mediaQuery } from '@zendeskgarden/react-theming';
+import { MAX_WIDTH } from 'data/constants/constants';
 import { graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import React from 'react';
@@ -66,6 +67,7 @@ export const CitedBy = () => {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          max-width: ${MAX_WIDTH};
           ${p => mediaQuery('down', 'lg', p.theme)} {
             display: flex;
           }
@@ -114,6 +116,7 @@ export const CitedBy = () => {
           gap: 5rem;
           padding: 0 30px;
           padding: 5rem 10rem 5rem 10rem;
+          max-width: ${MAX_WIDTH};
           ${p => mediaQuery('down', 'lg', p.theme)} {
             display: none;
           }

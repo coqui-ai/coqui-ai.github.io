@@ -22,6 +22,7 @@ const keyframe = keyframes`
 `;
 
 export type SolutionType = {
+  navid: string;
   index: number;
   sectionTitle: string;
   title: JSX.Element;
@@ -45,6 +46,7 @@ export type AccordionSolutionType = {
 };
 
 export const Solution: FC<SolutionType> = ({
+  navid,
   index,
   problem,
   solution,
@@ -77,66 +79,76 @@ export const Solution: FC<SolutionType> = ({
   };
 
   return (
-    <SolutionContainer index={index}>
-      <SolutionSegmentLeft>
-        <SolutionSection>{sectionTitle}</SolutionSection>
-        <SolutionSectionTitle>{title}</SolutionSectionTitle>
-        <Accordion
-          level={4}
-          expandedSections={sections}
-          onChange={(index: number) => {
-            const matchedIndex = sections.indexOf(index);
-            if (matchedIndex === -1) return setSections([...sections, index]);
-            const removed = [...sections];
-            removed.splice(matchedIndex, 1);
-            setSections(removed);
-          }}
-        >
-          <Accordion.Section>
-            <Accordion.Header>
-              <Accordion.Label>{problem?.title || ''}</Accordion.Label>
-            </Accordion.Header>
-            <Accordion.Panel>{problem?.description || ''}</Accordion.Panel>
-          </Accordion.Section>
-          <Accordion.Section>
-            <Accordion.Header>
-              <Accordion.Label>{solution?.title || ''}</Accordion.Label>
-            </Accordion.Header>
-            <Accordion.Panel>{solution?.description(phraseClickHandler) || ''}</Accordion.Panel>
-          </Accordion.Section>
-        </Accordion>
-      </SolutionSegmentLeft>
-      <SolutionSegmentRight>
-        <img
-          src={img}
-          alt={sectionTitle}
-          css={css`
-            min-width: 300px;
-            -webkit-transition: opacity 1s ease-in-out;
-            -moz-transition: opacity 1s ease-in-out;
-            -o-transition: opacity 1s ease-in-out;
-            transition: opacity 1s ease-in-out;
-            ${p => mediaQuery('down', 'md', p.theme)} {
-              height: auto;
-            }
-          `}
-        />
-        <SolutionsCaptionContainer>
-          <SolutionsCaptionText
-            key={caption}
+    <div
+      id={navid}
+      css={css`
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: ${index % 2 === 0 ? '#FFFFFF' : '#F9FAFC'};
+      `}
+    >
+      <SolutionContainer index={index}>
+        <SolutionSegmentLeft>
+          <SolutionSection>{sectionTitle}</SolutionSection>
+          <SolutionSectionTitle>{title}</SolutionSectionTitle>
+          <Accordion
+            level={4}
+            expandedSections={sections}
+            onChange={(index: number) => {
+              const matchedIndex = sections.indexOf(index);
+              if (matchedIndex === -1) return setSections([...sections, index]);
+              const removed = [...sections];
+              removed.splice(matchedIndex, 1);
+              setSections(removed);
+            }}
+          >
+            <Accordion.Section>
+              <Accordion.Header>
+                <Accordion.Label>{problem?.title || ''}</Accordion.Label>
+              </Accordion.Header>
+              <Accordion.Panel>{problem?.description || ''}</Accordion.Panel>
+            </Accordion.Section>
+            <Accordion.Section>
+              <Accordion.Header>
+                <Accordion.Label>{solution?.title || ''}</Accordion.Label>
+              </Accordion.Header>
+              <Accordion.Panel>{solution?.description(phraseClickHandler) || ''}</Accordion.Panel>
+            </Accordion.Section>
+          </Accordion>
+        </SolutionSegmentLeft>
+        <SolutionSegmentRight>
+          <img
+            src={img}
+            alt={sectionTitle}
             css={css`
               min-width: 300px;
-              -webkit-animation: ${keyframe} 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-              animation: ${keyframe} 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+              -webkit-transition: opacity 1s ease-in-out;
+              -moz-transition: opacity 1s ease-in-out;
+              -o-transition: opacity 1s ease-in-out;
+              transition: opacity 1s ease-in-out;
               ${p => mediaQuery('down', 'md', p.theme)} {
                 height: auto;
               }
             `}
-          >
-            {caption}
-          </SolutionsCaptionText>
-        </SolutionsCaptionContainer>
-      </SolutionSegmentRight>
-    </SolutionContainer>
+          />
+          <SolutionsCaptionContainer>
+            <SolutionsCaptionText
+              key={caption}
+              css={css`
+                min-width: 300px;
+                -webkit-animation: ${keyframe} 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+                animation: ${keyframe} 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+                ${p => mediaQuery('down', 'md', p.theme)} {
+                  height: auto;
+                }
+              `}
+            >
+              {caption}
+            </SolutionsCaptionText>
+          </SolutionsCaptionContainer>
+        </SolutionSegmentRight>
+      </SolutionContainer>
+    </div>
   );
 };

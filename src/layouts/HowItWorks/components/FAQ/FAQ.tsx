@@ -590,51 +590,60 @@ export const FAQ: FC = () => {
   const [leftSection, setLeftSection] = useState<number[]>([0]);
   const [rightSection, setRightSection] = useState<number[]>([]);
   return (
-    <FAQContainer id="resources">
-      <FAQSection>ASK US</FAQSection>
-      <FAQSectionTitle>
-        <span>Resources</span>
-      </FAQSectionTitle>
-      <FAQRowContainer>
-        <FAQColumn>
-          <Accordion
-            level={4}
-            isBare
-            expandedSections={leftSection}
-            onChange={(index: number) =>
-              leftSection.indexOf(index) > -1 ? setLeftSection([]) : setLeftSection([index])
-            }
-          >
-            {faqLeftSectionData.map(d => (
-              <Accordion.Section key={d.id}>
-                <Accordion.Header>
-                  <Accordion.Label>{d.title}</Accordion.Label>
-                </Accordion.Header>
-                <Accordion.Panel>{d.detail}</Accordion.Panel>
-              </Accordion.Section>
-            ))}
-          </Accordion>
-        </FAQColumn>
-        <FAQColumn>
-          <Accordion
-            level={4}
-            isBare
-            expandedSections={rightSection}
-            onChange={(index: number) =>
-              rightSection.indexOf(index) > -1 ? setRightSection([]) : setRightSection([index])
-            }
-          >
-            {faqRightSectionData.map(d => (
-              <Accordion.Section key={d.id}>
-                <Accordion.Header>
-                  <Accordion.Label>{d.title}</Accordion.Label>
-                </Accordion.Header>
-                <Accordion.Panel>{d.detail}</Accordion.Panel>
-              </Accordion.Section>
-            ))}
-          </Accordion>
-        </FAQColumn>
-      </FAQRowContainer>
-    </FAQContainer>
+    <div
+      id="resources"
+      css={css`
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      `}
+    >
+      <FAQContainer>
+        <FAQSection>ASK US</FAQSection>
+        <FAQSectionTitle>
+          <span>Resources</span>
+        </FAQSectionTitle>
+        <FAQRowContainer>
+          <FAQColumn>
+            <Accordion
+              level={4}
+              isBare
+              expandedSections={leftSection}
+              onChange={(index: number) =>
+                leftSection.indexOf(index) > -1 ? setLeftSection([]) : setLeftSection([index])
+              }
+            >
+              {faqLeftSectionData.map(d => (
+                <Accordion.Section key={d.id}>
+                  <Accordion.Header>
+                    <Accordion.Label>{d.title}</Accordion.Label>
+                  </Accordion.Header>
+                  <Accordion.Panel>{d.detail}</Accordion.Panel>
+                </Accordion.Section>
+              ))}
+            </Accordion>
+          </FAQColumn>
+          <FAQColumn>
+            <Accordion
+              level={4}
+              isBare
+              expandedSections={rightSection}
+              onChange={(index: number) =>
+                rightSection.indexOf(index) > -1 ? setRightSection([]) : setRightSection([index])
+              }
+            >
+              {faqRightSectionData.map(d => (
+                <Accordion.Section key={d.id}>
+                  <Accordion.Header>
+                    <Accordion.Label>{d.title}</Accordion.Label>
+                  </Accordion.Header>
+                  <Accordion.Panel>{d.detail}</Accordion.Panel>
+                </Accordion.Section>
+              ))}
+            </Accordion>
+          </FAQColumn>
+        </FAQRowContainer>
+      </FAQContainer>
+    </div>
   );
 };

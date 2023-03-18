@@ -1,4 +1,5 @@
 import { mediaQuery } from '@zendeskgarden/react-theming';
+import { MAX_WIDTH } from 'data/constants/constants';
 import styled from 'styled-components';
 
 export const AboutUsContainer = styled.div`
@@ -9,6 +10,7 @@ export const AboutUsContainer = styled.div`
   align-items: center;
   gap: 5rem;
   padding: 5rem 10rem;
+  max-width: ${MAX_WIDTH};
   ${p => mediaQuery('down', 'md', p.theme)} {
     padding: 2rem;
     flex-direction: column;

@@ -89,7 +89,19 @@ export const AIVoiceCard: FC<IAIVoiceCardProps> = ({
       <AIVoiceCardContainerMobile>
         <AvatarImage src={imageSrc} />
         <AvatarName>{name}</AvatarName>
-        <AvatarTag>{tag}</AvatarTag>
+        <div
+          css={css`
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            justify-content: center;
+            align-items: center;
+          `}
+        >
+          {tag.map(t => (
+            <AvatarTag key={t}>{t}</AvatarTag>
+          ))}
+        </div>
         <AvatarCharacteristics>{characteristics?.join(', ')}</AvatarCharacteristics>
         <PlayButton src={voiceSample} />
       </AIVoiceCardContainerMobile>

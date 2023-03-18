@@ -6,6 +6,7 @@ import {
   PricingCardPriceTitle,
   PricingCardTopRow,
   PricingContainer,
+  PricingMaxWidthWrapper,
   PricingRow,
   PricingSubtitle,
   PricingTitle
@@ -145,112 +146,114 @@ export const Pricing: FC = () => {
   );
 
   return (
-    <PricingContainer>
-      <img
-        src={voiceImg}
-        alt="voice wave"
-        css={css`
-          position: absolute;
-          top: 25%;
-        `}
-      />
-      <PricingTitle>Pricing that delivers value to match your needs.</PricingTitle>
-      <PricingSubtitle>
-        Do you need AI voices on a project basis? Our starter package lets you only pay for what you
-        use. Or, if you&apos;re always in need of AI voice, talk to us to discuss our Pro and
-        Enterprise offers
-      </PricingSubtitle>
-      <PricingRow>
-        <PricingCard
-          top={freeTrialJsx}
-          buttonPath={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
-          summary="See what Coqui Studio can do"
-          buttonType="primary"
-          buttonText="Try now for free"
-          textColor="#F9F9F9"
-          bgColor="#073D3E"
-          featureList={[
-            'Generate AI Voices (English)',
-            'Generative AI Emotions',
-            'Unlimited Voice Cloning (English)',
-            'Unlimited Projects & Scripts',
-            'Directable Generative AI Voice Pacing',
-            'Directable Generative AI Voice Intonation',
-            'Directable Generative AI  Voice Intensity'
-          ]}
+    <PricingContainer id="pricing">
+      <PricingMaxWidthWrapper>
+        <img
+          src={voiceImg}
+          alt="voice wave"
+          css={css`
+            position: absolute;
+            top: 25%;
+          `}
         />
-        <PricingCard
-          top={starterJsx}
-          buttonPath={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
-          summary="For personal projects and small businesses"
-          buttonType="primary"
-          buttonText="Get started"
-          textColor="#000000"
-          summaryTextColor="#68737D"
-          cardBorderColor="#ed8f1c"
-          bgColor="#FFFFFF"
-          chipText="Starter"
-          featureList={[
-            'Generate AI Voices (English)',
-            'Generative AI Emotions',
-            'Unlimited Voice Cloning (English)',
-            'Unlimited Projects & Scripts',
-            'Directable Generative AI Voice Pacing',
-            'Directable Generative AI Voice Intonation',
-            'Directable Generative AI  Voice Intensity'
-          ]}
-          hasToggle
-        />
-        <PricingCard
-          top={proJsx}
-          buttonPath=""
-          summary="For larger businesses and creative teams"
-          buttonType="modal"
-          buttonText="Join the waiting list"
-          buttonClickHandler={() => {
-            setShowWaitingListModal(true);
-          }}
-          textColor="#F9F9F9"
-          bgColor="#073D3E"
-          featureList={[
-            'Everything from the starter package',
-            'Multi-user',
-            'Team Collaboration Tools',
-            'Higher Quality Voice Clones',
-            'Multi-lingual synthesis',
-            'Pro-Level Support'
-          ]}
-        />
-        <PricingCard
-          top={enterpriseJsx}
-          buttonPath="mailto:info@coqui.ai"
-          summary="Bespoke solutions built for large organisations"
-          buttonType="secondary"
-          buttonText="Contact us"
-          textColor="#F9F9F9"
-          bgColor="#073D3E"
-          featureList={[
-            'Everything from the Pro package',
-            'Single Sign On (SSO)',
-            'Role-Based Access (RBAC)',
-            'Team Management Tools',
-            'Premium Quality Voice Clones',
-            'All Supported Languages',
-            'Script Versioning',
-            'Audit Logs',
-            'Virtual Private Cloud Hosting',
-            'Custom Integrations',
-            'API access'
-          ]}
-        />
-        {showWaitingListModal && (
-          <WaitingListModal
-            closeModal={() => {
-              setShowWaitingListModal(false);
-            }}
+        <PricingTitle>Pricing that delivers value to match your needs.</PricingTitle>
+        <PricingSubtitle>
+          Do you need AI voices on a project basis? Our starter package lets you only pay for what
+          you use. Or, if you&apos;re always in need of AI voice, talk to us to discuss our Pro and
+          Enterprise offers
+        </PricingSubtitle>
+        <PricingRow>
+          <PricingCard
+            top={freeTrialJsx}
+            buttonPath={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
+            summary="See what Coqui Studio can do"
+            buttonType="primary"
+            buttonText="Try now for free"
+            textColor="#F9F9F9"
+            bgColor="#073D3E"
+            featureList={[
+              'Generate AI Voices (English)',
+              'Generative AI Emotions',
+              'Unlimited Voice Cloning (English)',
+              'Unlimited Projects & Scripts',
+              'Directable Generative AI Voice Pacing',
+              'Directable Generative AI Voice Intonation',
+              'Directable Generative AI  Voice Intensity'
+            ]}
           />
-        )}
-      </PricingRow>
+          <PricingCard
+            top={starterJsx}
+            buttonPath={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
+            summary="For personal projects and small businesses"
+            buttonType="primary"
+            buttonText="Get started"
+            textColor="#000000"
+            summaryTextColor="#68737D"
+            cardBorderColor="#ed8f1c"
+            bgColor="#FFFFFF"
+            chipText="Starter"
+            featureList={[
+              'Generate AI Voices (English)',
+              'Generative AI Emotions',
+              'Unlimited Voice Cloning (English)',
+              'Unlimited Projects & Scripts',
+              'Directable Generative AI Voice Pacing',
+              'Directable Generative AI Voice Intonation',
+              'Directable Generative AI  Voice Intensity'
+            ]}
+            hasToggle
+          />
+          <PricingCard
+            top={proJsx}
+            buttonPath=""
+            summary="For larger businesses and creative teams"
+            buttonType="modal"
+            buttonText="Join the waiting list"
+            buttonClickHandler={() => {
+              setShowWaitingListModal(true);
+            }}
+            textColor="#F9F9F9"
+            bgColor="#073D3E"
+            featureList={[
+              'Everything from the starter package',
+              'Multi-user',
+              'Team Collaboration Tools',
+              'Higher Quality Voice Clones',
+              'Multi-lingual synthesis',
+              'Pro-Level Support'
+            ]}
+          />
+          <PricingCard
+            top={enterpriseJsx}
+            buttonPath="mailto:info@coqui.ai"
+            summary="Bespoke solutions built for large organisations"
+            buttonType="secondary"
+            buttonText="Contact us"
+            textColor="#F9F9F9"
+            bgColor="#073D3E"
+            featureList={[
+              'Everything from the Pro package',
+              'Single Sign On (SSO)',
+              'Role-Based Access (RBAC)',
+              'Team Management Tools',
+              'Premium Quality Voice Clones',
+              'All Supported Languages',
+              'Script Versioning',
+              'Audit Logs',
+              'Virtual Private Cloud Hosting',
+              'Custom Integrations',
+              'API access'
+            ]}
+          />
+          {showWaitingListModal && (
+            <WaitingListModal
+              closeModal={() => {
+                setShowWaitingListModal(false);
+              }}
+            />
+          )}
+        </PricingRow>
+      </PricingMaxWidthWrapper>
     </PricingContainer>
   );
 };

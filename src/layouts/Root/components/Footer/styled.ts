@@ -16,7 +16,7 @@ export const FooterContainer = styled.div<FooterContainerProps>`
   background-color: #03363d;
   ${p => mediaQuery('up', 'lg', p.theme)} {
     padding: ${({ hasBanner }) =>
-      hasBanner ? '15rem 10rem 10rem 10rem' : '10rem 10rem 5rem 10rem'};
+    hasBanner ? '15rem 10rem 10rem 10rem' : '10rem 10rem 5rem 10rem'};
   }
 `;
 
@@ -94,6 +94,9 @@ export const FooterSocialsRow = styled.div`
   gap: 16px;
   align-items: center;
   justify-content: center;
+  span {
+    cursor: pointer;
+  }
 `;
 
 export const FooterSocialsImg = styled.img`

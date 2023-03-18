@@ -25,94 +25,104 @@ export const SyntheticVoices: FC = () => {
   };
 
   return (
-    <SyntheticVoicesContainer id="synthetic-voices">
-      <SyntheticVoicesDetailsContainer>
-        <SyntheticVoicesDetailsTitle>SYNTHETIC VOICES</SyntheticVoicesDetailsTitle>
-        <SyntheticVoicesDetailsTitleDescription>
-          <span>Hybrid</span> human and AI voices.
-        </SyntheticVoicesDetailsTitleDescription>
-        <SyntheticVoicesDetailsDescription>
-          Our solution combines the benefits of real voice with the ease of AI voice. Your content
-          retains engagement, increases interest and keeps the human touch, without the requirement
-          for lengthy recording sessions.
-        </SyntheticVoicesDetailsDescription>
-        <SyntheticVoicesButtonContainer>
-          <PrimaryButton
-            text="Try Coqui Studio for free"
-            path={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
-          />
-          <SecondaryButton text="Got a question?" path="#faq" />
-        </SyntheticVoicesButtonContainer>
-      </SyntheticVoicesDetailsContainer>
-      <SyntheticVoicesVideoContainer>
-        <div
-          css={css`
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex: 1;
-          `}
-        >
+    <div
+      id="synthetic-voices"
+      css={css`
+        display: flex;
+        flex-direction: row;
+        background-color: #f9fafc;
+        justify-content: center;
+      `}
+    >
+      <SyntheticVoicesContainer>
+        <SyntheticVoicesDetailsContainer>
+          <SyntheticVoicesDetailsTitle>SYNTHETIC VOICES</SyntheticVoicesDetailsTitle>
+          <SyntheticVoicesDetailsTitleDescription>
+            <span>Hybrid</span> human and AI voices.
+          </SyntheticVoicesDetailsTitleDescription>
+          <SyntheticVoicesDetailsDescription>
+            Our solution combines the benefits of real voice with the ease of AI voice. Your content
+            retains engagement, increases interest and keeps the human touch, without the
+            requirement for lengthy recording sessions.
+          </SyntheticVoicesDetailsDescription>
+          <SyntheticVoicesButtonContainer>
+            <PrimaryButton
+              text="Try Coqui Studio for free"
+              path={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
+            />
+            <SecondaryButton text="Got a question?" path="#faq" />
+          </SyntheticVoicesButtonContainer>
+        </SyntheticVoicesDetailsContainer>
+        <SyntheticVoicesVideoContainer>
           <div
             css={css`
-              width: 100%;
-              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              flex: 1;
             `}
           >
             <div
               css={css`
-                display: inline-block;
-                position: relative;
-                left: 50%;
-                transform: translateX(-50%);
+                width: 100%;
+                height: 100%;
               `}
             >
               <div
                 css={css`
-                  position: absolute;
-                  bottom: 0;
-                  right: 0;
-                  transform: translate(-50%, -50%);
-                  z-index: 10;
+                  display: inline-block;
+                  position: relative;
+                  left: 50%;
+                  transform: translateX(-50%);
                 `}
               >
-                <StyledButton
-                  onClick={() => toggleMuted()}
+                <div
                   css={css`
-                    border-width: 0;
-                    background-color: ${p => getColor('yellow', 600, p.theme)};
-                    color: #fff;
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    transform: translate(-50%, -50%);
+                    z-index: 10;
                   `}
                 >
-                  {!mutedAttribute.muted && <UnmutedSpeakerIcon size={1.5} />}
-                  {mutedAttribute.muted && <MutedSpeakerIcon size={1.5} />}
-                </StyledButton>
+                  <StyledButton
+                    onClick={() => toggleMuted()}
+                    css={css`
+                      border-width: 0;
+                      background-color: ${p => getColor('yellow', 600, p.theme)};
+                      color: #fff;
+                    `}
+                  >
+                    {!mutedAttribute.muted && <UnmutedSpeakerIcon size={1.5} />}
+                    {mutedAttribute.muted && <MutedSpeakerIcon size={1.5} />}
+                  </StyledButton>
+                </div>
+                {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+                <video
+                  autoPlay
+                  loop
+                  {...mutedAttribute}
+                  playsInline
+                  css={css`
+                    max-width: 640px;
+                    height: auto;
+                    border-radius: 20px;
+                    object-fit: cover;
+                    ${p => mediaQuery('down', 'sm', p.theme)} {
+                      height: 200px;
+                      width: 100%;
+                    }
+                  `}
+                >
+                  <source src={VideoGameMp4} type="video/mp4" />
+                  <source src={VideoGameWebM} type="video/webm" />
+                </video>
               </div>
-              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-              <video
-                autoPlay
-                loop
-                {...mutedAttribute}
-                playsInline
-                css={css`
-                  max-width: 640px;
-                  height: auto;
-                  border-radius: 20px;
-                  object-fit: cover;
-                  ${p => mediaQuery('down', 'sm', p.theme)} {
-                    height: 200px;
-                    width: 100%;
-                  }
-                `}
-              >
-                <source src={VideoGameMp4} type="video/mp4" />
-                <source src={VideoGameWebM} type="video/webm" />
-              </video>
             </div>
           </div>
-        </div>
-      </SyntheticVoicesVideoContainer>
-    </SyntheticVoicesContainer>
+        </SyntheticVoicesVideoContainer>
+      </SyntheticVoicesContainer>
+    </div>
   );
 };

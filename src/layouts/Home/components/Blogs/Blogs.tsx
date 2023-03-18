@@ -13,6 +13,7 @@ import {
   BlogsTitleRow
 } from './styled';
 import navs from '../../../../nav/blog.js';
+import { css } from 'styled-components';
 
 export const Blogs: FC = () => {
   const [blogData, setBlogData] = useState<any[]>([]);
@@ -62,24 +63,33 @@ export const Blogs: FC = () => {
   }, [data]);
 
   return (
-    <BlogsContainer>
-      <BlogsTitle>BLOGS</BlogsTitle>
-      <BlogsTitleRow>
-        <BlogsTitleDescription>
-          Learn about the <span>latest in voice AI</span> from trusted experts.
-        </BlogsTitleDescription>
-        <BlogButtonContainer>
-          <SecondaryButton text="See all" path="/blog" />
-        </BlogButtonContainer>
-      </BlogsTitleRow>
-      <BlogItemsContainer>
-        {blogData.map(b => (
-          <BlogCard key={b.title.split(' ').join('-')} {...b} />
-        ))}
-      </BlogItemsContainer>
-      <BlogButtonContainerMobile>
-        <SecondaryButton text="See all" path="/blog" fullWidth />
-      </BlogButtonContainerMobile>
-    </BlogsContainer>
+    <div
+      id="blogs"
+      css={css`
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      `}
+    >
+      <BlogsContainer>
+        <BlogsTitle>BLOGS</BlogsTitle>
+        <BlogsTitleRow>
+          <BlogsTitleDescription>
+            Learn about the <span>latest in voice AI</span> from trusted experts.
+          </BlogsTitleDescription>
+          <BlogButtonContainer>
+            <SecondaryButton text="See all" path="/blog" />
+          </BlogButtonContainer>
+        </BlogsTitleRow>
+        <BlogItemsContainer>
+          {blogData.map(b => (
+            <BlogCard key={b.title.split(' ').join('-')} {...b} />
+          ))}
+        </BlogItemsContainer>
+        <BlogButtonContainerMobile>
+          <SecondaryButton text="See all" path="/blog" fullWidth />
+        </BlogButtonContainerMobile>
+      </BlogsContainer>
+    </div>
   );
 };

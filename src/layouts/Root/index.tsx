@@ -47,18 +47,10 @@ import '@zendeskgarden/css-bedrock/dist/index.css';
  * Ensure Gatsby wrapping nodes are full height
  */
 const GlobalStyling = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
-    @font-face {
-      font-family: 'SF Pro Display';
-      src: url('SFProDisplay-Regular.woff2') format('woff2'),
-          url('SFProDisplay-Regular.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-  }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap');
   * {
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    font-family: 'SF Pro Display', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   html {
