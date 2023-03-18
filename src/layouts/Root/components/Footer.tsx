@@ -307,7 +307,9 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => (
               `}
             >
               <p css="font-weight: 700">Product</p>
-              <StyledLinksItem to="/models">Models</StyledLinksItem>
+              <StyledLinksItem to={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}>
+                Coqui Studio
+              </StyledLinksItem>
             </div>
             <div
               css={css`
