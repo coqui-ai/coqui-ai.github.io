@@ -7,6 +7,14 @@
 
 export default [
   {
+    group: 'TTS',
+    title: 'Introducing Prompt-to-Voice',
+    url: '/blog/tts/prompt-to-voice',
+    splash: 'images/blog/splash-screens/blog-splash-screen-voice-fusion.jpg',
+    description: 'Prompt-to-Voice - Describe It to Hear It',
+    height: 500
+  },
+  {
     group: 'General',
     title: 'Ex-Mozillians Raise $3.3M for Coqui',
     url: '/blog/general/investment-march',
