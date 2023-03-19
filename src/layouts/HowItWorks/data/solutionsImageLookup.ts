@@ -1,18 +1,17 @@
+import advancedSrc from './assets/advanced.png';
+import aiSrc from './assets/ai.png';
 import audioManagerSrc from './assets/audio_manager.png';
 import cloneSrc from './assets/clone.png';
-import fusionSrc from './assets/voice_fusion.png';
-import promptSrc from './assets/prompt.png';
+import cloneYourVoiceSrc from './assets/clone_your_voice.png';
 import emotionSrc from './assets/emotion.png';
-import speechSrc from './assets/speech.png';
-import advancedSrc from './assets/advanced.png';
+import emotionLgSrc from './assets/emotion_large.png';
 import exportSrc from './assets/export.png';
 import pitchSrc from './assets/pitch.png';
-import aiSrc from './assets/ai.png';
-import cloneYourVoiceSrc from './assets/clone_your_voice.png';
-import audioManagerLgSrc from './assets/audio_manager_large.png';
+import promptSrc from './assets/prompt.png';
+import speechSrc from './assets/speech.png';
 import timelineSrc from './assets/timeline_editor.png';
-import emotionLgSrc from './assets/emotion_large.png';
 import voiceClonePerson from './assets/voice_clone_person.png';
+import fusionSrc from './assets/voice_fusion.png';
 
 export type SolutionsPhraseType =
   | 'Audio Manager'
@@ -37,17 +36,17 @@ export const solutionsImagesLookup = {
   'Audio Manager': {
     imageSrc: audioManagerSrc,
     caption:
-      'Audio Manager is the core component of Coqui Studio where the users pick AI voices to perform their text lines.'
+      'Use one of our built-in voices or infinitely customize voices and performances for your script.'
   },
   'Voice Clone Person': {
     imageSrc: voiceClonePerson,
     caption:
-      'Audio Manager is the core component of Coqui Studio where the users pick AI voices to perform their text lines.'
+      'Use one of our built-in voices or infinitely customize voices and performances for your script.'
   },
   'Audio Manager Large': {
     imageSrc: aiSrc,
     caption:
-      'Audio Manager is the core component of Coqui Studio where the users pick AI voices to perform their text lines.'
+      'Use one of our built-in voices or infinitely customize voices and performances for your script.'
   },
   'Timeline Editor': {
     imageSrc: timelineSrc,

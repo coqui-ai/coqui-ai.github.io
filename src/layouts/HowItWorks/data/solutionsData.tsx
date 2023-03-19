@@ -1,9 +1,6 @@
 import React from 'react';
 import { SolutionType } from '../components/Solution/Solution';
 import { SolutionSectionTitle } from '../components/Solution/styled';
-import postProdImg from './post_production.png';
-import postProdImg2 from './post_production_2.png';
-import postProdImg3 from './post_production_3.png';
 import { solutionsImagesLookup } from './solutionsImageLookup';
 
 export const solutionData: Omit<SolutionType, 'index'>[] = [
@@ -29,9 +26,7 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
       title: 'Our Solution',
       description: phraseClickHandler => (
         <p>
-          Use Coqui Studio&apos;s intuitive{' '}
-          <span onClick={() => phraseClickHandler('Audio Manager')}>Audio Manager</span> to easily
-          create game scripts read by your choice of fully directable AI voices.{' '}
+          Use Coqui Studio to create game scripts read by your choice of fully directable AI voices.{' '}
           <span onClick={() => phraseClickHandler('Clone Your Voice')}>Clone Your Voice</span> in
           seconds to bring your own voice into the game, or fuse your voice with AI using our{' '}
           <span onClick={() => phraseClickHandler('Voice Fusion')}>Voice Fusion</span> technology.
@@ -114,14 +109,13 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
       title: 'Our Solution',
       description: phraseClickHandler => (
         <p>
-          Managers? We&apos;ve got you covered. Coqui Studio has a large selection of{' '}
+          Coqui Studio has got you covered for voice-over needs with a large selection of{' '}
           <span onClick={() => phraseClickHandler('AI Voice')}>AI Voice</span> characters that are
           waiting to be chosen by you, or you can use{' '}
-          <span onClick={() => phraseClickHandler('Clone Your Voice Large')}>Clone Voice</span> to
-          use your own voice. Pick your preference, paste your text into our{' '}
-          <span onClick={() => phraseClickHandler('Audio Manager Large')}>Audio Manager</span> and
-          you&apos;ll have your audio drafts ready in seconds. Choose{' '}
-          <span onClick={() => phraseClickHandler('Emotion')}>emotion</span> presets and use the
+          <span onClick={() => phraseClickHandler('Clone Your Voice Large')}>Voice Cloning</span> to
+          use your own voice. Pick your preference, paste your text and you&apos;ll have your audio
+          drafts ready in seconds. Choose{' '}
+          <span onClick={() => phraseClickHandler('Emotion')}>emotion</span> presets and use the{' '}
           <span onClick={() => phraseClickHandler('Timeline Editor')}>Timeline Editor</span> to add
           multiple voices and generate entire conversations. That&apos;s it - hours of audio created
           in minutes.

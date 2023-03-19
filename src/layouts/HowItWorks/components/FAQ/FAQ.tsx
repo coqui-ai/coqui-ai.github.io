@@ -42,18 +42,6 @@ const faqLeftSectionData: FAQAccordionType[] = [
               font-weight: 600;
             `}
           >
-            Audio Manager
-          </span>{' '}
-          is the core component of Coqui Studio where the users pick AI voices to synthesize their
-          text lines. The module generates emotive audio outputs, using a wide variety of convenient
-          features and creative components.
-        </li>
-        <li>
-          <span
-            css={css`
-              font-weight: 600;
-            `}
-          >
             Project Manager
           </span>{' '}
           helps the users can organize and keep control of all their works in the studio
