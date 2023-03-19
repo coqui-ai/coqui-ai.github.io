@@ -5,7 +5,7 @@ import styled from 'styled-components';
 export const SyntheticVoicesContainer = styled.div`
   display: flex;
   flex-direction: row-reverse;
-  flex-wrap: wrap-reverse;
+  /* flex-wrap: wrap-reverse; */
   justify-content: space-between;
   align-items: center;
   gap: 5rem;
@@ -73,4 +73,5 @@ export const SyntheticVoicesVideoContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex: 1;
+  height: 100%;
 `;
