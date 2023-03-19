@@ -310,7 +310,7 @@ const Header = ({}) => {
             }
           `}
         >
-          <a href="https://app.coqui.ai/auth/signin">Sign In</a>
+          <a href={`${process.env.GATSBY_BACKEND_URL}/auth/signin`}>Sign In</a>
           <TryNowButton />
         </div>
         <MobileNavButton
