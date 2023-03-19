@@ -299,6 +299,7 @@ const faqRightSectionData: FAQAccordionType[] = [
         `}
       >
         <li>
+          The{' '}
           <span
             css={css`
               font-weight: 600;
@@ -306,8 +307,40 @@ const faqRightSectionData: FAQAccordionType[] = [
           >
             AI Voice Dropdown
           </span>{' '}
-          is on the left hand side of the Line Manager and contains built-in and custom AI voices
-          that the user can pick to synthesize the text.
+          is on the left hand side of each line and allows choosing from built-in or custom AI
+          voices to synthesize the text.
+        </li>
+        <li>
+          <span
+            css={css`
+              font-weight: 600;
+            `}
+          >
+            Voice Cloning
+          </span>{' '}
+          allows the user to create an artificial simulation of another person&apos;s voice from
+          just 3 seconds of an input audio file.
+        </li>
+        <li>
+          With{' '}
+          <span
+            css={css`
+              font-weight: 600;
+            `}
+          >
+            Prompt-to-Voice
+          </span>{' '}
+          new custom AI Voices can be created simply by describing them with text.
+        </li>
+        <li>
+          <span
+            css={css`
+              font-weight: 600;
+            `}
+          >
+            Voice Fusion
+          </span>{' '}
+          merges two distinct AI voices together to create something totally unique.
         </li>
         <li>
           <span
@@ -317,8 +350,8 @@ const faqRightSectionData: FAQAccordionType[] = [
           >
             Emotion Presets
           </span>{' '}
-          contain predetermined emotions (Neutral, Happy, Angry, Sad, Surprise, and Dull) which the
-          users can assign to their text.
+          contain predetermined emotions (Neutral, Happy, Angry, Sad, Surprise, and Dull) which can
+          be assigned to each line.
         </li>
         <li>
           <span
@@ -329,17 +362,6 @@ const faqRightSectionData: FAQAccordionType[] = [
             Energy
           </span>{' '}
           is the volume of the voice and it can be edited using the Advanced Editor
-        </li>
-        <li>
-          <span
-            css={css`
-              font-weight: 600;
-            `}
-          >
-            Line Manager
-          </span>{' '}
-          is the core functionality of the Audio Manager, where users type text and it&apos;s
-          rendered to AI voice audio.
         </li>
         <li>
           <span
@@ -365,15 +387,38 @@ const faqRightSectionData: FAQAccordionType[] = [
           available using the Advanced Editor.
         </li>
         <li>
+          Scripts can be divided into{' '}
           <span
             css={css`
               font-weight: 600;
             `}
           >
-            Prompt-to-Voice
+            Scenes
+          </span>
+          .
+        </li>
+        <li>
+          The synthesized audio for a given scene, including pauses between lines, can be{' '}
+          <span
+            css={css`
+              font-weight: 600;
+            `}
+          >
+            exported
           </span>{' '}
-          is a custom AI voice feature where users can generate a new voice by just entering a
-          description of the voice.
+          into a single audio file.
+        </li>
+        <li>
+          Each line has a corresponding{' '}
+          <span
+            css={css`
+              font-weight: 600;
+            `}
+          >
+            Speech Rate
+          </span>
+          , which can be changed to control how slowly or quickly the line text will be read by the
+          AI Voice.
         </li>
         <li>
           <span
@@ -381,43 +426,12 @@ const faqRightSectionData: FAQAccordionType[] = [
               font-weight: 600;
             `}
           >
-            Scene Audio Export
+            Take management
           </span>{' '}
-          lets users export all synthesized audio of a scene as one single file.
+          lets users save and manage multiple performances for a single line.
         </li>
         <li>
-          <span
-            css={css`
-              font-weight: 600;
-            `}
-          >
-            Scene Editing
-          </span>{' '}
-          allows the user to manage their scripts, divided by Scenes with Scene Names and Scene
-          Descriptions identifying them.
-        </li>
-        <li>
-          <span
-            css={css`
-              font-weight: 600;
-            `}
-          >
-            Speech Rate Editor
-          </span>{' '}
-          is used to edit the speed of synthesized audio i.e how slow or fast the rendered audio
-          output will be. This feature is available on each Line.
-        </li>
-        <li>
-          <span
-            css={css`
-              font-weight: 600;
-            `}
-          >
-            Take Manager
-          </span>{' '}
-          lets users save and manage multiple takes on a single Line.
-        </li>
-        <li>
+          With the{' '}
           <span
             css={css`
               font-weight: 600;
@@ -425,29 +439,8 @@ const faqRightSectionData: FAQAccordionType[] = [
           >
             Timeline Editor
           </span>{' '}
-          offers users more flexibility to visually manage their Lines of audio, change order of
-          Lines, add dramatic pauses, and play all lines in a Scene together.
-        </li>
-        <li>
-          <span
-            css={css`
-              font-weight: 600;
-            `}
-          >
-            Voice Cloning
-          </span>{' '}
-          allows the user to create an artificial simulation of another person&apos;s voice from
-          just 3 seconds of an input audio file.
-        </li>
-        <li>
-          <span
-            css={css`
-              font-weight: 600;
-            `}
-          >
-            Voice Fusion
-          </span>{' '}
-          merges two distinct AI voices together to create something totally unique.
+          you can arrange your scene into a dialogue, editing dramatic pauses between lines and
+          playing the entire scene at once.
         </li>
       </ul>
     )
