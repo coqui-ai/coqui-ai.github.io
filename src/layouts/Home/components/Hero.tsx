@@ -7,6 +7,7 @@ import { ReactComponent as UnmutedSpeakerIcon } from '@zendeskgarden/svg-icons/s
 import { ReactComponent as MutedSpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-muted-fill.svg';
 import VideoGameMp4 from '../../../data/videos/use-cases/video-games/video-games.mp4';
 import VideoGameWebM from '../../../data/videos/use-cases/video-games/video-games.webm';
+import { MAX_WIDTH } from 'data/constants/constants';
 
 export const Hero: FC = () => {
   const [mutedAttribute, setMutedAttribute] = useState({ muted: true });
@@ -32,6 +33,7 @@ export const Hero: FC = () => {
           justify-content: space-between;
           align-items: center;
           gap: 5rem;
+          max-width: ${MAX_WIDTH};
         `}
       >
         <div

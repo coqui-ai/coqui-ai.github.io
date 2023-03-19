@@ -98,7 +98,7 @@ export const ContactForm = () => {
   const submitForm: () => void = () => {
     if (formNotValid()) return;
     const path =
-      'https://docs.google.com/forms/d/e/1FAIpQLSfjgbyut8Ptcn1OZ-6COJ2BPMVgSDPBuw3PCjiypzi5nbljXA/viewForm?';
+      'https://docs.google.com/forms/d/e/1FAIpQLSfjgbyut8Ptcn1OZ-6COJ2BPMVgSDPBuw3PCjiypzi5nbljXA/viewForm?usp=pp_url&';
     const query = `entry.669377778=${formData.name}&entry.264191649=${formData.company}&entry.1362561919=${formData.title}&entry.467657495=${formData.reason}&entry.919102681=${formData.message}`;
     window.open(`${path}${query}`, '_BLANK');
     console.log('SUBITTING FORM');

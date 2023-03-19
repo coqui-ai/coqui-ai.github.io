@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { mediaQuery } from '@zendeskgarden/react-theming';
+import { MAX_WIDTH } from 'data/constants/constants';
 import { useStaticQuery, graphql } from 'gatsby';
 import { AvatarType } from 'layouts/Home/types/avatar';
 import React, { FC, useEffect, useState } from 'react';
@@ -98,111 +99,121 @@ export const AIVoices: FC = () => {
 
   return (
     <div
+      id="ai-voices"
       css={css`
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
-        align-items: center;
-        position: relative;
-        padding: 10rem;
-        gap: 30px;
-        ${p => mediaQuery('down', 'sm', p.theme)} {
-          padding: 2rem;
-        }
       `}
     >
-      <p
-        css={css`
-          font-family: 'Manrope', sans-serif;
-          color: #468d6a;
-          font-size: 16px;
-        `}
-      >
-        AI-GENERATED VOICE
-      </p>
-      <h2
-        css={css`
-          font-size: 48px;
-          line-height: 67.2px;
-          ${p => mediaQuery('down', 'sm', p.theme)} {
-            font-size: 48px;
-            line-height: 67.2px;
-            text-align: center;
-          }
-        `}
-      >
-        Your{' '}
-        <span
-          css={css`
-            background: linear-gradient(89.27deg, #ed8f1c -1.56%, #468d6a 102.75%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
-          `}
-        >
-          voice
-        </span>{' '}
-        or ours.
-      </h2>
-      <p
-        css={css`
-          font-size: 16px;
-          line-height: 32.4px;
-          letter-spacing: 0.02em;
-          text-align: center;
-          color: #777777;
-          max-width: 50rem;
-        `}
-      >
-        Clone your voice in seconds or use our wide (and always growing) collection of AI voices.
-      </p>
       <div
         css={css`
           display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
+          flex-direction: column;
           justify-content: center;
-          gap: 22px;
+          align-items: center;
+          position: relative;
+          padding: 10rem;
+          gap: 30px;
+          max-width: ${MAX_WIDTH};
           ${p => mediaQuery('down', 'sm', p.theme)} {
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem;
+            padding: 2rem;
           }
         `}
       >
-        {avatars.map(a => (
-          <AIVoiceCard key={a.name} {...a} />
-        ))}
-        <div
+        <p
           css={css`
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 35px;
-            border-radius: 20px;
-            width: 510px;
-            padding: 33px 25px;
-            background-color: #e9ebed;
+            font-family: 'Manrope', sans-serif;
+            color: #468d6a;
+            font-size: 16px;
+          `}
+        >
+          AI-GENERATED VOICE
+        </p>
+        <h2
+          css={css`
+            font-size: 48px;
+            line-height: 67.2px;
             ${p => mediaQuery('down', 'sm', p.theme)} {
-              width: 250px;
+              font-size: 48px;
+              line-height: 67.2px;
+              text-align: center;
             }
           `}
         >
-          <p
+          Your{' '}
+          <span
             css={css`
-              font-size: 16px;
-              line-height: 180%;
-              letter-spacing: 0.02em;
+              background: linear-gradient(89.27deg, #ed8f1c -1.56%, #468d6a 102.75%);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-clip: text;
+              text-fill-color: transparent;
             `}
           >
-            Clone your voice in seconds or use our wide (and always growing) collection of AI
-            voices.
-          </p>
-          <PrimaryButton
-            text="Try Coqui Studio for free"
-            path={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
-          />
+            voice
+          </span>{' '}
+          or ours.
+        </h2>
+        <p
+          css={css`
+            font-size: 16px;
+            line-height: 32.4px;
+            letter-spacing: 0.02em;
+            text-align: center;
+            color: #777777;
+            max-width: 50rem;
+          `}
+        >
+          Clone your voice in seconds or use our wide (and always growing) collection of AI voices.
+        </p>
+        <div
+          css={css`
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 22px;
+            ${p => mediaQuery('down', 'sm', p.theme)} {
+              flex-direction: column;
+              align-items: center;
+              padding: 1rem;
+            }
+          `}
+        >
+          {avatars.map(a => (
+            <AIVoiceCard key={a.name} {...a} />
+          ))}
+          <div
+            css={css`
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 35px;
+              border-radius: 20px;
+              width: 510px;
+              padding: 33px 25px;
+              background-color: #e9ebed;
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                width: 250px;
+              }
+            `}
+          >
+            <p
+              css={css`
+                font-size: 16px;
+                line-height: 180%;
+                letter-spacing: 0.02em;
+              `}
+            >
+              Clone your voice in seconds or use our wide (and always growing) collection of AI
+              voices.
+            </p>
+            <PrimaryButton
+              text="Try Coqui Studio for free"
+              path={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
+            />
+          </div>
         </div>
       </div>
     </div>

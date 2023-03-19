@@ -11,7 +11,7 @@ import logoLight from './coqui_logo_light_cropped.png';
 import discord from './discord_logo.png';
 import fb from './facebook_logo.png';
 import github from './github_logo.png';
-import insta from './insta_logo.png';
+import linkedin from './linkedin.png';
 import {
   FooterContainer,
   FooterLinksRow,
@@ -249,24 +249,42 @@ export const Footer: FC<FooterPropsType> = ({ hasSaveTimeBanner }) => {
             <FooterStyledLinksItem to="/tos">Terms</FooterStyledLinksItem>
           </FooterLinksRow>
           <FooterSocialsRow>
-            <Link aria-label="Coqui Instagram" to="/">
-              <FooterSocialsImg src={insta} alt="instagram logo" />
-            </Link>
-            <Link aria-label="Coqui Twitter" to="https://twitter.com/coqui_ai">
+            <span
+              aria-label="Coqui linkedin"
+              onClick={() => window.open('https://www.linkedin.com/company/coqui-ai', '_BLANK')}
+            >
+              <FooterSocialsImg src={linkedin} alt="linkedin logo" />
+            </span>
+            <span
+              aria-label="Coqui Twitter"
+              onClick={() => window.open('https://twitter.com/coqui_ai', '_BLANK')}
+            >
               <FooterSocialsImg src={twitter} alt="twitter logo" />
-            </Link>
-            <Link aria-label="Coqui Facebook" to="https://www.facebook.com/coquiai">
+            </span>
+            <span
+              aria-label="Coqui Facebook"
+              onClick={() => window.open('https://www.facebook.com/coquiai', '_BLANK')}
+            >
               <FooterSocialsImg src={fb} alt="facebook logo" />
-            </Link>
-            <Link aria-label="Coqui Youtube" to="https://www.youtube.com/@coqui1027">
+            </span>
+            <span
+              aria-label="Coqui Youtube"
+              onClick={() => window.open('https://www.youtube.com/@coqui1027', '_BLANK')}
+            >
               <FooterSocialsImg src={yt} alt="youtube logo" />
-            </Link>
-            <Link aria-label="Coqui Github" to="https://github.com/coqui-ai">
+            </span>
+            <span
+              aria-label="Coqui Github"
+              onClick={() => window.open('https://github.com/coqui-ai', '_BLANK')}
+            >
               <FooterSocialsImg src={github} alt="github logo" />
-            </Link>
-            <Link aria-label="Coqui Discord" to="https://discord.gg/CzxHHp8mtZ">
+            </span>
+            <span
+              aria-label="Coqui Discord"
+              onClick={() => window.open('https://discord.gg/CzxHHp8mtZ', '_BLANK')}
+            >
               <FooterSocialsImg src={discord} alt="discord logo" />
-            </Link>
+            </span>
           </FooterSocialsRow>
         </FooterSectionColumnMiddle>
         <FooterSectionColumnRight

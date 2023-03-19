@@ -66,7 +66,10 @@ const StyledHeader = styled.header.attrs({ role: 'banner' })`
   }
 `;
 
-const Logo: React.FC = () => {
+type LogoType = {
+  noClick?: boolean;
+};
+export const Logo: React.FC<LogoType> = ({ noClick }) => {
   const logoWordmarkImage = useStaticQuery(
     graphql`
       query {
@@ -94,7 +97,29 @@ const Logo: React.FC = () => {
         }
       `}
     >
-      <Link aria-label="Coqui" to="/">
+      {!noClick && (
+        <Link aria-label="Coqui" to="/">
+          <div
+            css={`
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            `}
+          >
+            <Img
+              fixed={logoWordmarkImage.file.childImageSharp.fixed}
+              alt=""
+              css={css`
+                ${p => mediaQuery('down', 'xs', p.theme)} {
+                  height: ${p => p.theme.iconSizes.lg}px;
+                }
+              `}
+              imgStyle={{ maxWidth: '100%', maxHeight: '100%' }}
+            />
+          </div>
+        </Link>
+      )}
+      {noClick && (
         <div
           css={`
             display: flex;
@@ -113,7 +138,7 @@ const Logo: React.FC = () => {
             imgStyle={{ maxWidth: '100%', maxHeight: '100%' }}
           />
         </div>
-      </Link>
+      )}
     </div>
   );
 };
@@ -285,7 +310,7 @@ const Header = ({}) => {
             }
           `}
         >
-          <a href="/">Sign In</a>
+          <a href="https://app.coqui.ai/auth/signin">Sign In</a>
           <TryNowButton />
         </div>
         <MobileNavButton

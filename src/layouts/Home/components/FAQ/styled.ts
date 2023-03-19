@@ -1,4 +1,5 @@
 import { mediaQuery } from '@zendeskgarden/react-theming';
+import { MAX_WIDTH } from 'data/constants/constants';
 import styled from 'styled-components';
 
 export const FAQContainer = styled.div`
@@ -9,6 +10,7 @@ export const FAQContainer = styled.div`
   position: relative;
   padding: 5rem 10rem 10rem 10rem;
   gap: 30px;
+  max-width: ${MAX_WIDTH};
   ${p => mediaQuery('down', 'md', p.theme)} {
     padding: 2rem;
   }

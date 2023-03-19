@@ -11,24 +11,34 @@ import {
 
 export const Contact: FC = () => {
   return (
-    <ContactContainer id="contact">
-      <ContactDetailsContainer>
-        <ContactDetailsTitle>CONTACT OUR TEAM</ContactDetailsTitle>
-        <ContactDetailsTitleDescription>
-          Got a question?
-          <span> Let&apos;s chat</span>!
-        </ContactDetailsTitleDescription>
-        <img
-          src={img}
-          alt="contact us"
-          height="240"
-          width="515"
-          css={css`
-            border-radius: 20px;
-          `}
-        />
-      </ContactDetailsContainer>
-      <ContactForm />
-    </ContactContainer>
+    <div
+      id="contact"
+      css={css`
+        display: flex;
+        flex-direction: row;
+        background-color: #f9fafc;
+        justify-content: center;
+      `}
+    >
+      <ContactContainer>
+        <ContactDetailsContainer>
+          <ContactDetailsTitle>CONTACT OUR TEAM</ContactDetailsTitle>
+          <ContactDetailsTitleDescription>
+            Got a question?
+            <span> Let&apos;s chat</span>!
+          </ContactDetailsTitleDescription>
+          <img
+            src={img}
+            alt="contact us"
+            height="240"
+            width="515"
+            css={css`
+              border-radius: 20px;
+            `}
+          />
+        </ContactDetailsContainer>
+        <ContactForm />
+      </ContactContainer>
+    </div>
   );
 };

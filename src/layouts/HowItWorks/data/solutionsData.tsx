@@ -8,6 +8,7 @@ import { solutionsImagesLookup } from './solutionsImageLookup';
 
 export const solutionData: Omit<SolutionType, 'index'>[] = [
   {
+    navid: 'video-game-developers',
     sectionTitle: 'VIDEO GAME DEVELOPERS',
     title: (
       <SolutionSectionTitle>
@@ -52,6 +53,7 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
     image: solutionsImagesLookup['Audio Manager']
   },
   {
+    navid: 'post-production',
     sectionTitle: 'POST-PRODUCTION',
     title: (
       <SolutionSectionTitle>
@@ -75,20 +77,21 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
         <p>
           Coqui Studio allows you to{' '}
           <span onClick={() => phraseClickHandler('Clone Your Voice')}>Clone Your Voice</span> and
-          will replicate it accurately in just 3 seconds. It can replace missing words, and be
+          will replicate it with only 3 seconds of audio. It can replace missing words, and be
           matched perfectly with the existing recording thanks to the{' '}
           <span onClick={() => phraseClickHandler('Speech Rate')}>Speech Rate</span>. Utilise the{' '}
           <span onClick={() => phraseClickHandler('Advanced Editor')}>Advanced Editor</span> to
           tweak <span onClick={() => phraseClickHandler('Pitch')}>Pitch</span> and{' '}
-          <span onClick={() => phraseClickHandler('Pitch')}>Energy</span>, or delve even deeper with
-          the <span onClick={() => phraseClickHandler('Pitch')}>Phoneme Editor</span>. You can edit
-          singular syllables and create the perfect end result from an imperfect recording.
+          <span onClick={() => phraseClickHandler('Energy')}>Energy</span>, or delve even deeper
+          with the <span onClick={() => phraseClickHandler('Phenome')}>Phoneme Editor</span>. You
+          can edit singular syllables and create the perfect end result from an imperfect recording.
         </p>
       )
     },
     image: solutionsImagesLookup['Voice Clone Person']
   },
   {
+    navid: 'voiceover',
     sectionTitle: 'VOICEOVER',
     title: (
       <SolutionSectionTitle>

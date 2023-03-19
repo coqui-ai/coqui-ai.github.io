@@ -52,7 +52,7 @@ export const solutionsImagesLookup = {
   'Timeline Editor': {
     imageSrc: timelineSrc,
     caption:
-      'Audio Manager is the core component of Coqui Studio where the users pick AI voices to perform their text lines.'
+      'Timeline Editor offers users more flexibility to visually manage their Lines of audio, change order of Lines, add dramatic pauses, and play all lines in a Scene together.'
   },
   'Clone Your Voice': {
     imageSrc: cloneSrc,

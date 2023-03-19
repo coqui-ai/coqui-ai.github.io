@@ -1,4 +1,5 @@
 import { mediaQuery } from '@zendeskgarden/react-theming';
+import { MAX_WIDTH } from 'data/constants/constants';
 import styled from 'styled-components';
 
 export const ContactContainer = styled.div`
@@ -10,6 +11,8 @@ export const ContactContainer = styled.div`
   gap: 5rem;
   padding: 5rem 10rem;
   background-color: #f9fafc;
+  max-width: ${MAX_WIDTH};
+  flex: 1;
   ${p => mediaQuery('down', 'sm', p.theme)} {
     padding: 2rem;
   }
