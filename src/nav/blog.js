@@ -8,30 +8,6 @@
 export default [
   {
     group: 'TTS',
-    title: 'Introducing Prompt-to-Voice',
-    url: '/blog/tts/prompt-to-voice',
-    splash: 'images/blog/splash-screens/blog-splash-screen-prompt-to-voice.jpg',
-    description: 'Prompt-to-Voice - Describe It to Hear It',
-    height: 500
-  },
-  {
-    group: 'General',
-    title: 'Ex-Mozillians Raise $3.3M for Coqui',
-    url: '/blog/general/investment-march',
-    splash: 'images/blog/splash-screens/blog-splash-screen-investment-march.jpg',
-    description: 'Info on the Coqui $3.3M Raise',
-    height: 500
-  },
-  {
-    group: 'TTS',
-    title: 'Introducing Voice Fusion',
-    url: '/blog/tts/voice-fusion',
-    splash: 'images/blog/splash-screens/blog-splash-screen-voice-fusion.jpg',
-    description: 'Voice Fusion - A Revolutionary New Feature in Coqui Studio',
-    height: 500
-  },
-  {
-    group: 'TTS',
     title: 'Introducing Voice Fusion',
     url: '/blog/tts/voice-fusion',
     splash: 'images/blog/splash-screens/blog-splash-screen-voice-fusion.jpg',

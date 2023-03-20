@@ -14,7 +14,6 @@ import { css } from 'styled-components';
 import MaxWidthLayout from '../layouts/MaxWidth';
 import { SM, LG } from '@zendeskgarden/react-typography';
 import { StyledSectionHeader } from './SectionCallout';
-import no_img from './no_img.png';
 
 const MauerwerkLink: React.FC<{
   group: string;
@@ -37,7 +36,7 @@ const MauerwerkLink: React.FC<{
     >
       <Link to={url}>
         <Img
-          fluid={image?.node?.fluid || no_img}
+          fluid={image.node.fluid}
           alt=""
           imgStyle={{
             width: 350,

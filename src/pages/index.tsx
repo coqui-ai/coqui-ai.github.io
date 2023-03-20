@@ -24,7 +24,7 @@ const IndexPage: React.FC = () => {
   }, []);
 
   return (
-    <RootLayout hasSkipNav={false} showFooter={false}>
+    <RootLayout hasSkipNav={false}>
       <SEO />
       <HomeLayout />
       <GogleAnalyticsCookieConsent />
