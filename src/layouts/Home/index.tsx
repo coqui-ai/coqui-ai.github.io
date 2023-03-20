@@ -6,7 +6,6 @@
  */
 
 import { Link } from 'gatsby';
-import { Footer } from 'layouts/Root/components/Footer/Footer';
 import React from 'react';
 import { css } from 'styled-components';
 import { AboutUs } from './components/AboutUs/AboutUs';
@@ -15,18 +14,14 @@ import { Blogs } from './components/Blogs/Blogs';
 import { CitedBy } from './components/CitedBy';
 import { Contact } from './components/Contact/Contact';
 import { Content } from './components/Content';
-import { CtA } from './components/CtA';
 import { FAQ } from './components/FAQ/FAQ';
-import { Features } from './components/Features';
 import { FeaturesAndApps } from './components/FeaturesAndApps';
-import { GetStartedCtA } from './components/GetStartedCta';
 import { Hero } from './components/Hero';
 import { Pricing } from './components/Pricing/Pricing';
 import { PricingTable } from './components/PricingTable';
 import { SavingTime } from './components/SavingTime/SavingTime';
 import { SyntheticVoices } from './components/SyntheticVoices/SyntheticVoices';
 import { UsersSection } from './components/Users';
-import { Voices } from './components/Voices';
 import { Why } from './components/Why';
 import { WhyCoqui } from './components/WhyCoqui';
 import { FixedNav } from './FixedNav/FixedNav';

@@ -7,8 +7,7 @@
 
 import { Button } from '@zendeskgarden/react-buttons';
 import { getColor } from '@zendeskgarden/react-theming';
-import React from 'react';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { css } from 'styled-components';
 import { StyledNavigationLink } from './StyledNavigationLink';
 
