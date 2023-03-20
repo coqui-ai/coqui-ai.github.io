@@ -8,7 +8,7 @@
 import { init } from '@amplitude/analytics-browser';
 import * as Sentry from '@sentry/browser';
 import { SkipNav } from '@zendeskgarden/react-chrome';
-import React, { ReactNode } from 'react';
+import React from 'react';
 import styled, { createGlobalStyle, css } from 'styled-components';
 import Footer from './components/Footer';
 import Header, { headerBoxShadow, headerHeight } from './components/Header';
@@ -47,10 +47,8 @@ import '@zendeskgarden/css-bedrock/dist/index.css';
  * Ensure Gatsby wrapping nodes are full height
  */
 const GlobalStyling = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap');
   * {
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    font-family: 'Inter', sans-serif;
   }
 
   html {
@@ -73,18 +71,17 @@ const GrayedMain = styled(Main)`
   background-color: #e9ebed;
 `;
 
-const RootLayout = ({
+interface IRootLayoutProps {
+  hasSkipNav?: boolean;
+  showVoiceSearch?: boolean;
+  grayedBackground?: boolean;
+}
+
+const RootLayout: React.FC<IRootLayoutProps> = ({
   children,
   hasSkipNav,
   showVoiceSearch,
-  showFooter = true,
   grayedBackground
-}: {
-  children: ReactNode;
-  hasSkipNav: boolean;
-  showVoiceSearch: boolean;
-  showFooter: boolean;
-  grayedBackground: boolean;
 }) => {
   const MainType = grayedBackground ? GrayedMain : Main;
 
@@ -112,7 +109,7 @@ const RootLayout = ({
       <Header showVoiceSearch={showVoiceSearch} />
 
       <MainType>{children}</MainType>
-      {showFooter && <Footer />}
+      <Footer />
     </div>
   );
 };

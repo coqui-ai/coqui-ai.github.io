@@ -17,10 +17,8 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "isolatedModules": true,
     "noEmit": true,
     "incremental": true,
-    "typeRoots": ["./utils/typings", "./node_modules/@types"],
-    "forceConsistentCasingInFileNames": true
-  }
+    "typeRoots": ["./utils/typings", "./node_modules/@types"]
+  },
 }
