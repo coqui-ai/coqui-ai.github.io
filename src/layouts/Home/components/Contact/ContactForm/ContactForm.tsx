@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-curly-newline */
 import { Button } from '@zendeskgarden/react-buttons';
-import { Field, Label, Message, Textarea } from '@zendeskgarden/react-forms';
+import { Field, Label, Message } from '@zendeskgarden/react-forms';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
-import { useFormik } from 'formik';
 import React, { useState } from 'react';
 import { css } from 'styled-components';
-import { ContactFormContainer, InputStyled, TextareaStyled } from './styled';
+import { ContactFormContainer, InputStyled, SelectStyled, TextareaStyled } from './styled';
 
 type ContactFormType = {
   name: string;
@@ -98,10 +97,15 @@ export const ContactForm = () => {
   const submitForm: () => void = () => {
     if (formNotValid()) return;
     const path =
-      'https://docs.google.com/forms/d/e/1FAIpQLSfjgbyut8Ptcn1OZ-6COJ2BPMVgSDPBuw3PCjiypzi5nbljXA/viewForm?usp=pp_url&';
-    const query = `entry.669377778=${formData.name}&entry.264191649=${formData.company}&entry.1362561919=${formData.title}&entry.467657495=${formData.reason}&entry.919102681=${formData.message}`;
+      'https://docs.google.com/forms/d/e/1FAIpQLSfjgbyut8Ptcn1OZ-6COJ2BPMVgSDPBuw3PCjiypzi5nbljXA/viewform?usp=pp_url&';
+    const query = `entry.669377778=${encodeURIComponent(
+      formData.name
+    )}&entry.264191649=${encodeURIComponent(
+      formData.company
+    )}&entry.1362561919=${encodeURIComponent(formData.title)}&entry.467657495=${encodeURIComponent(
+      formData.reason
+    )}&entry.919102681=${encodeURIComponent(formData.message)}`.replaceAll('%20', '+');
     window.open(`${path}${query}`, '_BLANK');
-    console.log('SUBITTING FORM');
   };
 
   return (
@@ -140,11 +144,22 @@ export const ContactForm = () => {
       </Field>
       <Field>
         <Label>What will you use Coqui Studio for?*</Label>
-        <InputStyled
+        <SelectStyled
           onChange={e =>
             inputChangeHandler(e.target.value, 'reason', true, reasonRequiredFieldValidation)
           }
-        />
+        >
+          <option>Select</option>
+          <option>Video games</option>
+          <option>Motion pictures, series, post-production</option>
+          <option>Animation</option>
+          <option>Video (YouTube, TikTok etc.)</option>
+          <option>Podcasts, audiobooks</option>
+          <option>Corporate training, e-learning, education</option>
+          <option>Voice-over, localization</option>
+          <option>Personal use</option>
+          <option>Other</option>
+        </SelectStyled>
         {reasonError && <Message validation="error">{reasonError}</Message>}
       </Field>
       <Field>
@@ -156,8 +171,11 @@ export const ContactForm = () => {
       </Field>
       <Field>
         <Label>Message</Label>
-        <TextareaStyled minRows={2} maxRows={12} />
-        {/* <Message validation="error">A cactus is a beautiful plant</Message> */}
+        <TextareaStyled
+          onChange={e => inputChangeHandler(e.target.value, 'message', false)}
+          minRows={2}
+          maxRows={12}
+        />
       </Field>
       <Button
         type="submit"
