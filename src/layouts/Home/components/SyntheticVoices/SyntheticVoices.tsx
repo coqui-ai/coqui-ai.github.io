@@ -61,6 +61,7 @@ export const SyntheticVoices: FC = () => {
               justify-content: center;
               align-items: center;
               flex: 1;
+              height: 100%;
             `}
           >
             <div
@@ -71,13 +72,13 @@ export const SyntheticVoices: FC = () => {
             >
               <div
                 css={css`
-                  display: inline-block;
                   position: relative;
-                  left: 50%;
-                  transform: translateX(-50%);
+                  overflow: hidden;
+                  width: 100%;
+                  height: 100%;
                 `}
               >
-                <div
+                {/* <div
                   css={css`
                     position: absolute;
                     bottom: 0;
@@ -97,9 +98,9 @@ export const SyntheticVoices: FC = () => {
                     {!mutedAttribute.muted && <UnmutedSpeakerIcon size={1.5} />}
                     {mutedAttribute.muted && <MutedSpeakerIcon size={1.5} />}
                   </StyledButton>
-                </div>
+                </div> */}
                 {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-                <video
+                {/* <video
                   autoPlay
                   loop
                   {...mutedAttribute}
@@ -117,7 +118,19 @@ export const SyntheticVoices: FC = () => {
                 >
                   <source src={VideoGameMp4} type="video/mp4" />
                   <source src={VideoGameWebM} type="video/webm" />
-                </video>
+                </video> */}
+                <iframe
+                  css={css`
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                    height: 100%;
+                  `}
+                  src="https://www.youtube.com/embed/lrtGoE3LpO8?loop=1"
+                  title="Next-level AI Voices"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                />
               </div>
             </div>
           </div>

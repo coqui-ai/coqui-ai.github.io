@@ -111,13 +111,13 @@ export const Hero: FC = () => {
           >
             <div
               css={css`
-                display: inline-block;
                 position: relative;
-                left: 50%;
-                transform: translateX(-50%);
+                overflow: hidden;
+                width: 100%;
+                padding-top: 56.25%;
               `}
             >
-              <div
+              {/* <div
                 css={css`
                   position: absolute;
                   bottom: 0;
@@ -138,7 +138,7 @@ export const Hero: FC = () => {
                   {mutedAttribute.muted && <MutedSpeakerIcon size={1.5} />}
                 </StyledButton>
               </div>
-              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+              eslint-disable-next-line jsx-a11y/media-has-caption
               <video
                 autoPlay
                 loop
@@ -157,7 +157,23 @@ export const Hero: FC = () => {
               >
                 <source src={VideoGameMp4} type="video/mp4" />
                 <source src={VideoGameWebM} type="video/webm" />
-              </video>
+              </video> */}
+              <iframe
+                css={css`
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  bottom: 0;
+                  right: 0;
+                  width: 100%;
+                  height: 100%;
+                `}
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/dayEzxEccTY?loop=1"
+                title="Coqui youtube entry video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              />
             </div>
           </div>
         </div>
