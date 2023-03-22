@@ -6,9 +6,9 @@
  */
 
 import React from 'react';
-import { CtA } from './components/CtA';
 import { Features } from './components/Features';
 import { GetStartedCtA } from './components/GetStartedCta';
+import { Hero } from './components/Hero';
 import { PricingTable } from './components/PricingTable';
 import { UsersSection } from './components/Users';
 import { Voices } from './components/Voices';
@@ -17,7 +17,7 @@ import { WhyCoqui } from './components/WhyCoqui';
 export const HomeLayout = () => {
   return (
     <>
-      <CtA />
+      <Hero />
       <Features />
       <Voices />
       <WhyCoqui />

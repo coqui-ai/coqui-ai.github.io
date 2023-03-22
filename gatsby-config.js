@@ -7,7 +7,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const { tagNameMap } = require('./src/layouts/Models/components/TagNameMap');
 
 require('dotenv').config();
 
@@ -34,84 +33,6 @@ module.exports = {
         tracesSampleRate: 1,
         enabled: false, // it's enabled in /src/layouts/Root/index.tsx
         release: process.env.SOURCE_VERSION
-      }
-    },
-    {
-      resolve: `gatsby-source-github-api`,
-      options: {
-        token: process.env.REACT_APP_GITHUB_KEY,
-        graphQLQuery: `
-          query {
-             repository(owner: "coqui-ai", name: "STT-models") {
-                 releases(first: 100) {
-                     nodes {
-                         description
-                         name
-                         publishedAt
-                         shortDescriptionHTML
-                         tagName
-                         url
-                         releaseAssets(first: 15) {
-                             nodes {
-                                 contentType
-                                 downloadCount
-                                 downloadUrl
-                                 name
-                                 size
-                                 url
-                             }
-                         }
-                     }
-                 }
-             }
-          }
-          `
-      }
-    },
-    {
-      resolve: `gatsby-plugin-local-search`,
-      options: {
-        name: 'sTTModels',
-        engine: 'flexsearch',
-        query: `
-          {
-            allGithubData {
-              nodes {
-                data {
-                  repository {
-                    releases {
-                      nodes {
-                        name
-                        tagName
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        `,
-        ref: 'tagName',
-        index: ['name', 'language', 'creator', 'sttVersion', 'modelVersion'],
-        store: [
-          'name',
-          'language',
-          'creator',
-          'creatorURL',
-          'sttVersion',
-          'modelVersion',
-          'tagName'
-        ],
-        normalizer: ({ data }) =>
-          data.allGithubData.nodes[0].data.repository.releases.nodes.map(node => ({
-            name: node.name,
-            language: capitalize(node.tagName.split('/')[0]),
-            creator: tagNameMap[node.tagName]?.[0],
-            creatorURL: tagNameMap[node.tagName]?.[1],
-            sttVersion: 'Coqui STT v1.0.0',
-            modelVersion: node.tagName.split('/')[2],
-            tagName: node.tagName
-          }))
       }
     },
     {
