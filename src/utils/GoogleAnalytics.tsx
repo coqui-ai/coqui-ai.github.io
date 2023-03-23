@@ -5,13 +5,14 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import ReactGA from 'react-ga';
 import { getCookieConsentValue } from 'react-cookie-consent';
+import TagManager from 'react-gtm-module';
 
 export const consentedToGoogleAnalytics = () => {
   if (getCookieConsentValue()) {
-    ReactGA.initialize('UA-191579390-2');
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    TagManager.initialize({
+      gtmId: 'GTM-WLMK6W9'
+    });
 
     const redditScript = document.createElement('script');
 
