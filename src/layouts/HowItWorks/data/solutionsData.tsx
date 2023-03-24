@@ -28,8 +28,9 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
         <p>
           Use Coqui Studio to create game scripts read by your choice of fully directable AI voices.{' '}
           <span onClick={() => phraseClickHandler('Clone Your Voice')}>Clone Your Voice</span> in
-          seconds to bring your own voice into the game, or fuse your voice with AI using our{' '}
-          <span onClick={() => phraseClickHandler('Voice Fusion')}>Voice Fusion</span> technology.
+          seconds to bring your own voice into the game, or breed AI Voices for the perfect match,
+          using our <span onClick={() => phraseClickHandler('Voice Fusion')}>Voice Fusion</span>{' '}
+          technology.
           <br />
           Not sure what voice to go for? Let us help. With{' '}
           <span onClick={() => phraseClickHandler('Prompt-to-Voice')}>Prompt-to-Voice</span>, type
@@ -71,15 +72,16 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
       description: phraseClickHandler => (
         <p>
           Coqui Studio allows you to{' '}
-          <span onClick={() => phraseClickHandler('Clone Your Voice')}>Clone Your Voice</span> and
-          will replicate it with only 3 seconds of audio. It can replace missing words, and be
-          matched perfectly with the existing recording thanks to the{' '}
-          <span onClick={() => phraseClickHandler('Speech Rate')}>Speech Rate</span>. Utilise the{' '}
+          <span onClick={() => phraseClickHandler('Clone Your Voice')}>Clone Voices</span> and will
+          replicate it with only 3 seconds of audio. It can replace missing words, and be matched
+          perfectly with the existing recording thanks to the{' '}
+          <span onClick={() => phraseClickHandler('Speech Rate')}>Speech Rate</span>. Utilize the{' '}
           <span onClick={() => phraseClickHandler('Advanced Editor')}>Advanced Editor</span> to
           tweak <span onClick={() => phraseClickHandler('Pitch')}>Pitch</span> and{' '}
           <span onClick={() => phraseClickHandler('Energy')}>Energy</span>, or delve even deeper
           with the <span onClick={() => phraseClickHandler('Phenome')}>Phoneme Editor</span>. You
-          can edit singular syllables and create the perfect end result from an imperfect recording.
+          can edit even the shortest sounds and create the perfect end result from an imperfect
+          recording.
         </p>
       )
     },
@@ -116,9 +118,9 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
           use your own voice. Pick your preference, paste your text and you&apos;ll have your audio
           drafts ready in seconds. Choose{' '}
           <span onClick={() => phraseClickHandler('Emotion')}>emotion</span> presets and use the{' '}
-          <span onClick={() => phraseClickHandler('Timeline Editor')}>Timeline Editor</span> to add
-          multiple voices and generate entire conversations. That&apos;s it - hours of audio created
-          in minutes.
+          <span onClick={() => phraseClickHandler('Timeline Editor')}>Timeline Editor</span> offers
+          users more flexibility to visually manage their Lines of audio, change order of Lines, add
+          dramatic pauses, and play all lines in a Scene together.
         </p>
       )
     },

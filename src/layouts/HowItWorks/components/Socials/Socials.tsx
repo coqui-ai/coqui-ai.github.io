@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components';
-import { SocialsContainer, SocialsDescription, SocialsSectionTitle } from './styled';
-import github from './github.png';
-import discord from './discord.png';
-import youtube from './youtube.png';
-import twitter from './twitter.png';
-import linkedin from './linkedin.png';
-import facebook from './facebook.png';
 import arrow from './arrow-up-right.png';
+import discord from './discord.png';
+import facebook from './facebook.png';
+import github from './github.png';
+import linkedin from './linkedin.png';
+import { SocialsContainer, SocialsDescription, SocialsSectionTitle } from './styled';
+import twitter from './twitter.png';
+import youtube from './youtube.png';
 
 export const Socials: FC = () => {
   return (
@@ -147,7 +147,7 @@ export const Socials: FC = () => {
                 line-height: 180%;
               `}
             >
-              Are you a video learner?
+              Are you a visual learner?
             </p>
             <div
               css={css`
