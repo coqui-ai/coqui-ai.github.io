@@ -40,18 +40,23 @@ export const Hero: FC = () => {
           css={css`
             display: flex;
             flex-direction: column;
-            flex: 1;
             gap: 20px;
+            ${p => mediaQuery('up', 'lg', p.theme)} {
+              flex: 1;
+            }
           `}
         >
           <h1
             css={css`
               font-size: 75px;
-              font-weight: 600px;
               line-height: 88px;
-              ${p => mediaQuery('down', 'sm', p.theme)} {
+              ${p => mediaQuery('down', 'xl', p.theme)} {
                 font-size: 40px;
                 line-height: 48px;
+              }
+              ${p => mediaQuery('up', 'xl', p.theme)} {
+                font-size: 50px;
+                line-height: 50px;
               }
             `}
           >
