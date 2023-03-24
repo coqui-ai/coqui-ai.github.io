@@ -16,7 +16,7 @@ export const FooterContainer = styled.div<FooterContainerProps>`
   background-color: #03363d;
   ${p => mediaQuery('up', 'lg', p.theme)} {
     padding: ${({ hasBanner }) =>
-    hasBanner ? '15rem 10rem 10rem 10rem' : '10rem 10rem 5rem 10rem'};
+      hasBanner ? '15rem 10rem 10rem 10rem' : '10rem 10rem 5rem 10rem'};
   }
 `;
 
@@ -143,4 +143,10 @@ export const FooterSignatureText = styled.p`
   line-height: 28px;
   font-size: 14px;
   color: #ffffff;
+  a {
+    color: #ffffff;
+    &:hover {
+      color: #ffffff;
+    }
+  }
 `;

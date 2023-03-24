@@ -302,6 +302,15 @@ export const Footer: FC<FooterPropsType> = ({ hasSaveTimeBanner }) => {
       </FooterRow>
       <FooterSignatureRow>
         <FooterSignatureText>Made by Atomic Digital Marketing.</FooterSignatureText>
+        <FooterSignatureText>
+          <a href="https://berlinlovesyou.com/">
+            Made with{' '}
+            <span role="img" aria-label="heart">
+              ❤️
+            </span>{' '}
+            in Berlin!
+          </a>
+        </FooterSignatureText>
         <FooterSignatureText>© Coqui 2023. All Rights Reserved</FooterSignatureText>
       </FooterSignatureRow>
     </FooterContainer>

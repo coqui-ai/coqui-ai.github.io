@@ -46,7 +46,7 @@ export const Hero: FC = () => {
         >
           <h1
             css={css`
-              font-size: 80px;
+              font-size: 75px;
               font-weight: 600px;
               line-height: 88px;
               ${p => mediaQuery('down', 'sm', p.theme)} {
