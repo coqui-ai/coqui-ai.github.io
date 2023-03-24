@@ -34,8 +34,8 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
           <br />
           Not sure what voice to go for? Let us help. With{' '}
           <span onClick={() => phraseClickHandler('Prompt-to-Voice')}>Prompt-to-Voice</span>, type
-          in what you&apos;d like your character to sound like, and we will recommend voices to
-          choose from. With{' '}
+          in what you&apos;d like your character to sound like and we will instantly generate that
+          voice for you! With{' '}
           <span onClick={() => phraseClickHandler('Emotive Presets')}>Emotive Presets</span> and{' '}
           <span onClick={() => phraseClickHandler('Speech Rate')}>Speech Rate</span> adjustment
           tools get your expressive outputs fast and effectively. Our{' '}
