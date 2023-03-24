@@ -28,7 +28,7 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
         <p>
           Use Coqui Studio to create game scripts read by your choice of fully directable AI voices.{' '}
           <span onClick={() => phraseClickHandler('Clone Your Voice')}>Clone Your Voice</span> in
-          seconds to bring your own voice into the game, or breed AI Voices for the perfect match,
+          seconds to bring your own voice into the game or breed AI Voices for the perfect match,
           using our <span onClick={() => phraseClickHandler('Voice Fusion')}>Voice Fusion</span>{' '}
           technology.
           <br />
