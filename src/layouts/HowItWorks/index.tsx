@@ -24,16 +24,16 @@ import { solutionsImagesLookup } from './data/solutionsImageLookup';
 const navLinks: JSX.Element = (
   <>
     <Link to="#video-game-developers">
-      <li>Solution 1</li>
+      <li>Video Game Developers</li>
     </Link>
     <Link to="#post-production">
-      <li>Solution 2</li>
+      <li>Post-Production</li>
     </Link>
     <Link to="#voiceover">
-      <li>Solution 3</li>
+      <li>Voiceover</li>
     </Link>
     <Link to="#resources">
-      <li>Resources</li>
+      <li>Ask Us</li>
     </Link>
     <Link to="#socials">
       <li>Socials Media</li>
