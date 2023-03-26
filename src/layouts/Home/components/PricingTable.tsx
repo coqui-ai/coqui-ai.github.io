@@ -499,6 +499,7 @@ const StarterPlanContainer = () => {
         <span>Directable Voice Pacing</span>
         <span>Directable Voice Intonation</span>
         <span>Directable Voice Intensity</span>
+        <span>API Access</span>
       </FeatureList>
       <a href={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}>
         <OrangeButton css="font-size: 18px; width: 100%; padding: 24px;">Get Started</OrangeButton>
@@ -637,7 +638,6 @@ export const PricingTable = () => {
               <span>Audit Logs</span>
               <span>Virtual Private Cloud Hosting</span>
               <span>Custom Integrations</span>
-              <span>API access</span>
             </FeatureList>
             <a
               href="mailto:Coqui <info@coqui.ai>?subject=Coqui Studio Enterprise&body=Tell us how you want to use Coqui Studio Enterprise and we'll reach out for a call."
