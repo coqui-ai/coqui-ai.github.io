@@ -10,7 +10,6 @@ import * as Sentry from '@sentry/browser';
 import { SkipNav } from '@zendeskgarden/react-chrome';
 import React, { ReactNode } from 'react';
 import styled, { createGlobalStyle, css } from 'styled-components';
-import Footer from './components/Footer';
 import Header, { headerBoxShadow, headerHeight } from './components/Header';
 
 (function _configureEnvForSentry() {
@@ -42,6 +41,7 @@ import Header, { headerBoxShadow, headerHeight } from './components/Header';
  * Global styling
  */
 import '@zendeskgarden/css-bedrock/dist/index.css';
+import { Footer } from './components/Footer/Footer';
 
 /**
  * Ensure Gatsby wrapping nodes are full height
@@ -112,7 +112,7 @@ const RootLayout = ({
       <Header showVoiceSearch={showVoiceSearch} />
 
       <MainType>{children}</MainType>
-      {showFooter && <Footer />}
+      <Footer />
     </div>
   );
 };

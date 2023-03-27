@@ -86,7 +86,6 @@ export const HomeLayout = () => {
       <Contact />
       <Blogs />
       <SavingTime />
-      <Footer />
       {/* <CtA />
       <Features />
       <Voices />

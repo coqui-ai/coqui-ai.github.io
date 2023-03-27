@@ -89,7 +89,6 @@ export const HowItWorksLayout = () => {
       <Pricing />
       <Contact />
       <Blogs />
-      <Footer />
     </div>
   );
 };
