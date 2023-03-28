@@ -8,6 +8,7 @@
 import { mediaQuery } from '@zendeskgarden/react-theming';
 import React from 'react';
 import { css } from 'styled-components';
+import { VideoFrame } from './VideoFrame';
 import { PrimaryButton, SecondaryButton } from './Buttons';
 
 export const Hero = () => {
@@ -128,23 +129,7 @@ export const Hero = () => {
                 padding-top: 56.25%;
               `}
             >
-              <iframe
-                css={css`
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  bottom: 0;
-                  right: 0;
-                  width: 100%;
-                  height: 100%;
-                `}
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/dayEzxEccTY?loop=1&fs=1"
-                title="Coqui youtube entry video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
+              <VideoFrame />
             </div>
           </div>
         </div>

@@ -9,31 +9,15 @@ import { css } from 'styled-components';
 import { StyledButton } from './StyledButtons';
 import React, { useRef, useState } from 'react';
 import { getColor } from '@zendeskgarden/react-theming';
-import HowToVideoMp4 from '../../../data/videos/homepage/how-to-video.mp4';
-import HowToVideoWebM from '../../../data/videos/homepage/how-to-video.webm';
+import CoquiExplainerMp4 from '../../../data/videos/homepage/coqui_explainer.mp4';
+import CoquiExplainerWebM from '../../../data/videos/homepage/coqui_explainer.webm';
 import { ReactComponent as SpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-unmuted-stroke.svg';
 
 export const VideoFrame: React.FC = () => {
-  const videoRef = useRef<HTMLVideoElement>();
-  const [isLooping, setLooping] = useState(true);
   const [mutedAttribute, setMutedAttribute] = useState({ muted: true });
 
   const toggleMuted = () => {
     setMutedAttribute(mutedAttribute.muted ? { muted: false } : { muted: true });
-  };
-
-  const conditionallyRestart = () => {
-    if (mutedAttribute.muted) {
-      if (videoRef.current) {
-        if (videoRef.current.currentTime >= 20.28) {
-          if (isLooping) {
-            videoRef.current.currentTime = 0.0;
-          }
-        }
-      }
-    } else {
-      setLooping(false);
-    }
   };
 
   return (
@@ -45,16 +29,19 @@ export const VideoFrame: React.FC = () => {
     >
       <div
         css={css`
-          display: inline-block;
-          position: relative;
-          left: 50%;
-          transform: translateX(-50%);
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
         `}
       >
         <div
           css={css`
             position: absolute;
-            bottom: 10%;
+            top: 10%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 10;
@@ -86,12 +73,11 @@ export const VideoFrame: React.FC = () => {
           css={css`
             max-width: 100%;
             height: auto;
+            border-radius: 10px;
           `}
-          ref={videoRef}
-          onTimeUpdate={() => conditionallyRestart()}
         >
-          <source src={HowToVideoMp4} type="video/mp4" />
-          <source src={HowToVideoWebM} type="video/webm" />
+          <source src={CoquiExplainerMp4} type="video/mp4" />
+          <source src={CoquiExplainerWebM} type="video/webm" />
         </video>
       </div>
     </div>
