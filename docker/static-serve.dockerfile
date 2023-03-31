@@ -9,7 +9,6 @@ COPY src /app/src
 COPY static /app/static
 COPY plugins /app/plugins
 COPY utils /app/utils
-ARG REACT_APP_GITHUB_KEY
 ENV GATSBY_BACKEND_URL="https://creator-app-backend"
 
 # in the end, because they change often
