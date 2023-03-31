@@ -118,9 +118,9 @@ export const solutionData: Omit<SolutionType, 'index'>[] = [
           use your own voice. Pick your preference, paste your text and you&apos;ll have your audio
           drafts ready in seconds. Choose{' '}
           <span onClick={() => phraseClickHandler('Emotion')}>emotion</span> presets and use the{' '}
-          <span onClick={() => phraseClickHandler('Timeline Editor')}>Timeline Editor</span> offers
-          users more flexibility to visually manage their Lines of audio, change order of Lines, add
-          dramatic pauses, and play all lines in a Scene together.
+          <span onClick={() => phraseClickHandler('Timeline Editor')}>Timeline Editor</span> to add
+          multiple voices and generate entire conversations. That&apos;s it - hours of audio created
+          in minutes.
         </p>
       )
     },
