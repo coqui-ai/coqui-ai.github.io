@@ -5,35 +5,27 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import { css } from 'styled-components';
-import { StyledButton } from './StyledButtons';
-import React, { useRef, useState } from 'react';
 import { getColor } from '@zendeskgarden/react-theming';
-import HowToVideoMp4 from '../../../data/videos/homepage/how-to-video.mp4';
-import HowToVideoWebM from '../../../data/videos/homepage/how-to-video.webm';
+import { ReactComponent as MutedIcon } from '@zendeskgarden/svg-icons/src/16/volume-muted-stroke.svg';
 import { ReactComponent as SpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-unmuted-stroke.svg';
+import React, { ReactNode, useState } from 'react';
+import { css } from 'styled-components';
+import CoquiExplainerMp4 from '../../../data/videos/homepage/coqui_explainer.mp4';
+import CoquiExplainerWebM from '../../../data/videos/homepage/coqui_explainer.webm';
+import { StyledButton } from './StyledButtons';
 
-export const VideoFrame: React.FC = () => {
-  const videoRef = useRef<HTMLVideoElement>();
-  const [isLooping, setLooping] = useState(true);
+const VolumeIcon = ({ muted, children, ...rest }: { muted: boolean; children: ReactNode }) => {
+  if (muted) {
+    return <SpeakerIcon {...rest}>{children}</SpeakerIcon>;
+  }
+  return <MutedIcon {...rest}>{children}</MutedIcon>;
+};
+
+export const VideoFrame = () => {
   const [mutedAttribute, setMutedAttribute] = useState({ muted: true });
 
   const toggleMuted = () => {
     setMutedAttribute(mutedAttribute.muted ? { muted: false } : { muted: true });
-  };
-
-  const conditionallyRestart = () => {
-    if (mutedAttribute.muted) {
-      if (videoRef.current) {
-        if (videoRef.current.currentTime >= 20.28) {
-          if (isLooping) {
-            videoRef.current.currentTime = 0.0;
-          }
-        }
-      }
-    } else {
-      setLooping(false);
-    }
   };
 
   return (
@@ -45,17 +37,21 @@ export const VideoFrame: React.FC = () => {
     >
       <div
         css={css`
-          display: inline-block;
-          position: relative;
-          left: 50%;
-          transform: translateX(-50%);
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
         `}
       >
         <div
+          muted={mutedAttribute.muted}
           css={css`
             position: absolute;
-            bottom: 10%;
-            left: 50%;
+            top: 10%;
+            left: ${p => (p.muted ? '100px' : '45px')};
             transform: translate(-50%, -50%);
             z-index: 10;
           `}
@@ -68,13 +64,14 @@ export const VideoFrame: React.FC = () => {
               color: #fff;
             `}
           >
-            <SpeakerIcon
+            <VolumeIcon
+              muted={mutedAttribute.muted}
               size={1.5}
               css={css`
-                margin-right: ${p => p.theme.space.xs};
+                margin-right: ${p => (p.muted ? p.theme.space.xs : '0')};
               `}
             />
-            {mutedAttribute.muted ? 'Play with sound' : 'Play w/out sound'}
+            {mutedAttribute.muted && 'Play with sound'}
           </StyledButton>
         </div>
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
@@ -86,12 +83,11 @@ export const VideoFrame: React.FC = () => {
           css={css`
             max-width: 100%;
             height: auto;
+            border-radius: 10px;
           `}
-          ref={videoRef}
-          onTimeUpdate={() => conditionallyRestart()}
         >
-          <source src={HowToVideoMp4} type="video/mp4" />
-          <source src={HowToVideoWebM} type="video/webm" />
+          <source src={CoquiExplainerMp4} type="video/mp4" />
+          <source src={CoquiExplainerWebM} type="video/webm" />
         </video>
       </div>
     </div>
