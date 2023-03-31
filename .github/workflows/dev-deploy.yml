@@ -72,7 +72,7 @@ jobs:
           push: true
           cache-from: type=registry,ref=ghcr.io/coqui-ai/landing-page-build-cache:latest
           cache-to: type=registry,ref=ghcr.io/coqui-ai/landing-page-build-cache:latest
-          tags: ${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}
+          tags: ${{ env.ECR_REPO_URL }}:${{ env.RELEASE_VERSION }}-${{ github.sha }}
           build-args: |
             REACT_APP_GITHUB_KEY=${{ secrets.GITHUB_TOKEN }}
             CONFIG_APP_RELEASE=${{ github.sha }}
