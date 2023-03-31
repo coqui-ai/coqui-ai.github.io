@@ -10,6 +10,7 @@ import { ReactComponent as MutedIcon } from '@zendeskgarden/svg-icons/src/16/vol
 import { ReactComponent as SpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-unmuted-stroke.svg';
 import React, { ReactNode, useState } from 'react';
 import { css } from 'styled-components';
+import CoquiExplainerMp4 from '../../../data/videos/homepage/coqui_explainer.mp4';
 import CoquiExplainerWebM from '../../../data/videos/homepage/coqui_explainer.webm';
 import { StyledButton } from './StyledButtons';
 
@@ -85,6 +86,7 @@ export const VideoFrame = () => {
             border-radius: 10px;
           `}
         >
+          <source src={CoquiExplainerMp4} type="video/mp4" />
           <source src={CoquiExplainerWebM} type="video/webm" />
         </video>
       </div>
