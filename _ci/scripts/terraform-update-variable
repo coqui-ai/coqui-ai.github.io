@@ -1,0 +1,424 @@
+#!/bin/bash
+#
+# This script can automatically update the value of a variable in a Terraform tfvars file or Terragrunt HCL and commit
+# and push that change to Git. When combined with the terraform apply command, this can be a convenient way to
+# automatically (e.g. from a CI job) deploy a new version of an app defined in Terraform templates. Run this script
+# with the --help flag for more info.
+
+set -e
+set -o pipefail
+
+readonly DEFAULT_VARS_FILE="terragrunt.hcl"
+readonly DEFAULT_SKIP_GIT="true"
+readonly DEFAULT_SKIP_FMT="false"
+readonly DEFAULT_CREATE_BRANCH="false"
+# ci skip flag is supported by CircleCI and other CI systems to skip builds: https://circleci.com/docs/skip-a-build/
+readonly DEFAULT_SKIP_CI_FLAG="[ci skip]"
+
+function print_usage {
+ log
+ log "Usage: terraform-update-variable [OPTIONS]"
+ log
+ log "This script can automatically update the value of a variable in a Terraform tfvars or Terragrunt HCL file and commit and push that change to Git."
+ log
+ log "Options:"
+ log
+ log "  --name\t\tThe name of the variable in the vars file. Can be passed in multiple times to update multiple variables. Required."
+ log "  --value\t\tThe new value for that variable. Can be passed in multiple times to update multiple variables. Required."
+ log "  --vars-path\t\tThe path to the vars file. Optional. Default: $DEFAULT_VARS_FILE. If --git-url is specified, this path is assumed to be relative to the root of that repo."
+ log "  --git-url\t\tThe Git URL for the Terraform templates repo. Optional. If specified, this script will git clone this repo to a tmp dir and update the variable within it."
+ log "  --git-checkout-path\tThe path where the Git repo will be checked out. Optional. Default: (tmp dir). Only used if --git-url is set."
+ log "  --git-user-email\tThe value to use for git's user.email property. Default: email from most recent commit."
+ log "  --git-user-name\t\tThe value to use for git's user.name property. Default: user name from most recent commit."
+ log "  --git-branch-name\tThe branch to commit and push the updates to. Default: the current branch."
+ log "  --git-create-branch\tIf this parameter is set to \"true\", a new branch specified by --git-branch-name will be created. Default: $DEFAULT_CREATE_BRANCH."
+ log "  --git-base-branch-name\tThe branch to base changes off of. Used when --git-create-branch is true. Default: the current branch."
+ log "  --ssh-key-secrets-manager-arn \t\tThe ARN of an AWS Secrets Manager entry containing contents of an SSH private key. This key will be loaded into the ssh-agent for use with cloning a private git repo. This should be associated with a git user that has read and write permissions to the repo, as it is used to push the updates to the repo."
+  log "  --github-token-secrets-manager-arn\t\tThe ARN of an AWS Secrets Manager entry containing contents of a GitHub Personal Access Token for accessing git repos over HTTPS. This script will use the cache credentials helper to configure auth over https for github.com"
+  log "  --gitlab-token-secrets-manager-arn\t\tThe ARN of an AWS Secrets Manager entry containing contents of a GitLab Personal Access Token for accessing git repos over HTTPS. This script will use the cache credentials helper to configure auth over https for gitlab.com"
+  log "  --bitbucket-token-secrets-manager-arn\t\tThe ARN of an AWS Secrets Manager entry containing contents of a BitBucket Personal Access Token for accessing git repos over HTTPS. This script will use the cache credentials helper to configure auth over https for bitbucket.org. --bitbucket-username is required if this is set."
+  log "  --bitbucket-username\t\tThe username of the BitBucket user associated with the bitbucket token passed in with --bitbucket-token-secrets-manager-arn."
+ log "  --skip-git\t\tIf this parameter is set to \"true\", changes will not be committed or pushed to Git. Default: $DEFAULT_SKIP_GIT."
+ log "  --skip-ci-flag\tAppended to the commit message to ensure this commit doesn't trigger another CI job. Default: $DEFAULT_SKIP_CI_FLAG."
+ log "  --skip-fmt\t\tIf this parameter is set to \"true\", updated file will not be formatted. Default: $DEFAULT_SKIP_FMT."
+ log "  --help\t\tPrint this help text and exit."
+ log
+ log "Example:"
+ log
+ log "  terraform-update-variable --name foo --value \"\\\"bar\\\"\""
+
+}
+
+function log {
+  >&2 echo -e "$@"
+}
+
+function command_exists {
+  local -r cmd="$1"
+  command -v "$cmd" >/dev/null 2>&1
+}
+
+# Check that the given binary is available on the PATH. If it's not, exit with an error.
+function assert_is_installed {
+  local -r name="$1"
+
+  if ! command_exists "$name"; then
+    log "ERROR: The command '$name' is required by this script but is not installed or in the system's PATH."
+    exit 1
+  fi
+}
+
+function get_region_from_arn {
+  local -r arn="$1"
+  local -a arn_parts=()
+
+  # Split string into array by character
+  # Source: https://stackoverflow.com/a/15988793/2308858
+  IFS=":" read -ra arn_parts <<<"$arn"
+
+  # Region is the 4th part of arn:
+  # https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html
+  echo "${arn_parts[3]}"
+}
+
+function ssh_add_from_secrets_manager {
+  local -r ssh_key_secrets_manager_arn="$1"
+
+  if [[ -n "$ssh_key_secrets_manager_arn" ]]; then
+    log "Loading SSH key from AWS Secrets Manager entry"
+
+    # Make sure required binaries are installed
+    assert_is_installed aws
+
+    # Retrieve SSH key from secrets manager and load into ssh-agent
+    region="$(get_region_from_arn "$ssh_key_secrets_manager_arn")"
+    aws secretsmanager get-secret-value \
+      --region "$region" \
+      --secret-id "$ssh_key_secrets_manager_arn" \
+      --output "text" \
+      --query "SecretString" \
+    | ssh-add -
+  fi
+}
+
+# Configure git with username and password to authenticate with the given VCS host when interacting with git
+# over HTTPS. This uses the cache credentials store to configure the credentials. Refer to the git documentation on
+# credentials storage for more information: https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage
+function config_https_auth_from_secrets_manager {
+  local -r git_host="$1"
+  local -r git_username="$2"
+  local -r git_token_secrets_manager_arn="$3"
+
+  if [[ -z "$git_token_secrets_manager_arn" ]]; then
+    return
+  fi
+
+  log "Loading HTTPS token from secrets manager for VCS host ${git_host}"
+
+  # Make sure required binaries are installed
+  assert_is_installed aws
+
+  # Retrieve SSH key from secrets manager and load into ssh-agent
+  local region=""
+  region="$(get_region_from_arn "$git_token_secrets_manager_arn")"
+  git_token="$(
+    aws secretsmanager get-secret-value \
+      --region "$region" \
+      --secret-id "$git_token_secrets_manager_arn" \
+      --output "text" \
+      --query "SecretString" \
+  )"
+
+  # Configure cache credentials manager and load the token
+  git config --global credential.helper 'cache --timeout 3600'
+  store_credentials_cmd="protocol=https
+host=${git_host}
+username=${git_username}
+password=${git_token}
+"
+  echo "${store_credentials_cmd}" | git credential-cache store
+}
+
+function update_variable {
+  local -r skip_fmt="$1"
+  local -r vars_file="$2"
+  local -r name="$3"
+  local -r value="$4"
+
+  if [[ ! -f "$vars_file" ]]; then
+    log "ERROR: vars file $vars_file does not exist."
+    exit 1
+  fi
+
+  local vars_file_contents
+  vars_file_contents=$(cat "$vars_file")
+
+  log "Updating variable '$name' to value '$value' in $vars_file"
+
+  local -r vars_var_regex="^[[:blank:]]*${name}[[:blank:]]*=[[:blank:]]*.*"
+  local -r vars_var_replacement="${name} = ${value}"
+
+  local updated_vars_file_contents=""
+  local found=0
+
+  # Use while read loop to read the string line by line so that we can match the regex line by line.
+  while read -r line
+  do
+    if [[ "$line" =~ $vars_var_regex ]]; then
+      updated_vars_file_contents+="$(echo "$line" | sed -e "s|$vars_var_regex|$vars_var_replacement|g")"
+      found=1
+    else
+      updated_vars_file_contents+="$line"
+    fi
+    updated_vars_file_contents+=$'\n'
+  done <<< "$vars_file_contents"
+
+  if [[ $found -eq 0 ]]; then
+    log "ERROR: Could not find variable $name in vars file $vars_file."
+    exit 1
+  fi
+
+  if [[ "$skip_fmt" == "true" ]]; then
+    echo "$updated_vars_file_contents" > "${vars_file}"
+    return
+  fi
+
+  local formatted
+  pushd "$(dirname "$vars_file")"
+  # Usage of temporary files for formatting instead of pipes to avoid adding debug output into processed file
+  # https://github.com/gruntwork-io/terraform-aws-ci/issues/362
+  local tmpfile
+  tmpfile=$(mktemp /tmp/tf-content.XXXXXX)
+  # setting .tf file extension for terraform to format it
+  local -r tmpfile_tf="${tmpfile}.tf"
+  mv "${tmpfile}" "${tmpfile_tf}"
+  trap "rm ${tmpfile_tf}" EXIT
+  echo "$updated_vars_file_contents" > "${tmpfile_tf}"
+  terraform fmt "${tmpfile_tf}"
+  fmt_result=$?
+  popd
+  if [[ $fmt_result -eq 0 ]]; then
+    formatted=$(cat "${tmpfile_tf}")
+    echo "$formatted" > "$vars_file"
+  fi
+}
+
+function commit_and_push_file {
+  local -r file="$1"
+  local -r message="$2"
+  local -r user_email="$3"
+  local -r user_name="$4"
+  local -r git_branch_name="$5"
+  local -r git_create_branch="$6"
+  local -r skip_ci_flag="$7"
+
+  local -a args=()
+
+  args+=(--path "$file")
+  args+=(--message "$message")
+  args+=(--skip-ci-flag "$skip_ci_flag")
+  args+=(--user-email "$user_email")
+  args+=(--user-name "$user_name")
+  args+=(--branch-name "$git_branch_name")
+  if [[ "$git_create_branch" == "true" ]]; then
+    args+=(--skip-git-pull)
+  fi
+
+  git-add-commit-push "${args[@]}"
+}
+
+function create_or_checkout_branch {
+  local -r should_create_branch="$1"
+  local -r base_branch_name="$2"
+  local -r branch_name="$3"
+
+  if [[ "$should_create_branch" == "true" ]]; then
+    log "The --git-create-branch flag is set, so creating new branch $branch_name"
+
+    if [[ -n "$base_branch_name" ]]; then
+      log "Basing new branch off of $base_branch_name"
+      git checkout "$base_branch_name"
+    fi
+
+    git checkout -b "$branch_name"
+  elif [[ -n "$branch_name" ]]; then
+    log "Checking out $branch_name"
+    git checkout "$branch_name"
+  fi
+}
+
+function assert_is_installed {
+  local -r name="$1"
+
+  if ! command -v "$name" > /dev/null; then
+    log "ERROR: The binary '$name' is required by this script but is not installed or in the system's PATH."
+    exit 1
+  fi
+}
+
+
+function run_update {
+  local -a name=()
+  local -a value=()
+  local git_url=""
+  local git_user_email=""
+  local git_user_name=""
+  local git_branch_name=""
+  local git_base_branch_name=""
+  local git_create_branch="$DEFAULT_CREATE_BRANCH"
+  local ssh_key_secrets_manager_arn=""
+  local github_token_secrets_manager_arn=""
+  local gitlab_token_secrets_manager_arn=""
+  local bitbucket_token_secrets_manager_arn=""
+  local bitbucket_username=""
+  local skip_git="$DEFAULT_SKIP_GIT"
+  local skip_fmt="$DEFAULT_SKIP_FMT"
+  local skip_ci_flag="$DEFAULT_SKIP_CI_FLAG"
+  local vars_path="$DEFAULT_VARS_FILE"
+  local git_checkout_path
+  git_checkout_path="$(mktemp -d)"
+
+  while [[ $# -gt 0 ]]; do
+    local key="$1"
+
+    case "$key" in
+      --name)
+        name+=("$2")
+        shift
+        ;;
+      --value)
+        value+=("$2")
+        shift
+        ;;
+      --git-url)
+        git_url="$2"
+        shift
+        ;;
+      --git-checkout-path)
+        git_checkout_path="$2"
+        shift
+        ;;
+      --git-user-email)
+        git_user_email="$2"
+        shift
+        ;;
+      --git-user-name)
+        git_user_name="$2"
+        shift
+        ;;
+      --git-branch-name)
+        git_branch_name="$2"
+        shift
+        ;;
+      --git-create-branch)
+        git_create_branch="$2"
+        shift
+        ;;
+      --git-base-branch-name)
+        git_base_branch_name="$2"
+        shift
+        ;;
+      --ssh-key-secrets-manager-arn)
+        ssh_key_secrets_manager_arn="$2"
+        shift
+        ;;
+      --github-token-secrets-manager-arn)
+        github_token_secrets_manager_arn="$2"
+        shift
+        ;;
+      --gitlab-token-secrets-manager-arn)
+        gitlab_token_secrets_manager_arn="$2"
+        shift
+        ;;
+      --bitbucket-token-secrets-manager-arn)
+        bitbucket_token_secrets_manager_arn="$2"
+        shift
+        ;;
+      --bitbucket-username)
+        bitbucket_username="$2"
+        shift
+        ;;
+      --vars-path)
+        vars_path="$2"
+        shift
+        ;;
+      --skip-git)
+        skip_git="$2"
+        shift
+        ;;
+      --skip-fmt)
+        skip_fmt="$2"
+        shift
+        ;;
+      --skip-ci-flag)
+        skip_ci_flag="$2"
+        shift
+        ;;
+      --help|-h)
+        print_usage
+        exit
+        ;;
+      *)
+        log "ERROR: Unrecognized argument: $key"
+        print_usage
+        exit 1
+        ;;
+    esac
+
+    shift
+  done
+
+  if [[ "${#name[@]}" -eq 0 ]]; then
+    log "ERROR: You must have at least one --name"
+    print_usage
+    exit 1
+  fi
+  if [[ "${#value[@]}" -ne "${#name[@]}" ]]; then
+    log "ERROR: The number of times --name is passed in (${#name[@]}) must match the number of times --value is passed in (${#value[@]})."
+    print_usage
+    exit 1
+  fi
+
+  if [[ "$skip_fmt" != "true" ]]; then
+    assert_is_installed "terraform"
+  fi
+
+  if [[ "$skip_git" != "true" ]]; then
+    assert_is_installed "git-add-commit-push"
+  fi
+
+  if [[ -n "$git_url" ]]; then
+    echo "Checking out $git_url into $git_checkout_path"
+
+    # Configure private repo auth. Each function call will be a noop if the corresponding token secrets manager arn is
+    # not passed in.
+    ssh_add_from_secrets_manager "$ssh_key_secrets_manager_arn"
+    config_https_auth_from_secrets_manager 'github.com' 'git' "$github_token_secrets_manager_arn"
+    config_https_auth_from_secrets_manager 'gitlab.com' 'oauth2' "$gitlab_token_secrets_manager_arn"
+    config_https_auth_from_secrets_manager 'bitbucket.org' "$bitbucket_username" "$bitbucket_token_secrets_manager_arn"
+
+    git clone "$git_url" "$git_checkout_path"
+    cd "$git_checkout_path"
+    create_or_checkout_branch "$git_create_branch" "$git_base_branch_name" "$git_branch_name"
+  fi
+
+  for (( i=0 ; i < ${#name[@]} ; i++ )); do
+    update_variable "$skip_fmt" "$vars_path" "${name[i]}" "${value[i]}"
+  done
+
+  if [[ "$skip_git" == "true" ]]; then
+    echo "The --skip-git flag is set, so not committing changes to Git."
+  else
+    local -r commit_message="Auto-update: setting variables in $vars_path."
+    commit_and_push_file \
+      "$vars_path" \
+      "$commit_message" \
+      "$git_user_email" \
+      "$git_user_name" \
+      "$git_branch_name" \
+      "$git_create_branch" \
+      "$skip_ci_flag"
+  fi
+}
+
+run_update "$@"

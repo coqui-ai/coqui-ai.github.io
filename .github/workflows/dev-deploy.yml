@@ -28,8 +28,7 @@ env:
   # Following Used by deploying to infrastructure
   # The branch to use when committing to infrastructure-live.
   DEFAULT_INFRA_LIVE_BRANCH: 'main'
-  # Infra git repo must be in ssh form.
-  INFRASTRUCTURE_REPO_SSH: 'git@github.com:coqui-ai/MLOpsInfrastructure.git'
+  INFRASTRUCTURE_REPO: 'https://coqui-machine-user:${{ secrets.GH_TOKEN }}@github.com/coqui-ai/MLOpsInfrastructure.git'
   # On infrastructure live specific location of service  (it must exist as deployment simply changes tag name)
   APP_DEPLOY_PATH: 'dev/us-east-1/dev/services/website-frontend'
   # value of this variable will be changed with TAG of this docker image  built (usually git branch name)
@@ -67,12 +66,6 @@ jobs:
           echo "::set-output name=short_ref::${GITHUB_REF#refs/*/}"
         shell: bash
 
-      - name: Install utilities
-        run: ./_ci/scripts/install.sh
-        shell: bash
-        env:
-          GITHUB_OAUTH_TOKEN: ${{ secrets.INFRA_DEPLOYER_GITHUB_TOKEN }}
-
       - name: Build Docker image
         id: build-docker
         shell: bash
@@ -101,13 +94,34 @@ jobs:
           # Tag and push as {env}-latest
           docker tag "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}" "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest"
           docker push "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest"
-      # this simply changes docker container tag for K8S service
+
       - name: Deploy pushed docker tag to infrastructure
-        id: deploy-docker
         if: github.event_name != 'pull_request'
-        run: ./_ci/scripts/deploy-docker-image.sh "${{ env.AWS_ENVIRONMENT }}" "${{ env.RELEASE_VERSION }}-${{ github.sha }}"
         shell: bash
-        env:
-          GITHUB_OAUTH_TOKEN: ${{ secrets.INFRA_DEPLOYER_GITHUB_TOKEN }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.INFRA_DEPLOYER_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.INFRA_DEPLOYER_AWS_SECRET_ACCESS_KEY }}
+        run: |
+          set -xe
+
+          infra_repo_path=$(mktemp -d)
+
+          # Clone infra repo, update version
+          _ci/scripts/terraform-update-variable \
+            --git-url $INFRASTRUCTURE_REPO \
+            --git-checkout-path $infra_repo_path \
+            --git-branch-name $DEFAULT_INFRA_LIVE_BRANCH \
+            --vars-path dev/us-east-1/dev/services/website-frontend \
+            --name tag \
+            --value ${{ env.RELEASE_VERSION }}-${{ github.sha }}
+
+          pushd $infra_repo_path
+
+          git diff
+
+          git config --global user.email "reference-architecture-machine-user@coqui.ai"
+          git config --global user.name "coqui-machine-user"
+
+          git commit -a \
+            -m "Update landing page to ${{ env.RELEASE_VERSION }}-${{ github.sha }}"
+
+          if [[ "$GITHUB_EVENT_NAME" == "push" ]]; then
+            git push origin $DEFAULT_INFRA_LIVE_BRANCH
+          fi
