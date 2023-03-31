@@ -74,8 +74,7 @@ jobs:
           cache-to: type=registry,ref=ghcr.io/coqui-ai/landing-page-build-cache:latest
           tags: ${{ env.ECR_REPO_URL }}:${{ env.RELEASE_VERSION }}-${{ github.sha }}
           build-args: |
-            REACT_APP_GITHUB_KEY=${{ secrets.GITHUB_TOKEN }}
-            CONFIG_APP_RELEASE=${{ github.sha }}
+            CONFIG_APP_RELEASE=dev
             GATSBY_FRONTEND_URL=${{ env.FRONTEND_URL }}
             GATSBY_AMPLITUDE_PROJECT_KEY=${{ secrets.AMPLITUDE_DEV_KEY }}
 
