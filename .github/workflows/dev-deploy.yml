@@ -76,7 +76,7 @@ jobs:
           build-args: |
             REACT_APP_GITHUB_KEY=${{ secrets.GITHUB_TOKEN }}
             CONFIG_APP_RELEASE=${{ github.sha }}
-            GATSBY_FRONTEND_URL=$FRONTEND_URL
+            GATSBY_FRONTEND_URL=${{ env.FRONTEND_URL }}
             GATSBY_AMPLITUDE_PROJECT_KEY=${{ secrets.AMPLITUDE_DEV_KEY }}
 
       - name: Deploy pushed docker tag to infrastructure
