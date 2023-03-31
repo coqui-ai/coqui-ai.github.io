@@ -16,8 +16,8 @@ on:
   pull_request:
 env:
   GRUNTWORK_INSTALLER_VERSION: v0.0.38
-  MODULE_CI_VERSION: v0.41.1-coqui
-  MODULE_SECURITY_VERSION: v0.61.0-coqui
+  MODULE_CI_VERSION: v0.50.4-coqui
+  MODULE_SECURITY_VERSION: v0.65.8-coqui
   # Disables the use of the Amazon EC2 instance metadata service (IMDS).
   # Forces the AWS CLI to use the env vars defined above for credentials.
   AWS_EC2_METADATA_DISABLED: true
