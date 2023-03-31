@@ -54,46 +54,28 @@ jobs:
             echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
           fi
 
-      - name: Test
-        run: |
-          echo $RELEASE_VERSION
-          echo ${{ env.RELEASE_VERSION }}
-
-      - name: Set custom ref variables
-        id: ref
-        run: |
-          echo "::set-output name=source_ref::$(./.github/scripts/source-ref.sh)"
-          echo "::set-output name=short_ref::${GITHUB_REF#refs/*/}"
-        shell: bash
-
-      - name: Build Docker image
-        id: build-docker
-        shell: bash
+      - shell: bash
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.INFRA_SHARED_AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.INFRA_SHARED_AWS_SECRET_ACCESS_KEY }}
         run: |
           set -xe
-
-          # Log in to ECR
           aws ecr get-login-password --region "${AWS_ENVIRONMENT}" | docker login --username AWS --password-stdin "${ECR_REPO_URL}"
+          docker login --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
 
-          # Pull latest version to speed up build
-          docker pull "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest" || true
-
-          # Build and push to ECR
-          docker build . \
-            -f docker/static-serve.dockerfile \
-            --build-arg REACT_APP_GITHUB_KEY=${{ secrets.GITHUB_TOKEN }} \
-            --build-arg CONFIG_APP_RELEASE=${{ github.sha }} \
-            --build-arg GATSBY_FRONTEND_URL=$FRONTEND_URL \
-            --build-arg GATSBY_AMPLITUDE_PROJECT_KEY=${{ secrets.AMPLITUDE_DEV_KEY }} \
-            -t "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
-          docker push "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}"
-
-          # Tag and push as {env}-latest
-          docker tag "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}" "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest"
-          docker push "${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-latest"
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          file: docker/static-serve.dockerfile
+          push: true
+          cache-from: type=registry,ref=ghcr.io/coqui-ai/landing-page-build-cache:latest
+          cache-to: type=registry,ref=ghcr.io/coqui-ai/landing-page-build-cache:latest
+          tags: ${ECR_REPO_URL}:${{ env.RELEASE_VERSION }}-${{ github.sha }}
+          build-args: |
+            REACT_APP_GITHUB_KEY=${{ secrets.GITHUB_TOKEN }}
+            CONFIG_APP_RELEASE=${{ github.sha }}
+            GATSBY_FRONTEND_URL=$FRONTEND_URL
+            GATSBY_AMPLITUDE_PROJECT_KEY=${{ secrets.AMPLITUDE_DEV_KEY }}
 
       - name: Deploy pushed docker tag to infrastructure
         if: github.event_name != 'pull_request'
