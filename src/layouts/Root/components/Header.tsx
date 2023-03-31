@@ -7,7 +7,6 @@
 
 import { useLocation } from '@reach/router';
 import { IconButton } from '@zendeskgarden/react-buttons';
-import { Dropdown, Item, Menu, Trigger } from '@zendeskgarden/react-dropdowns';
 import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-icons/src/16/overflow-vertical-stroke.svg';
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
@@ -27,7 +26,7 @@ export const headerBoxShadow = (theme: DefaultTheme) =>
     getColor('neutralHue', 800, theme, 0.05)!
   );
 
-export const headerHeight = (theme: DefaultTheme) => 77;
+export const headerHeight = (theme: DefaultTheme) => 100;
 
 const StyledDesktopNavItem = styled.div`
   display: flex;
@@ -50,8 +49,12 @@ const StyledDesktopNavMenu = styled(StyledNavigationItem).attrs({ partiallyActiv
 const StyledHeader = styled.header.attrs({ role: 'banner' })`
   z-index: 301;
   box-shadow: ${p => headerBoxShadow(p.theme)};
-  padding: 0 42px;
+  padding: 0 10rem;
   height: ${p => headerHeight(p.theme)}px;
+  ${p => mediaQuery('down', 'md', p.theme)} {
+    padding: 0 2rem;
+    height: ${p => p.theme.space.base * 15}px;
+  }
 
   &[data-show-navigation='true'] {
     border-bottom-color: ${p => p.theme.palette.white};
@@ -63,7 +66,10 @@ const StyledHeader = styled.header.attrs({ role: 'banner' })`
   }
 `;
 
-const Logo: React.FC = () => {
+type LogoType = {
+  noClick?: boolean;
+};
+export const Logo: React.FC<LogoType> = ({ noClick }) => {
   const logoWordmarkImage = useStaticQuery(
     graphql`
       query {
@@ -91,7 +97,29 @@ const Logo: React.FC = () => {
         }
       `}
     >
-      <Link aria-label="Coqui" to="/">
+      {!noClick && (
+        <Link aria-label="Coqui" to="/">
+          <div
+            css={`
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            `}
+          >
+            <Img
+              fixed={logoWordmarkImage.file.childImageSharp.fixed}
+              alt=""
+              css={css`
+                ${p => mediaQuery('down', 'xs', p.theme)} {
+                  height: ${p => p.theme.iconSizes.lg}px;
+                }
+              `}
+              imgStyle={{ maxWidth: '100%', maxHeight: '100%' }}
+            />
+          </div>
+        </Link>
+      )}
+      {noClick && (
         <div
           css={`
             display: flex;
@@ -110,7 +138,7 @@ const Logo: React.FC = () => {
             imgStyle={{ maxWidth: '100%', maxHeight: '100%' }}
           />
         </div>
-      </Link>
+      )}
     </div>
   );
 };
@@ -190,6 +218,7 @@ const MobileNav = ({
       css={css`
         position: fixed;
         top: ${p => p.theme.space.base * 15}px;
+        font-weight: 600;
         right: 0;
         bottom: 0;
         left: 0;
@@ -199,35 +228,13 @@ const MobileNav = ({
       `}
     >
       <StyledMobileNavItem>
-        <StyledMobileNavLink to="/#features" onClick={() => setIsNavigationVisible(false)}>
-          Features
+        <StyledMobileNavLink to="/" onClick={() => setIsNavigationVisible(false)}>
+          Home
         </StyledMobileNavLink>
       </StyledMobileNavItem>
       <StyledMobileNavItem>
-        <StyledMobileNavLink to="/pricing">Pricing</StyledMobileNavLink>
+        <StyledMobileNavLink to="/how-it-works">How it works</StyledMobileNavLink>
       </StyledMobileNavItem>
-      <Dropdown
-        onSelect={item => {
-          window.location.href = item;
-        }}
-      >
-        <Trigger>
-          <StyledMobileNavItem>
-            <StyledMobileNavMenu
-              css={css`
-                background-color: ${p => p.theme.palette.tofu};
-              `}
-            >
-              Use Cases
-            </StyledMobileNavMenu>
-          </StyledMobileNavItem>
-        </Trigger>
-        <Menu hasArrow>
-          <Item value="/video-games">Video Games</Item>
-          <Item value="/post-production">Post Production</Item>
-          <Item value="/dubbing">Dubbing</Item>
-        </Menu>
-      </Dropdown>
       <StyledMobileNavItem>
         <TryNowButton />
       </StyledMobileNavItem>
@@ -257,15 +264,16 @@ const Header = ({}) => {
             justify-content: center;
             align-items: center;
             gap: 40px;
+            font-weight: 600;
 
             ${p => mediaQuery('down', 'sm', p.theme)} {
               display: none;
             }
           `}
         >
-          <a href="/#features">Features</a>
-          <a href="/pricing">Pricing</a>
-          <Dropdown
+          <a href="/">Home</a>
+          <a href="/how-it-works">How it works</a>
+          {/* <Dropdown
             onSelect={item => {
               window.location.href = item;
             }}
@@ -287,7 +295,7 @@ const Header = ({}) => {
               <Item value="/post-production">Post Production</Item>
               <Item value="/dubbing">Dubbing</Item>
             </Menu>
-          </Dropdown>
+          </Dropdown> */}
         </nav>
         <div
           css={css`
@@ -295,12 +303,14 @@ const Header = ({}) => {
             justify-content: end;
             align-items: center;
             gap: 30px;
+            font-weight: 600;
 
             ${p => mediaQuery('down', 'sm', p.theme)} {
               display: none;
             }
           `}
         >
+          <a href={`${process.env.GATSBY_BACKEND_URL}/auth/signin`}>Sign In</a>
           <TryNowButton />
         </div>
         <MobileNavButton

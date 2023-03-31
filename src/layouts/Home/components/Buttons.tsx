@@ -11,6 +11,14 @@ import React, { FC } from 'react';
 import { css } from 'styled-components';
 import { StyledNavigationLink } from './StyledNavigationLink';
 
+type ButtonType = {
+  text: string;
+  textColor?: string;
+  path: string;
+  fullWidth?: boolean;
+  iconSrc?: string;
+};
+
 export const TryNowButton = ({ ...rest }) => {
   return (
     <StyledNavigationLink to={`${process.env.GATSBY_BACKEND_URL}/auth/signup`} {...rest}>
@@ -19,8 +27,9 @@ export const TryNowButton = ({ ...rest }) => {
           border-width: 0;
           background-color: ${p => getColor('yellow', 600, p.theme)};
           color: #fff;
-          border-radius: 7.2px;
-          font-weight: 700;
+          border-radius: 30px;
+          font-weight: 400;
+          padding: 18px 24px;
         `}
       >
         Try now for free
