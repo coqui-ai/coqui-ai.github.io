@@ -213,6 +213,7 @@ const Logo: React.FC = () => {
 export const Footer: FC<FooterPropsType> = ({ hasSaveTimeBanner }) => {
   return (
     <FooterContainer
+      id="footer"
       css={css`
         ${p => mediaQuery('down', 'sm', p.theme)} {
           padding: 2rem 1rem;

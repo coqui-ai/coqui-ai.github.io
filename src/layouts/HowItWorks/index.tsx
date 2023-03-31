@@ -24,19 +24,19 @@ import { solutionsImagesLookup } from './data/solutionsImageLookup';
 const navLinks: JSX.Element = (
   <>
     <Link to="#video-game-developers">
-      <li>Video Game Developers</li>
+      <li>Video games</li>
     </Link>
     <Link to="#post-production">
-      <li>Post-Production</li>
+      <li>Post-production</li>
     </Link>
     <Link to="#voiceover">
-      <li>Voiceover</li>
+      <li>Voice over</li>
     </Link>
     <Link to="#resources">
-      <li>Ask Us</li>
+      <li>Resources</li>
     </Link>
     <Link to="#socials">
-      <li>Socials Media</li>
+      <li>Learn more</li>
     </Link>
     <Link to="#pricing">
       <li>Pricing</li>
@@ -46,6 +46,15 @@ const navLinks: JSX.Element = (
     </Link>
     <Link to="#blogs">
       <li>Blogs</li>
+    </Link>
+    <Link to={`${process.env.GATSBY_BACKEND_URL}/auth/signin`}>
+      <li>Try for free</li>
+    </Link>
+    <Link to="#footer">
+      <li>Other links</li>
+    </Link>
+    <Link to="/">
+      <li>Home</li>
     </Link>
   </>
 );

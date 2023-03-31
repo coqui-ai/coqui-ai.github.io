@@ -34,31 +34,40 @@ import { FixedNav } from './FixedNav/FixedNav';
 const navLinks: JSX.Element = (
   <>
     <Link to="#features-and-apps">
-      <li>Features & Applications</li>
+      <li>Features</li>
     </Link>
     <Link to="#why">
-      <li>Why Coqui</li>
+      <li>Why Coqui?</li>
     </Link>
     <Link to="#ai-voices">
-      <li>Our AI Voices</li>
+      <li>AI Voices</li>
     </Link>
     <Link to="#pricing">
       <li>Pricing</li>
     </Link>
     <Link to="#synthetic-voices">
-      <li>Synthetic Voices</li>
+      <li>Samples</li>
     </Link>
     <Link to="#about-us">
       <li>About Us</li>
     </Link>
     <Link to="#faq">
-      <li>Ask Us</li>
+      <li>FAQ</li>
     </Link>
     <Link to="#contact">
       <li>Contact Us</li>
     </Link>
     <Link to="#blogs">
       <li>Blogs</li>
+    </Link>
+    <Link to={`${process.env.GATSBY_BACKEND_URL}/auth/signin`}>
+      <li>Try for free</li>
+    </Link>
+    <Link to="#footer">
+      <li>Other links</li>
+    </Link>
+    <Link to="/how-it-works">
+      <li>How It Works</li>
     </Link>
   </>
 );
