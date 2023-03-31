@@ -92,7 +92,7 @@ jobs:
             --git-url $INFRASTRUCTURE_REPO \
             --git-checkout-path $infra_repo_path \
             --git-branch-name $DEFAULT_INFRA_LIVE_BRANCH \
-            --vars-path dev/us-east-1/dev/services/website-frontend \
+            --vars-path dev/us-east-1/dev/services/website-frontend/terragrunt.hcl \
             --name tag \
             --value ${{ env.RELEASE_VERSION }}-${{ github.sha }}
 
