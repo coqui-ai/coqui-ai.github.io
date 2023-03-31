@@ -17,7 +17,7 @@ function run {
   local -r module_ci_version="$2"
   local -r module_security_version="$3"
 
-  curl -Ls https://raw.githubusercontent.com/coqui-ai/gruntwork-gruntwork-installer/master/bootstrap-gruntwork-installer.sh \
+  curl -Ls https://raw.githubusercontent.com/gruntwork-io/gruntwork-installer/master/bootstrap-gruntwork-installer.sh \
     | bash /dev/stdin --version "$gruntwork_installer_version"
   gruntwork-install --repo "https://github.com/coqui-ai/gruntwork-terraform-aws-ci" \
     --binary-name "infrastructure-deployer" \
