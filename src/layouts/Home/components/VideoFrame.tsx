@@ -5,15 +5,23 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import { css } from 'styled-components';
-import { StyledButton } from './StyledButtons';
-import React, { useRef, useState } from 'react';
 import { getColor } from '@zendeskgarden/react-theming';
+import { ReactComponent as MutedIcon } from '@zendeskgarden/svg-icons/src/16/volume-muted-stroke.svg';
+import { ReactComponent as SpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-unmuted-stroke.svg';
+import React, { ReactNode, useState } from 'react';
+import { css } from 'styled-components';
 import CoquiExplainerMp4 from '../../../data/videos/homepage/coqui_explainer.mp4';
 import CoquiExplainerWebM from '../../../data/videos/homepage/coqui_explainer.webm';
-import { ReactComponent as SpeakerIcon } from '@zendeskgarden/svg-icons/src/16/volume-unmuted-stroke.svg';
+import { StyledButton } from './StyledButtons';
 
-export const VideoFrame: React.FC = () => {
+const VolumeIcon = ({ muted, children, ...rest }: { muted: boolean; children: ReactNode }) => {
+  if (muted) {
+    return <SpeakerIcon {...rest}>{children}</SpeakerIcon>;
+  }
+  return <MutedIcon {...rest}>{children}</MutedIcon>;
+};
+
+export const VideoFrame = () => {
   const [mutedAttribute, setMutedAttribute] = useState({ muted: true });
 
   const toggleMuted = () => {
@@ -39,10 +47,11 @@ export const VideoFrame: React.FC = () => {
         `}
       >
         <div
+          muted={mutedAttribute.muted}
           css={css`
             position: absolute;
             top: 10%;
-            left: 50%;
+            left: ${p => (p.muted ? '100px' : '45px')};
             transform: translate(-50%, -50%);
             z-index: 10;
           `}
@@ -55,13 +64,14 @@ export const VideoFrame: React.FC = () => {
               color: #fff;
             `}
           >
-            <SpeakerIcon
+            <VolumeIcon
+              muted={mutedAttribute.muted}
               size={1.5}
               css={css`
-                margin-right: ${p => p.theme.space.xs};
+                margin-right: ${p => (p.muted ? p.theme.space.xs : '0')};
               `}
             />
-            {mutedAttribute.muted ? 'Play with sound' : 'Play w/out sound'}
+            {mutedAttribute.muted && 'Play with sound'}
           </StyledButton>
         </div>
         {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
