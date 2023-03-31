@@ -28,7 +28,7 @@ env:
   # Following Used by deploying to infrastructure
   # The branch to use when committing to infrastructure-live.
   DEFAULT_INFRA_LIVE_BRANCH: 'main'
-  INFRASTRUCTURE_REPO: 'https://coqui-machine-user:${{ secrets.GH_TOKEN }}@github.com/coqui-ai/MLOpsInfrastructure.git'
+  INFRASTRUCTURE_REPO: 'https://coqui-machine-user:${{ secrets.INFRA_DEPLOYER_GITHUB_TOKEN }}@github.com/coqui-ai/MLOpsInfrastructure.git'
   # On infrastructure live specific location of service  (it must exist as deployment simply changes tag name)
   APP_DEPLOY_PATH: 'dev/us-east-1/dev/services/website-frontend'
   # value of this variable will be changed with TAG of this docker image  built (usually git branch name)
