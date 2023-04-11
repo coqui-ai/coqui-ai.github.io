@@ -258,8 +258,8 @@ const PrivacyPage: React.FC = () => {
                     the integrity or performance of the Service or third-party data contained
                     therein, (f) attempt to gain unauthorized access to the Services or their
                     related systems or networks; (g) misappropriate any of our software, technology
-                    or other services or use the Service or permit enable or assist a third party to
-                    create competing products or services.
+                    or other services; (h) use the Service or permit enable or assist a third party
+                    to use the Service to create competing products or services.
                   </LG>
                 </Paragraph>
               </Row>
