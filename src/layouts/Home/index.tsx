@@ -18,8 +18,8 @@ export const HomeLayout = () => {
   return (
     <>
       <Hero />
-      <Features />
       <Voices />
+      <Features />
       <WhyCoqui />
       <GetStartedCtA />
     </>
