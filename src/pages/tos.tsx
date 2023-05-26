@@ -53,7 +53,7 @@ const PrivacyPage: React.FC = () => {
               </Row>
               <Row>
                 <Paragraph>
-                  <LG>Effective Date: June 3, 2022</LG>
+                  <LG>Effective Date: May 26, 2023</LG>
                 </Paragraph>
               </Row>
               <Row
@@ -189,6 +189,16 @@ const PrivacyPage: React.FC = () => {
                     or for personal gain, without express advance written permission from us.
                   </LG>
                 </Paragraph>
+                <Paragraph>
+                  <LG>
+                    For purposes of clarity, ownership of any synthesized speech or audio
+                    (&quot;Synthesized Audio&quot;) that any Authorized User may generate using our
+                    Service, and more specifically, our product Coqui Studio, shall remain with such
+                    Authorized User. The applicable Authorized User shall retain his/her/its rights
+                    to use the Synthesized Audio for commercial and/or non-commercial purposes,
+                    subject to all other terms and conditions hereunder.
+                  </LG>
+                </Paragraph>
               </Row>
               <Row
                 css={css`
@@ -276,7 +286,7 @@ const PrivacyPage: React.FC = () => {
                   <LG>
                     You may have access to information that is confidential to Coqui, including but
                     not limited to the Service and content, and any information related to the
-                    Service and content (“quot;Coqui Confidential Information”quot;). Coqui
+                    Service and content (&quot;Coqui Confidential Information&quot;). Coqui
                     Confidential Information shall not include information which: (a) is or becomes
                     a part of the public domain through no act or omission of the other party; or
                     (b) was in the other party’s lawful possession prior to the disclosure and had
