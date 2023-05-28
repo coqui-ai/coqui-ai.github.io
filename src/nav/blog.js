@@ -8,6 +8,14 @@
 export default [
   {
     group: 'TTS',
+    title: 'XTTS: Taking TTS to the Next Level',
+    url: '/blog/tts/xtts_taking_tts_to_the_next_level',
+    splash: 'images/blog/splash-screens/blog-splash-screen-xtts_taking_tts_to_the_next_level.jpg',
+    description: 'XTTS - Next Level TTS',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'Introducing Prompt-to-Voice',
     url: '/blog/tts/prompt-to-voice',
     splash: 'images/blog/splash-screens/blog-splash-screen-prompt-to-voice.jpg',
