@@ -8,6 +8,14 @@
 export default [
   {
     group: 'TTS',
+    title: 'Voice Overs for Indie Games 🎮?',
+    url: '/blog/tts/voice-overs-for-indie-games',
+    splash: 'images/blog/splash-screens/blog-splash-screen-voice-overs-for-indie-games.jpg',
+    description: 'Pros and cons of indie voice over',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'Introducing Prompt-to-Voice',
     url: '/blog/tts/prompt-to-voice',
     splash: 'images/blog/splash-screens/blog-splash-screen-prompt-to-voice.jpg',
