@@ -27,9 +27,9 @@ const PlanContainer = ({
     <div
       css={css`
         width: 315px;
-        height: ${tall ? '603px' : '553px'};
-        min-height: ${tall ? '603px' : '553px'};
-        max-height: ${tall ? '603px' : '553px'};
+        height: ${tall ? '643px' : '593px'};
+        min-height: ${tall ? '643px' : '593px'};
+        max-height: ${tall ? '643px' : '593px'};
         border-radius: 10px;
         ${inverse && 'border: 1.32px solid #5EAE91;'}
         background: ${inverse ? '#012b30' : '#fff'};
@@ -366,29 +366,6 @@ const PriceSelector = ({
             >
               $20
             </div>
-            <div
-              css={css`
-                border: 1px solid #e5e5e5;
-                margin: 10px;
-                width: 15.95px;
-                height: 0px;
-                border: 1.00256px solid rgb(27, 65, 69);
-                transform: rotate(90deg);
-              `}
-            />
-            <div
-              css={`
-                font-size: 42px;
-                font-weight: 700;
-                line-height: 100%;
-                display: flex;
-                flex-direction: column;
-              `}
-            >
-              <div css="margin-bottom: -8px;">
-                4 <span css="font-size: 28px;">hours</span>
-              </div>
-            </div>
           </div>
           <div
             css={css`
@@ -398,7 +375,7 @@ const PriceSelector = ({
               margin-top: 4px;
             `}
           >
-            of synthesized audio
+            14,400 credits
           </div>
         </div>
       ) : (
@@ -432,16 +409,15 @@ const PriceSelector = ({
             </div>
             <div
               css={`
-                font-size: 12px;
-                font-weight: 400;
+                font-size: 16px;
+                font-weight: 700;
                 align-self: end;
                 display: flex;
                 flex-direction: column;
                 justify-content: end;
               `}
             >
-              <div css="margin-bottom: -8px;">50 hours</div>
-              <div>of synthesized audio</div>
+              180,000 credits
             </div>
           </div>
 
@@ -492,6 +468,8 @@ const StarterPlanContainer = () => {
         <PriceSelector selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       </div>
       <FeatureList>
+        <span>V1 model: 60 credits/min of generated speech</span>
+        <span>XTTS model: 120 credits/min of generated speech</span>
         <span>Unlimited Voice Cloning</span>
         <span>Generative AI Voices</span>
         <span>Generative AI Emotions</span>
@@ -557,8 +535,7 @@ export const PricingTable = () => {
             }
           `}
         >
-          Choose a plan tailored to your needs or get started with 30 minutes of free audio
-          synthesis.
+          Choose a plan tailored to your needs or get started with 1800 free credits.
         </p>
         <TryNowButton css="margin-top: 30px;" />
       </div>
@@ -590,9 +567,11 @@ export const PricingTable = () => {
                   </span>
                 </span>
               }
-              subheader="30 minutes of synthesis time"
+              subheader="1800 credits"
             />
             <FeatureList>
+              <span>V1 model: 60 credits/min of generated speech</span>
+              <span>XTTS model: 120 credits/min of generated speech</span>
               <span>Unlimited Voice Cloning</span>
               <span>Generative AI Voices</span>
               <span>Generative AI Emotions</span>
