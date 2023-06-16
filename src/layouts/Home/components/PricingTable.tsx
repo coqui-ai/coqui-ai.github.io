@@ -7,7 +7,7 @@
 
 import { Button } from '@zendeskgarden/react-buttons';
 import { Body, Header, Modal } from '@zendeskgarden/react-modals';
-import { mediaQuery, ThemeProvider } from '@zendeskgarden/react-theming';
+import { ThemeProvider, mediaQuery } from '@zendeskgarden/react-theming';
 import NewsletterForm from 'layouts/Root/components/NewsletterForm';
 import { OrangeButton } from 'layouts/Root/components/Styled';
 import React, { ReactNode, useState } from 'react';
@@ -375,7 +375,7 @@ const PriceSelector = ({
               margin-top: 4px;
             `}
           >
-            14,400 credits
+            for 14,400 credits
           </div>
         </div>
       ) : (
@@ -417,7 +417,7 @@ const PriceSelector = ({
                 justify-content: end;
               `}
             >
-              180,000 credits
+              for 180,000 credits
             </div>
           </div>
 
@@ -468,8 +468,8 @@ const StarterPlanContainer = () => {
         <PriceSelector selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       </div>
       <FeatureList>
-        <span>V1 model: 60 credits/min of generated speech</span>
-        <span>XTTS model: 120 credits/min of generated speech</span>
+        <span>V1: 1 credit per 1s of speech</span>
+        <span>XTTS: 2 credits per 1s of speech</span>
         <span>Unlimited Voice Cloning</span>
         <span>Generative AI Voices</span>
         <span>Generative AI Emotions</span>
@@ -535,7 +535,7 @@ export const PricingTable = () => {
             }
           `}
         >
-          Choose a plan tailored to your needs or get started with 1800 free credits.
+          Choose a plan tailored to your needs or get started with 1,800 free credits.
         </p>
         <TryNowButton css="margin-top: 30px;" />
       </div>
@@ -567,11 +567,11 @@ export const PricingTable = () => {
                   </span>
                 </span>
               }
-              subheader="1800 credits"
+              subheader="with 1,800 credits"
             />
             <FeatureList>
-              <span>V1 model: 60 credits/min of generated speech</span>
-              <span>XTTS model: 120 credits/min of generated speech</span>
+              <span>V1: 1 credit per 1s of speech</span>
+              <span>XTTS: 2 credits per 1s of speech</span>
               <span>Unlimited Voice Cloning</span>
               <span>Generative AI Voices</span>
               <span>Generative AI Emotions</span>
