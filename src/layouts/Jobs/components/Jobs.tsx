@@ -5,12 +5,12 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-import React from 'react';
-import { Link } from 'gatsby';
-import styled, { css } from 'styled-components';
-import MinWidthLayout from 'layouts/MinWidth';
-import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
 import { Body, Cell, Head, HeaderCell, HeaderRow, Row, Table } from '@zendeskgarden/react-tables';
+import { getColor, mediaQuery } from '@zendeskgarden/react-theming';
+import { Link } from 'gatsby';
+import MinWidthLayout from 'layouts/MinWidth';
+import React from 'react';
+import styled, { css } from 'styled-components';
 
 interface IRow {
   title: string;
@@ -25,6 +25,18 @@ const rowData: IRow[] = [
     url: '../job/renaissance-sales-representative',
     location: 'Berlin, Germany OR Remote',
     group: 'Sales'
+  },
+  {
+    title: 'Senior Full Stack Engineer',
+    url: '../job/senior-full-stack-engineer',
+    location: 'Worldwide Remote',
+    group: 'Engineering'
+  },
+  {
+    title: 'Principal Full Stack Engineer',
+    url: '../job/principal-full-stack-engineer',
+    location: 'Worldwide Remote',
+    group: 'Engineering'
   }
 ];
 
