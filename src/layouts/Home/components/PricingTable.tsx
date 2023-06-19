@@ -314,7 +314,10 @@ const PriceSelector = ({
           Standard
         </div>
         <div
-          onClick={() => setSelectedTab('discount')}
+          onClick={() => {
+            setSelectedTab('discount');
+            track('landing__pricing__175_package_clicked');
+          }}
           css={`
             flex-grow: 1;
             padding: 8px 8px;
