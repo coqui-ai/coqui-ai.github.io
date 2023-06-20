@@ -5,6 +5,7 @@
  * found at http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+import { track } from '@amplitude/analytics-browser';
 import { Button } from '@zendeskgarden/react-buttons';
 import { Body, Header, Modal } from '@zendeskgarden/react-modals';
 import { ThemeProvider, mediaQuery } from '@zendeskgarden/react-theming';
@@ -538,7 +539,7 @@ export const PricingTable = () => {
             }
           `}
         >
-          Choose a plan tailored to your needs or get started with 1,800 free credits.
+          Choose a plan tailored to your needs or get started with 300 free credits.
         </p>
         <TryNowButton css="margin-top: 30px;" />
       </div>
@@ -570,7 +571,7 @@ export const PricingTable = () => {
                   </span>
                 </span>
               }
-              subheader="with 1,800 credits"
+              subheader="with 300 credits"
             />
             <FeatureList>
               <span>V1: 1 credit per 1s of speech</span>
