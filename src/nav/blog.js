@@ -8,6 +8,14 @@
 export default [
   {
     group: 'TTS',
+    title: 'Unleashing the Power of Voice: Introducing XTTS for Game Studios!',
+    url: '/blog/tts/introducing_xtts_for_game_studios',
+    splash: 'images/blog/splash-screens/blog-splash-screen-introducing_xtts_for_game_studios.jpg',
+    description: 'XTTS - Unleashing the Power',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'XTTS: Taking TTS to the Next Level',
     url: '/blog/tts/xtts_taking_tts_to_the_next_level',
     splash: 'images/blog/splash-screens/blog-splash-screen-xtts_taking_tts_to_the_next_level.jpg',
