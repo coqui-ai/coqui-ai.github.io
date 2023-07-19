@@ -370,6 +370,26 @@ const PriceSelector = ({
             >
               $20
             </div>
+            <div
+              css={css`
+                border: 1px solid #e5e5e5;
+                margin: 10px;
+                width: 15.95px;
+                height: 0px;
+
+                border: 1.00256px solid rgb(27, 65, 69);
+                transform: rotate(90deg);
+              `}
+            />
+            <div
+              css={`
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 100%;
+              `}
+            >
+              per month
+            </div>
           </div>
           <div
             css={css`
@@ -404,16 +424,16 @@ const PriceSelector = ({
           >
             <div
               css={`
-                font-size: 42px;
+                font-size: 36px;
                 font-weight: 700;
                 line-height: 100%;
               `}
             >
-              $175
+              $175/mo
             </div>
             <div
               css={`
-                font-size: 16px;
+                font-size: 14px;
                 font-weight: 700;
                 align-self: end;
                 display: flex;
@@ -474,6 +494,7 @@ const StarterPlanContainer = () => {
       <FeatureList>
         <span>V1: 1 credit per 1s of speech</span>
         <span>XTTS: 2 credits per 1s of speech</span>
+        <span>Paraphrase: 1 credit per usage</span>
         <span>Unlimited Voice Cloning</span>
         <span>Generative AI Voices</span>
         <span>Generative AI Emotions</span>
@@ -576,6 +597,7 @@ export const PricingTable = () => {
             <FeatureList>
               <span>V1: 1 credit per 1s of speech</span>
               <span>XTTS: 2 credits per 1s of speech</span>
+              <span>Paraphrase: 1 credit per usage</span>
               <span>Unlimited Voice Cloning</span>
               <span>Generative AI Voices</span>
               <span>Generative AI Emotions</span>
