@@ -8,6 +8,14 @@
 export default [
   {
     group: 'TTS',
+    title: 'Unleashing Emotion with XTTS',
+    url: '/blog/tts/unleashing_emotion_with_xtts',
+    splash: 'images/blog/splash-screens/blog-splash-screen-unleashing-emotion-with-xtts.jpg',
+    description: 'XTTS - Unleashing Emotion',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'Unleashing the Power of Voice: Introducing XTTS for Game Studios!',
     url: '/blog/tts/introducing_xtts_for_game_studios',
     splash: 'images/blog/splash-screens/blog-splash-screen-introducing_xtts_for_game_studios.jpg',
