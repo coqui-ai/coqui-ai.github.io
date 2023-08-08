@@ -8,6 +8,14 @@
 export default [
   {
     group: 'TTS',
+    title: 'Unleashing the Power of XTTS',
+    url: '/blog/tts/unleashing_the_power_of_xtts',
+    splash: 'images/blog/splash-screens/blog-splash-screen-unleashing-the-power-of-xtts.jpg',
+    description: 'Unleashing XTTS',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'Dive Deeper into the World of XTTS',
     url: '/blog/tts/dive_deeper_into_the_world_of_xtts',
     splash: 'images/blog/splash-screens/blog-splash-screen-dive-deeper-into-the-world-of-xtts.jpg',
