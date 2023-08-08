@@ -50,8 +50,9 @@
 <url> <loc>https://coqui.ai/blog/tts/introducing_xtts_for_game_studios</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/prompt-to-voice</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/solving-attention-problems-of-tts-models-with-double-decoder-consistency</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://coqui.ai/blog/tts/unleashing_emotion_with_xtts</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/two-methods-for-better-attention-in-tacotron</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/blog/tts/unleashing_emotion_with_xtts</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/blog/tts/unleashing_the_power_of_xtts</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/voice-fusion</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/xtts_taking_tts_to_the_next_level</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/yourtts-zero-shot-text-synthesis-low-resource-languages</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
