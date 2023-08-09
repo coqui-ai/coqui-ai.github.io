@@ -8,6 +8,7 @@
 import { mediaQuery } from '@zendeskgarden/react-theming';
 import React from 'react';
 import { css } from 'styled-components';
+import ClientSide from 'utils/ClientSide';
 import { PrimaryButton, SecondaryButton } from './Buttons';
 import { useSignupLink } from './SignUpLink';
 import { VideoFrame } from './VideoFrame';
@@ -24,11 +25,9 @@ export const Hero = () => {
         background: linear-gradient(207.81deg, #f5faff 54.98%, #fefffe 92.7%);
         padding: 5rem 10rem;
         height: calc(100vh - 77px);
-
         ${p => mediaQuery('down', 'md', p.theme)} {
           padding: 5rem 4rem;
         }
-
         ${p => mediaQuery('down', 'sm', p.theme)} {
           height: calc(100vh - 60px);
         }
@@ -101,7 +100,9 @@ export const Hero = () => {
               padding-top: 20px;
             `}
           >
-            <PrimaryButton text="Start now for free" path={signupLink} />
+            <ClientSide>
+              <PrimaryButton text="Start now for free" path={signupLink} />
+            </ClientSide>
             <SecondaryButton text="See what we can do" path="/#features" />
           </div>
         </div>
