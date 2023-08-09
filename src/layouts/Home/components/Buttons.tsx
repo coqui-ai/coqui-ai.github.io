@@ -9,11 +9,14 @@ import { Button } from '@zendeskgarden/react-buttons';
 import { getColor } from '@zendeskgarden/react-theming';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
+import { useSignupLink } from './SignUpLink';
 import { StyledNavigationLink } from './StyledNavigationLink';
 
 export const TryNowButton = ({ ...rest }) => {
+  const signupLink = useSignupLink();
+
   return (
-    <StyledNavigationLink to={`${process.env.GATSBY_BACKEND_URL}/auth/signup`} {...rest}>
+    <StyledNavigationLink to={signupLink} {...rest}>
       <Button
         css={css`
           border-width: 0;

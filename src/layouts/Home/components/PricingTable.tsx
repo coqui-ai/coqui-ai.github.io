@@ -14,6 +14,7 @@ import { OrangeButton } from 'layouts/Root/components/Styled';
 import React, { ReactNode, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { TryNowButton } from './Buttons';
+import { useSignupLink } from './SignUpLink';
 
 const PlanContainer = ({
   children,
@@ -465,6 +466,7 @@ const PriceSelector = ({
 
 const StarterPlanContainer = () => {
   const [selectedTab, setSelectedTab] = useState<PriceTab>('standard');
+  const signupLink = useSignupLink();
 
   return (
     <PlanContainer inverse tall>
@@ -504,7 +506,7 @@ const StarterPlanContainer = () => {
         <span>Directable Voice Intensity</span>
         <span>API Access</span>
       </FeatureList>
-      <a href={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}>
+      <a href={signupLink}>
         <OrangeButton css="font-size: 18px; width: 100%; padding: 24px;">Get Started</OrangeButton>
       </a>
     </PlanContainer>
@@ -513,6 +515,7 @@ const StarterPlanContainer = () => {
 
 export const PricingTable = () => {
   const [showWaitingListModal, setShowWaitingListModal] = useState(false);
+  const signupLink = useSignupLink();
 
   return (
     <>
@@ -606,7 +609,7 @@ export const PricingTable = () => {
               <span>Directable Voice Intonation</span>
               <span>Directable Voice Intensity</span>
             </FeatureList>
-            <a href={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}>
+            <a href={signupLink}>
               <InvertedOrangeButton>Try now for free</InvertedOrangeButton>
             </a>
           </PlanContainer>
