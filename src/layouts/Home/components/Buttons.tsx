@@ -9,27 +9,21 @@ import { Button } from '@zendeskgarden/react-buttons';
 import { getColor } from '@zendeskgarden/react-theming';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
+import { useSignupLink } from './SignUpLink';
 import { StyledNavigationLink } from './StyledNavigationLink';
 
-type ButtonType = {
-  text: string;
-  textColor?: string;
-  path: string;
-  fullWidth?: boolean;
-  iconSrc?: string;
-};
-
 export const TryNowButton = ({ ...rest }) => {
+  const signupLink = useSignupLink();
+
   return (
-    <StyledNavigationLink to={`${process.env.GATSBY_BACKEND_URL}/auth/signup`} {...rest}>
+    <StyledNavigationLink to={signupLink} {...rest}>
       <Button
         css={css`
           border-width: 0;
           background-color: ${p => getColor('yellow', 600, p.theme)};
           color: #fff;
-          border-radius: 30px;
-          font-weight: 400;
-          padding: 18px 24px;
+          border-radius: 7.2px;
+          font-weight: 700;
         `}
       >
         Try now for free

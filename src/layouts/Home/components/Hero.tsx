@@ -8,10 +8,13 @@
 import { mediaQuery } from '@zendeskgarden/react-theming';
 import React from 'react';
 import { css } from 'styled-components';
-import { VideoFrame } from './VideoFrame';
 import { PrimaryButton, SecondaryButton } from './Buttons';
+import { useSignupLink } from './SignUpLink';
+import { VideoFrame } from './VideoFrame';
 
 export const Hero = () => {
+  const signupLink = useSignupLink();
+
   return (
     <div
       css={css`
@@ -98,10 +101,7 @@ export const Hero = () => {
               padding-top: 20px;
             `}
           >
-            <PrimaryButton
-              text="Start now for free"
-              path={`${process.env.GATSBY_BACKEND_URL}/auth/signup`}
-            />
+            <PrimaryButton text="Start now for free" path={signupLink} />
             <SecondaryButton text="See what we can do" path="/#features" />
           </div>
         </div>
