@@ -13,6 +13,7 @@ import NewsletterForm from 'layouts/Root/components/NewsletterForm';
 import { OrangeButton } from 'layouts/Root/components/Styled';
 import React, { ReactNode, useState } from 'react';
 import styled, { css } from 'styled-components';
+import ClientSide from 'utils/ClientSide';
 import { TryNowButton } from './Buttons';
 import { useSignupLink } from './SignUpLink';
 
@@ -506,9 +507,13 @@ const StarterPlanContainer = () => {
         <span>Directable Voice Intensity</span>
         <span>API Access</span>
       </FeatureList>
-      <a href={signupLink}>
-        <OrangeButton css="font-size: 18px; width: 100%; padding: 24px;">Get Started</OrangeButton>
-      </a>
+      <ClientSide>
+        <a href={signupLink}>
+          <OrangeButton css="font-size: 18px; width: 100%; padding: 24px;">
+            Get Started
+          </OrangeButton>
+        </a>
+      </ClientSide>
     </PlanContainer>
   );
 };
@@ -609,9 +614,11 @@ export const PricingTable = () => {
               <span>Directable Voice Intonation</span>
               <span>Directable Voice Intensity</span>
             </FeatureList>
-            <a href={signupLink}>
-              <InvertedOrangeButton>Try now for free</InvertedOrangeButton>
-            </a>
+            <ClientSide>
+              <a href={signupLink}>
+                <InvertedOrangeButton>Try now for free</InvertedOrangeButton>
+              </a>
+            </ClientSide>
           </PlanContainer>
           <StarterPlanContainer />
           <PlanContainer>

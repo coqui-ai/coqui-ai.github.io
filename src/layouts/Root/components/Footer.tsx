@@ -15,6 +15,7 @@ import MaxWidthLayout from 'layouts/MaxWidth';
 import { math } from 'polished';
 import React from 'react';
 import styled, { css } from 'styled-components';
+import ClientSide from 'utils/ClientSide';
 import { ReactComponent as DiscordIcon } from '../../../data/images/general/discord-logo.svg';
 import { ReactComponent as YouTubeIcon } from '../../../data/images/general/youtube.svg';
 import { NewsletterForm } from './NewsletterForm';
@@ -311,7 +312,9 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => {
                 `}
               >
                 <p css="font-weight: 700">Product</p>
-                <StyledLinksItem to={signupLink}>Coqui Studio</StyledLinksItem>
+                <ClientSide>
+                  <StyledLinksItem to={signupLink}>Coqui Studio</StyledLinksItem>
+                </ClientSide>
               </div>
               <div
                 css={css`
