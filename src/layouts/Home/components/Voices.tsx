@@ -7,11 +7,11 @@
 
 import { Button } from '@zendeskgarden/react-buttons';
 import { LG } from '@zendeskgarden/react-typography';
-import AsyaAnaraSample from 'data/audios/ai-voices/AsyaAnara.wav';
-import DamienBlackSample from 'data/audios/ai-voices/DamienBlack.wav';
-import KazuhikoAtallahSample from 'data/audios/ai-voices/KazuhikoAtallah.wav';
-import TammyGritSample from 'data/audios/ai-voices/TammyGrit.wav';
-import VjollcaJohnnieSample from 'data/audios/ai-voices/VjollcaJohnnie.wav';
+import AaronDreschnerSample from 'data/audios/ai-voices/AaronDreschner.wav';
+import AlexandraHisakawaSample from 'data/audios/ai-voices/AlexandraHisakawa.wav';
+import UtaObandoSample from 'data/audios/ai-voices/UtaObando.wav';
+import XavierHayasakaSample from 'data/audios/ai-voices/XavierHayasaka.wav';
+import ZofijaKendrickSample from 'data/audios/ai-voices/ZofijaKendrick.wav';
 import { graphql, useStaticQuery } from 'gatsby';
 import { PlayCircle, StopCircle } from 'iconsax-react';
 import React, { useRef, useState } from 'react';
@@ -106,6 +106,7 @@ const PlayButton = ({ src }: { src: string }) => {
 
   return (
     <div>
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio src={src} ref={audioPlayer} />
       {!isPlaying ? (
         <Button css="height: 54px;" isBasic onClick={play} role="button" title="Play">
@@ -139,35 +140,35 @@ export const Voices = () => {
   const homeImages = useStaticQuery(
     graphql`
       query {
-        BrendaStern: file(relativePath: { eq: "images/ai-voices/BrendaStern.png" }) {
+        AaronDreschner: file(relativePath: { eq: "images/ai-voices/AaronDreschner.png" }) {
           childImageSharp {
             fixed(width: 80) {
               ...GatsbyImageSharpFixed_noBase64
             }
           }
         }
-        CraigGutsy: file(relativePath: { eq: "images/ai-voices/CraigGutsy.png" }) {
+        AlexandraHisakawa: file(relativePath: { eq: "images/ai-voices/AlexandraHisakawa.png" }) {
           childImageSharp {
             fixed(width: 80) {
               ...GatsbyImageSharpFixed_noBase64
             }
           }
         }
-        EthanHeedful: file(relativePath: { eq: "images/ai-voices/EthanHeedful.png" }) {
+        UtaObando: file(relativePath: { eq: "images/ai-voices/UtaObando.png" }) {
           childImageSharp {
             fixed(width: 80) {
               ...GatsbyImageSharpFixed_noBase64
             }
           }
         }
-        GracieWise: file(relativePath: { eq: "images/ai-voices/GracieWise.png" }) {
+        XavierHayasaka: file(relativePath: { eq: "images/ai-voices/XavierHayasaka.png" }) {
           childImageSharp {
             fixed(width: 80) {
               ...GatsbyImageSharpFixed_noBase64
             }
           }
         }
-        TammyGrit: file(relativePath: { eq: "images/ai-voices/TammyGrit.png" }) {
+        ZofijaKendrick: file(relativePath: { eq: "images/ai-voices/ZofijaKendrick.png" }) {
           childImageSharp {
             fixed(width: 80) {
               ...GatsbyImageSharpFixed_noBase64
@@ -238,79 +239,59 @@ export const Voices = () => {
           `}
         >
           <VoiceCard>
-            <Avatar src={homeImages.BrendaStern.childImageSharp.fixed.src} />
-            <Name>Asya Anara</Name>
-            <Age>Middle Aged</Age>
+            <Avatar src={homeImages.AaronDreschner.childImageSharp.fixed.src} />
+            <Name>Aaron Dreschner</Name>
+            <Age>Young Adult</Age>
             <Characteristics>
               <p>Confident</p>
               <p>Bold</p>
-              <p>Authoritative</p>
+              <p>Arrogant</p>
             </Characteristics>
-            <Characteristics>
-              <p>Bossy</p>
-              <p>Charismatic</p>
-            </Characteristics>
-            <Sample src={AsyaAnaraSample} />
+            <Sample src={AaronDreschnerSample} />
           </VoiceCard>
           <VoiceCard>
-            <Avatar src={homeImages.CraigGutsy.childImageSharp.fixed.src} />
-            <Name>Damien Black</Name>
-            <Age>Middle Aged</Age>
+            <Avatar src={homeImages.AlexandraHisakawa.childImageSharp.fixed.src} />
+            <Name>Alexandra Hisakawa</Name>
+            <Age>Young Adult</Age>
             <Characteristics>
-              <p>Bold</p>
-              <p>Brave</p>
-              <p>Commanding</p>
+              <p>Exacting</p>
+              <p>Competent</p>
+              <p>Persistent</p>
             </Characteristics>
-            <Characteristics>
-              <p>Heroic</p>
-              <p>Tough</p>
-            </Characteristics>
-            <Sample src={DamienBlackSample} />
+            <Sample src={AlexandraHisakawaSample} />
           </VoiceCard>
           <VoiceCard>
-            <Avatar src={homeImages.EthanHeedful.childImageSharp.fixed.src} />
-            <Name>Kazuhiko Atallah</Name>
-            <Age>Middle Aged</Age>
+            <Avatar src={homeImages.UtaObando.childImageSharp.fixed.src} />
+            <Name>Uta Obando</Name>
+            <Age>Young Adult</Age>
             <Characteristics>
-              <p>Reassuring</p>
+              <p>Innocent</p>
               <p>Approachable</p>
-              <p>Helpful</p>
+              <p>Naïf</p>
             </Characteristics>
-            <Characteristics>
-              <p>Attentive</p>
-              <p>Believable</p>
-            </Characteristics>
-            <Sample src={KazuhikoAtallahSample} />
+            <Sample src={UtaObandoSample} />
           </VoiceCard>
           <VoiceCard>
-            <Avatar src={homeImages.GracieWise.childImageSharp.fixed.src} />
-            <Name>Vjollca Johnnie</Name>
-            <Age>Middle Aged</Age>
+            <Avatar src={homeImages.XavierHayasaka.childImageSharp.fixed.src} />
+            <Name>Xavier Hayasaka</Name>
+            <Age>Young Adult</Age>
             <Characteristics>
-              <p>Authoritative</p>
+              <p>Bold</p>
               <p>Confident</p>
-              <p>Grizzled</p>
+              <p>Forceful</p>
             </Characteristics>
-            <Characteristics>
-              <p>Corporate</p>
-              <p>Serious</p>
-            </Characteristics>
-            <Sample src={VjollcaJohnnieSample} />
+            <Sample src={XavierHayasakaSample} />
           </VoiceCard>
           <VoiceCard>
-            <Avatar src={homeImages.TammyGrit.childImageSharp.fixed.src} />
-            <Name>Tammy Grit</Name>
-            <Age>Senior</Age>
+            <Avatar src={homeImages.ZofijaKendrick.childImageSharp.fixed.src} />
+            <Name>Zofija Kendrick</Name>
+            <Age>Young Adult</Age>
             <Characteristics>
-              <p>Aggressive</p>
-              <p>Angry</p>
-              <p>Creepy</p>
+              <p>Forthright</p>
+              <p>Passionate</p>
+              <p>Driven</p>
             </Characteristics>
-            <Characteristics>
-              <p>Dangerous</p>
-              <p>Ominous</p>
-            </Characteristics>
-            <Sample src={TammyGritSample} />
+            <Sample src={ZofijaKendrickSample} />
           </VoiceCard>
           <AddVoiceCard>
             <img
