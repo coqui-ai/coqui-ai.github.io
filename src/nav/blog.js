@@ -8,6 +8,14 @@
 export default [
   {
     group: 'TTS',
+    title: 'Unleashing Soundscapes: The Future is Now',
+    url: '/blog/tts/unleashing_soundscapes',
+    splash: 'images/blog/splash-screens/blog-splash-screen-unleashing-soundscapes.png',
+    description: 'Unleashing Soundscapes',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'Unleashing the Power of XTTS',
     url: '/blog/tts/unleashing_the_power_of_xtts',
     splash: 'images/blog/splash-screens/blog-splash-screen-unleashing-the-power-of-xtts.jpg',
