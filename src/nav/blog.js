@@ -8,6 +8,14 @@
 export default [
   {
     group: 'TTS',
+    title: 'Unleashing Your Vision: Zero Learning Curve, Infinite Creative Possibilities',
+    url: '/blog/tts/unleashing_your_vision',
+    splash: 'images/blog/splash-screens/blog-splash-screen-unleashing-your-vision.png',
+    description: 'Unleashing Your Vision',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'Unleashing Soundscapes: The Future is Now',
     url: '/blog/tts/unleashing_soundscapes',
     splash: 'images/blog/splash-screens/blog-splash-screen-unleashing-soundscapes.png',
