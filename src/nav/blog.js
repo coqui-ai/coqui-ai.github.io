@@ -8,6 +8,14 @@
 export default [
   {
     group: 'TTS',
+    title: 'Unleashing Creativity: Elevate Your Voice Acting Game with Innovative AI Technology',
+    url: '/blog/tts/unleashing_creativity',
+    splash: 'images/blog/splash-screens/blog-splash-screen-unleashing-creativity.png',
+    description: 'Unleashing Your Creativity',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'Unleashing Your Vision: Zero Learning Curve, Infinite Creative Possibilities',
     url: '/blog/tts/unleashing_your_vision',
     splash: 'images/blog/splash-screens/blog-splash-screen-unleashing-your-vision.png',
