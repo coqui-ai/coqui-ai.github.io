@@ -63,8 +63,8 @@ export const GetStartedCtA = ({}) => {
           Ready to get started?
         </h1>
         <p css="margin-top: 12px; font-size: 18px;">
-          Try <span css="font-weight: 700;">Coqui Studio</span> now with 30 minutes of free
-          synthesis time. No credit card required.
+          Try <span css="font-weight: 700;">Coqui Studio</span> now with 300 free synthesis credits.
+          No credit card required.
         </p>
         <TryNowButton css="margin-top: 32px;" />
       </div>

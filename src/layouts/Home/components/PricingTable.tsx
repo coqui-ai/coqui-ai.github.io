@@ -265,15 +265,7 @@ const WaitingListModal = ({ closeModal }: { closeModal: () => void }) => {
   );
 };
 
-type PriceTab = 'standard' | 'discount';
-
-const PriceSelector = ({
-  selectedTab,
-  setSelectedTab
-}: {
-  selectedTab: PriceTab;
-  setSelectedTab: (v: PriceTab) => void;
-}) => {
+const PriceDisplay = ({ price, credits }: { price: ReactNode; credits: ReactNode }) => {
   return (
     <div
       css={`
@@ -283,199 +275,94 @@ const PriceSelector = ({
     >
       <div
         css={`
-          border-radius: 23px;
-          background-color: #002024;
-          display: flex;
           width: 100%;
-          height: 26px;
-          justify-content: center;
-          align-items: center;
-          margin-bottom: 10px;
+          height: 70px;
+          max-height: 70px;
+          min-height: 70px;
+          display: flex;
+          flex-direction: column;
+          align-items: start;
         `}
       >
         <div
-          onClick={() => setSelectedTab('standard')}
           css={`
-            flex-grow: 1;
-            padding: 8px 8px;
-            border-radius: 23px;
-            cursor: pointer;
-            font-size: 12px;
-            height: 24px;
             display: flex;
             justify-content: center;
-            align-items: center;
-
-            ${selectedTab === 'standard' &&
-            `
-              font-weight: 700;
-              font-size: 14px;
-              background-color: #5eae91;
-            `}
+            align-items: baseline;
+            column-gap: 16px;
           `}
         >
-          Standard
+          <div
+            css={`
+              font-size: 42px;
+              font-weight: 700;
+              line-height: 100%;
+            `}
+          >
+            {price}
+          </div>
+          <div
+            css={`
+              font-size: 20px;
+              font-weight: 700;
+              line-height: 100%;
+            `}
+          >
+            /mo
+          </div>
         </div>
         <div
-          onClick={() => {
-            setSelectedTab('discount');
-            track('landing__pricing__175_package_clicked');
-          }}
-          css={`
-            flex-grow: 1;
-            padding: 8px 8px;
-            border-radius: 23px;
-            cursor: pointer;
-            font-size: 12px;
-            height: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            ${selectedTab === 'discount' &&
-            `
-              font-weight: 700;
-              font-size: 14px;
-              background-color: #5eae91;
-            `}
+          css={css`
+            font-weight: 700;
+            font-size: 17px;
+            color: rgb(179, 191, 193);
+            margin-top: 4px;
           `}
         >
-          Discount
+          {credits}
         </div>
       </div>
-      {selectedTab === 'standard' ? (
-        <div
-          css={`
-            width: 100%;
-            height: 70px;
-            max-height: 70px;
-            min-height: 70px;
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-          `}
-        >
-          <div
-            css={`
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              column-gap: 16px;
-            `}
-          >
-            <div
-              css={`
-                font-size: 42px;
-                font-weight: 700;
-                line-height: 100%;
-              `}
-            >
-              $20
-            </div>
-            <div
-              css={css`
-                border: 1px solid #e5e5e5;
-                margin: 10px;
-                width: 15.95px;
-                height: 0px;
-
-                border: 1.00256px solid rgb(27, 65, 69);
-                transform: rotate(90deg);
-              `}
-            />
-            <div
-              css={`
-                font-size: 20px;
-                font-weight: 700;
-                line-height: 100%;
-              `}
-            >
-              per month
-            </div>
-          </div>
-          <div
-            css={css`
-              font-weight: 700;
-              font-size: 17px;
-              color: rgb(179, 191, 193);
-              margin-top: 4px;
-            `}
-          >
-            for 14,400 credits
-          </div>
-        </div>
-      ) : (
-        <div
-          css={`
-            width: 100%;
-            height: 70px;
-            max-height: 70px;
-            min-height: 70px;
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-          `}
-        >
-          <div
-            css={`
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              column-gap: 16px;
-            `}
-          >
-            <div
-              css={`
-                font-size: 36px;
-                font-weight: 700;
-                line-height: 100%;
-              `}
-            >
-              $175/mo
-            </div>
-            <div
-              css={`
-                font-size: 14px;
-                font-weight: 700;
-                align-self: end;
-                display: flex;
-                flex-direction: column;
-                justify-content: end;
-              `}
-            >
-              for 180,000 credits
-            </div>
-          </div>
-
-          <div
-            css={`
-              background-color: #5eae91;
-              color: #fff;
-              border-radius: 4px;
-              padding: 2px 4px;
-              margin-top: 12px;
-              font-size: 12px;
-            `}
-          >
-            Save 30%
-          </div>
-        </div>
-      )}
     </div>
   );
 };
 
-const StarterPlanContainer = () => {
-  const [selectedTab, setSelectedTab] = useState<PriceTab>('standard');
+const StandardFeatures = () => (
+  <FeatureList>
+    <span>V1: 1 credit per 1s of speech</span>
+    <span>XTTS: 2 credits per 1s of speech</span>
+    <span>Paraphrase: 1 credit per usage</span>
+    <span>Unlimited Voice Cloning</span>
+    <span>Generative AI Voices</span>
+    <span>Generative AI Emotions</span>
+    <span>Unlimited Projects & Scripts</span>
+    <span>Directable Voice Pacing</span>
+    <span>Directable Voice Intonation</span>
+    <span>Directable Voice Intensity</span>
+    <span>API Access</span>
+  </FeatureList>
+);
+
+const UsablePlanContainer = ({
+  name,
+  price,
+  credits,
+  badge = null
+}: {
+  name: ReactNode;
+  price: ReactNode;
+  credits: ReactNode;
+  badge?: ReactNode;
+}) => {
   const signupLink = useSignupLink();
 
   return (
-    <PlanContainer inverse tall>
+    <PlanContainer>
       <div
         css={css`
           display: flex;
           flex-direction: column;
           width: 100%;
+          position: relative;
         `}
       >
         <div
@@ -490,23 +377,28 @@ const StarterPlanContainer = () => {
             color: #fff;
           `}
         >
-          Starter
+          {name}
         </div>
-        <PriceSelector selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+        {badge && (
+          <div
+            css={`
+              background-color: #5eae91;
+              position: absolute;
+              top: 2px;
+              right: 2px;
+              color: #fff;
+              border-radius: 4px;
+              padding: 2px 4px;
+              font-size: 12px;
+              width: fit-content;
+            `}
+          >
+            {badge}
+          </div>
+        )}
+        <PriceDisplay price={price} credits={credits} />
       </div>
-      <FeatureList>
-        <span>V1: 1 credit per 1s of speech</span>
-        <span>XTTS: 2 credits per 1s of speech</span>
-        <span>Paraphrase: 1 credit per usage</span>
-        <span>Unlimited Voice Cloning</span>
-        <span>Generative AI Voices</span>
-        <span>Generative AI Emotions</span>
-        <span>Unlimited Projects & Scripts</span>
-        <span>Directable Voice Pacing</span>
-        <span>Directable Voice Intonation</span>
-        <span>Directable Voice Intensity</span>
-        <span>API Access</span>
-      </FeatureList>
+      <StandardFeatures />
       <ClientSide>
         <a href={signupLink}>
           <OrangeButton css="font-size: 18px; width: 100%; padding: 24px;">
@@ -620,9 +512,17 @@ export const PricingTable = () => {
               </a>
             </ClientSide>
           </PlanContainer>
-          <StarterPlanContainer />
+          <UsablePlanContainer name="Hobbyist" price="$5" credits="3,600 credits per month" />
+          <UsablePlanContainer name="Starter" price="$20" credits="14,400 credits per month" />
+          <UsablePlanContainer name="Intermediate" price="$50" credits="36,000 credits per month" />
+          <UsablePlanContainer
+            name="Advanced"
+            price="$175"
+            credits="180,000 credits per month"
+            badge="Save 30%"
+          />
           <PlanContainer>
-            <PlanHeader header="Pro" subheader="Everything in Starter, plus:" />
+            <PlanHeader header="Pro" subheader="Everything in Advanced, plus:" />
             <FeatureList>
               <span>Multi-user</span>
               <span>Team Collaboration Tools</span>
@@ -630,16 +530,14 @@ export const PricingTable = () => {
               <span>Multi-lingual synthesis</span>
               <span>Pro-Level Support</span>
             </FeatureList>
-            <OrangeButton
-              css={css`
-                font-size: 18px;
-                width: 100%;
-                padding: 24px;
-              `}
-              onClick={() => setShowWaitingListModal(true)}
+            <a
+              href="mailto:Coqui <info@coqui.ai>?subject=Coqui Studio Pro&body=Tell us how you want to use Coqui Studio Pro and we'll reach out for a call."
+              css="width: 100%;"
             >
-              Join the waiting list
-            </OrangeButton>
+              <InvertedOrangeButton css="width: 100%; font-size: 18px; padding: 24px;">
+                Contact us
+              </InvertedOrangeButton>
+            </a>
           </PlanContainer>
           <PlanContainer>
             <PlanHeader header="Enterprise" subheader="Everything in Pro, plus:" />

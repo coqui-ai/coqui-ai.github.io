@@ -64,7 +64,7 @@ export const WhyCoqui = () => {
         >
           <WhyCoquiInset
             title="Pay for what you use"
-            text="Get started with 30 free minutes, top up when you need to."
+            text="Get started with 300 free credits, top up when you need to."
             to="/pricing"
           />
           <WhyCoquiInset
@@ -73,7 +73,7 @@ export const WhyCoqui = () => {
             to="/pricing"
           />
           <WhyCoquiInset
-            title="Dubbing"
+            title="Direct"
             text="Take full control of your AI voices. Adjust pitch, loudness and more, for each sentence, word or character."
             to="/pricing"
           />
