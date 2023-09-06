@@ -8,6 +8,14 @@
 export default [
   {
     group: 'TTS',
+    title: 'Coqui the Polyglot',
+    url: '/blog/tts/coqui_the_polyglot',
+    splash: 'images/blog/splash-screens/blog-splash-screen-coqui-the-polyglot.png',
+    description: 'Coqui’s Now Gone Multilingual ',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'Unleashing Creativity: Elevate Your Voice Acting Game with Innovative AI Technology',
     url: '/blog/tts/unleashing_creativity',
     splash: 'images/blog/splash-screens/blog-splash-screen-unleashing-creativity.png',
