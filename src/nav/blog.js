@@ -8,6 +8,14 @@
 export default [
   {
     group: 'TTS',
+    title: 'XTTS: Open Source Release Announcement',
+    url: '/blog/tts/open_xtts',
+    splash: 'images/blog/splash-screens/blog-splash-screen-open-xtts.jpg',
+    description: 'XTTS is Open',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'Coqui Public Model License',
     url: '/blog/tts/cpml',
     splash: 'images/blog/splash-screens/blog-splash-screen-cpml.jpg',
