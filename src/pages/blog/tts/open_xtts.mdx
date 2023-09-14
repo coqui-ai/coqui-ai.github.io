@@ -1,0 +1,91 @@
+---
+title: 'XTTS: Open Source Release Announcement'
+name: Team Coqui 🐸
+picture: https://avatars.githubusercontent.com/u/75583352?s=96&v=4
+date: September 14, 2023
+---
+
+import { graphql } from 'gatsby';
+
+<div align="center">
+  <iframe
+    style="width:640px; height:360px;
+           border-width: 0px 0px 0px 0px;
+           border-style: solid solid solid solid;
+           border-color: black black black black;"
+    src="https://youtube.com/embed/TbgzSOgM-p0?autoplay=1&loop=1&playlist=TbgzSOgM-p0"
+    allow="accelerometer;
+        autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+  ></iframe>
+</div>
+
+### XTTS the Open, Foundation Speech Model
+
+Coqui is more than proud to announce the release of **XTTS**, the first generative, text-to-speech
+foundation model that is both open _and_ production-quality.
+
+### Try XTTS Now!
+
+<table>
+<tr style="border:none;">
+<td>
+<div align="center">
+
+<Link to="https://github.com/coqui-ai/tts">
+
+![IMAGE](../../../data/images/blog/posts/blog-open-xtts-github.png)
+
+</Link>
+
+</div>
+</td>
+
+<td>
+<div align="center">
+
+<Link to="https://huggingface.co/spaces/coqui/XTTS">
+
+![IMAGE](../../../data/images/blog/posts/blog-open-xtts-huggingface.png)
+
+</Link>
+
+</div>
+</td>
+</tr>
+</table>
+
+### XTTS a Labour of Love
+
+The foundation model XTTS is the culmination of years of work by the Coqui team and is able to
+outperform both open and closed models in a broad range of tasks. For example:
+
+- **Quality** - XTTS generates speech that meets and exceeds **production-quality** requirements.
+- **Multilingual** - XTTS generates speech in **13 different languages** (Arabic, Brazilian
+  Portuguese, Chinese, Czech, Dutch, English, French, German, Italian, Polish, Russian, Spanish,
+  and Turkish). More to come!
+- **Voice Cloning** - XTTS **clones any voice** using only a small sample of the original voice,
+  i.e. you give a voice sample in German and you can create a clone that sounds like the
+  original voice speaking German.
+- **Cross Language Voice Cloning** - XTTS **clones across languages**, i.e. you give a voice
+  sample in German and you can create a clone that sounds like the original voice speaking any
+  of the other languages (Arabic, Brazilian Portuguese, Chinese, Czech, Dutch, English, French,
+  Italian, Polish, Russian, Spanish, Turkish).
+
+Coqui’s innovation is not limited to only the foundation model XTTS. Coqui is also innovating
+in open source model licensing. (Currently, open _model_ licensing, not open _source_ licensing,
+is _very_ broken.)
+
+Working with [Heather Meeker](https://www.linkedin.com/in/heathermeeker/), world-leading expert
+on open source licenses, Coqui has created a new, innovative model license, the Coqui Public
+Model License (CPML), and XTTS will be the first ever model released under the CPML! You can
+read more about the Coqui Public Model License (CPML) [here](/cpml).
+
+Enterprises, if you’re interested in licensing the model, fine-tuned versions of the model, or
+other model variants under other licensing terms, just reach out licensing@coqui.ai.
+
+export const pageQuery = graphql`
+  query($fileAbsolutePath: String) {
+    ...SidebarPageFragment
+  }
+`;
