@@ -8,6 +8,14 @@
 export default [
   {
     group: 'TTS',
+    title: 'Coqui Public Model License',
+    url: '/blog/tts/cpml',
+    splash: 'images/blog/splash-screens/blog-splash-screen-cpml.jpg',
+    description: 'Coqui’s Coqui Public Model License',
+    height: 500
+  },
+  {
+    group: 'TTS',
     title: 'Coqui the Polyglot',
     url: '/blog/tts/coqui_the_polyglot',
     splash: 'images/blog/splash-screens/blog-splash-screen-coqui-the-polyglot.png',
