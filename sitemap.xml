@@ -5,6 +5,7 @@
 <url> <loc>https://coqui.ai/account</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/brand-voices</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/cpml</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/dubbing</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/editor</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/how-it-works</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -47,6 +48,7 @@
 <url> <loc>https://coqui.ai/blog/tts/african-languages-dataset-collaboration</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/coqui-studio-feb-2023-release</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/coqui_the_polyglot</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/blog/tts/cpml</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/dive_deeper_into_the_world_of_xtts</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/gradual-training-with-tacotron-for-faster-convergence</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/introducing_xtts_for_game_studios</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
