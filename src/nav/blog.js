@@ -8,7 +8,7 @@
 export default [
   {
     group: 'TTS',
-    title: 'XTTS: Open Source Release Announcement',
+    title: 'XTTS: Open Model Release Announcement',
     url: '/blog/tts/open_xtts',
     splash: 'images/blog/splash-screens/blog-splash-screen-open-xtts.jpg',
     description: 'XTTS is Open',
