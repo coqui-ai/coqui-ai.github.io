@@ -29,10 +29,10 @@ const PlanContainer = ({
   return (
     <div
       css={css`
-        width: 315px;
-        height: ${tall ? '643px' : '593px'};
-        min-height: ${tall ? '643px' : '593px'};
-        max-height: ${tall ? '643px' : '593px'};
+        width: 345px;
+        height: ${tall ? '693px' : '643px'};
+        min-height: ${tall ? '693px' : '643px'};
+        max-height: ${tall ? '693px' : '643px'};
         border-radius: 10px;
         ${inverse && 'border: 1.32px solid #5EAE91;'}
         background: ${inverse ? '#012b30' : '#fff'};
@@ -326,8 +326,9 @@ const PriceDisplay = ({ price, credits }: { price: ReactNode; credits: ReactNode
   );
 };
 
-const StandardFeatures = () => (
+const StandardFeatures = ({ additionalCredits }: { additionalCredits: ReactNode }) => (
   <FeatureList>
+    {additionalCredits}
     <span>V1: 1 credit per 1s of speech</span>
     <span>XTTS: 2 credits per 1s of speech</span>
     <span>Paraphrase: 1 credit per usage</span>
@@ -339,6 +340,7 @@ const StandardFeatures = () => (
     <span>Directable Voice Intonation</span>
     <span>Directable Voice Intensity</span>
     <span>API Access</span>
+    <span>Support for 7 languages</span>
   </FeatureList>
 );
 
@@ -346,11 +348,13 @@ const UsablePlanContainer = ({
   name,
   price,
   credits,
+  additionalCredits,
   badge = null
 }: {
   name: ReactNode;
   price: ReactNode;
   credits: ReactNode;
+  additionalCredits: ReactNode;
   badge?: ReactNode;
 }) => {
   const signupLink = useSignupLink();
@@ -398,7 +402,7 @@ const UsablePlanContainer = ({
         )}
         <PriceDisplay price={price} credits={credits} />
       </div>
-      <StandardFeatures />
+      <StandardFeatures additionalCredits={additionalCredits} />
       <ClientSide>
         <a href={signupLink}>
           <OrangeButton css="font-size: 18px; width: 100%; padding: 24px;">
@@ -505,6 +509,7 @@ export const PricingTable = () => {
               <span>Directable Voice Pacing</span>
               <span>Directable Voice Intonation</span>
               <span>Directable Voice Intensity</span>
+              <span>Support for 7 languages</span>
             </FeatureList>
             <ClientSide>
               <a href={signupLink}>
@@ -512,13 +517,29 @@ export const PricingTable = () => {
               </a>
             </ClientSide>
           </PlanContainer>
-          <UsablePlanContainer name="Hobbyist" price="$5" credits="3,600 credits per month" />
-          <UsablePlanContainer name="Starter" price="$20" credits="14,400 credits per month" />
-          <UsablePlanContainer name="Intermediate" price="$50" credits="36,000 credits per month" />
+          <UsablePlanContainer
+            name="Hobbyist"
+            price="$5"
+            credits="3,600 credits per month"
+            additionalCredits="Additional credits: $0.00138 / credit"
+          />
+          <UsablePlanContainer
+            name="Starter"
+            price="$20"
+            credits="14,400 credits per month"
+            additionalCredits="Additional credits: $0.00134 / credit"
+          />
+          <UsablePlanContainer
+            name="Intermediate"
+            price="$50"
+            credits="36,000 credits per month"
+            additionalCredits="Additional credits: $0.00126 / credit"
+          />
           <UsablePlanContainer
             name="Advanced"
             price="$175"
             credits="180,000 credits per month"
+            additionalCredits="Additional credits: $0.00097 / credit"
             badge="Save 30%"
           />
           <PlanContainer>
@@ -527,7 +548,6 @@ export const PricingTable = () => {
               <span>Multi-user</span>
               <span>Team Collaboration Tools</span>
               <span>Higher Quality Voice Clones</span>
-              <span>Multi-lingual synthesis</span>
               <span>Pro-Level Support</span>
             </FeatureList>
             <a
