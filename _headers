@@ -81,8 +81,6 @@
   Cache-Control: public, max-age=31536000, immutable
 /component---src-pages-job-senior-full-stack-engineer-mdx-e57116122b37caa310b3.js
   Cache-Control: public, max-age=31536000, immutable
-/component---src-pages-job-senior-ui-ux-engineer-mdx-5f20cff3a99682c9a5d8.js
-  Cache-Control: public, max-age=31536000, immutable
 /component---src-pages-newsletter-01-11-2021-mdx-0ee4248c74ed9a0eafb8.js
   Cache-Control: public, max-age=31536000, immutable
 /component---src-pages-newsletter-02-05-2022-mdx-bc7aafeceee409d016fc.js
@@ -156,6 +154,8 @@
 /component---src-pages-blog-tts-xtts-taking-tts-to-the-next-level-mdx-d20f11bbf8107233082c.js
   Cache-Control: public, max-age=31536000, immutable
 /component---src-pages-blog-tts-yourtts-zero-shot-text-synthesis-low-resource-languages-mdx-e61db6d91cf9138d42dd.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-pages-job-senior-ui-ux-engineer-mdx-5f20cff3a99682c9a5d8.js
   Cache-Control: public, max-age=31536000, immutable
 /webpack-runtime-43058e42b974a1183be1.js
   Cache-Control: public, max-age=31536000, immutable
@@ -452,21 +452,6 @@
   Link: </component---src-pages-job-senior-full-stack-engineer-mdx-e57116122b37caa310b3.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/job/senior-full-stack-engineer/page-data.json>; rel=preload; as=fetch; crossorigin
-/job/senior-ui+ux-engineer
-  Link: </webpack-runtime-43058e42b974a1183be1.js>; rel=preload; as=script
-  Link: </framework-07d9849ef763d7695a82.js>; rel=preload; as=script
-  Link: </app-434d96de1e42f627c9e4.js>; rel=preload; as=script
-  Link: </styles-e9d24b1846c7d6eb9685.js>; rel=preload; as=script
-  Link: </1f048439f9c07d451e164bb53de568f2c809348a-f56657da4f1a0789388d.js>; rel=preload; as=script
-  Link: </8c406dab11713584c01ca3ac8e88e5726674fd76-6723a6429fa98359a82a.js>; rel=preload; as=script
-  Link: </c9b2145e7bc28d8a466734fdb9ffdbc2bc3a2494-0fe0b7d7c41250dce01d.js>; rel=preload; as=script
-  Link: </35951bc4d4e2fbf1437bb2c242733bbbd6b2f603-4ff9b7081f594ca87d75.js>; rel=preload; as=script
-  Link: </57e9a7dab48adeda3dcf2971395df6ef1f653571-496ab126bb6a41a799fe.js>; rel=preload; as=script
-  Link: </6e8065a11b5cd91f101424742198e62e4d9086d3-414a16e4222da8490c7a.js>; rel=preload; as=script
-  Link: </823294e67d7080caf6bea8d2c2575f46a1054c88-943f42921f1401823233.js>; rel=preload; as=script
-  Link: </component---src-pages-job-senior-ui-ux-engineer-mdx-5f20cff3a99682c9a5d8.js>; rel=preload; as=script
-  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
-  Link: </page-data/job/senior-ui+ux-engineer/page-data.json>; rel=preload; as=fetch; crossorigin
 /newsletter/01-11-2021
   Link: </webpack-runtime-43058e42b974a1183be1.js>; rel=preload; as=script
   Link: </framework-07d9849ef763d7695a82.js>; rel=preload; as=script
@@ -1022,3 +1007,18 @@
   Link: </component---src-pages-blog-tts-yourtts-zero-shot-text-synthesis-low-resource-languages-mdx-e61db6d91cf9138d42dd.js>; rel=preload; as=script
   Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
   Link: </page-data/blog/tts/yourtts-zero-shot-text-synthesis-low-resource-languages/page-data.json>; rel=preload; as=fetch; crossorigin
+/job/senior-ui+ux-engineer
+  Link: </webpack-runtime-43058e42b974a1183be1.js>; rel=preload; as=script
+  Link: </framework-07d9849ef763d7695a82.js>; rel=preload; as=script
+  Link: </app-434d96de1e42f627c9e4.js>; rel=preload; as=script
+  Link: </styles-e9d24b1846c7d6eb9685.js>; rel=preload; as=script
+  Link: </1f048439f9c07d451e164bb53de568f2c809348a-f56657da4f1a0789388d.js>; rel=preload; as=script
+  Link: </8c406dab11713584c01ca3ac8e88e5726674fd76-6723a6429fa98359a82a.js>; rel=preload; as=script
+  Link: </c9b2145e7bc28d8a466734fdb9ffdbc2bc3a2494-0fe0b7d7c41250dce01d.js>; rel=preload; as=script
+  Link: </35951bc4d4e2fbf1437bb2c242733bbbd6b2f603-4ff9b7081f594ca87d75.js>; rel=preload; as=script
+  Link: </57e9a7dab48adeda3dcf2971395df6ef1f653571-496ab126bb6a41a799fe.js>; rel=preload; as=script
+  Link: </6e8065a11b5cd91f101424742198e62e4d9086d3-414a16e4222da8490c7a.js>; rel=preload; as=script
+  Link: </823294e67d7080caf6bea8d2c2575f46a1054c88-943f42921f1401823233.js>; rel=preload; as=script
+  Link: </component---src-pages-job-senior-ui-ux-engineer-mdx-5f20cff3a99682c9a5d8.js>; rel=preload; as=script
+  Link: </page-data/app-data.json>; rel=preload; as=fetch; crossorigin
+  Link: </page-data/job/senior-ui+ux-engineer/page-data.json>; rel=preload; as=fetch; crossorigin

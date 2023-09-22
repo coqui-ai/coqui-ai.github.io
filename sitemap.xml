@@ -26,7 +26,6 @@
 <url> <loc>https://coqui.ai/job/principal-full-stack-engineer</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/job/renaissance-sales-representative</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/job/senior-full-stack-engineer</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://coqui.ai/job/senior-ui+ux-engineer</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/newsletter/01-11-2021</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/newsletter/02-05-2022</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/newsletter/02-08-2021</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -64,4 +63,5 @@
 <url> <loc>https://coqui.ai/blog/tts/voice-fusion</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/xtts_taking_tts_to_the_next_level</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/blog/tts/yourtts-zero-shot-text-synthesis-low-resource-languages</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/job/senior-ui+ux-engineer</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
