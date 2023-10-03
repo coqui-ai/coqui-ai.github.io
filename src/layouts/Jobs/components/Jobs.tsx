@@ -21,22 +21,10 @@ interface IRow {
 
 const rowData: IRow[] = [
   {
-    title: 'Renaissance Sales Representative',
-    url: '../job/renaissance-sales-representative',
-    location: 'Berlin, Germany OR Remote',
-    group: 'Sales'
-  },
-  {
-    title: 'Senior Full Stack Engineer',
-    url: '../job/senior-full-stack-engineer',
-    location: 'Worldwide Remote',
-    group: 'Engineering'
-  },
-  {
-    title: 'Principal Full Stack Engineer',
-    url: '../job/principal-full-stack-engineer',
-    location: 'Worldwide Remote',
-    group: 'Engineering'
+    title: 'N/A',
+    url: 'jobs',
+    location: 'N/A',
+    group: 'N/A'
   }
 ];
 
@@ -57,7 +45,7 @@ export const Jobs: React.FC = () => {
           margin-bottom: ${p => p.theme.space.xl};
         `}
       >
-        Open Positions
+        Currently No Open Positions
       </StyledJobsHeader>
       <Table
         size="large"
@@ -82,9 +70,7 @@ export const Jobs: React.FC = () => {
         <Body>
           {rowData.map((data, index) => (
             <Row key={index + 1} isStriped={(index + 1) % 2 === 0}>
-              <Cell>
-                <Link to={data.url}>{data.title}</Link>
-              </Cell>
+              <Cell>{data.title}</Cell>
               <Cell>{data.location}</Cell>
               <Cell>{data.group}</Cell>
             </Row>
