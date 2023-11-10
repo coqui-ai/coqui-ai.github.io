@@ -340,7 +340,7 @@ const StandardFeatures = ({ additionalCredits }: { additionalCredits: ReactNode 
     <span>Directable Voice Intonation</span>
     <span>Directable Voice Intensity</span>
     <span>API Access</span>
-    <span>Support for 7 languages</span>
+    <span>Support for 16 languages</span>
   </FeatureList>
 );
 
@@ -509,7 +509,7 @@ export const PricingTable = () => {
               <span>Directable Voice Pacing</span>
               <span>Directable Voice Intonation</span>
               <span>Directable Voice Intensity</span>
-              <span>Support for 7 languages</span>
+              <span>Support for 16 languages</span>
             </FeatureList>
             <ClientSide>
               <a href={signupLink}>

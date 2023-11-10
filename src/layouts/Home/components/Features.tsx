@@ -371,12 +371,8 @@ export const Features = ({}) => {
           description="Organize and keep control of your work in projects."
         />
         <FeatureDescription
-          title={
-            <span css="display: flex; align-items: center;">
-              Script Imports <ComingSoonBadge />
-            </span>
-          }
-          description="Import your scripts into Coqui Studio start voicing it in seconds."
+          title="Script Imports"
+          description="Import your scripts into Coqui Studio and start voicing them in seconds."
         />
         <FeatureDescription
           title={
