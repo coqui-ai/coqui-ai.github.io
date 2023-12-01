@@ -99,37 +99,6 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => {
               }
             `}
           >
-            <div
-              css={css`
-                grid-area: col-1;
-                width: 380px;
-
-                ${p => mediaQuery('down', 'md', p.theme)} {
-                  width: 320px;
-                }
-
-                ${p => mediaQuery('down', 'sm', p.theme)} {
-                  width: 350px;
-                }
-              `}
-            >
-              <p
-                css={css`
-                  margin-bottom: 10px;
-                  width: 260px;
-                  line-height: 140%;
-                  font-size: 16px;
-                  font-weight: 400;
-
-                  ${p => mediaQuery('down', 'sm', p.theme)} {
-                    margin-bottom: 20px;
-                  }
-                `}
-              >
-                Sign up with your email address to receive the Coqui newsletter.
-              </p>
-              <NewsletterForm url="https://coqui.us1.list-manage.com/subscribe/post?u=6faea2f1f19c814566173ffb0&amp;id=f9b303df7f" />
-            </div>
             <div css="grid-area: col-3">
               <p
                 css={`
