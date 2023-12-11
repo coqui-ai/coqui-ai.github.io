@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[17],{"/yBf":function(n,t,o){"use strict";o.r(t);var a=o("asXk");t.default=function(){return Object(a.a)(),""}},asXk:function(n,t,o){"use strict";o.d(t,"a",(function(){return c}));var a=o("q1tI");function c(){Object(a.useEffect)((function(){var n=window.location.pathname+window.location.search;window.location.replace("https://app.coqui.ai"+n)}))}}}]);
-//# sourceMappingURL=component---src-pages-auth-signout-tsx-c8e1d3baf8d8bc5db4ab.js.map
