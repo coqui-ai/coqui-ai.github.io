@@ -7,15 +7,13 @@
 
 import { mediaQuery } from '@zendeskgarden/react-theming';
 import React from 'react';
+import { Link } from 'gatsby';
 import { css } from 'styled-components';
 import ClientSide from 'utils/ClientSide';
 import { PrimaryButton, SecondaryButton } from './Buttons';
-import { useSignupLink } from './SignUpLink';
 import { VideoFrame } from './VideoFrame';
 
 export const Hero = () => {
-  const signupLink = useSignupLink();
-
   return (
     <div
       css={css`
@@ -85,11 +83,27 @@ export const Hero = () => {
           <p
             css={css`
               font-size: 18px;
-              line-height: 32.4px;
+              line-height: 18px;
             `}
           >
-            Coqui Studio: realistic, emotive <span css="white-space: nowrap;">text-to-speech</span>{' '}
-            through generative AI.
+            <Link to="blog/tts/open_xtts">XTTS</Link>: local, on-premise, realistic, emotive{' '}
+            <span css="white-space: nowrap;">text-to-speech</span> through generative AI.
+          </p>
+          <p
+            css={css`
+              font-size: 18px;
+              line-height: 9px;
+            `}
+          >
+            Interested in a commercial license?
+          </p>
+          <p
+            css={css`
+              font-size: 18px;
+              line-height: 9px;
+            `}
+          >
+            Read the <Link to="faq">FAQ</Link>.
           </p>
           <div
             css={css`
@@ -101,9 +115,16 @@ export const Hero = () => {
             `}
           >
             <ClientSide>
-              <PrimaryButton text="Start now for free" path={signupLink} />
+              <PrimaryButton
+                text="Start now for free"
+                path="https://huggingface.co/spaces/coqui/xtts"
+              />
             </ClientSide>
-            <SecondaryButton text="See what we can do" path="/#features" />
+            <SecondaryButton text="Purchase a commercial license" path="https://t.co/F2OsCp00iI" />
+            <SecondaryButton
+              text="Install locally"
+              path="https://tts.readthedocs.io/en/latest/installation.html"
+            />
           </div>
         </div>
         <div

@@ -6,22 +6,16 @@
  */
 
 import React from 'react';
-import { Features } from './components/Features';
-import { GetStartedCtA } from './components/GetStartedCta';
 import { Hero } from './components/Hero';
 import { PricingTable } from './components/PricingTable';
 import { UsersSection } from './components/Users';
 import { Voices } from './components/Voices';
-import { WhyCoqui } from './components/WhyCoqui';
 
 export const HomeLayout = () => {
   return (
     <>
       <Hero />
       <Voices />
-      <Features />
-      <WhyCoqui />
-      <GetStartedCtA />
     </>
   );
 };
@@ -31,7 +25,6 @@ export const PricingLayout = () => {
     <>
       <PricingTable />
       <UsersSection />
-      <WhyCoqui />
     </>
   );
 };
