@@ -204,7 +204,7 @@ const MobileNav = ({
         </StyledMobileNavLink>
       </StyledMobileNavItem>
       <StyledMobileNavItem>
-        <StyledMobileNavLink to="/pricing">Pricing</StyledMobileNavLink>
+        <StyledMobileNavLink to="/faq">FAQ</StyledMobileNavLink>
       </StyledMobileNavItem>
       <Dropdown
         onSelect={item => {
@@ -264,7 +264,7 @@ const Header = ({}) => {
           `}
         >
           <a href="/#features">Features</a>
-          <a href="/pricing">Pricing</a>
+          <a href="/faq">FAQ</a>
           <Dropdown
             onSelect={item => {
               window.location.href = item;
