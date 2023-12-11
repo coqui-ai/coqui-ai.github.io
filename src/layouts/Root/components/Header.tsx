@@ -198,14 +198,6 @@ const MobileNav = ({
         padding: ${p => p.theme.space.lg} ${p => p.theme.space.xxl};
       `}
     >
-      <StyledMobileNavItem>
-        <StyledMobileNavLink to="/#features" onClick={() => setIsNavigationVisible(false)}>
-          Features
-        </StyledMobileNavLink>
-      </StyledMobileNavItem>
-      <StyledMobileNavItem>
-        <StyledMobileNavLink to="/pricing">Pricing</StyledMobileNavLink>
-      </StyledMobileNavItem>
       <Dropdown
         onSelect={item => {
           window.location.href = item;
@@ -263,8 +255,6 @@ const Header = ({}) => {
             }
           `}
         >
-          <a href="/#features">Features</a>
-          <a href="/pricing">Pricing</a>
           <Dropdown
             onSelect={item => {
               window.location.href = item;

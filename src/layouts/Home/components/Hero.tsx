@@ -10,12 +10,9 @@ import React from 'react';
 import { css } from 'styled-components';
 import ClientSide from 'utils/ClientSide';
 import { PrimaryButton, SecondaryButton } from './Buttons';
-import { useSignupLink } from './SignUpLink';
 import { VideoFrame } from './VideoFrame';
 
 export const Hero = () => {
-  const signupLink = useSignupLink();
-
   return (
     <div
       css={css`
@@ -88,8 +85,8 @@ export const Hero = () => {
               line-height: 32.4px;
             `}
           >
-            Coqui Studio: realistic, emotive <span css="white-space: nowrap;">text-to-speech</span>{' '}
-            through generative AI.
+            XTTS: realistic, emotive <span css="white-space: nowrap;">text-to-speech</span> through
+            generative AI.
           </p>
           <div
             css={css`
@@ -101,37 +98,11 @@ export const Hero = () => {
             `}
           >
             <ClientSide>
-              <PrimaryButton text="Start now for free" path={signupLink} />
+              <PrimaryButton
+                text="Try now for free"
+                path="https://huggingface.co/spaces/coqui/xtts"
+              />
             </ClientSide>
-            <SecondaryButton text="See what we can do" path="/#features" />
-          </div>
-        </div>
-        <div
-          css={css`
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex: 1;
-            min-width: 350px;
-          `}
-        >
-          <div
-            css={css`
-              width: 100%;
-              height: 100%;
-            `}
-          >
-            <div
-              css={css`
-                position: relative;
-                overflow: hidden;
-                width: 100%;
-                padding-top: 56.25%;
-              `}
-            >
-              <VideoFrame />
-            </div>
           </div>
         </div>
       </div>

@@ -10,15 +10,12 @@ import { getColor } from '@zendeskgarden/react-theming';
 import React, { FC } from 'react';
 import { css } from 'styled-components';
 import ClientSide from 'utils/ClientSide';
-import { useSignupLink } from './SignUpLink';
 import { StyledNavigationLink } from './StyledNavigationLink';
 
 export const TryNowButton = ({ ...rest }) => {
-  const signupLink = useSignupLink();
-
   return (
     <ClientSide>
-      <StyledNavigationLink to={signupLink} {...rest}>
+      <StyledNavigationLink to="https://huggingface.co/spaces/coqui/xtts" {...rest}>
         <Button
           css={css`
             border-width: 0;
