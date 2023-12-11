@@ -95,7 +95,25 @@ export const Hero = () => {
               line-height: 9px;
             `}
           >
-            Interested in a commercial license? Read the <Link to="faq">FAQ</Link>.
+            Interested in a commercial license?
+          </p>
+          <p
+            css={css`
+              font-size: 18px;
+              line-height: 9px;
+              font-weight: bold;
+              font-style: italic;
+            `}
+          >
+            Pricing starts at $1 per day.
+          </p>
+          <p
+            css={css`
+              font-size: 18px;
+              line-height: 9px;
+            `}
+          >
+            Read the <Link to="faq">FAQ</Link>.
           </p>
           <div
             css={css`
