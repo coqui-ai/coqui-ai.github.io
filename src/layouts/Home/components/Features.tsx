@@ -266,7 +266,7 @@ export const Features = ({}) => {
         flex-direction: column;
         align-items: center;
         gap: 85px;
-        padding: 120px 88px 73px 88px;
+        padding: 120px 88px 93px 88px;
 
         & > div {
           width: 100%;
@@ -300,87 +300,12 @@ export const Features = ({}) => {
           description="Clone any voice from 3 seconds of audio and add to your collection."
         />
         <FeatureDescription
-          title="Generative AI Voices"
-          description="Design your dream voice instead of choosing from a list."
+          title="Low-latency streaming"
+          description="Run the model on-premises and generate the first audio chunk in 300ms."
         />
         <FeatureDescription
-          title={
-            <span css="max-width: 280px;">
-              Generative <span css="color: #ed8f1c;">AI Emotions</span> and{' '}
-              <span css="color: #468d6a;">Voice Control</span>
-            </span>
-          }
-          description="Easily tune style of any voice, adjust pace and emotions."
-        />
-      </FeatureSection>
-      <FeatureSection
-        reverse
-        background="linear-gradient(87.99deg, rgba(255, 252, 247, 0.5) 23.51%, rgba(255, 255, 255, 0.5) 90.25%)"
-      >
-        <ImageContainer>
-          <img
-            src={featureImages.group2.childImageSharp.fixed.src}
-            css={css`
-              overflow: visible;
-              object-fit: cover;
-              object-positin: left center;
-              max-width: 654px;
-
-              ${p => mediaQuery('down', 'md', p.theme)} {
-                position: relative;
-                margin-top: -60px;
-                margin-left: -50px;
-                height: unset;
-                width: 160%;
-              }
-            `}
-          />
-        </ImageContainer>
-        <FeatureDescription
-          title="Advanced Editor"
-          description="Take full control of your AI voices. Adjust pitch, loudness and more, for each sentence, word or character."
-        />
-        <FeatureDescription
-          title="Multiple Takes"
-          description="Don't limit yourself to one creative alternative! Use takes to experiment and save different performances, deciding later which is the one."
-        />
-        <FeatureDescription
-          title="Timeline Editor"
-          description="Direct your scenes casted by many AI Voices with extensive performances, and hear them all together."
-        />
-      </FeatureSection>
-      <FeatureSection background="linear-gradient(96.66deg, rgba(247, 229, 203, 0.5) 42.31%, rgba(253, 244, 232, 0.5) 98.24%)">
-        <ImageContainer>
-          <img
-            src={featureImages.group3.childImageSharp.fixed.src}
-            css={css`
-              overflow: visible;
-              margin-left: -124px;
-              max-width: 507px;
-
-              ${p => mediaQuery('down', 'md', p.theme)} {
-                margin-top: -60px;
-                margin-left: -50px;
-                width: 140%;
-              }
-            `}
-          />
-        </ImageContainer>
-        <FeatureDescription
-          title="Project Management"
-          description="Organize and keep control of your work in projects."
-        />
-        <FeatureDescription
-          title="Script Imports"
-          description="Import your scripts into Coqui Studio and start voicing them in seconds."
-        />
-        <FeatureDescription
-          title={
-            <span css="display: flex; align-items: center; white-space: nowrap;">
-              Team Collaboration <ComingSoonBadge />
-            </span>
-          }
-          description="Collaborate with colleagues, directing and casting characters as a team."
+          title="Support for 16 languages"
+          description="Every voice can speak every language."
         />
       </FeatureSection>
     </div>

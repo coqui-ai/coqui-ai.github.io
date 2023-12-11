@@ -7,8 +7,6 @@
 
 import React from 'react';
 import { Hero } from './components/Hero';
-import { PricingTable } from './components/PricingTable';
-import { UsersSection } from './components/Users';
 import { Voices } from './components/Voices';
 
 export const HomeLayout = () => {
@@ -16,15 +14,6 @@ export const HomeLayout = () => {
     <>
       <Hero />
       <Voices />
-    </>
-  );
-};
-
-export const PricingLayout = () => {
-  return (
-    <>
-      <PricingTable />
-      <UsersSection />
     </>
   );
 };
