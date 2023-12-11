@@ -7,6 +7,7 @@
 
 import { mediaQuery } from '@zendeskgarden/react-theming';
 import React from 'react';
+import { Link } from 'gatsby';
 import { css } from 'styled-components';
 import ClientSide from 'utils/ClientSide';
 import { PrimaryButton, SecondaryButton } from './Buttons';
@@ -82,11 +83,19 @@ export const Hero = () => {
           <p
             css={css`
               font-size: 18px;
-              line-height: 32.4px;
+              line-height: 9px;
             `}
           >
-            XTTS: realistic, emotive <span css="white-space: nowrap;">text-to-speech</span> through
-            generative AI.
+            <Link to="blog/tts/open_xtts">XTTS</Link>: local, on-premise, realistic, emotive{' '}
+            <span css="white-space: nowrap;">text-to-speech</span> through generative AI.
+          </p>
+          <p
+            css={css`
+              font-size: 18px;
+              line-height: 9px;
+            `}
+          >
+            Interested in a commercial license? Read the <Link to="faq">FAQ</Link>.
           </p>
           <div
             css={css`
@@ -103,6 +112,39 @@ export const Hero = () => {
                 path="https://huggingface.co/spaces/coqui/xtts"
               />
             </ClientSide>
+            <SecondaryButton text="Purchase a commercial license" path="https://t.co/F2OsCp00iI" />
+            <SecondaryButton
+              text="Install locally"
+              path="https://tts.readthedocs.io/en/latest/installation.html"
+            />
+          </div>
+        </div>
+        <div
+          css={css`
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            min-width: 350px;
+          `}
+        >
+          <div
+            css={css`
+              width: 100%;
+              height: 100%;
+            `}
+          >
+            <div
+              css={css`
+                position: relative;
+                overflow: hidden;
+                width: 100%;
+                padding-top: 56.25%;
+              `}
+            >
+              <VideoFrame />
+            </div>
           </div>
         </div>
       </div>

@@ -16,7 +16,6 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { PlayCircle, StopCircle } from 'iconsax-react';
 import React, { useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { TryNowButton } from './Buttons';
 import { headerStyling } from './Styles';
 
 const VoiceCard = styled.div`
@@ -222,10 +221,9 @@ export const Voices = () => {
             text-align: center;
           `}
         >
-          Clone your voice in seconds or choose from our available AI voices, with more being added
-          with every release
+          Clone your voice using seconds of audio, fine-tune with minutes, or choose from our
+          available AI voices.
         </LG>
-        <TryNowButton css="margin-top: 20px; overflow: visible;" />
         <div
           css={css`
             display: flex;
@@ -301,9 +299,9 @@ export const Voices = () => {
               `}
             />
             <p css="margin-top: 16px; text-align: center; margin-bottom: 23px;">
-              To get more voices, you can instantly clone any voice with just 3 seconds of audio
+              To get more voices, you can instantly clone any voice with seconds of audio or
+              fine-tune with minutes.
             </p>
-            <TryNowButton />
           </AddVoiceCard>
         </div>
       </div>

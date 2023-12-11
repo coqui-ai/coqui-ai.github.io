@@ -6,19 +6,14 @@
  */
 
 import React from 'react';
-import { Features } from './components/Features';
-import { GetStartedCtA } from './components/GetStartedCta';
 import { Hero } from './components/Hero';
 import { Voices } from './components/Voices';
-import { WhyCoqui } from './components/WhyCoqui';
 
 export const HomeLayout = () => {
   return (
     <>
       <Hero />
       <Voices />
-      <Features />
-      <GetStartedCtA />
     </>
   );
 };

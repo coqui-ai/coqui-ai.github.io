@@ -13,7 +13,6 @@ import { ReactComponent as OverflowVerticalStroke } from '@zendeskgarden/svg-ico
 import { ReactComponent as CloseStroke } from '@zendeskgarden/svg-icons/src/16/x-stroke.svg';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
-import { TryNowButton } from 'layouts/Home/components/Buttons';
 import queryString from 'query-string';
 import React, { HTMLAttributes, useEffect, useState } from 'react';
 import styled, { css, DefaultTheme } from 'styled-components';
@@ -198,6 +197,9 @@ const MobileNav = ({
         padding: ${p => p.theme.space.lg} ${p => p.theme.space.xxl};
       `}
     >
+      <StyledMobileNavItem>
+        <StyledMobileNavLink to="/faq">FAQ</StyledMobileNavLink>
+      </StyledMobileNavItem>
       <Dropdown
         onSelect={item => {
           window.location.href = item;
@@ -220,9 +222,6 @@ const MobileNav = ({
           <Item value="/dubbing">Dubbing</Item>
         </Menu>
       </Dropdown>
-      <StyledMobileNavItem>
-        <TryNowButton />
-      </StyledMobileNavItem>
     </nav>
   );
 };
@@ -255,6 +254,7 @@ const Header = ({}) => {
             }
           `}
         >
+          <a href="/faq">FAQ</a>
           <Dropdown
             onSelect={item => {
               window.location.href = item;
@@ -279,20 +279,6 @@ const Header = ({}) => {
             </Menu>
           </Dropdown>
         </nav>
-        <div
-          css={css`
-            display: flex;
-            justify-content: end;
-            align-items: center;
-            gap: 30px;
-
-            ${p => mediaQuery('down', 'sm', p.theme)} {
-              display: none;
-            }
-          `}
-        >
-          <TryNowButton />
-        </div>
         <MobileNavButton
           icon={<OverflowVerticalStroke />}
           label="Global navigation"
