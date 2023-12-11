@@ -8,6 +8,7 @@
 <url> <loc>https://coqui.ai/cpml</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/dubbing</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/editor</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>https://coqui.ai/faq</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/how-it-works</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/jobs</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>https://coqui.ai/post-production</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
