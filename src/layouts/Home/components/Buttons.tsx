@@ -11,6 +11,7 @@ import React, { FC } from 'react';
 import { css } from 'styled-components';
 import ClientSide from 'utils/ClientSide';
 import { StyledNavigationLink } from './StyledNavigationLink';
+import { mediaQuery } from '@zendeskgarden/react-theming';
 
 export const TryNowButton = ({ ...rest }) => {
   return (
@@ -56,6 +57,9 @@ export const PrimaryButton: FC<ButtonType> = ({ text, path, fullWidth, iconSrc }
             color: white;
             opacity: 0.7;
           }
+          ${p => mediaQuery('down', 'sm', p.theme)} {
+            font-size: 14px;
+          }
         `}
       >
         {text}{' '}
@@ -92,6 +96,9 @@ export const SecondaryButton: FC<ButtonType> = ({ text, textColor, path, fullWid
           font-weight: 400;
           padding: 18px 24px;
           width: ${fullWidth ? '100%' : ''};
+          ${p => mediaQuery('down', 'sm', p.theme)} {
+            font-size: 14px;
+          }
         `}
       >
         {text}
@@ -117,6 +124,9 @@ export const TertiaryButton: FC<ButtonType> = ({ text, path, fullWidth }) => {
           font-weight: 400;
           padding: 18px 24px;
           width: ${fullWidth ? '100%' : ''};
+          ${p => mediaQuery('down', 'sm', p.theme)} {
+            font-size: 14px;
+          }
         `}
       >
         {text}

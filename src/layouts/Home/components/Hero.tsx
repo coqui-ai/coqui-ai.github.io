@@ -22,12 +22,10 @@ export const Hero = () => {
         position: relative;
         background: linear-gradient(207.81deg, #f5faff 54.98%, #fefffe 92.7%);
         padding: 5rem 10rem;
-        height: calc(100vh - 77px);
         ${p => mediaQuery('down', 'md', p.theme)} {
           padding: 5rem 4rem;
         }
         ${p => mediaQuery('down', 'sm', p.theme)} {
-          height: calc(100vh - 60px);
         }
       `}
     >
@@ -63,6 +61,10 @@ export const Hero = () => {
                 font-size: 40px;
                 line-height: 48px;
               }
+              ${p => mediaQuery('down', 'xs', p.theme)} {
+                font-size: 20px;
+                line-height: 28px;
+              }
               display: flex;
               flex-direction: column;
             `}
@@ -83,16 +85,20 @@ export const Hero = () => {
           <p
             css={css`
               font-size: 18px;
-              line-height: 9px;
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                font-size: 14px;
+              }
             `}
           >
             <Link to="blog/tts/open_xtts">XTTS</Link>: local, on-premise, realistic, emotive{' '}
-            <span css="white-space: nowrap;">text-to-speech</span> through generative AI.
+            <span css="white-space: nowrap;">TTS through generative AI.</span>
           </p>
           <p
             css={css`
               font-size: 18px;
-              line-height: 9px;
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                font-size: 14px;
+              }
             `}
           >
             Interested in a commercial license?
@@ -100,9 +106,11 @@ export const Hero = () => {
           <p
             css={css`
               font-size: 18px;
-              line-height: 9px;
               font-weight: bold;
               font-style: italic;
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                font-size: 14px;
+              }
             `}
           >
             Pricing starts at $1 per day.
@@ -110,7 +118,9 @@ export const Hero = () => {
           <p
             css={css`
               font-size: 18px;
-              line-height: 9px;
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                font-size: 14px;
+              }
             `}
           >
             Read the <Link to="faq">FAQ</Link>.
@@ -119,9 +129,14 @@ export const Hero = () => {
             css={css`
               display: flex;
               flex-direction: row;
-              gap: 16px;
               align-items: center;
+              max-width: 925px;
+              gap: 20px;
               padding-top: 20px;
+              ${p => mediaQuery('down', 'xs', p.theme)} {
+                flex-wrap: wrap;
+                justify-content: center;
+              }
             `}
           >
             <ClientSide>
@@ -151,13 +166,18 @@ export const Hero = () => {
             css={css`
               width: 100%;
               height: 100%;
+              ${p => mediaQuery('down', 'md', p.theme)} {
+                width: 90%;
+              }
+              ${p => mediaQuery('down', 'sm', p.theme)} {
+                width: 80%;
+              }
             `}
           >
             <div
               css={css`
                 position: relative;
                 overflow: hidden;
-                width: 100%;
                 padding-top: 56.25%;
               `}
             >
