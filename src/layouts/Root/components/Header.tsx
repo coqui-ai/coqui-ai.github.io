@@ -114,42 +114,6 @@ const Logo: React.FC = () => {
   );
 };
 
-const MobileNavButton = ({
-  isExpanded,
-  label,
-  icon,
-  ...other
-}: {
-  isExpanded: boolean;
-  label: string;
-  icon: React.ReactNode;
-} & HTMLAttributes<HTMLButtonElement>) => {
-  return (
-    <div
-      css={css`
-        grid-area: c;
-        display: flex;
-        justify-content: end;
-        padding: ${p => p.theme.space.base * 1.5}px; /* (header - button) x .5 */
-
-        ${p => mediaQuery('up', 'md', p.theme)} {
-          display: none;
-        }
-      `}
-    >
-      <IconButton
-        aria-label={label}
-        aria-expanded={isExpanded}
-        isPill={false}
-        size="large"
-        {...other}
-      >
-        {isExpanded ? <CloseStroke /> : icon}
-      </IconButton>
-    </div>
-  );
-};
-
 const StyledMobileNavItem = styled.div`
   display: block;
   margin-top: ${p => p.theme.space.base * 2}px;
@@ -196,33 +160,7 @@ const MobileNav = ({
         background-color: ${p => p.theme.palette.tofu};
         padding: ${p => p.theme.space.lg} ${p => p.theme.space.xxl};
       `}
-    >
-      <StyledMobileNavItem>
-        <StyledMobileNavLink to="/faq">FAQ</StyledMobileNavLink>
-      </StyledMobileNavItem>
-      <Dropdown
-        onSelect={item => {
-          window.location.href = item;
-        }}
-      >
-        <Trigger>
-          <StyledMobileNavItem>
-            <StyledMobileNavMenu
-              css={css`
-                background-color: ${p => p.theme.palette.tofu};
-              `}
-            >
-              Use Cases
-            </StyledMobileNavMenu>
-          </StyledMobileNavItem>
-        </Trigger>
-        <Menu hasArrow>
-          <Item value="/video-games">Video Games</Item>
-          <Item value="/post-production">Post Production</Item>
-          <Item value="/dubbing">Dubbing</Item>
-        </Menu>
-      </Dropdown>
-    </nav>
+    />
   );
 };
 
@@ -253,41 +191,7 @@ const Header = ({}) => {
               display: none;
             }
           `}
-        >
-          <a href="/faq">FAQ</a>
-          <Dropdown
-            onSelect={item => {
-              window.location.href = item;
-            }}
-          >
-            <Trigger type="div">
-              <StyledDesktopNavItem
-                css={`
-                  margin: 0 !important;
-                  &:hover {
-                    cursor: pointer;
-                  }
-                `}
-              >
-                <StyledDesktopNavMenu css="margin-left: -8px;">Use Cases</StyledDesktopNavMenu>
-              </StyledDesktopNavItem>
-            </Trigger>
-            <Menu hasArrow>
-              <Item value="/video-games">Video Games</Item>
-              <Item value="/post-production">Post Production</Item>
-              <Item value="/dubbing">Dubbing</Item>
-            </Menu>
-          </Dropdown>
-        </nav>
-        <MobileNavButton
-          icon={<OverflowVerticalStroke />}
-          label="Global navigation"
-          isExpanded={isNavigationVisible}
-          onClick={() => {
-            setIsNavigationVisible(!isNavigationVisible);
-          }}
         />
-        {isNavigationVisible && <MobileNav setIsNavigationVisible={setIsNavigationVisible} />}
       </div>
     </StyledHeader>
   );

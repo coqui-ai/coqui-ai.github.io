@@ -117,138 +117,24 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => {
                 `}
               >
                 {!isSubscribing && (
-                  <>
-                    <Link aria-label="Coqui on GitHub" to="https://github.com/coqui-ai">
-                      <div
-                        css={`
-                          display: flex;
-                          justify-content: center;
-                          align-items: center;
-                        `}
-                      >
-                        <GitHubIcon
-                          css={css`
-                            margin-right: ${p => p.theme.space.lg};
-                            width: ${p => p.theme.iconSizes.lg};
-                            height: ${p => p.theme.iconSizes.lg};
-                            color: ${p => p.theme.palette.moss};
-                          `}
-                        />
-                      </div>
-                    </Link>
-                    <Link aria-label="Coqui on Twitter" to="https://twitter.com/coqui_ai">
-                      <div
-                        css={`
-                          display: flex;
-                          justify-content: center;
-                          align-items: center;
-                        `}
-                      >
-                        <TwitterIcon
-                          css={css`
-                            margin-right: ${p => p.theme.space.lg};
-                            width: 30px;
-                            height: 30px;
-                            color: ${p => p.theme.palette.moss};
-                            margin-top: -2px;
-                          `}
-                        />
-                      </div>
-                    </Link>
-                    <Link aria-label="Coqui on Facebook" to="https://www.facebook.com/coquiai">
-                      <div
-                        css={`
-                          display: flex;
-                          justify-content: center;
-                          align-items: center;
-                        `}
-                      >
-                        <FacebookIcon
-                          css={css`
-                            margin-right: ${p => p.theme.space.lg};
-                            width: ${p => p.theme.iconSizes.lg};
-                            height: ${p => p.theme.iconSizes.lg};
-                            color: ${p => p.theme.palette.moss};
-                          `}
-                        />
-                      </div>
-                    </Link>
-                    <Link
-                      aria-label="Coqui on LinkedIn"
-                      to="https://www.linkedin.com/company/coqui-ai"
+                  <Link aria-label="Coqui on GitHub" to="https://github.com/coqui-ai">
+                    <div
+                      css={`
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      `}
                     >
-                      <div
-                        css={`
-                          display: flex;
-                          justify-content: center;
-                          align-items: center;
+                      <GitHubIcon
+                        css={css`
+                          margin-right: ${p => p.theme.space.lg};
+                          width: ${p => p.theme.iconSizes.lg};
+                          height: ${p => p.theme.iconSizes.lg};
+                          color: ${p => p.theme.palette.moss};
                         `}
-                      >
-                        <LinkedInIcon
-                          css={css`
-                            margin-right: ${p => p.theme.space.lg};
-                            width: ${p => p.theme.iconSizes.lg};
-                            height: ${p => p.theme.iconSizes.lg};
-                            color: ${p => p.theme.palette.moss};
-                          `}
-                        />
-                      </div>
-                    </Link>
-                    <Link aria-label="Coqui on Discord" to="https://discord.gg/CzxHHp8mtZ">
-                      <div
-                        css={`
-                          display: flex;
-                          justify-content: center;
-                          align-items: center;
-                        `}
-                      >
-                        <DiscordIcon
-                          css={css`
-                            margin-right: ${p => p.theme.space.lg};
-                            width: 32px;
-                            height: 32px;
-                            color: ${p => p.theme.palette.moss};
-                            margin-top: -4px;
-                          `}
-                        />
-                      </div>
-                    </Link>
-                    <Link aria-label="Coqui on YouTube" to="https://www.youtube.com/@coqui1027">
-                      <div
-                        css={`
-                          display: flex;
-                          justify-content: center;
-                          align-items: center;
-                        `}
-                      >
-                        <YouTubeIcon
-                          css={css`
-                            margin-right: ${p => p.theme.space.lg};
-                            width: 45px;
-                            height: 45px;
-                            color: ${p => p.theme.palette.moss};
-                            margin-top: -10px;
-                          `}
-                        />
-                      </div>
-                    </Link>
-                    <Link aria-label="Coqui on YouTube" to="https://www.youtube.com/@coqui1027">
-                      <div
-                        css={`
-                          display: flex;
-                          justify-content: center;
-                          align-items: center;
-                        `}
-                      >
-                        <YouTubeIcon
-                          css={css`
-                            margin-top: -5px;
-                            color: ${p => p.theme.palette.moss};
-                          `}
-                        />
-                      </div>
-                    </Link>
-                  </>
+                      />
+                    </div>
+                  </Link>
                 )}
               </div>
             </div>
@@ -275,14 +161,7 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => {
                   display: flex;
                   flex-direction: column;
                 `}
-              >
-                <p css="font-weight: 700">Product</p>
-                <ClientSide>
-                  <StyledLinksItem to="https://huggingface.co/spaces/coqui/xtts">
-                    XTTS
-                  </StyledLinksItem>
-                </ClientSide>
-              </div>
+              />
               <div
                 css={css`
                   display: flex;
@@ -298,12 +177,7 @@ const Footer: React.FC<IFooterLayoutProps> = ({ isSubscribing }) => {
                   display: flex;
                   flex-direction: column;
                 `}
-              >
-                <p css="font-weight: 700">Company</p>
-                <StyledLinksItem to="/about">About us</StyledLinksItem>
-                <StyledLinksItem to="/blog">Blog</StyledLinksItem>
-                <StyledLinksItem to="/jobs">Jobs</StyledLinksItem>
-              </div>
+              />
               <div
                 css={css`
                   display: flex;
