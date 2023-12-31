@@ -10,12 +10,7 @@ import { Hero } from './components/Hero';
 import { Voices } from './components/Voices';
 
 export const HomeLayout = () => {
-  return (
-    <>
-      <Hero />
-      <Voices />
-    </>
-  );
+  return <Hero />;
 };
 
 export default HomeLayout;

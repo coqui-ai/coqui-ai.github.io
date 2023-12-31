@@ -20,7 +20,6 @@ export const Hero = () => {
         display: flex;
         justify-content: center;
         position: relative;
-        background: linear-gradient(207.81deg, #f5faff 54.98%, #fefffe 92.7%);
         padding: 5rem 10rem;
         ${p => mediaQuery('down', 'md', p.theme)} {
           padding: 5rem 4rem;
@@ -69,7 +68,7 @@ export const Hero = () => {
               flex-direction: column;
             `}
           >
-            <span>A new&nbsp;way to&nbsp;do voice&nbsp;overs.</span>
+            <span>Coqui&nbsp;is</span>
             <span
               css={css`
                 background: linear-gradient(89.27deg, #ed8f1c -1.56%, #468d6a 102.75%);
@@ -79,7 +78,7 @@ export const Hero = () => {
                 text-fill-color: transparent;
               `}
             >
-              A better way.
+              shutting&nbsp;down.
             </span>
           </h1>
           <p
@@ -90,40 +89,10 @@ export const Hero = () => {
               }
             `}
           >
-            <Link to="blog/tts/open_xtts">XTTS</Link>: local, on-premise, realistic, emotive{' '}
-            <span css="white-space: nowrap;">TTS through generative AI.</span>
-          </p>
-          <p
-            css={css`
-              font-size: 18px;
-              ${p => mediaQuery('down', 'sm', p.theme)} {
-                font-size: 14px;
-              }
-            `}
-          >
-            Interested in a commercial license?
-          </p>
-          <p
-            css={css`
-              font-size: 18px;
-              font-weight: bold;
-              font-style: italic;
-              ${p => mediaQuery('down', 'sm', p.theme)} {
-                font-size: 14px;
-              }
-            `}
-          >
-            Pricing starts at $1 per day.
-          </p>
-          <p
-            css={css`
-              font-size: 18px;
-              ${p => mediaQuery('down', 'sm', p.theme)} {
-                font-size: 14px;
-              }
-            `}
-          >
-            Read the <Link to="faq">FAQ</Link>.
+            Thank you for all your support!{' '}
+            <span role="img" aria-label="heart">
+              ❤️
+            </span>
           </p>
           <div
             css={css`
@@ -138,19 +107,7 @@ export const Hero = () => {
                 justify-content: center;
               }
             `}
-          >
-            <ClientSide>
-              <PrimaryButton
-                text="Try now for free"
-                path="https://huggingface.co/spaces/coqui/xtts"
-              />
-            </ClientSide>
-            <SecondaryButton text="Purchase a commercial license" path="https://t.co/F2OsCp00iI" />
-            <SecondaryButton
-              text="Install locally"
-              path="https://tts.readthedocs.io/en/latest/installation.html"
-            />
-          </div>
+          />
         </div>
         <div
           css={css`
