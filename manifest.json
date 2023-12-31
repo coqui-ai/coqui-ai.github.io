@@ -1,11 +1,6 @@
 {
   "main.js": "render-page.js",
   "main.js.map": "render-page.js.map",
-  "static/AaronDreschner.wav": "static/AaronDreschner-fae8e1644be598e3a524497c17aee714.wav",
-  "static/AlexandraHisakawa.wav": "static/AlexandraHisakawa-ed81981c0f26c58367b28bed1c966a45.wav",
-  "static/UtaObando.wav": "static/UtaObando-8d108d07aa28bc2a4c7c82ecd9e52798.wav",
-  "static/XavierHayasaka.wav": "static/XavierHayasaka-67bdfcfbf364f72d27a246f5bf4fd295.wav",
-  "static/ZofijaKendrick.wav": "static/ZofijaKendrick-6cbca95269b43a348d8d730122dec07f.wav",
   "static/advanced.png": "static/advanced-32cd54063d44e89e80f00e6a59ede80d.png",
   "static/ai.png": "static/ai-74dea4e2a643f18661d0265502c628fb.png",
   "static/audio_manager.png": "static/audio_manager-1d9122ab963bb14b2e9ada984495bb0f.png",
